@@ -30,10 +30,11 @@ describe('App', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('shows only the brand when logged out', async () => {
+  it('shows the Zona Fitness brand and public navigation when logged out', async () => {
     const el = await render();
-    expect(el.querySelector('.brand')?.textContent).toContain('HelpDesk');
-    expect(el.querySelector('nav')).toBeNull();
+    expect(el.querySelector('.brand')?.textContent).toContain('ZONA FITNESS');
+    expect(el.querySelector('.primary-nav')?.textContent).toContain('Planes');
+    expect(el.querySelector('.header-action')?.textContent).toContain('Acceso del equipo');
   });
 
   it('shows the user name and role badge when logged in', async () => {
@@ -43,10 +44,10 @@ describe('App', () => {
   });
 
   it('shows the "Usuarios" link only to admins', async () => {
-    expect((await render('admin')).querySelector('nav')?.textContent).toContain('Usuarios');
+    expect((await render('admin')).querySelector('.session')?.textContent).toContain('Usuarios');
   });
 
   it('hides the "Usuarios" link from non-admins', async () => {
-    expect((await render('user')).querySelector('nav')?.textContent).not.toContain('Usuarios');
+    expect((await render('user')).querySelector('.session')?.textContent).not.toContain('Usuarios');
   });
 });

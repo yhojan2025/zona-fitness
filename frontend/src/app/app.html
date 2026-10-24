@@ -1,19 +1,33 @@
-<header>
-  <a class="brand" routerLink="/">🎫 HelpDesk</a>
-  @if (auth.isLoggedIn()) {
-  <nav>
-    <a routerLink="/tickets" routerLinkActive="active">Tickets</a>
-    @if (auth.hasRole('admin')) {
-    <a routerLink="/users" routerLinkActive="active">Usuarios</a>
-    }
+<a class="skip-link" href="#main-content">Saltar al contenido</a>
+<header class="site-header">
+  <a class="brand" routerLink="/" aria-label="Zona Fitness, inicio">
+    <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M7 15h5v10H7zM28 15h5v10h-5zM2 17h4v6H2zm32 0h4v6h-4zM13 18h14v4H13z" />
+    </svg>
+    <span>ZONA <strong>FITNESS</strong></span>
+  </a>
+  <nav class="primary-nav" aria-label="Navegación principal">
+    <a routerLink="/" fragment="servicios">Servicios</a>
+    <a routerLink="/" fragment="planes">Planes</a>
+    <a routerLink="/" fragment="horarios">Horarios</a>
+    <a routerLink="/" fragment="espacio">El espacio</a>
   </nav>
-  <div class="session">
-    <span>
-      {{ auth.user()?.name }}
-      <small class="badge {{ auth.user()?.role }}">{{ auth.user()?.role }}</small>
-    </span>
-    <button class="secondary" (click)="auth.logout()">Salir</button>
-  </div>
+  @if (auth.isLoggedIn()) {
+    <div class="session">
+      <a class="staff-link" routerLink="/tickets">Soporte</a>
+      @if (auth.hasRole('admin')) {
+        <a class="staff-link" routerLink="/users">Usuarios</a>
+      }
+      <span class="session-name">
+        {{ auth.user()?.name }}
+        <small class="badge {{ auth.user()?.role }}">{{ auth.user()?.role }}</small>
+      </span>
+      <button class="button button-small button-outline" (click)="auth.logout()">Salir</button>
+    </div>
+  } @else {
+    <a class="button button-small button-outline header-action" routerLink="/login"
+      >Acceso del equipo</a
+    >
   }
 </header>
-<main><router-outlet /></main>
+<main id="main-content"><router-outlet /></main>

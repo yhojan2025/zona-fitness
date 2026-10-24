@@ -1,7 +1,105 @@
-header { display: flex; align-items: center; gap: 24px; padding: 12px 24px; background: #1e293b; color: #fff; }
-header a { color: #cbd5e1; text-decoration: none; }
-header a.active, header a:hover { color: #fff; }
-.brand { font-weight: 700; font-size: 1.1rem; color: #fff !important; }
-nav { display: flex; gap: 16px; flex: 1; }
-.session { display: flex; align-items: center; gap: 12px; margin-left: auto; }
-main { max-width: 960px; margin: 24px auto; padding: 0 16px; }
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 10;
+  transform: translateY(-150%);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  min-height: 76px;
+  padding: 12px clamp(20px, 5vw, 76px);
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #e2efed;
+  backdrop-filter: blur(12px);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #163b39;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.brand strong {
+  color: #3e9b94;
+}
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  fill: #3e9b94;
+}
+.primary-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 2.4vw, 34px);
+  flex: 1;
+}
+.primary-nav a,
+.staff-link {
+  color: #456260;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.primary-nav a:hover,
+.primary-nav a:focus-visible,
+.staff-link:hover {
+  color: #267b75;
+}
+.session {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+}
+.session-name {
+  color: #456260;
+  font-size: 0.87rem;
+}
+.header-action {
+  flex-shrink: 0;
+}
+main {
+  min-height: calc(100vh - 76px);
+}
+@media (max-width: 760px) {
+  .site-header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px 16px;
+    padding: 12px 20px;
+  }
+  .primary-nav {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    gap: 22px;
+    overflow-x: auto;
+    padding: 4px 0;
+  }
+  .primary-nav a {
+    white-space: nowrap;
+    font-size: 0.82rem;
+  }
+  .session {
+    gap: 9px;
+  }
+  .session-name,
+  .staff-link {
+    display: none;
+  }
+}

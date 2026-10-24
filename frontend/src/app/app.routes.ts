@@ -3,6 +3,11 @@ import { authGuard } from './core/auth-guard';
 import { roleGuard } from './core/role-guard';
 
 export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+  },
   { path: 'login', loadComponent: () => import('./pages/login/login').then((m) => m.Login) },
   {
     path: 'register',
@@ -18,6 +23,5 @@ export const routes: Routes = [
     canActivate: [roleGuard('admin')],
     loadComponent: () => import('./pages/users/users').then((m) => m.Users),
   },
-  { path: '', pathMatch: 'full', redirectTo: 'tickets' },
-  { path: '**', redirectTo: 'tickets' },
+  { path: '**', redirectTo: '' },
 ];

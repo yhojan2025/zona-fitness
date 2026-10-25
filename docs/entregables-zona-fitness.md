@@ -25,10 +25,10 @@ Este documento compara el estado del repositorio con la propuesta técnica. El s
 
 ```text
 /
-├── Sección Servicios (#servicios)
-├── Sección Planes (#planes)
-├── Sección Horarios (#horarios)
-├── Sección El espacio / galería (#espacio)
+├── Sección Servicios (#servicios) · /servicios
+├── Sección Planes (#planes) · /planes
+├── Sección Horarios (#horarios) · /horarios
+├── Sección El espacio / galería (#espacio) · /espacio
 ├── Catálogo informativo de productos (sección en la landing)
 ├── Inscripción, condiciones de edad y medios de pago (#inscripcion)
 ├── /login              Acceso del equipo de soporte
@@ -37,11 +37,11 @@ Este documento compara el estado del repositorio con la propuesta técnica. El s
 └── /users              Requiere rol de administrador
 ```
 
-Las rutas no reconocidas redirigen a `/`. Los enlaces de planes apuntan a `#inscripcion` y no llevan un identificador del plan ni completan una inscripción.
+Las rutas no reconocidas redirigen a `/`. La barra de navegación abre las páginas dedicadas. Los enlaces “Consultar condiciones” de planes vuelven a `/#inscripcion` y no llevan un identificador del plan ni completan una inscripción.
 
 ## Wireframe textual preliminar
 
-1. **Barra superior:** identidad Zona Fitness, anclas a Servicios/Planes/Horarios/El espacio y acceso separado del equipo.
+1. **Barra superior:** identidad Zona Fitness, rutas dedicadas para Servicios/Planes/Horarios/El espacio y acceso separado del equipo.
 2. **Hero:** mensaje promocional, acción “Explorar planes” y acceso a servicios.
 3. **Servicios:** cardio, pesas, sauna y jacuzzi.
 4. **Planes:** Cobre (15 días y 2 horas al día), Bronce (3 meses), Platino (6 meses) y Oro (1 año); precio por confirmar.

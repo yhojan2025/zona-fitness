@@ -1,0 +1,326 @@
+.detail-page {
+  min-height: calc(100vh - 76px);
+  padding: 38px 0 82px;
+  background: radial-gradient(ellipse at 92% 0, #cff0ea80, transparent 32rem), #f8fbfa;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #77918e;
+  font-size: 0.8rem;
+}
+
+.breadcrumbs a {
+  color: #3e817b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.detail-heading {
+  max-width: 760px;
+  padding: 58px 0 48px;
+}
+
+.detail-heading .eyebrow {
+  margin-bottom: 15px;
+}
+
+.detail-heading h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.7rem, 6vw, 4.7rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+}
+
+.detail-description {
+  max-width: 620px;
+  margin: 20px 0 0;
+  color: #607a77;
+  font-size: 1.04rem;
+  line-height: 1.75;
+}
+
+.detail-cards {
+  display: grid;
+  gap: 16px;
+}
+
+.service-cards,
+.plan-cards {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.detail-card {
+  position: relative;
+  min-height: 230px;
+  padding: 26px;
+  border: 1px solid #dcebe8;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 36px #164d450a;
+}
+
+.card-index {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: #93b3af;
+  font:
+    600 0.75rem 'Space Grotesk',
+    sans-serif;
+}
+
+.detail-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 28px;
+  border-radius: 16px;
+  background: #e7f6f2;
+  color: #3e817b;
+  font:
+    600 1.7rem 'Space Grotesk',
+    sans-serif;
+}
+
+.detail-card h2 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+}
+
+.detail-card > p {
+  margin: 0;
+  color: #67817e;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.plan-detail-card {
+  min-height: 330px;
+  padding: 25px 22px;
+}
+
+.plan-label {
+  margin: 0 0 12px !important;
+  color: #3e817b !important;
+  font-size: 0.73rem !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.plan-detail-card h2 {
+  font-size: 1.8rem;
+}
+
+.plan-detail-card .plan-description {
+  min-height: 60px;
+  margin-top: 12px;
+}
+
+.plan-detail-card .plan-price {
+  padding-top: 15px;
+  border-top: 1px solid #e3efed;
+  font-size: 0.78rem;
+}
+
+.plan-action {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 14px;
+  padding: 0 12px;
+  font-size: 0.76rem;
+}
+
+.hours-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hours-detail-card {
+  min-height: auto;
+  padding: 32px;
+  background: #cff0ea;
+  border-color: #b8ded8;
+}
+
+.hours-detail-card .detail-icon {
+  background: #fff;
+}
+
+.hours-detail-card h2 {
+  font-size: 1.5rem;
+}
+
+.hours-time {
+  margin-top: 10px !important;
+  color: #163b39 !important;
+  font:
+    600 clamp(1.4rem, 3vw, 2.1rem) 'Space Grotesk',
+    sans-serif !important;
+  letter-spacing: -0.04em;
+}
+
+.space-gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 16px;
+}
+
+.space-photo {
+  position: relative;
+  min-height: 320px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #dcebe8;
+}
+
+.space-photo:first-child {
+  min-height: 410px;
+  grid-row: span 2;
+}
+
+.space-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.space-photo:hover img {
+  transform: scale(1.035);
+}
+
+.space-photo figcaption {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #fff;
+  color: #254b48;
+}
+
+.space-photo figcaption span {
+  color: #67817e;
+  font-size: 0.8rem;
+}
+
+.detail-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 18px 20px;
+  border: 1px solid #dcebe8;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.note-mark {
+  display: grid;
+  flex: 0 0 23px;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: #e7f6f2;
+  color: #286d68;
+  font-weight: 700;
+}
+
+.detail-note p {
+  margin: 0;
+  color: #607a77;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.detail-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+@media (max-width: 900px) {
+  .service-cards,
+  .plan-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .space-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .space-photo:first-child {
+    min-height: 320px;
+    grid-column: span 2;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .detail-page {
+    padding: 25px 0 60px;
+  }
+
+  .section-wrap {
+    width: calc(100% - 40px);
+  }
+
+  .detail-heading {
+    padding: 42px 0 30px;
+  }
+
+  .detail-heading h1 {
+    font-size: 2.6rem;
+  }
+
+  .detail-description {
+    font-size: 0.95rem;
+  }
+
+  .service-cards,
+  .plan-cards,
+  .hours-cards,
+  .space-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card,
+  .plan-detail-card {
+    min-height: auto;
+  }
+
+  .service-card {
+    min-height: 210px;
+  }
+
+  .plan-detail-card .plan-description {
+    min-height: auto;
+  }
+
+  .space-photo,
+  .space-photo:first-child {
+    min-height: 270px;
+    grid-column: auto;
+  }
+
+  .detail-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

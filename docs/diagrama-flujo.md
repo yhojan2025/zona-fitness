@@ -6,10 +6,10 @@ Este diagrama describe lo que la aplicación implementa hoy. El recorrido públi
 flowchart TD
     A([Visita la web]) --> H[Inicio de Zona Fitness]
 
-    H --> S[Desplazarse a servicios<br/>Cardio · Pesas · Sauna · Jacuzzi]
-    H --> P[Desplazarse a planes<br/>Cobre · Bronce · Platino · Oro]
-    H --> O[Desplazarse a horarios<br/>Lunes a sábado, dos franjas]
-    H --> G[Desplazarse a galería]
+    H --> S["/servicios: cardio, pesas, sauna y jacuzzi"]
+    H --> P["/planes: Cobre, Bronce, Platino y Oro"]
+    H --> O["/horarios: lunes a sábado, dos franjas"]
+    H --> G["/espacio: galería"]
     H --> R[Consultar catálogo informativo<br/>Batidos · Suplementos · Productos]
     H --> J[Sección de inscripción informativa]
 

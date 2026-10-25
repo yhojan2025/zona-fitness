@@ -57,8 +57,14 @@
 }
 .primary-nav a:hover,
 .primary-nav a:focus-visible,
+.primary-nav a.active,
 .staff-link:hover {
   color: #267b75;
+}
+.primary-nav a.active {
+  text-decoration: underline;
+  text-decoration-color: #88c9c4;
+  text-underline-offset: 7px;
 }
 .session {
   display: flex;

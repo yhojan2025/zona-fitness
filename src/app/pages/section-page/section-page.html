@@ -1,0 +1,100 @@
+<div class="detail-page" [class]="'detail-page page-' + page().key">
+  <div class="section-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a routerLink="/">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ page().title }}</span>
+    </nav>
+
+    <header class="detail-heading">
+      <p class="eyebrow">{{ page().eyebrow }}</p>
+      <h1>{{ page().title }}</h1>
+      <p class="detail-description">{{ page().description }}</p>
+    </header>
+
+    @if (page().key === 'services') {
+      <div class="detail-cards service-cards">
+        @for (card of page().cards; track card.title; let index = $index) {
+          <article class="detail-card">
+            <span class="card-index">{{ (index + 1).toString().padStart(2, '0') }}</span>
+            <span class="detail-icon" aria-hidden="true">
+              @switch (card.title) {
+                @case ('Cardio') {
+                  <span>↗</span>
+                }
+                @case ('Zona de pesas') {
+                  <span>✳</span>
+                }
+                @case ('Sauna') {
+                  <span>≈</span>
+                }
+                @default {
+                  <span>◌</span>
+                }
+              }
+            </span>
+            <h2>{{ card.title }}</h2>
+            <p>{{ card.description }}</p>
+          </article>
+        }
+      </div>
+    } @else if (page().key === 'plans') {
+      <div class="detail-cards plan-cards">
+        @for (card of page().cards; track card.title) {
+          <article class="detail-card plan-detail-card">
+            <p class="plan-label">PLAN {{ card.title }}</p>
+            <h2>{{ card.duration }}</h2>
+            <p>{{ card.detail }}</p>
+            <p class="plan-description">{{ card.description }}</p>
+            <p class="plan-price">Precio por confirmar</p>
+            <a class="button button-outline plan-action" routerLink="/" fragment="inscripcion">
+              Consultar condiciones
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+        }
+      </div>
+    } @else if (page().key === 'hours') {
+      <div class="detail-cards hours-cards">
+        @for (card of page().cards; track card.title; let index = $index) {
+          <article class="detail-card hours-detail-card">
+            <span class="detail-icon" aria-hidden="true">{{ index === 0 ? '☼' : '◷' }}</span>
+            <p class="plan-label">{{ card.description }}</p>
+            <h2>{{ card.title }}</h2>
+            <p class="hours-time">{{ card.duration }}</p>
+          </article>
+        }
+      </div>
+    } @else {
+      <div class="space-gallery">
+        @for (card of page().cards; track card.title) {
+          <figure class="space-photo">
+            <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+            <figcaption>
+              <strong>{{ card.title }}</strong>
+              <span>{{ card.description }}</span>
+            </figcaption>
+          </figure>
+        }
+      </div>
+    }
+
+    <aside class="detail-note">
+      <span class="note-mark" aria-hidden="true">i</span>
+      <p>{{ page().note }}</p>
+    </aside>
+
+    <div class="detail-footer">
+      <a class="text-link" routerLink="/">Volver al inicio <span aria-hidden="true">↗</span></a>
+      @if (page().key !== 'plans') {
+        <a class="button" routerLink="/planes"
+          >Conocer los planes <span aria-hidden="true">↗</span></a
+        >
+      } @else {
+        <a class="button" routerLink="/" fragment="inscripcion">
+          Edad y medios de pago <span aria-hidden="true">↗</span>
+        </a>
+      }
+    </div>
+  </div>
+</div>

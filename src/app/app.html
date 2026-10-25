@@ -7,10 +7,10 @@
     <span>ZONA <strong>FITNESS</strong></span>
   </a>
   <nav class="primary-nav" aria-label="Navegación principal">
-    <a routerLink="/" fragment="servicios">Servicios</a>
-    <a routerLink="/" fragment="planes">Planes</a>
-    <a routerLink="/" fragment="horarios">Horarios</a>
-    <a routerLink="/" fragment="espacio">El espacio</a>
+    <a routerLink="/servicios" routerLinkActive="active" ariaCurrentWhenActive="page">Servicios</a>
+    <a routerLink="/planes" routerLinkActive="active" ariaCurrentWhenActive="page">Planes</a>
+    <a routerLink="/horarios" routerLinkActive="active" ariaCurrentWhenActive="page">Horarios</a>
+    <a routerLink="/espacio" routerLinkActive="active" ariaCurrentWhenActive="page">El espacio</a>
   </nav>
   @if (auth.isLoggedIn()) {
     <div class="session">

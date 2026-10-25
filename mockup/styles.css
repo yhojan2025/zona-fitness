@@ -8,7 +8,7 @@
   --soft: #f4faf8;
   font-family: 'DM Sans', sans-serif;
   color: var(--ink);
-  background: white;
+  background: #f7faf9;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -59,8 +59,8 @@ h3 {
   gap: 32px;
   min-height: 76px;
   padding: 12px clamp(20px, 5vw, 76px);
-  background: #cff0eaf2;
-  border-bottom: 1px solid #b8ded8;
+  background: #f7fbfaf2;
+  border-bottom: 1px solid #dcebe7;
   backdrop-filter: blur(12px);
 }
 .brand {
@@ -69,11 +69,32 @@ h3 {
   flex: 0 0 auto;
   text-decoration: none;
 }
-.brand-logo {
+.brand-mark {
   display: block;
-  width: clamp(142px, 16vw, 190px);
-  height: 62px;
+  width: 52px;
+  height: 52px;
+  padding: 2px;
+  border: 1px solid #d6e9e4;
+  border-radius: 50%;
+  background: #e8f5f1;
   object-fit: contain;
+}
+.brand-wordmark {
+  display: grid;
+  gap: 1px;
+  color: #176f69;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1;
+}
+.brand-wordmark strong {
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+}
+.brand-wordmark span {
+  color: #3e817b;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
 }
 .primary-nav {
   display: flex;
@@ -138,7 +159,7 @@ h3 {
   gap: 4vw;
   min-height: 610px;
   padding: 54px clamp(24px, 8vw, 124px) 75px;
-  background: linear-gradient(110deg, #cff0ea 0%, #cff0ea 48%, #c4ebe4 100%);
+  background: linear-gradient(110deg, #f7fbfa 0%, #edf7f4 54%, #e5f2ee 100%);
 }
 .hero-copy {
   position: relative;
@@ -288,7 +309,7 @@ h2 em {
 .intro {
   padding-top: 110px;
   padding-bottom: 112px;
-  background: #cff0ea;
+  background: #f7faf9;
 }
 .section-heading {
   max-width: 760px;
@@ -359,7 +380,7 @@ h2 em {
 }
 .plans-section {
   padding: 94px 0 96px;
-  background: #c4ebe4;
+  background: #edf6f3;
 }
 .left-heading {
   max-width: 1180px;
@@ -444,7 +465,7 @@ h2 em {
   gap: 9vw;
   padding-top: 110px;
   padding-bottom: 110px;
-  background: #cff0ea;
+  background: #f7faf9;
 }
 .section-copy {
   max-width: 440px;
@@ -455,7 +476,7 @@ h2 em {
 .hours-card {
   padding: 30px 32px 23px;
   border-radius: 20px;
-  background: var(--mint);
+  background: #e8f4f0;
 }
 .hours-heading {
   display: flex;
@@ -496,7 +517,7 @@ h2 em {
 }
 .gallery-section {
   padding: 94px 0 100px;
-  background: #dff4ef;
+  background: #e7f2ef;
 }
 .gallery-heading {
   display: flex;
@@ -559,7 +580,7 @@ h2 em {
   gap: 55px 9vw;
   padding-top: 100px;
   padding-bottom: 100px;
-  background: #cff0ea;
+  background: #f7faf9;
 }
 .products-heading > p:last-child {
   margin-left: 0;
@@ -708,11 +729,7 @@ h2 em {
   justify-content: space-between;
   gap: 24px;
   padding: 25px clamp(24px, 7vw, 100px);
-  background: #cff0ea;
-}
-.site-footer .brand-logo {
-  width: 145px;
-  height: 58px;
+  background: #e8f4f0;
 }
 .site-footer > p {
   margin: 0;
@@ -731,8 +748,8 @@ h2 em {
 }
 .social-section {
   padding: 42px 24px;
-  background: #cff0ea;
-  border-top: 1px solid #b8ded8;
+  background: #edf6f3;
+  border-top: 1px solid #d7e9e4;
 }
 .social-content {
   display: flex;
@@ -773,8 +790,9 @@ h2 em {
     gap: 20px;
     padding-inline: 28px;
   }
-  .brand-logo {
-    width: 130px;
+  .brand-mark {
+    width: 46px;
+    height: 46px;
   }
   .primary-nav {
     gap: 16px;

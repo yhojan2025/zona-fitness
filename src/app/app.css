@@ -17,8 +17,8 @@
   gap: 32px;
   min-height: 76px;
   padding: 12px clamp(20px, 5vw, 76px);
-  background: rgba(207, 240, 234, 0.96);
-  border-bottom: 1px solid #b8ded8;
+  background: rgba(247, 251, 250, 0.96);
+  border-bottom: 1px solid #dcebe7;
   backdrop-filter: blur(12px);
 }
 .brand {
@@ -27,11 +27,32 @@
   flex: 0 0 auto;
   text-decoration: none;
 }
-.brand-logo {
+.brand-mark {
   display: block;
-  width: clamp(142px, 16vw, 190px);
-  height: 62px;
+  width: 52px;
+  height: 52px;
+  padding: 2px;
+  border: 1px solid #d6e9e4;
+  border-radius: 50%;
+  background: #e8f5f1;
   object-fit: contain;
+}
+.brand-wordmark {
+  display: grid;
+  gap: 1px;
+  color: #176f69;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1;
+}
+.brand-wordmark strong {
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+}
+.brand-wordmark span {
+  color: #3e817b;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
 }
 .primary-nav {
   display: flex;
@@ -80,8 +101,9 @@ main {
     gap: 20px;
     padding-inline: 28px;
   }
-  .brand-logo {
-    width: 130px;
+  .brand-mark {
+    width: 46px;
+    height: 46px;
   }
   .primary-nav {
     gap: 16px;

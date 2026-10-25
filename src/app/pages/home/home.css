@@ -1,6 +1,6 @@
 .home-page {
   overflow: hidden;
-  background: #cff0ea;
+  background: #f7faf9;
 }
 .hero {
   position: relative;
@@ -10,7 +10,7 @@
   gap: 4vw;
   min-height: 610px;
   padding: 54px clamp(24px, 8vw, 124px) 75px;
-  background: linear-gradient(110deg, #cff0ea 0%, #cff0ea 48%, #c4ebe4 100%);
+  background: linear-gradient(110deg, #f7fbfa 0%, #edf7f4 54%, #e5f2ee 100%);
 }
 .hero-copy {
   position: relative;
@@ -170,7 +170,7 @@ h2 em {
 .intro {
   padding-top: 110px;
   padding-bottom: 112px;
-  background: #cff0ea;
+  background: #f7faf9;
 }
 .section-heading {
   max-width: 760px;
@@ -252,7 +252,7 @@ h2 em {
 }
 .plans-section {
   padding: 94px 0 96px;
-  background: #c4ebe4;
+  background: #edf6f3;
 }
 .plans-heading,
 .gallery-heading {
@@ -351,7 +351,7 @@ h2 em {
   gap: 9vw;
   padding-top: 110px;
   padding-bottom: 110px;
-  background: #cff0ea;
+  background: #f7faf9;
 }
 .schedule-copy > p:not(.eyebrow) {
   max-width: 440px;
@@ -362,7 +362,7 @@ h2 em {
 .hours-card {
   padding: 30px 32px 23px;
   border-radius: 20px;
-  background: #cff0ea;
+  background: #e8f4f0;
 }
 .hours-heading {
   display: flex;
@@ -403,7 +403,7 @@ h2 em {
 }
 .gallery-section {
   padding: 94px 0 100px;
-  background: #dff4ef;
+  background: #e7f2ef;
 }
 .gallery-grid {
   display: grid;
@@ -453,7 +453,7 @@ h2 em {
   gap: 55px 9vw;
   padding-top: 100px;
   padding-bottom: 100px;
-  background: #cff0ea;
+  background: #f7faf9;
 }
 .products-heading > p:last-child {
   margin-left: 0;
@@ -609,11 +609,7 @@ h2 em {
   justify-content: space-between;
   gap: 24px;
   padding: 25px clamp(24px, 7vw, 100px);
-  background: #cff0ea;
-}
-.footer-brand .brand-logo {
-  width: 145px;
-  height: 58px;
+  background: #e8f4f0;
 }
 .site-footer > p {
   margin: 0;
@@ -634,8 +630,8 @@ h2 em {
 }
 .social-section {
   padding: 42px 24px;
-  background: #cff0ea;
-  border-top: 1px solid #b8ded8;
+  background: #edf6f3;
+  border-top: 1px solid #d7e9e4;
 }
 .social-content {
   display: flex;

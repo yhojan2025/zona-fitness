@@ -1,7 +1,7 @@
 .detail-page {
   min-height: calc(100vh - 76px);
   padding: 38px 0 82px;
-  background: radial-gradient(ellipse at 92% 0, #ffffff75, transparent 32rem), #cff0ea;
+  background: radial-gradient(ellipse at 92% 0, #ffffffa8, transparent 32rem), #edf6f3;
 }
 
 .breadcrumbs {
@@ -144,8 +144,8 @@
 .hours-detail-card {
   min-height: auto;
   padding: 32px;
-  background: #cff0ea;
-  border-color: #b8ded8;
+  background: #e8f4f0;
+  border-color: #d6e9e4;
 }
 
 .hours-detail-card .detail-icon {

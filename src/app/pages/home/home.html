@@ -24,7 +24,16 @@
       aria-roledescription="carrusel"
       aria-label="Galería de Zona Fitness"
     >
-      <img [src]="activeHeroSlide().image" [alt]="activeHeroSlide().alt" fetchpriority="high" />
+      @for (slide of heroSlides; track slide.image; let index = $index) {
+        @if (activeHeroIndex() === index) {
+          <img
+            class="hero-slide-image"
+            [src]="slide.image"
+            [alt]="slide.alt"
+            fetchpriority="high"
+          />
+        }
+      }
       <div class="hero-caption" aria-live="polite">
         <span class="caption-dot"></span>{{ activeHeroSlide().label }}
       </div>

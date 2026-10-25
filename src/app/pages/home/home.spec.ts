@@ -61,10 +61,13 @@ describe('Home', () => {
     expect(slider?.getAttribute('aria-roledescription')).toBe('carrusel');
     expect(page.querySelectorAll('.slider-dot')).toHaveLength(4);
     expect(image?.getAttribute('alt')).toContain('Gimnasio equipado');
+    expect(image?.classList.contains('hero-slide-image')).toBe(true);
 
     page.querySelector<HTMLButtonElement>('[aria-label="Imagen siguiente"]')?.click();
     fixture.detectChanges();
 
-    expect(image?.getAttribute('alt')).toContain('Persona entrenando fuerza');
+    expect(page.querySelector('.hero-slide-image')?.getAttribute('alt')).toContain(
+      'Persona entrenando fuerza',
+    );
   });
 });

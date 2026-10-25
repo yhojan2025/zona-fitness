@@ -260,6 +260,19 @@ h2 em {
   object-fit: cover;
   filter: saturate(0.78);
 }
+.hero-slide-image {
+  animation: hero-slide-in 700ms cubic-bezier(0.2, 0.7, 0.25, 1) both;
+}
+@keyframes hero-slide-in {
+  from {
+    opacity: 0.5;
+    transform: scale(1.025);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 .hero-slider-controls {
   position: absolute;
   z-index: 2;
@@ -285,6 +298,16 @@ h2 em {
   background: transparent;
   color: #245e59;
   cursor: pointer;
+}
+.slider-arrow,
+.slider-dot {
+  transition:
+    background-color 220ms ease,
+    transform 220ms ease,
+    width 220ms ease;
+}
+.slider-arrow:hover {
+  transform: scale(1.08);
 }
 .hero-slider-controls button.slider-arrow,
 .hero-slider-controls button.slider-dot {
@@ -1147,5 +1170,8 @@ h2 em {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+  .hero-slide-image {
+    animation: none !important;
   }
 }

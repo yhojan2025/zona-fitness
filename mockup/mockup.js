@@ -52,9 +52,12 @@ let activeHeroIndex = 0;
 function showHeroSlide(index) {
   activeHeroIndex = (index + heroSlides.length) % heroSlides.length;
   const slide = heroSlides[activeHeroIndex];
+  heroImage.classList.remove('hero-slide-image');
+  void heroImage.offsetWidth;
   heroImage.src = slide.image;
   heroImage.alt = slide.alt;
   heroCaption.textContent = slide.label;
+  heroImage.classList.add('hero-slide-image');
 
   heroDots.forEach((dot, dotIndex) => {
     const active = dotIndex === activeHeroIndex;

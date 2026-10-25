@@ -1,10 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
+  imports: [RouterLink],
   templateUrl: './home.html',
 })
 export class Home {
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  protected readonly socialLinks: { name: string; url: string }[] = [];
+  protected readonly heroSlides = [
+    {
+      image:
+        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=90',
+      alt: 'Gimnasio equipado con máquinas y áreas de entrenamiento',
+      label: 'UN ESPACIO PARA ENTRENAR',
+    },
+    {
+      image:
+        'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=90',
+      alt: 'Persona entrenando fuerza con pesas',
+      label: 'FUERZA A TU MANERA',
+    },
+    {
+      image:
+        'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=1200&q=90',
+      alt: 'Zona de entrenamiento y equipos de gimnasio',
+      label: 'ENCUENTRA TU RITMO',
+    },
+    {
+      image:
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=90',
+      alt: 'Entrenamiento personal en un espacio deportivo',
+      label: 'HAZ ESPACIO PARA TI',
+    },
+  ];
+  protected readonly activeHeroIndex = signal(0);
+  protected readonly activeHeroSlide = computed(() => this.heroSlides[this.activeHeroIndex()]);
+  protected readonly heroRotationPaused = signal(false);
+
+  constructor() {
+    interval(5000)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        if (!this.prefersReducedMotion && !this.heroRotationPaused()) {
+          this.moveHeroSlide(1);
+        }
+      });
+  }
+
   protected readonly services = [
     {
       number: '01',
@@ -74,4 +124,16 @@ export class Home {
       className: '',
     },
   ];
+
+  protected showHeroSlide(index: number): void {
+    this.activeHeroIndex.set((index + this.heroSlides.length) % this.heroSlides.length);
+  }
+
+  protected moveHeroSlide(direction: number): void {
+    this.showHeroSlide(this.activeHeroIndex() + direction);
+  }
+
+  protected toggleHeroRotation(): void {
+    this.heroRotationPaused.update((paused) => !paused);
+  }
 }

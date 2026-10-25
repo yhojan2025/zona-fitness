@@ -57,3 +57,10 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Documentación de Zona Fitness
+
+- [Entregables, mapa del sitio y wireframe preliminar](docs/entregables-zona-fitness.md)
+- [Guía breve para actualizar el contenido](docs/actualizar-contenido.md)
+- [Diagrama del flujo actual](docs/diagrama-flujo.md)
+- [Maquetas locales de redes sociales](public/redes/instagram.html) · [Facebook](public/redes/facebook.html)

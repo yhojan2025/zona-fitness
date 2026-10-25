@@ -8,6 +8,31 @@ export const routes: Routes = [
     pathMatch: 'full',
     loadComponent: () => import('./pages/home/home').then((m) => m.Home),
   },
+  {
+    path: 'servicios',
+    data: { section: 'services' },
+    loadComponent: () => import('./pages/section-page/section-page').then((m) => m.SectionPage),
+  },
+  {
+    path: 'planes',
+    data: { section: 'plans' },
+    loadComponent: () => import('./pages/section-page/section-page').then((m) => m.SectionPage),
+  },
+  {
+    path: 'horarios',
+    data: { section: 'hours' },
+    loadComponent: () => import('./pages/section-page/section-page').then((m) => m.SectionPage),
+  },
+  {
+    path: 'espacio',
+    data: { section: 'space' },
+    loadComponent: () => import('./pages/section-page/section-page').then((m) => m.SectionPage),
+  },
+  {
+    path: 'productos',
+    data: { section: 'products' },
+    loadComponent: () => import('./pages/section-page/section-page').then((m) => m.SectionPage),
+  },
   { path: 'login', loadComponent: () => import('./pages/login/login').then((m) => m.Login) },
   {
     path: 'register',

@@ -11,6 +11,7 @@ Desde `src/app/pages/home/home.ts`:
 - `heroSlides`: fotografías, textos alternativos y rótulos del carrusel principal.
 - `gallery`: URL de cada imagen, texto alternativo y etiqueta.
 - `socialLinks`: enlaces de redes oficiales. La lista está vacía hasta que el gimnasio confirme URLs; no agregues perfiles supuestos.
+- Las maquetas de Instagram y Facebook están en `public/redes/` y se enlazan desde la sección Redes de la landing. Son prototipos locales, no perfiles oficiales. Actualiza sus imágenes/textos solo con material aprobado y añade URLs a `socialLinks` únicamente cuando el gimnasio las confirme.
 
 Desde `src/app/pages/home/home.html`:
 

@@ -49,6 +49,9 @@ describe('App', () => {
     expect(el.querySelector('.primary-nav a[href="/espacio"]')?.textContent).toContain(
       'El espacio',
     );
+    expect(el.querySelector('.primary-nav a[href="/productos"]')?.textContent).toContain(
+      'Productos',
+    );
   });
 
   it('shows the user name and role badge when logged in', async () => {

@@ -45,9 +45,20 @@ describe('Home', () => {
     const page = fixture.nativeElement as HTMLElement;
 
     expect(page.querySelector('#redes')?.textContent).toContain('perfiles oficiales');
-    expect(page.querySelector('#redes a')).toBeNull();
+    expect(page.querySelector('#redes')?.textContent).toContain('maquetas visuales locales');
+    expect(page.querySelectorAll('#redes .social-prototype-card')).toHaveLength(2);
+    expect(page.querySelectorAll('#redes .social-sample-gallery img')).toHaveLength(6);
+    expect(page.querySelectorAll('#redes .social-platform-icon')).toHaveLength(2);
+    expect(page.querySelector('#redes a[href^="https://"]')).toBeNull();
+    expect(page.querySelector('#redes')?.textContent).toContain('Visita las redes de Zona Fitness');
+    expect(page.querySelector('#redes a[href="/redes/instagram.html"]')?.textContent).toContain(
+      'Visitar Instagram',
+    );
+    expect(page.querySelector('#redes a[href="/redes/facebook.html"]')?.textContent).toContain(
+      'Visitar Facebook',
+    );
     expect(page.textContent).toContain(
-      '© 2026 Análisis y soluciones web 12. Todos los derechos reservados.',
+      '© 2026 Análisis y diseño de soluciones web 12. Todos los derechos reservados.',
     );
   });
 
@@ -69,5 +80,31 @@ describe('Home', () => {
     expect(page.querySelector('.hero-slide-image')?.getAttribute('alt')).toContain(
       'Persona entrenando fuerza',
     );
+  });
+
+  it('rotates hero images every five seconds and allows pausing', () => {
+    vi.useFakeTimers();
+    try {
+      const fixture = TestBed.createComponent(Home);
+      fixture.detectChanges();
+      const page = fixture.nativeElement as HTMLElement;
+
+      vi.advanceTimersByTime(5000);
+      fixture.detectChanges();
+      expect(page.querySelector('.hero-slide-image')?.getAttribute('alt')).toContain(
+        'Persona entrenando fuerza',
+      );
+
+      page.querySelector<HTMLButtonElement>('[aria-label="Pausar rotación automática"]')?.click();
+      fixture.detectChanges();
+      vi.advanceTimersByTime(5000);
+      fixture.detectChanges();
+      expect(page.querySelector('.hero-slide-image')?.getAttribute('alt')).toContain(
+        'Persona entrenando fuerza',
+      );
+      expect(page.querySelector('[aria-label="Reanudar rotación automática"]')).not.toBeNull();
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });

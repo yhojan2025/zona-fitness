@@ -1,10 +1,19 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
+  imports: [RouterLink],
   templateUrl: './home.html',
 })
 export class Home {
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   protected readonly socialLinks: { name: string; url: string }[] = [];
   protected readonly heroSlides = [
     {
@@ -34,6 +43,17 @@ export class Home {
   ];
   protected readonly activeHeroIndex = signal(0);
   protected readonly activeHeroSlide = computed(() => this.heroSlides[this.activeHeroIndex()]);
+  protected readonly heroRotationPaused = signal(false);
+
+  constructor() {
+    interval(5000)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        if (!this.prefersReducedMotion && !this.heroRotationPaused()) {
+          this.moveHeroSlide(1);
+        }
+      });
+  }
 
   protected readonly services = [
     {
@@ -111,5 +131,9 @@ export class Home {
 
   protected moveHeroSlide(direction: number): void {
     this.showHeroSlide(this.activeHeroIndex() + direction);
+  }
+
+  protected toggleHeroRotation(): void {
+    this.heroRotationPaused.update((paused) => !paused);
   }
 }

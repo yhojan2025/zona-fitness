@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
-type SectionKey = 'services' | 'plans' | 'hours' | 'space';
+type SectionKey = 'services' | 'plans' | 'hours' | 'space' | 'products';
 
 interface FeatureCard {
   title: string;
@@ -133,6 +133,40 @@ const CONTENT: Record<SectionKey, SectionContent> = {
       },
     ],
     note: 'Las imágenes son referenciales y están pendientes de aprobación o reemplazo por fotografías oficiales del gimnasio.',
+  },
+  products: {
+    key: 'products',
+    eyebrow: 'UN EXTRA PARA TU RUTINA',
+    title: 'Productos para acompañar tu entrenamiento',
+    description:
+      'Explora las categorías informativas de Zona Fitness. Consulta directamente con el gimnasio las referencias disponibles y sus características.',
+    cards: [
+      {
+        title: 'Batidos de proteína',
+        description:
+          'Alternativas para complementar tu alimentación alrededor de tu rutina. Consulta ingredientes, presentación y disponibilidad.',
+        image:
+          'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=960&q=85',
+        alt: 'Batido de frutos rojos servido en un vaso',
+      },
+      {
+        title: 'Suplementación',
+        description:
+          'Conoce referencias de suplementación disponibles y revisa sus etiquetas e indicaciones antes de elegir.',
+        image:
+          'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=960&q=85',
+        alt: 'Productos de suplementación deportiva',
+      },
+      {
+        title: 'Productos para entrenar',
+        description:
+          'Accesorios y básicos para acompañar tus sesiones. Pregunta por los artículos y referencias disponibles.',
+        image:
+          'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=960&q=85',
+        alt: 'Persona entrenando en un gimnasio',
+      },
+    ],
+    note: 'Esta página es informativa; no procesa pedidos ni pagos. La información no reemplaza la orientación de un profesional de la salud. Confirma disponibilidad y consulta a un profesional antes de usar suplementos.',
   },
 };
 

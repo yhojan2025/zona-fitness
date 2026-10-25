@@ -28,6 +28,11 @@ export const routes: Routes = [
     data: { section: 'space' },
     loadComponent: () => import('./pages/section-page/section-page').then((m) => m.SectionPage),
   },
+  {
+    path: 'productos',
+    data: { section: 'products' },
+    loadComponent: () => import('./pages/section-page/section-page').then((m) => m.SectionPage),
+  },
   { path: 'login', loadComponent: () => import('./pages/login/login').then((m) => m.Login) },
   {
     path: 'register',

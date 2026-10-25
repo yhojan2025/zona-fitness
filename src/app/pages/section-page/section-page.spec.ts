@@ -18,6 +18,7 @@ describe('dedicated navigation pages', () => {
       { path: '/planes', heading: 'Planes para encontrar tu ritmo' },
       { path: '/horarios', heading: 'Encuentra el momento para ti' },
       { path: '/espacio', heading: 'Un espacio para cada versión de ti' },
+      { path: '/productos', heading: 'Productos para acompañar tu entrenamiento' },
     ];
 
     for (const page of expectedPages) {
@@ -35,5 +36,19 @@ describe('dedicated navigation pages', () => {
     await harness.navigateByUrl('/planes');
     expect(harness.routeNativeElement?.textContent).toContain('Cobre');
     expect(harness.routeNativeElement?.textContent).toContain('Precio por confirmar');
+  });
+
+  it('shows the three informational product categories without checkout or invented prices', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/productos');
+    const page = harness.routeNativeElement;
+
+    expect(page?.textContent).toContain('Batidos de proteína');
+    expect(page?.textContent).toContain('Suplementación');
+    expect(page?.textContent).toContain('Productos para entrenar');
+    expect(page?.textContent).toContain('no procesa pedidos ni pagos');
+    expect(page?.querySelectorAll('.product-detail-card')).toHaveLength(3);
+    expect(page?.querySelectorAll('a[href="/#inscripcion"]')).toHaveLength(3);
+    expect(page?.textContent).not.toContain('$');
   });
 });

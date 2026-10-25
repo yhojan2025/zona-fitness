@@ -1,0 +1,164 @@
+.prototype-notice {
+  margin: 0;
+  padding: 12px 18px;
+  background: #fff1c7;
+  color: #5b4610;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.prototype-status {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #e8f4f0;
+  color: #245e59;
+  font-size: 12px;
+}
+
+.prototype-copy {
+  max-width: 600px;
+  color: #5d666b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.prototype-gallery-title {
+  margin: 20px 0 12px;
+  font-size: 16px;
+}
+
+.prototype-intro {
+  max-width: 760px;
+  margin: 0 0 18px;
+  color: #5d666b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.ig-grid {
+  align-items: start;
+}
+
+.ig-post {
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ig-post > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.ig-post > div {
+  min-height: 112px;
+  padding: 12px;
+}
+
+.ig-post strong {
+  font-size: 14px;
+}
+
+.ig-post p {
+  margin: 7px 0 0;
+  color: #5d666b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.social-invitation {
+  margin: 16px 0 0;
+  padding: 15px 18px;
+  border: 1px solid #b8ded6;
+  border-radius: 10px;
+  background: #eaf7f3;
+  color: #245e59;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.fb-feed .social-invitation {
+  margin-top: 14px;
+}
+
+.post-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.post-gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.prototype-back {
+  display: block;
+  padding: 18px;
+  color: #075d60;
+  font-weight: 700;
+  text-align: center;
+}
+
+.fb-layout {
+  display: block;
+}
+
+.fb-main {
+  max-width: 1266px;
+  margin: 0 auto;
+}
+
+.fb-title-row {
+  min-height: 125px;
+}
+
+.fb-title h1 {
+  margin-bottom: 6px;
+}
+
+.fb-columns {
+  grid-template-columns: minmax(230px, 0.8fr) minmax(360px, 1.2fr);
+}
+
+.fb-left {
+  margin: 0;
+}
+
+.fb-left h2 {
+  margin: 0 0 12px;
+  font-size: 17px;
+}
+
+.fb-left p {
+  line-height: 1.55;
+}
+
+.post-head {
+  display: flex;
+  align-items: center;
+}
+
+.post-head small {
+  display: block;
+  margin-top: 4px;
+  color: #65676b;
+}
+
+@media (max-width: 620px) {
+  .social-prototype-card {
+    grid-template-columns: 1fr;
+  }
+
+  .social-prototype-card > img {
+    height: 180px;
+    min-height: 180px;
+  }
+}

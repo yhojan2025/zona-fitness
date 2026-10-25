@@ -65,6 +65,21 @@
           </article>
         }
       </div>
+    } @else if (page().key === 'products') {
+      <div class="detail-cards product-cards">
+        @for (card of page().cards; track card.title) {
+          <article class="detail-card product-detail-card">
+            <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+            <div class="product-card-content">
+              <h2>{{ card.title }}</h2>
+              <p>{{ card.description }}</p>
+              <a class="text-link" routerLink="/" fragment="inscripcion">
+                Consultar disponibilidad <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        }
+      </div>
     } @else {
       <div class="space-gallery">
         @for (card of page().cards; track card.title) {

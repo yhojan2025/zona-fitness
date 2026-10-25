@@ -9,6 +9,7 @@ Desde `src/app/pages/home/home.ts`:
 - `services`: títulos y descripciones de cardio, pesas, sauna y jacuzzi.
 - `plans`: nombre, duración, descripción y tarjeta destacada.
 - `gallery`: URL de cada imagen, texto alternativo y etiqueta.
+- `socialLinks`: enlaces de redes oficiales. La lista está vacía hasta que el gimnasio confirme URLs; no agregues perfiles supuestos.
 
 Desde `src/app/pages/home/home.html`:
 
@@ -23,6 +24,9 @@ Desde `src/app/app.html`:
 Desde `src/index.html`:
 
 - Título, idioma, descripción y color de tema del sitio.
+- Icono de pestaña: `public/zona-fitness-icon.png`.
+
+La marca del encabezado y del pie usa `public/zona-fitness-logo.png`. El texto de copyright está en el pie de `src/app/pages/home/home.html`.
 
 Desde `src/styles.css`, `src/app/app.css` y `src/app/pages/home/home.css`:
 

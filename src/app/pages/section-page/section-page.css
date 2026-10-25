@@ -1,7 +1,7 @@
 .detail-page {
   min-height: calc(100vh - 76px);
   padding: 38px 0 82px;
-  background: radial-gradient(ellipse at 92% 0, #cff0ea80, transparent 32rem), #f8fbfa;
+  background: radial-gradient(ellipse at 92% 0, #ffffff75, transparent 32rem), #cff0ea;
 }
 
 .breadcrumbs {

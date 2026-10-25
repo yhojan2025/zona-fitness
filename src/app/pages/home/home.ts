@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './home.html',
 })
 export class Home {
+  protected readonly socialLinks: { name: string; url: string }[] = [];
+
   protected readonly services = [
     {
       number: '01',

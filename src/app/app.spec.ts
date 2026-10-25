@@ -32,7 +32,7 @@ describe('App', () => {
 
   it('shows the Zona Fitness brand and public navigation when logged out', async () => {
     const el = await render();
-    expect(el.querySelector('.brand')?.textContent).toContain('ZONA FITNESS');
+    expect(el.querySelector('.brand-logo')?.getAttribute('src')).toContain('zona-fitness-logo.png');
     expect(el.querySelector('.primary-nav')?.textContent).toContain('Planes');
     expect(el.querySelector('.header-action')?.textContent).toContain('Acceso del equipo');
   });

@@ -29,13 +29,25 @@ describe('Home', () => {
     expect(page.textContent).toContain('Nequi y Bancolombia');
   });
 
-  it('does not invent plan prices or contact information', () => {
+  it('does not invent plan prices or official contact links', () => {
     const fixture = TestBed.createComponent(Home);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
 
     expect(page.textContent).toContain('Precio por confirmar');
     expect(page.textContent).toContain('Confirma los datos oficiales de pago');
-    expect(page.querySelectorAll('a[href^="https://"]')).toHaveLength(0);
+    expect(page.querySelectorAll('#redes a[href^="https://"]')).toHaveLength(0);
+  });
+
+  it('shows social section and copyright without inventing social links', () => {
+    const fixture = TestBed.createComponent(Home);
+    fixture.detectChanges();
+    const page = fixture.nativeElement as HTMLElement;
+
+    expect(page.querySelector('#redes')?.textContent).toContain('perfiles oficiales');
+    expect(page.querySelector('#redes a')).toBeNull();
+    expect(page.textContent).toContain(
+      '© 2026 Análisis y soluciones web 12. Todos los derechos reservados.',
+    );
   });
 });

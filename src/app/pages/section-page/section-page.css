@@ -69,7 +69,7 @@
   right: 24px;
   color: #93b3af;
   font:
-    600 0.75rem 'Space Grotesk',
+    600 0.75rem 'Montserrat',
     sans-serif;
 }
 
@@ -83,7 +83,7 @@
   background: #e7f6f2;
   color: #3e817b;
   font:
-    600 1.7rem 'Space Grotesk',
+    600 1.7rem 'Montserrat',
     sans-serif;
 }
 
@@ -160,7 +160,7 @@
   margin-top: 10px !important;
   color: #163b39 !important;
   font:
-    600 clamp(1.4rem, 3vw, 2.1rem) 'Space Grotesk',
+    600 clamp(1.4rem, 3vw, 2.1rem) 'Montserrat',
     sans-serif !important;
   letter-spacing: -0.04em;
 }

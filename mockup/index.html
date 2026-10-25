@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -68,14 +68,52 @@
             <span>Tu bienestar no tiene que esperar al lunes.</span>
           </div>
         </div>
-        <div class="hero-visual">
+        <div
+          class="hero-visual"
+          role="region"
+          aria-roledescription="carrusel"
+          aria-label="Galería de Zona Fitness"
+        >
           <img
+            id="hero-image"
             src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=90"
-            alt="Zona de entrenamiento con máquinas y equipos de gimnasio"
+            alt="Gimnasio equipado con máquinas y áreas de entrenamiento"
             fetchpriority="high"
           />
-          <div class="hero-caption"><span class="caption-dot"></span> HAZ ESPACIO PARA TI</div>
+          <div class="hero-caption" aria-live="polite">
+            <span class="caption-dot"></span><span id="hero-caption">UN ESPACIO PARA ENTRENAR</span>
+          </div>
           <div class="hero-stamp" aria-hidden="true">MOVE<br />YOUR<br />WAY</div>
+          <div class="hero-slider-controls" role="group" aria-label="Controles de la galería">
+            <button class="slider-arrow" type="button" aria-label="Imagen anterior">←</button>
+            <div class="slider-dots" role="group" aria-label="Elegir imagen">
+              <button
+                class="slider-dot active"
+                type="button"
+                aria-label="Mostrar imagen 1: Un espacio para entrenar"
+                aria-pressed="true"
+              ></button>
+              <button
+                class="slider-dot"
+                type="button"
+                aria-label="Mostrar imagen 2: Fuerza a tu manera"
+                aria-pressed="false"
+              ></button>
+              <button
+                class="slider-dot"
+                type="button"
+                aria-label="Mostrar imagen 3: Encuentra tu ritmo"
+                aria-pressed="false"
+              ></button>
+              <button
+                class="slider-dot"
+                type="button"
+                aria-label="Mostrar imagen 4: Haz espacio para ti"
+                aria-pressed="false"
+              ></button>
+            </div>
+            <button class="slider-arrow" type="button" aria-label="Imagen siguiente">→</button>
+          </div>
         </div>
         <a class="scroll-cue" href="#servicios" aria-label="Desplazarse para conocer los servicios">
           ↓

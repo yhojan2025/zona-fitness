@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +6,34 @@ import { Component } from '@angular/core';
 })
 export class Home {
   protected readonly socialLinks: { name: string; url: string }[] = [];
+  protected readonly heroSlides = [
+    {
+      image:
+        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=90',
+      alt: 'Gimnasio equipado con máquinas y áreas de entrenamiento',
+      label: 'UN ESPACIO PARA ENTRENAR',
+    },
+    {
+      image:
+        'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=90',
+      alt: 'Persona entrenando fuerza con pesas',
+      label: 'FUERZA A TU MANERA',
+    },
+    {
+      image:
+        'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=1200&q=90',
+      alt: 'Zona de entrenamiento y equipos de gimnasio',
+      label: 'ENCUENTRA TU RITMO',
+    },
+    {
+      image:
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=90',
+      alt: 'Entrenamiento personal en un espacio deportivo',
+      label: 'HAZ ESPACIO PARA TI',
+    },
+  ];
+  protected readonly activeHeroIndex = signal(0);
+  protected readonly activeHeroSlide = computed(() => this.heroSlides[this.activeHeroIndex()]);
 
   protected readonly services = [
     {
@@ -76,4 +104,12 @@ export class Home {
       className: '',
     },
   ];
+
+  protected showHeroSlide(index: number): void {
+    this.activeHeroIndex.set((index + this.heroSlides.length) % this.heroSlides.length);
+  }
+
+  protected moveHeroSlide(direction: number): void {
+    this.showHeroSlide(this.activeHeroIndex() + direction);
+  }
 }

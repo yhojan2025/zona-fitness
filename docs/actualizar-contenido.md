@@ -8,6 +8,7 @@ Desde `src/app/pages/home/home.ts`:
 
 - `services`: títulos y descripciones de cardio, pesas, sauna y jacuzzi.
 - `plans`: nombre, duración, descripción y tarjeta destacada.
+- `heroSlides`: fotografías, textos alternativos y rótulos del carrusel principal.
 - `gallery`: URL de cada imagen, texto alternativo y etiqueta.
 - `socialLinks`: enlaces de redes oficiales. La lista está vacía hasta que el gimnasio confirme URLs; no agregues perfiles supuestos.
 
@@ -31,6 +32,7 @@ La marca del encabezado y del pie usa `public/zona-fitness-logo.png`. El texto d
 Desde `src/styles.css`, `src/app/app.css` y `src/app/pages/home/home.css`:
 
 - Colores, tipografía, disposición y breakpoints responsive.
+- La tipografía usa Montserrat para títulos y Open Sans para textos de lectura.
 
 ## Precios, pagos, contacto e imágenes
 

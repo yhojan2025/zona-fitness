@@ -50,4 +50,21 @@ describe('Home', () => {
       '© 2026 Análisis y soluciones web 12. Todos los derechos reservados.',
     );
   });
+
+  it('provides an accessible hero image slider with working controls', () => {
+    const fixture = TestBed.createComponent(Home);
+    fixture.detectChanges();
+    const page = fixture.nativeElement as HTMLElement;
+    const slider = page.querySelector('.hero-visual');
+    const image = slider?.querySelector('img');
+
+    expect(slider?.getAttribute('aria-roledescription')).toBe('carrusel');
+    expect(page.querySelectorAll('.slider-dot')).toHaveLength(4);
+    expect(image?.getAttribute('alt')).toContain('Gimnasio equipado');
+
+    page.querySelector<HTMLButtonElement>('[aria-label="Imagen siguiente"]')?.click();
+    fixture.detectChanges();
+
+    expect(image?.getAttribute('alt')).toContain('Persona entrenando fuerza');
+  });
 });

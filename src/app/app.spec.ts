@@ -37,6 +37,19 @@ describe('App', () => {
     expect(el.querySelector('.header-action')?.textContent).toContain('Acceso del equipo');
   });
 
+  it('links each public navigation item to its dedicated page', async () => {
+    const el = await render();
+
+    expect(el.querySelector('.primary-nav a[href="/servicios"]')?.textContent).toContain(
+      'Servicios',
+    );
+    expect(el.querySelector('.primary-nav a[href="/planes"]')?.textContent).toContain('Planes');
+    expect(el.querySelector('.primary-nav a[href="/horarios"]')?.textContent).toContain('Horarios');
+    expect(el.querySelector('.primary-nav a[href="/espacio"]')?.textContent).toContain(
+      'El espacio',
+    );
+  });
+
   it('shows the user name and role badge when logged in', async () => {
     const el = await render('agent');
     expect(el.querySelector('.session')?.textContent).toContain('Ana');

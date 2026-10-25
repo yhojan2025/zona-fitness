@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Vista previa interactiva del sitio promocional de Zona Fitness."
+    />
+    <meta name="theme-color" content="#cff0ea" />
+    <title>Mockup | Zona Fitness</title>
+    <link rel="icon" type="image/svg+xml" href="../public/zona-fitness.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./mockup.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Zona Fitness, inicio">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M7 15h5v10H7zM28 15h5v10h-5zM2 17h4v6H2zm32 0h4v6h-4zM13 18h14v4H13z" />
+        </svg>
+        <span>ZONA <strong>FITNESS</strong></span>
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+        aria-label="Abrir navegación"
+      >
+        <span></span><span></span>
+      </button>
+      <nav id="primary-navigation" class="primary-nav" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#planes">Planes</a>
+        <a href="#horarios">Horarios</a>
+        <a href="#espacio">El espacio</a>
+      </nav>
+      <a class="button button-small button-outline header-action" href="#equipo">
+        Acceso del equipo
+      </a>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> TU ESPACIO, TU RITMO</p>
+          <h1 id="hero-title">Un día a la vez.<br /><em>Más fuerte cada día.</em></h1>
+          <p class="hero-description">
+            Encuentra tu lugar para moverte, entrenar y hacer una pausa. En Zona Fitness, cada
+            rutina empieza contigo.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#planes">Explorar planes <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#servicios"
+              >Conoce el espacio <span aria-hidden="true">↓</span></a
+            >
+          </div>
+          <div class="hero-note">
+            <span class="note-icon" aria-hidden="true">✳</span>
+            <span>Tu bienestar no tiene que esperar al lunes.</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=90"
+            alt="Zona de entrenamiento con máquinas y equipos de gimnasio"
+            fetchpriority="high"
+          />
+          <div class="hero-caption"><span class="caption-dot"></span> HAZ ESPACIO PARA TI</div>
+          <div class="hero-stamp" aria-hidden="true">MOVE<br />YOUR<br />WAY</div>
+        </div>
+        <a class="scroll-cue" href="#servicios" aria-label="Desplazarse para conocer los servicios">
+          ↓
+        </a>
+      </section>
+
+      <section class="intro section-wrap" id="servicios" aria-labelledby="services-title">
+        <div class="section-heading">
+          <p class="eyebrow">ENTRENA · RECUPERA · REPITE</p>
+          <h2 id="services-title">
+            Todo lo que necesitas<br />para sentirte <em>en movimiento.</em>
+          </h2>
+          <p>Distintas formas de acompañar tu rutina y ayudarte a encontrar tu ritmo.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <span class="service-number">01</span
+            ><span class="service-icon" aria-hidden="true">↗</span>
+            <h3>Cardio</h3>
+            <p>Activa tu energía con sesiones a tu propio ritmo.</p>
+          </article>
+          <article class="service-card">
+            <span class="service-number">02</span
+            ><span class="service-icon" aria-hidden="true">✳</span>
+            <h3>Zona de pesas</h3>
+            <p>Espacio para entrenar fuerza y avanzar paso a paso.</p>
+          </article>
+          <article class="service-card">
+            <span class="service-number">03</span
+            ><span class="service-icon" aria-hidden="true">≈</span>
+            <h3>Sauna</h3>
+            <p>Un momento de pausa para cerrar tu rutina.</p>
+          </article>
+          <article class="service-card">
+            <span class="service-number">04</span
+            ><span class="service-icon" aria-hidden="true">◌</span>
+            <h3>Jacuzzi</h3>
+            <p>Completa tu visita con un espacio para relajarte.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="plans-section" id="planes" aria-labelledby="plans-title">
+        <div class="section-wrap">
+          <div class="section-heading left-heading">
+            <p class="eyebrow">EMPIEZA COMO QUIERAS</p>
+            <h2 id="plans-title">Tu siguiente paso<br /><em>empieza aquí.</em></h2>
+            <p>
+              Elige la duración que mejor se adapta a ti. Consulta disponibilidad y valor con Zona
+              Fitness.
+            </p>
+          </div>
+          <div class="plan-grid">
+            <article class="plan-card">
+              <p class="plan-name">Cobre</p>
+              <h3>15 días</h3>
+              <p>2 horas de ejercicio al día</p>
+              <div class="plan-price">Precio por confirmar</div>
+              <a class="plan-link" href="#inscripcion">Consultar este plan <span>↗</span></a>
+            </article>
+            <article class="plan-card">
+              <p class="plan-name">Bronce</p>
+              <h3>3 meses</h3>
+              <p>Un plan para construir constancia</p>
+              <div class="plan-price">Precio por confirmar</div>
+              <a class="plan-link" href="#inscripcion">Consultar este plan <span>↗</span></a>
+            </article>
+            <article class="plan-card plan-featured">
+              <span class="plan-tag">PARA SEGUIR AVANZANDO</span>
+              <p class="plan-name">Platino</p>
+              <h3>6 meses</h3>
+              <p>Más tiempo para mantener tu ritmo</p>
+              <div class="plan-price">Precio por confirmar</div>
+              <a class="plan-link" href="#inscripcion">Consultar este plan <span>↗</span></a>
+            </article>
+            <article class="plan-card">
+              <p class="plan-name">Oro</p>
+              <h3>1 año</h3>
+              <p>Un año para hacer del movimiento un hábito</p>
+              <div class="plan-price">Precio por confirmar</div>
+              <a class="plan-link" href="#inscripcion">Consultar este plan <span>↗</span></a>
+            </article>
+          </div>
+          <p class="plans-note">
+            Los valores, condiciones y disponibilidad deben confirmarse con el gimnasio.
+          </p>
+        </div>
+      </section>
+
+      <section class="schedule section-wrap" id="horarios" aria-labelledby="schedule-title">
+        <div>
+          <p class="eyebrow">UN HORARIO QUE TE ACOMPAÑA</p>
+          <h2 id="schedule-title">Hazle un espacio<br />a <em>tu bienestar.</em></h2>
+          <p class="section-copy">
+            Ven en el momento que mejor encaje con tu día. Estamos para acompañar tu rutina de lunes
+            a sábado.
+          </p>
+        </div>
+        <div class="hours-card">
+          <div class="hours-heading">
+            <span class="hours-icon" aria-hidden="true">◷</span> HORARIO DE ATENCIÓN
+          </div>
+          <div class="hours-row">
+            <span>Lunes a sábado</span><strong>5:00 a. m. – 11:00 a. m.</strong>
+          </div>
+          <div class="hours-row">
+            <span>Lunes a sábado</span><strong>3:00 p. m. – 10:00 p. m.</strong>
+          </div>
+          <p>Dos momentos del día para que encuentres el tuyo.</p>
+        </div>
+      </section>
+
+      <section class="gallery-section" id="espacio" aria-labelledby="gallery-title">
+        <div class="section-wrap">
+          <div class="gallery-heading">
+            <div>
+              <p class="eyebrow">CONOCE ZONA FITNESS</p>
+              <h2 id="gallery-title">Un espacio para<br /><em>cada versión de ti.</em></h2>
+            </div>
+            <p>Cardio, pesas y momentos para recuperar. Construye una rutina que se sienta tuya.</p>
+          </div>
+          <div class="gallery-grid">
+            <figure class="gallery-large">
+              <img
+                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=85"
+                alt="Interior de un gimnasio con equipos de entrenamiento"
+                loading="lazy"
+              />
+              <figcaption>Un espacio para entrenar <span>↗</span></figcaption>
+            </figure>
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=720&q=85"
+                alt="Persona entrenando con pesas"
+                loading="lazy"
+              />
+              <figcaption>Fuerza a tu manera <span>↗</span></figcaption>
+            </figure>
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=720&q=85"
+                alt="Zona de entrenamiento con máquinas de gimnasio"
+                loading="lazy"
+              />
+              <figcaption>Muévete a tu ritmo <span>↗</span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="products section-wrap" aria-labelledby="products-title">
+        <div class="products-heading">
+          <p class="eyebrow">UN EXTRA PARA TU RUTINA</p>
+          <h2 id="products-title">Encuentra tus <em>favoritos.</em></h2>
+          <p class="section-copy">
+            Conoce la selección informativa de productos disponibles en Zona Fitness.
+          </p>
+        </div>
+        <div class="product-list">
+          <article class="product-item">
+            <span>01</span>
+            <div>
+              <h3>Batidos de proteína</h3>
+              <p>Alternativas para complementar tu día.</p>
+            </div>
+            <span>↗</span>
+          </article>
+          <article class="product-item">
+            <span>02</span>
+            <div>
+              <h3>Suplementación</h3>
+              <p>Consulta referencias y disponibilidad.</p>
+            </div>
+            <span>↗</span>
+          </article>
+          <article class="product-item">
+            <span>03</span>
+            <div>
+              <h3>Productos para entrenar</h3>
+              <p>Accesorios y básicos para acompañarte.</p>
+            </div>
+            <span>↗</span>
+          </article>
+        </div>
+        <p class="product-note">
+          La información no reemplaza la orientación de un profesional de la salud. Consulta la
+          disponibilidad directamente con el gimnasio.
+        </p>
+      </section>
+
+      <section class="join-section" id="inscripcion" aria-labelledby="join-title">
+        <div class="join-content">
+          <p class="eyebrow">TU PRÓXIMO PASO</p>
+          <h2 id="join-title">Empieza por<br /><em>elegir moverte.</em></h2>
+          <p>
+            Consulta directamente con Zona Fitness el precio de los planes, sus condiciones y cómo
+            inscribirte.
+          </p>
+          <div class="payment-box">
+            <span class="payment-icon" aria-hidden="true">↗</span>
+            <div>
+              <strong>Medios de pago informativos</strong>
+              <p>
+                Se aceptan Nequi y Bancolombia. Confirma los datos oficiales de pago directamente
+                con Zona Fitness antes de transferir.
+              </p>
+            </div>
+          </div>
+          <p class="age-note">
+            <strong>Edad mínima:</strong> 14 años. La inscripción de personas menores de edad podría
+            requerir autorización o acompañamiento de acudiente, de acuerdo con las condiciones que
+            confirme el gimnasio.
+          </p>
+        </div>
+        <div class="join-art" aria-hidden="true">
+          <div class="art-circle"></div>
+          <div class="art-word">MOVE<br />WITH<br /><span>INTENT</span></div>
+          <div class="art-mark">ZF</div>
+        </div>
+      </section>
+
+      <footer class="site-footer" id="equipo">
+        <a class="brand" href="#inicio"
+          ><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M7 15h5v10H7zM28 15h5v10h-5zM2 17h4v6H2zm32 0h4v6h-4zM13 18h14v4H13z" /></svg
+          ><span>ZONA <strong>FITNESS</strong></span></a
+        >
+        <p>
+          Muévete a tu ritmo.<span>Contacto y redes oficiales pendientes de confirmación.</span>
+        </p>
+        <a class="support-link" href="#equipo">Acceso del equipo</a>
+      </footer>
+    </main>
+  </body>
+</html>

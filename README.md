@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.2.
 
+## Local visual mockup
+
+Open [`mockup/index.html`](mockup/index.html) in a browser to preview the responsive Zona Fitness landing page without installing dependencies or starting the Angular/API applications. The static preview uses remote Unsplash images and Google Fonts; replace these provisional assets with approved gym photography before production.
+
 ## Development server
 
 To start a local development server, run:

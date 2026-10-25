@@ -154,17 +154,18 @@ h3 {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: 0.94fr 1.06fr;
+  grid-template-columns: 1fr;
   align-items: center;
-  gap: 4vw;
-  min-height: 610px;
-  padding: 54px clamp(24px, 8vw, 124px) 75px;
-  background: linear-gradient(110deg, #f7fbfa 0%, #edf7f4 54%, #e5f2ee 100%);
+  min-height: calc(100svh - 76px);
+  padding: 64px clamp(24px, 9vw, 140px) 84px;
+  overflow: hidden;
+  background: var(--ink);
 }
 .hero-copy {
   position: relative;
-  z-index: 1;
-  max-width: 570px;
+  z-index: 2;
+  max-width: 660px;
+  color: white;
 }
 .eyebrow {
   margin: 0 0 18px;
@@ -177,6 +178,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #c2e6df;
 }
 .hero .eyebrow span,
 .caption-dot {
@@ -187,9 +189,10 @@ h3 {
 }
 .hero h1 {
   margin: 0;
-  font-size: clamp(2.7rem, 5.5vw, 5.1rem);
+  font-size: clamp(3rem, 6vw, 5.6rem);
   line-height: 1.01;
   letter-spacing: -0.065em;
+  color: white;
 }
 h1 em,
 h2 em {
@@ -197,10 +200,13 @@ h2 em {
   font-weight: 500;
   font-style: normal;
 }
+.hero h1 em {
+  color: #9edbd1;
+}
 .hero-description {
   max-width: 450px;
   margin: 24px 0 28px;
-  color: #56716f;
+  color: #e2eeeb;
   font-size: 1.08rem;
   line-height: 1.8;
 }
@@ -211,7 +217,7 @@ h2 em {
   flex-wrap: wrap;
 }
 .text-link {
-  color: #286d68;
+  color: #e2eeeb;
   font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
@@ -221,37 +227,42 @@ h2 em {
   align-items: center;
   gap: 11px;
   margin-top: 48px;
-  color: #56716f;
+  color: #e2eeeb;
   font-size: 0.84rem;
 }
 .note-icon {
-  color: var(--teal);
+  color: #9edbd1;
   font-size: 1.35rem;
 }
 .hero-visual {
-  position: relative;
-  min-height: 435px;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  min-height: 100%;
 }
 .hero-visual::before {
+  display: none;
+}
+.hero-visual::after {
   position: absolute;
-  top: -18px;
-  right: -18px;
-  width: 72%;
-  height: 83%;
-  border: 1px solid var(--seafoam);
-  border-radius: 46% 46% 28px 28px;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #163b39eb 0%, #163b39c7 38%, #163b3954 75%, #163b3940 100%),
+    linear-gradient(0deg, #163b3975 0%, transparent 44%);
   content: '';
 }
 .hero-visual img {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 435px;
-  border-radius: 46% 46% 22px 22px;
+  height: 100%;
+  border-radius: 0;
   object-fit: cover;
-  filter: saturate(0.82);
+  filter: saturate(0.78);
 }
 .hero-slider-controls {
   position: absolute;
+  z-index: 2;
   top: 16px;
   right: 16px;
   display: flex;
@@ -321,6 +332,7 @@ h2 em {
 }
 .hero-caption {
   position: absolute;
+  z-index: 2;
   right: 18px;
   bottom: 16px;
   display: flex;
@@ -340,8 +352,9 @@ h2 em {
 }
 .hero-stamp {
   position: absolute;
-  top: 49%;
-  left: -43px;
+  z-index: 2;
+  top: 50%;
+  right: 8%;
   display: grid;
   place-items: center;
   width: 105px;
@@ -359,15 +372,16 @@ h2 em {
 }
 .scroll-cue {
   position: absolute;
+  z-index: 2;
   bottom: 20px;
   left: 50%;
   display: grid;
   place-items: center;
   width: 36px;
   height: 36px;
-  border: 1px solid #bfded9;
+  border: 1px solid #ffffff8a;
   border-radius: 50%;
-  color: #286d68;
+  color: white;
   text-decoration: none;
   transform: translateX(-50%);
 }
@@ -873,14 +887,8 @@ h2 em {
 }
 @media (max-width: 900px) {
   .hero {
-    grid-template-columns: 1fr 1fr;
     padding-right: 6vw;
     padding-left: 6vw;
-  }
-  .hero-visual,
-  .hero-visual img {
-    min-height: 370px;
-    height: 370px;
   }
   .service-grid,
   .plan-grid {
@@ -947,9 +955,9 @@ h2 em {
     margin-left: 0;
   }
   .hero {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    padding: 60px 24px 68px;
+    gap: 0;
+    min-height: calc(100svh - 76px);
+    padding: 48px 24px 76px;
   }
   .hero h1 {
     font-size: clamp(2.7rem, 13vw, 4rem);
@@ -960,16 +968,10 @@ h2 em {
   .hero-note {
     margin-top: 30px;
   }
-  .hero-visual,
-  .hero-visual img {
-    min-height: 320px;
-    height: 320px;
-  }
-  .hero-visual {
-    margin: 0 8px 0 14px;
-  }
   .hero-stamp {
-    left: -28px;
+    top: auto;
+    right: 7%;
+    bottom: 90px;
     width: 80px;
     height: 80px;
     font-size: 0.54rem;

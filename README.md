@@ -58,6 +58,8 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-## Website flow
+## Documentación de Zona Fitness
 
-See the [Zona Fitness website flowchart](docs/diagrama-flujo.md) for the visitor and staff journeys.
+- [Entregables, mapa del sitio y wireframe preliminar](docs/entregables-zona-fitness.md)
+- [Guía breve para actualizar el contenido](docs/actualizar-contenido.md)
+- [Diagrama del flujo actual](docs/diagrama-flujo.md)

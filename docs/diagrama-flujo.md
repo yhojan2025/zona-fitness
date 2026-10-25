@@ -1,53 +1,41 @@
-# Diagrama de flujo de Zona Fitness
+# Diagrama del flujo actual de Zona Fitness
 
-El recorrido público es informativo: el sitio no gestiona inscripciones ni procesa pagos. Los precios, datos de contacto y datos de transferencia deben confirmarse directamente con el gimnasio.
+Este diagrama describe lo que la aplicación implementa hoy. El recorrido público es informativo: no recoge datos de inscripción, no valida la edad, no selecciona un plan y no procesa pagos. Los botones de los planes solo llevan a la sección informativa de inscripción.
 
 ```mermaid
 flowchart TD
-    A([Inicio]) --> B[Visitar la web]
-    B --> C[Inicio: Zona Fitness]
+    A([Visita la web]) --> H[Inicio de Zona Fitness]
 
-    C --> D{¿Qué quiere consultar?}
-    D -->|Servicios| S[Cardio · Pesas · Sauna · Jacuzzi]
-    D -->|Planes| P[Planes: Cobre 15 días, 2 h al día<br/>Bronce 3 meses · Platino 6 meses · Oro 1 año]
-    D -->|Horarios| H[Lunes a sábado<br/>5:00–11:00 y 15:00–22:00]
-    D -->|El espacio| G[Ver galería]
-    D -->|Productos| R[Batidos · Suplementos · Productos]
-    D -->|Empezar| I[Consultar condiciones de inscripción]
+    H --> S[Desplazarse a servicios<br/>Cardio · Pesas · Sauna · Jacuzzi]
+    H --> P[Desplazarse a planes<br/>Cobre · Bronce · Platino · Oro]
+    H --> O[Desplazarse a horarios<br/>Lunes a sábado, dos franjas]
+    H --> G[Desplazarse a galería]
+    H --> R[Consultar catálogo informativo<br/>Batidos · Suplementos · Productos]
+    H --> J[Sección de inscripción informativa]
 
-    S --> C
-    P --> Q[Consultar precios y disponibilidad con el gimnasio]
-    Q --> I
-    H --> C
-    G --> C
-    R --> X[Consultar referencias y disponibilidad]
-    X --> C
+    S --> H
+    O --> H
+    G --> H
+    R --> H
+    P -->|Consultar este plan: ancla genérica, sin plan seleccionado| J
 
-    I --> E{¿Tiene al menos 14 años?}
-    E -->|Sí| M[Confirmar condiciones e inscripción directamente con el gimnasio]
-    E -->|No| N[Consultar condiciones con el gimnasio y acudiente]
-    M --> Y([Fin: fuera del sitio])
-    N --> Y
+    J --> I[Leer precios por confirmar,<br/>edad mínima 14 y nota para acudientes]
+    I --> M[Leer medios informativos: Nequi y Bancolombia]
+    M --> X[Confirmar condiciones y datos directamente con el gimnasio<br/>La web no ofrece canal de contacto]
+    X --> Z([Continuar fuera del sitio])
 
-    I --> T[Medios informativos: Nequi o Bancolombia]
-    T --> U[Confirmar datos oficiales antes de transferir]
-    U --> Y
-    T -. El sitio no procesa pagos .-> Y
-
-    C --> F[Acceso del equipo]
-    F --> L{¿Tiene cuenta?}
-    L -->|Sí| LO[Iniciar sesión]
-    L -->|No| RE[Crear cuenta de soporte]
+    H --> E[Acceso del equipo: /login]
+    E --> L{¿Ya tiene cuenta de soporte?}
+    L -->|Sí| LO[Enviar formulario de inicio de sesión]
+    L -->|No| RE[Ir a /register y enviar formulario de soporte]
     RE -->|Registro correcto| LO
-    LO -->|Credenciales correctas| TK[Tickets de soporte]
-    TK --> AD{¿Es administrador?}
-    AD -->|Sí| US[Gestión de usuarios]
-    AD -->|No| TU[Funciones según el rol]
-    US --> Y
-    TU --> Y
-    LO -. Login incorrecto o API no disponible .-> LO
+    LO -->|Credenciales correctas| T["/tickets"]
+    LO -. Credenciales incorrectas o API no disponible .-> LO
+    T --> D{¿Rol administrador?}
+    D -->|Sí| U["/users: gestionar usuarios"]
+    D -->|No| T
 
-    C -. Ruta desconocida .-> B
+    H -. Ruta desconocida .-> H
 ```
 
-> El registro y el inicio de sesión existentes son para el sistema interno de soporte; no crean una membresía del gimnasio.
+**Importante:** el registro y el inicio de sesión son del sistema de soporte existente, no una inscripción o cuenta de socio del gimnasio. El sitio muestra las condiciones de edad, pero no pregunta ni comprueba la edad. La confirmación de compra/inscripción y el contacto requieren información y procesos que aún no están configurados.

@@ -45,11 +45,9 @@
           }
         </div>
         <div class="hero-progress-track" aria-hidden="true">
-          <span
-            class="hero-progress-value"
-            [class.paused]="heroRotationPaused()"
-            [style.width.%]="((5 - heroSecondsRemaining()) / 5) * 100"
-          ></span>
+          @for (cycle of [activeHeroIndex()]; track cycle) {
+            <span class="hero-progress-value" [class.paused]="heroRotationPaused()"></span>
+          }
         </div>
       </div>
       <div class="hero-stamp" aria-hidden="true">

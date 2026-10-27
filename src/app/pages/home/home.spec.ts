@@ -135,6 +135,7 @@ describe('Home', () => {
       'siguiente imagen',
     );
     expect(page.querySelector('.hero-progress')?.textContent).toContain('5 s');
+    expect(page.querySelector('.hero-progress-value')?.classList.contains('paused')).toBe(false);
     expect(image?.getAttribute('alt')).toContain('Gimnasio equipado');
     expect(image?.classList.contains('hero-slide-image')).toBe(true);
 
@@ -166,6 +167,7 @@ describe('Home', () => {
 
       page.querySelector<HTMLButtonElement>('[aria-label="Pausar rotación automática"]')?.click();
       fixture.detectChanges();
+      expect(page.querySelector('.hero-progress-value')?.classList.contains('paused')).toBe(true);
       vi.advanceTimersByTime(5000);
       fixture.detectChanges();
       expect(page.querySelector('.hero-slide-image')?.getAttribute('alt')).toContain(

@@ -68,6 +68,18 @@ describe('Home', () => {
     );
   });
 
+  it('keeps the home gallery images uniform and emphasizes its description', () => {
+    const fixture = TestBed.createComponent(Home);
+    fixture.detectChanges();
+    const page = fixture.nativeElement as HTMLElement;
+
+    expect(page.querySelectorAll('.gallery-grid figure')).toHaveLength(3);
+    expect(page.querySelectorAll('.gallery-grid figure.gallery-large')).toHaveLength(0);
+    expect(page.querySelector('.gallery-description strong')?.textContent).toContain(
+      'Cardio, pesas y momentos para recuperar.',
+    );
+  });
+
   it('provides an accessible hero image slider with working controls', () => {
     const fixture = TestBed.createComponent(Home);
     fixture.detectChanges();

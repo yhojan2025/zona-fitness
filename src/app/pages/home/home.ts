@@ -108,7 +108,7 @@ export class Home {
         'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=85',
       alt: 'Interior de un gimnasio con equipos de entrenamiento',
       label: 'Un espacio para entrenar',
-      className: 'gallery-large',
+      className: '',
     },
     {
       image:

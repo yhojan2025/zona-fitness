@@ -68,4 +68,17 @@ describe('dedicated navigation pages', () => {
       );
     }
   });
+
+  it('uses equal-sized images and bold subtitles on the El espacio page', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/espacio');
+    const page = harness.routeNativeElement;
+
+    expect(page?.querySelector('.page-space')).not.toBeNull();
+    expect(page?.querySelectorAll('.space-photo')).toHaveLength(3);
+    expect(page?.querySelectorAll('.space-photo .space-subtitle')).toHaveLength(3);
+    expect(page?.querySelector('.detail-description')?.textContent).toContain(
+      'Explora algunos espacios',
+    );
+  });
 });

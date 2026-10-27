@@ -11,7 +11,7 @@ Desde `src/app/pages/home/home.ts`:
 - `heroSlides`: fotografías, textos alternativos y rótulos del carrusel principal.
 - `gallery`: URL de cada imagen, texto alternativo y etiqueta.
 - `socialLinks`: enlaces de redes oficiales. La lista está vacía hasta que el gimnasio confirme URLs; no agregues perfiles supuestos.
-- Las maquetas de Instagram y Facebook están en `public/redes/` y se enlazan desde la sección Redes de la landing. Son prototipos locales, no perfiles oficiales. Actualiza sus imágenes/textos solo con material aprobado y añade URLs a `socialLinks` únicamente cuando el gimnasio las confirme.
+- Las maquetas de Instagram y Facebook están en `public/redes/` y se enlazan desde la sección Redes de la landing. Son prototipos locales, no perfiles oficiales. Sus imágenes y estilos se actualizaron con el paquete `ZonaFitness_Redes_Final`; edita las publicaciones en `public/redes/instagram.html` y `public/redes/facebook.html`, y los recursos en `public/redes/assets/`. No publiques nombres de usuario, cifras, insignias, URLs ni datos de contacto no confirmados. Actualiza `socialLinks` únicamente cuando el gimnasio entregue sus enlaces oficiales.
 
 Desde `src/app/pages/home/home.html`:
 
@@ -28,7 +28,7 @@ Desde `src/index.html`:
 - Título, idioma, descripción y color de tema del sitio.
 - Icono de pestaña: `public/zona-fitness-icon.png`.
 
-La marca del encabezado y del pie usa `public/zona-fitness-logo.png`. El texto de copyright está en el pie de `src/app/pages/home/home.html`.
+La marca del encabezado y del pie usa `public/zona-fitness-logo.png`. El footer público compartido está en `src/app/shared/site-footer/` y conserva el copyright del sitio.
 
 Desde `src/styles.css`, `src/app/app.css` y `src/app/pages/home/home.css`:
 

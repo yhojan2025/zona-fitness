@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
+import { SiteFooter } from '../../shared/site-footer/site-footer';
 
 type SectionKey = 'services' | 'plans' | 'hours' | 'space' | 'products';
 
@@ -176,7 +177,7 @@ function isSectionKey(value: unknown): value is SectionKey {
 
 @Component({
   selector: 'app-section-page',
-  imports: [RouterLink],
+  imports: [RouterLink, SiteFooter],
   templateUrl: './section-page.html',
 })
 export class SectionPage {

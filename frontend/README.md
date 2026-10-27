@@ -60,6 +60,7 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## Documentación de Zona Fitness
 
+- [Progreso del proyecto al 26 de octubre de 2026](docs/progreso-zona-fitness-2026-10-26.md)
 - [Entregables, mapa del sitio y wireframe preliminar](docs/entregables-zona-fitness.md)
 - [Guía breve para actualizar el contenido](docs/actualizar-contenido.md)
 - [Diagrama del flujo actual](docs/diagrama-flujo.md)

@@ -96,8 +96,12 @@ describe('dedicated navigation pages', () => {
     const page = harness.routeNativeElement;
 
     expect(page?.querySelector('.page-space')).not.toBeNull();
-    expect(page?.querySelectorAll('.space-photo')).toHaveLength(3);
-    expect(page?.querySelectorAll('.space-photo .space-subtitle')).toHaveLength(3);
+    expect(page?.querySelectorAll('.space-photo')).toHaveLength(4);
+    expect(page?.querySelectorAll('.space-photo .space-subtitle')).toHaveLength(4);
+    expect(page?.textContent).toContain('Espacio de cardio');
+    expect(page?.textContent).toContain('Zona de pesas');
+    expect(page?.textContent).toContain('Sauna');
+    expect(page?.textContent).toContain('Jacuzzi');
     expect(page?.querySelector('.detail-description')?.textContent).toContain(
       'Explora algunos espacios',
     );

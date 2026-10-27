@@ -167,9 +167,10 @@ Los datos que alimentan carrusel, servicios, planes y galería están en
   `home.html:246-251`, `home.css:657-659`.
 - Imágenes y textos alternativos de la landing:
   `home.ts:107-121`.
-- Altura uniforme y `object-fit: cover` para las tres imágenes:
+- Altura uniforme y `object-fit: cover` para las cuatro imágenes:
   `home.css:619-642`.
-- Página `/espacio`, subtítulos en negrilla y figuras uniformes:
+- Página `/espacio`, con las zonas de cardio, pesas, sauna y jacuzzi, subtítulos en
+  negrilla y figuras uniformes:
   `section-page.html:117-128`, `section-page.css:266-313`.
 - Datos referenciales y aviso de aprobación de fotografías:
   `section-page.ts:108-141`.

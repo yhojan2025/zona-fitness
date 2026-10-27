@@ -112,25 +112,32 @@ const CONTENT: Record<SectionKey, SectionContent> = {
     description: 'Explora algunos espacios de entrenamiento y encuentra nuevas formas de moverte.',
     cards: [
       {
-        title: 'Un espacio para entrenar',
-        description: 'Conoce el entorno y sus equipos.',
+        title: 'Espacio de cardio',
+        description: 'Activa tu energía con sesiones a tu propio ritmo.',
         image:
           'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=85',
-        alt: 'Interior de un gimnasio con equipos de entrenamiento',
+        alt: 'Equipos de cardio en el interior de un gimnasio',
       },
       {
-        title: 'Fuerza a tu manera',
-        description: 'Una zona para trabajar con pesas.',
+        title: 'Zona de pesas',
+        description: 'Entrena fuerza y avanza paso a paso.',
         image:
           'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=720&q=85',
         alt: 'Persona entrenando con pesas',
       },
       {
-        title: 'Muévete a tu ritmo',
-        description: 'Encuentra tu lugar para hacer ejercicio.',
+        title: 'Sauna',
+        description: 'Un momento de pausa para cerrar tu rutina.',
         image:
           'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=720&q=85',
-        alt: 'Zona de entrenamiento con máquinas de gimnasio',
+        alt: 'Espacio de recuperación dentro de un gimnasio',
+      },
+      {
+        title: 'Jacuzzi',
+        description: 'Completa tu visita con un espacio para relajarte.',
+        image:
+          'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=720&q=85',
+        alt: 'Espacio de relajación referencial',
       },
     ],
     note: 'Las imágenes son referenciales y están pendientes de aprobación o reemplazo por fotografías oficiales del gimnasio.',

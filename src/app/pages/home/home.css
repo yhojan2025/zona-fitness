@@ -1177,10 +1177,6 @@ h2 em {
   .hero-slide-image {
     animation: none;
   }
-  .hero-progress-value {
-    animation: none;
-    transform: scaleX(1);
-  }
   .slider-arrow,
   .slider-dot {
     transition: none;

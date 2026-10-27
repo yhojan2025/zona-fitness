@@ -115,8 +115,8 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         title: 'Espacio de cardio',
         description: 'Activa tu energía con sesiones a tu propio ritmo.',
         image:
-          'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=85',
-        alt: 'Equipos de cardio en el interior de un gimnasio',
+          'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=960&q=85',
+        alt: 'Máquinas de cardio en una zona de gimnasio',
       },
       {
         title: 'Zona de pesas',
@@ -129,15 +129,15 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         title: 'Sauna',
         description: 'Un momento de pausa para cerrar tu rutina.',
         image:
-          'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=720&q=85',
-        alt: 'Espacio de recuperación dentro de un gimnasio',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=720&q=85',
+        alt: 'Espacio de spa y recuperación con ambiente cálido',
       },
       {
         title: 'Jacuzzi',
         description: 'Completa tu visita con un espacio para relajarte.',
         image:
-          'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=720&q=85',
-        alt: 'Espacio de relajación referencial',
+          'https://images.unsplash.com/photo-1572331165267-854da2b10ccc?auto=format&fit=crop&w=720&q=85',
+        alt: 'Piscina de hidromasaje en un espacio de bienestar',
       },
     ],
     note: 'Las imágenes son referenciales y están pendientes de aprobación o reemplazo por fotografías oficiales del gimnasio.',

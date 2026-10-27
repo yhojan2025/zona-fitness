@@ -416,12 +416,52 @@ h2 em {
   letter-spacing: 0.08em;
 }
 .plan-name {
-  margin: 0 0 6px;
+  margin: 0;
   color: #3e817b;
   font-size: 0.86rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+.plan-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 34px;
+  margin-bottom: 7px;
+}
+.plan-metal-icon {
+  display: grid;
+  flex: 0 0 30px;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.plan-metal-icon svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+.plan-metal-cobre {
+  background: #f0d1ba;
+  color: #9a5d35;
+}
+.plan-metal-bronce {
+  background: #ead0b3;
+  color: #8c572d;
+}
+.plan-metal-platino {
+  background: #e4edf0;
+  color: #627c86;
+}
+.plan-metal-oro {
+  background: #f7e5a7;
+  color: #a57915;
 }
 .plan-duration {
   margin: 0;
@@ -770,7 +810,7 @@ h2 em {
 }
 .social-prototypes {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   margin-top: 26px;
 }
@@ -822,6 +862,9 @@ h2 em {
 .facebook-icon {
   fill: #1877f2;
 }
+.whatsapp-icon {
+  fill: #16bf72;
+}
 .social-prototype-info h3 {
   margin: 0 0 8px;
   color: #163b39;
@@ -871,6 +914,9 @@ h2 em {
   }
   .plan-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .social-prototypes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .products {
     grid-template-columns: 1fr 1.2fr;

@@ -11,7 +11,7 @@ Desde `src/app/pages/home/home.ts`:
 - `heroSlides`: fotografías, textos alternativos y rótulos del carrusel principal.
 - `gallery`: URL de cada imagen, texto alternativo y etiqueta.
 - `socialLinks`: enlaces de redes oficiales. La lista está vacía hasta que el gimnasio confirme URLs; no agregues perfiles supuestos.
-- Las maquetas de Instagram y Facebook están en `public/redes/` y se enlazan desde la sección Redes de la landing. Son prototipos locales, no perfiles oficiales. Sus imágenes y estilos se actualizaron con el paquete `ZonaFitness_Redes_Final`; edita las publicaciones en `public/redes/instagram.html` y `public/redes/facebook.html`, y los recursos en `public/redes/assets/`. No publiques nombres de usuario, cifras, insignias, URLs ni datos de contacto no confirmados. Actualiza `socialLinks` únicamente cuando el gimnasio entregue sus enlaces oficiales.
+- Las maquetas de Instagram, Facebook y WhatsApp están en `public/redes/` y se enlazan desde la sección Redes de la landing. Son prototipos locales, no perfiles oficiales. Sus imágenes y estilos se actualizaron con los paquetes entregados; edita las publicaciones en `public/redes/instagram.html`, `public/redes/facebook.html` y `public/redes/whatsapp.html`, y los recursos en `public/redes/assets/`. No publiques nombres de usuario, cifras, insignias, URLs ni datos de contacto no confirmados. Actualiza `socialLinks` únicamente cuando el gimnasio entregue sus enlaces oficiales.
 
 Desde `src/app/pages/home/home.html`:
 

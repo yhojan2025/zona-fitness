@@ -122,12 +122,48 @@
 }
 
 .plan-label {
-  margin: 0 0 12px !important;
+  margin: 0 !important;
   color: #3e817b !important;
   font-size: 0.73rem !important;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+.plan-detail-card .plan-heading {
+  margin-bottom: 12px;
+}
+.plan-detail-card .plan-metal-icon {
+  display: grid;
+  flex: 0 0 34px;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+.plan-detail-card .plan-metal-icon svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+.plan-detail-card .plan-metal-cobre {
+  background: #f0d1ba;
+  color: #9a5d35;
+}
+.plan-detail-card .plan-metal-bronce {
+  background: #ead0b3;
+  color: #8c572d;
+}
+.plan-detail-card .plan-metal-platino {
+  background: #e4edf0;
+  color: #627c86;
+}
+.plan-detail-card .plan-metal-oro {
+  background: #f7e5a7;
+  color: #a57915;
 }
 
 .plan-detail-card h2 {

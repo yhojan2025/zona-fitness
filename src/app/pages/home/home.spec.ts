@@ -29,6 +29,18 @@ describe('Home', () => {
     expect(page.textContent).toContain('Nequi y Bancolombia');
   });
 
+  it('shows a category icon for each home plan', () => {
+    const fixture = TestBed.createComponent(Home);
+    fixture.detectChanges();
+    const page = fixture.nativeElement as HTMLElement;
+
+    expect(page.querySelectorAll('.plan-card .plan-metal-icon')).toHaveLength(4);
+    expect(page.querySelector('.plan-metal-cobre svg')).not.toBeNull();
+    expect(page.querySelector('.plan-metal-bronce svg')).not.toBeNull();
+    expect(page.querySelector('.plan-metal-platino svg')).not.toBeNull();
+    expect(page.querySelector('.plan-metal-oro svg')).not.toBeNull();
+  });
+
   it('renders each service as an independent rounded information card', () => {
     const fixture = TestBed.createComponent(Home);
     fixture.detectChanges();
@@ -64,9 +76,9 @@ describe('Home', () => {
 
     expect(page.querySelector('#redes')?.textContent).toContain('perfiles oficiales');
     expect(page.querySelector('#redes')?.textContent).toContain('maquetas visuales locales');
-    expect(page.querySelectorAll('#redes .social-prototype-card')).toHaveLength(2);
+    expect(page.querySelectorAll('#redes .social-prototype-card')).toHaveLength(3);
     expect(page.querySelectorAll('#redes .social-sample-gallery img')).toHaveLength(6);
-    expect(page.querySelectorAll('#redes .social-platform-icon')).toHaveLength(2);
+    expect(page.querySelectorAll('#redes .social-platform-icon')).toHaveLength(3);
     expect(page.querySelector('#redes a[href^="https://"]')).toBeNull();
     expect(page.querySelector('#redes')?.textContent).toContain('Visita las redes de Zona Fitness');
     expect(page.querySelector('#redes a[href="/redes/instagram.html"]')?.textContent).toContain(
@@ -74,6 +86,9 @@ describe('Home', () => {
     );
     expect(page.querySelector('#redes a[href="/redes/facebook.html"]')?.textContent).toContain(
       'Visitar Facebook',
+    );
+    expect(page.querySelector('#redes a[href="/redes/whatsapp.html"]')?.textContent).toContain(
+      'Abrir WhatsApp',
     );
     expect(page.textContent).toContain(
       '© 2026 Análisis y diseño de soluciones web 12. Todos los derechos reservados.',

@@ -38,6 +38,18 @@ describe('dedicated navigation pages', () => {
     expect(harness.routeNativeElement?.textContent).toContain('Precio por confirmar');
   });
 
+  it('shows category icons for every dedicated plan card', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/planes');
+    const page = harness.routeNativeElement;
+
+    expect(page?.querySelectorAll('.plan-detail-card .plan-metal-icon')).toHaveLength(4);
+    expect(page?.querySelector('.plan-metal-cobre svg')).not.toBeNull();
+    expect(page?.querySelector('.plan-metal-bronce svg')).not.toBeNull();
+    expect(page?.querySelector('.plan-metal-platino svg')).not.toBeNull();
+    expect(page?.querySelector('.plan-metal-oro svg')).not.toBeNull();
+  });
+
   it('styles the dedicated service cards like the hours information cards', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/servicios');

@@ -144,7 +144,40 @@
             @if (plan.featured) {
               <span class="plan-tag">PARA SEGUIR AVANZANDO</span>
             }
-            <p class="plan-name">{{ plan.name }}</p>
+            <div class="plan-heading">
+              <span
+                class="plan-metal-icon"
+                [class]="'plan-metal-' + plan.name.toLowerCase()"
+                aria-hidden="true"
+              >
+                @switch (plan.name) {
+                  @case ('Cobre') {
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" /></svg>
+                  }
+                  @case ('Bronce') {
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="m12 4 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L12 4Z"
+                      />
+                    </svg>
+                  }
+                  @case ('Platino') {
+                    <svg viewBox="0 0 24 24">
+                      <path d="m12 3 2.4 5.2 5.6.8-4 4 1 5.7-5-2.7-5 2.7 1-5.7-4-4 5.6-.8L12 3Z" />
+                      <path d="M8 21h8" />
+                    </svg>
+                  }
+                  @default {
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="m12 3 2.5 5.1 5.6.8-4 4 1 5.6-5.1-2.7-5.1 2.7 1-5.6-4-4 5.6-.8L12 3Z"
+                      />
+                    </svg>
+                  }
+                }
+              </span>
+              <p class="plan-name">{{ plan.name }}</p>
+            </div>
             <p class="plan-duration">{{ plan.duration }}</p>
             <p class="plan-detail">{{ plan.detail }}</p>
             <div class="plan-price">Precio por confirmar</div>
@@ -386,6 +419,31 @@
           </div>
           <a href="/redes/facebook.html"
             >Visitar Facebook (maqueta) <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </article>
+      <article class="social-prototype-card">
+        <img
+          src="/redes/assets/whatsapp-logo.png"
+          alt="Ejemplo visual del perfil de WhatsApp Business de Zona Fitness"
+          loading="lazy"
+        />
+        <div class="social-prototype-info">
+          <p class="prototype-label">
+            <svg class="social-platform-icon whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 21l4.8-1.2A8.8 8.8 0 1 0 12 3.2Zm0 15.8a7 7 0 0 1-3.6-1l-.3-.2-2.8.7.7-2.7-.2-.3A7 7 0 1 1 12 19Zm3.8-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1l-.6.7c-.1.1-.2.1-.4 0a5.7 5.7 0 0 1-2.8-2.5c-.2-.3 0-.4.1-.5l.4-.5c.1-.2.1-.3 0-.5l-.6-1.4c-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.5.1-.7.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3a8.1 8.1 0 0 0 3.1 3c1.2.5 1.7.6 2.1.5.4 0 1.2-.5 1.4-.9.2-.4.2-.8.1-.9-.1-.1-.2-.1-.4-.2Z"
+              />
+            </svg>
+            WhatsApp Business · maqueta de atención
+          </p>
+          <h3>Conversa con Zona Fitness</h3>
+          <p>
+            Explora una demostración local de conversación para consultar planes, instalaciones y
+            horarios.
+          </p>
+          <a href="/redes/whatsapp.html"
+            >Abrir WhatsApp (maqueta) <span aria-hidden="true">↗</span></a
           >
         </div>
       </article>

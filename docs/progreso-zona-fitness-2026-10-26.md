@@ -26,7 +26,8 @@ publicación comercial.
   horarios, espacio y productos. Usa el logo horizontal completo con proporción original, enlaces
   de navegación y texto alternativo; contacto y perfiles oficiales se indican como pendientes, sin
   añadir enlaces no confirmados. No se incluye en login, registro, tickets ni usuarios de soporte.
-- **Redes sociales:** sección con iconos y maquetas visuales locales de Instagram y Facebook,
+- **Redes sociales:** sección con iconos y maquetas visuales locales de Instagram, Facebook y
+  WhatsApp Business,
   incluyendo contenido de ejemplo. Las maquetas se identifican como prototipos, no como perfiles
   oficiales. La configuración de enlaces oficiales permanece vacía hasta recibir URLs confirmadas.
 - **Acceso existente:** `/login`, `/register`, `/tickets` y `/users` pertenecen al sistema de
@@ -47,7 +48,7 @@ publicación comercial.
 | Planes, horarios y servicios                      | Presentados informativamente                                                                                                              | Precios, disponibilidad y condiciones comerciales aún por confirmar.                |
 | Productos                                         | Catálogo informativo en `/productos`                                                                                                      | No hay carrito, pedidos, inventario ni pagos.                                       |
 | Edad mínima                                       | Se informa mínimo de 14 años y se advierte que podría requerirse acudiente                                                                | El sitio no recoge ni valida edad y no determina requisitos legales.                |
-| Redes sociales                                    | Maquetas locales y sección en la landing                                                                                                  | No hay perfiles oficiales enlazados porque sus URL no se han confirmado.            |
+| Redes sociales                                    | Maquetas locales de Instagram, Facebook y WhatsApp Business en la landing                                                                 | No hay perfiles oficiales enlazados porque sus URL no se han confirmado.            |
 | Accesibilidad y adaptación                        | Se implementaron controles accesibles para el carrusel, texto alternativo y estilos responsive; el carrusel considera movimiento reducido | La revisión de aceptación en dispositivos y navegadores objetivo sigue pendiente.   |
 | Pruebas                                           | Build de producción y pruebas unitarias aprobados en la validación del 26 de octubre de 2026                                              | No hay pruebas end-to-end configuradas.                                             |
 | Seguridad y producción                            | Se conserva el acceso autenticado y los roles del sistema de soporte existente                                                            | No se ha configurado ni validado un backend de producción para clientes o socios.   |

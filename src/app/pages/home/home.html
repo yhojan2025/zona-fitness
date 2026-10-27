@@ -37,6 +37,21 @@
       <div class="hero-caption" aria-live="polite">
         <span class="caption-dot"></span>{{ activeHeroSlide().label }}
       </div>
+      <div class="hero-progress" aria-label="Progreso hasta la siguiente imagen">
+        <div class="hero-progress-copy">
+          <span>{{ heroRotationPaused() ? 'Rotación pausada' : 'Siguiente imagen en' }}</span>
+          @if (!heroRotationPaused()) {
+            <strong>{{ heroSecondsRemaining() }} s</strong>
+          }
+        </div>
+        <div class="hero-progress-track" aria-hidden="true">
+          <span
+            class="hero-progress-value"
+            [class.paused]="heroRotationPaused()"
+            [style.width.%]="((5 - heroSecondsRemaining()) / 5) * 100"
+          ></span>
+        </div>
+      </div>
       <div class="hero-stamp" aria-hidden="true">
         <span>MOVE<br />YOUR<br />WAY</span>
       </div>

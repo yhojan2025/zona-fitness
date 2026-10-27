@@ -45,13 +45,19 @@ export class Home {
   protected readonly activeHeroIndex = signal(0);
   protected readonly activeHeroSlide = computed(() => this.heroSlides[this.activeHeroIndex()]);
   protected readonly heroRotationPaused = signal(false);
+  protected readonly heroSecondsRemaining = signal(5);
 
   constructor() {
-    interval(5000)
+    interval(1000)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         if (!this.prefersReducedMotion && !this.heroRotationPaused()) {
-          this.moveHeroSlide(1);
+          const secondsRemaining = this.heroSecondsRemaining();
+          if (secondsRemaining <= 1) {
+            this.moveHeroSlide(1);
+          } else {
+            this.heroSecondsRemaining.set(secondsRemaining - 1);
+          }
         }
       });
   }
@@ -128,6 +134,7 @@ export class Home {
 
   protected showHeroSlide(index: number): void {
     this.activeHeroIndex.set((index + this.heroSlides.length) % this.heroSlides.length);
+    this.heroSecondsRemaining.set(5);
   }
 
   protected moveHeroSlide(direction: number): void {

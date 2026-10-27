@@ -131,6 +131,10 @@ describe('Home', () => {
 
     expect(slider?.getAttribute('aria-roledescription')).toBe('carrusel');
     expect(page.querySelectorAll('.slider-dot')).toHaveLength(4);
+    expect(page.querySelector('.hero-progress')?.getAttribute('aria-label')).toContain(
+      'siguiente imagen',
+    );
+    expect(page.querySelector('.hero-progress')?.textContent).toContain('5 s');
     expect(image?.getAttribute('alt')).toContain('Gimnasio equipado');
     expect(image?.classList.contains('hero-slide-image')).toBe(true);
 
@@ -154,6 +158,7 @@ describe('Home', () => {
       expect(page.querySelector('.hero-slide-image')?.getAttribute('alt')).toContain(
         'Persona entrenando fuerza',
       );
+      expect(page.querySelector('.hero-progress')?.textContent).toContain('5 s');
 
       page.querySelector<HTMLButtonElement>('[aria-label="Pausar rotación automática"]')?.click();
       fixture.detectChanges();

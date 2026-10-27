@@ -70,4 +70,5 @@ For more information on using the Angular CLI, including detailed command refere
 - [Mockup y prototipo web en Figma](https://www.figma.com/design/tJSu1aJTykZSVqmVA2XUOj/Zona-fitness---Mockup-y-prototipo-web?node-id=6-2)
 - [Entregables, mapa del sitio y wireframe preliminar](docs/entregables-zona-fitness.md)
 - [Guía breve para actualizar el contenido](docs/actualizar-contenido.md)
+- [Guía técnica de características y código](docs/guia-tecnica-zona-fitness.md)
 - [Diagrama del flujo actual](docs/diagrama-flujo.md)

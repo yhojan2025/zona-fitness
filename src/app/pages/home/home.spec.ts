@@ -29,6 +29,24 @@ describe('Home', () => {
     expect(page.textContent).toContain('Nequi y Bancolombia');
   });
 
+  it('renders each service as an independent rounded information card', () => {
+    const fixture = TestBed.createComponent(Home);
+    fixture.detectChanges();
+    const cards = fixture.nativeElement.querySelectorAll('.service-card');
+
+    expect(cards).toHaveLength(4);
+    expect(fixture.nativeElement.querySelectorAll('.service-card .service-icon')).toHaveLength(4);
+  });
+
+  it('keeps the start link readable on the light schedule section', () => {
+    const fixture = TestBed.createComponent(Home);
+    fixture.detectChanges();
+    const link = fixture.nativeElement.querySelector('.schedule-start-link') as HTMLAnchorElement;
+
+    expect(link.textContent).toContain('Conoce cómo empezar');
+    expect(link.classList.contains('text-link')).toBe(true);
+  });
+
   it('does not invent plan prices or official contact links', () => {
     const fixture = TestBed.createComponent(Home);
     fixture.detectChanges();

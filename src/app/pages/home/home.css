@@ -84,6 +84,10 @@ h2 em {
 .text-link span {
   margin-left: 6px;
 }
+.schedule-start-link {
+  color: #286d68;
+  font-weight: 800;
+}
 .hero-note {
   display: flex;
   align-items: center;
@@ -311,23 +315,20 @@ h2 em {
 .service-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid #dcebe8;
-  border-bottom: 1px solid #dcebe8;
+  gap: 15px;
 }
 .service-card {
   position: relative;
   min-height: 228px;
   padding: 30px 26px 26px;
-  border-right: 1px solid #dcebe8;
-}
-.service-card:last-child {
-  border: 0;
+  border-radius: 20px;
+  background: #e8f4f0;
 }
 .service-number {
   position: absolute;
   top: 27px;
   right: 25px;
-  color: #9ab7b3;
+  color: #54716e;
   font:
     600 0.72rem 'Montserrat',
     sans-serif;
@@ -338,8 +339,8 @@ h2 em {
   width: 52px;
   height: 52px;
   margin-bottom: 22px;
-  border-radius: 16px;
-  background: #e7f6f2;
+  border-radius: 50%;
+  background: #fff;
 }
 .service-icon svg {
   width: 30px;
@@ -867,12 +868,6 @@ h2 em {
   }
   .service-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .service-card:nth-child(2) {
-    border-right: 0;
-  }
-  .service-card:nth-child(-n + 2) {
-    border-bottom: 1px solid #dcebe8;
   }
   .plan-grid {
     grid-template-columns: repeat(2, 1fr);

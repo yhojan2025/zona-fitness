@@ -38,6 +38,15 @@ describe('dedicated navigation pages', () => {
     expect(harness.routeNativeElement?.textContent).toContain('Precio por confirmar');
   });
 
+  it('styles the dedicated service cards like the hours information cards', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/servicios');
+    const page = harness.routeNativeElement;
+
+    expect(page?.querySelectorAll('.service-cards .detail-card')).toHaveLength(4);
+    expect(page?.querySelectorAll('.service-cards .detail-icon')).toHaveLength(4);
+  });
+
   it('shows the three informational product categories without checkout or invented prices', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/productos');

@@ -67,6 +67,13 @@
   box-shadow: 0 12px 36px #164d450a;
 }
 
+.service-cards .detail-card {
+  border: 0;
+  border-radius: 20px;
+  background: #e8f4f0;
+  box-shadow: none;
+}
+
 .card-index {
   position: absolute;
   top: 24px;
@@ -89,6 +96,11 @@
   font:
     600 1.7rem 'Montserrat',
     sans-serif;
+}
+
+.service-cards .detail-icon {
+  border-radius: 50%;
+  background: #fff;
 }
 
 .detail-card h2 {

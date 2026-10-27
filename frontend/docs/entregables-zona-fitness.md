@@ -43,6 +43,17 @@ Este documento compara el estado del repositorio con la propuesta técnica. El s
 
 Las rutas no reconocidas redirigen a `/`. La barra de navegación abre las páginas dedicadas. El catálogo de `/productos` informa sobre batidos de proteína, suplementación y productos para entrenar, sin procesar pedidos ni pagos. Los enlaces “Consultar condiciones” de planes vuelven a `/#inscripcion` y no llevan un identificador del plan ni completan una inscripción.
 
+## Copia de seguridad
+
+La copia comprimida actual del proyecto se encuentra guardada en el ordenador del analista, fuera
+del repositorio:
+
+`C:\Users\Windows 11\.copilot\session-state\326a8cf7-fd9d-45a5-b288-fb8fc3c25995\files\zona-fitness-backup-2026-10-25.zip`
+
+El archivo incluye el código, los recursos y la documentación del proyecto; excluye dependencias,
+cachés y archivos generados de compilación. Al estar almacenado localmente, no forma parte del
+repositorio remoto y no está disponible desde otros equipos.
+
 ## Wireframe textual preliminar
 
 1. **Barra superior:** identidad Zona Fitness, rutas dedicadas para Servicios/Planes/Horarios/El espacio/Productos y acceso separado del equipo.

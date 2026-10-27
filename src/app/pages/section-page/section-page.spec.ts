@@ -51,4 +51,21 @@ describe('dedicated navigation pages', () => {
     expect(page?.querySelectorAll('a[href="/#inscripcion"]')).toHaveLength(3);
     expect(page?.textContent).not.toContain('$');
   });
+
+  it('shows the shared Zona Fitness footer on every public section page', async () => {
+    const harness = await RouterTestingHarness.create();
+    const paths = ['/servicios', '/planes', '/horarios', '/espacio', '/productos'];
+
+    for (const path of paths) {
+      await harness.navigateByUrl(path);
+      const footer = harness.routeNativeElement?.querySelector('app-site-footer');
+
+      expect(footer?.querySelector('.footer-logo')?.getAttribute('src')).toBe(
+        '/zona-fitness-logo.png',
+      );
+      expect(footer?.textContent).toContain(
+        '© 2026 Análisis y diseño de soluciones web 12. Todos los derechos reservados.',
+      );
+    }
+  });
 });

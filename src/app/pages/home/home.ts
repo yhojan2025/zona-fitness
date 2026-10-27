@@ -2,10 +2,11 @@ import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { interval } from 'rxjs';
+import { SiteFooter } from '../../shared/site-footer/site-footer';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [RouterLink, SiteFooter],
   templateUrl: './home.html',
 })
 export class Home {

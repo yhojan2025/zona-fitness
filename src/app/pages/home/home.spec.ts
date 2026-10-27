@@ -60,6 +60,12 @@ describe('Home', () => {
     expect(page.textContent).toContain(
       '© 2026 Análisis y diseño de soluciones web 12. Todos los derechos reservados.',
     );
+    expect(page.querySelector('.site-footer .footer-logo')?.getAttribute('src')).toBe(
+      '/zona-fitness-logo.png',
+    );
+    expect(page.querySelector('.site-footer .footer-logo')?.getAttribute('alt')).toBe(
+      'Logo de Zona Fitness',
+    );
   });
 
   it('provides an accessible hero image slider with working controls', () => {

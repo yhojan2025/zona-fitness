@@ -1,41 +1,60 @@
 # Diagrama del flujo actual de Zona Fitness
 
-Este diagrama describe lo que la aplicación implementa hoy. El recorrido público es informativo: no recoge datos de inscripción, no valida la edad, no selecciona un plan y no procesa pagos. Los botones de los planes solo llevan a la sección informativa de inscripción.
+El sitio público es promocional e informativo: presenta los servicios, planes, horarios, espacios,
+productos y ejemplos visuales para redes sociales. No registra socios, no valida la edad, no
+selecciona planes ni procesa pagos. Los precios y las condiciones se deben confirmar directamente
+con el gimnasio.
 
 ```mermaid
 flowchart TD
-    A([Visita la web]) --> H[Inicio de Zona Fitness]
+    A([Visita el sitio]) --> H["Inicio: hero con carrusel y navegación"]
 
     H --> S["/servicios: cardio, pesas, sauna y jacuzzi"]
     H --> P["/planes: Cobre, Bronce, Platino y Oro"]
-    H --> O["/horarios: lunes a sábado, dos franjas"]
-    H --> G["/espacio: galería"]
-    H --> R[Consultar catálogo informativo<br/>Batidos · Suplementos · Productos]
-    H --> J[Sección de inscripción informativa]
+    H --> O["/horarios: lunes a sábado, mañana y tarde"]
+    H --> G["/espacio: galería del gimnasio"]
+    H --> R["/#redes: publicaciones de ejemplo"]
+    H --> C["/productos: batidos, suplementos y artículos de entrenamiento"]
+    H --> J["/#inscripcion: información para consultar cómo empezar"]
 
     S --> H
     O --> H
     G --> H
-    R --> H
-    P -->|Consultar este plan: ancla genérica, sin plan seleccionado| J
+    C --> H
 
-    J --> I[Leer precios por confirmar,<br/>edad mínima 14 y nota para acudientes]
-    I --> M[Leer medios informativos: Nequi y Bancolombia]
-    M --> X[Confirmar condiciones y datos directamente con el gimnasio<br/>La web no ofrece canal de contacto]
+    P -->|Consultar este plan| J
+    J --> I["Confirmar precio, disponibilidad y condiciones con el gimnasio"]
+    I --> E["Revisar edad mínima de 14 años y condiciones para acudientes"]
+    E --> M["Consultar medios informativos: Nequi y Bancolombia"]
+    M --> X["Confirmar directamente con el gimnasio los datos de pago y la inscripción"]
     X --> Z([Continuar fuera del sitio])
 
-    H --> E[Acceso del equipo: /login]
-    E --> L{¿Ya tiene cuenta de soporte?}
-    L -->|Sí| LO[Enviar formulario de inicio de sesión]
-    L -->|No| RE[Ir a /register y enviar formulario de soporte]
+    R --> L{¿Hay enlaces oficiales configurados?}
+    L -->|Sí| OI["Mostrar enlaces oficiales confirmados"]
+    L -->|No| N["Indicar que los perfiles oficiales están pendientes"]
+    R -->|Abrir ejemplos locales| IG["/redes/instagram.html: maqueta, no perfil oficial"]
+    R -->|Abrir ejemplos locales| FB["/redes/facebook.html: maqueta, no página oficial"]
+    OI --> H
+    N --> H
+    IG --> H
+    FB --> H
+
+    H --> T["Acceso del equipo: /login"]
+    T --> Q{¿Cuenta de soporte?}
+    Q -->|Sí| LO["Enviar formulario de inicio de sesión"]
+    Q -->|No| RE["/register: registro para el sistema de soporte"]
     RE -->|Registro correcto| LO
-    LO -->|Credenciales correctas| T["/tickets"]
-    LO -. Credenciales incorrectas o API no disponible .-> LO
-    T --> D{¿Rol administrador?}
-    D -->|Sí| U["/users: gestionar usuarios"]
-    D -->|No| T
+    LO -->|Credenciales correctas| TK["/tickets: acceso protegido"]
+    LO -. Credenciales incorrectas o servicio no disponible .-> LO
+    TK --> D{¿Rol administrador?}
+    D -->|Sí| U["/users: gestión de usuarios"]
+    D -->|No| TK
 
     H -. Ruta desconocida .-> H
 ```
 
-**Importante:** el registro y el inicio de sesión son del sistema de soporte existente, no una inscripción o cuenta de socio del gimnasio. El sitio muestra las condiciones de edad, pero no pregunta ni comprueba la edad. La confirmación de compra/inscripción y el contacto requieren información y procesos que aún no están configurados.
+**Importante:** el acceso y registro del equipo pertenecen al sistema de soporte, no son cuentas ni
+inscripciones de socios. Los ejemplos de Instagram y Facebook son maquetas locales; no enlazan
+perfiles oficiales hasta que el gimnasio confirme sus URL. La web solo informa sobre edad y medios
+de pago: no valida la edad, no inicia una compra ni confirma una inscripción. El contacto y los
+datos de pago oficiales siguen pendientes de confirmación.

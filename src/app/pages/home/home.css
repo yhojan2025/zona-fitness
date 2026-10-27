@@ -718,32 +718,6 @@ h2 em {
     500 2.5rem 'Montserrat',
     sans-serif;
 }
-.site-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 25px clamp(24px, 7vw, 100px);
-  background: #e8f4f0;
-}
-.site-footer > p {
-  margin: 0;
-  color: #365e5a;
-  font-size: 0.78rem;
-}
-.site-footer > p span {
-  display: block;
-  margin-top: 4px;
-  color: #718986;
-  font-size: 0.7rem;
-}
-.support-link {
-  color: #54716e;
-  font-size: 0.76rem;
-  text-decoration: none;
-  white-space: nowrap;
-}
 .social-section {
   padding: 42px 24px;
   background: #edf6f3;
@@ -886,13 +860,6 @@ h2 em {
   color: #456260;
   font-size: 0.75rem;
   line-height: 1.6;
-}
-.copyright {
-  flex-basis: 100%;
-  order: 4;
-  color: #456260;
-  font-size: 0.72rem;
-  text-align: center;
 }
 @media (max-width: 900px) {
   .hero {
@@ -1091,15 +1058,6 @@ h2 em {
   }
   .art-circle {
     width: 240px;
-  }
-  .site-footer {
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding: 25px 22px;
-  }
-  .site-footer > p {
-    order: 3;
-    flex-basis: 100%;
   }
   .social-content {
     align-items: flex-start;

@@ -41,6 +41,15 @@ describe('Home', () => {
     expect(page.querySelector('.plan-metal-oro svg')).not.toBeNull();
   });
 
+  it('keeps the featured plan label subtle and out of the plan content flow', () => {
+    const fixture = TestBed.createComponent(Home);
+    fixture.detectChanges();
+    const tag = fixture.nativeElement.querySelector('.plan-tag') as HTMLElement;
+
+    expect(tag?.textContent).toContain('PARA SEGUIR AVANZANDO');
+    expect(tag?.parentElement?.classList.contains('plan-card')).toBe(true);
+  });
+
   it('renders each service as an independent rounded information card', () => {
     const fixture = TestBed.createComponent(Home);
     fixture.detectChanges();

@@ -405,15 +405,18 @@ h2 em {
   box-shadow: 0 13px 30px #3e9b941c;
 }
 .plan-tag {
+  position: absolute;
+  top: 12px;
+  right: 14px;
   display: inline-flex;
-  margin: -4px 0 13px;
-  padding: 6px 9px;
+  padding: 4px 7px;
   border-radius: 999px;
-  background: #dff2ee;
-  color: #28716b;
-  font-size: 0.58rem;
+  border: 1px solid #b8ddd7;
+  background: #f4fbf9;
+  color: #5b8c86;
+  font-size: 0.5rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 .plan-name {
   margin: 0;

@@ -269,30 +269,29 @@ h2 em {
   font-weight: 700;
 }
 .hero-progress-track {
-  height: 4px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
   margin-top: 7px;
-  overflow: hidden;
+}
+.hero-progress-segment {
+  height: 5px;
   border-radius: 999px;
   background: #ffffff52;
+  transition:
+    background-color 280ms ease,
+    opacity 280ms ease;
 }
-.hero-progress-value {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: #9edbd1;
-  transform-origin: left center;
-  animation: hero-progress-fill 5s linear both;
+.hero-progress-segment.active:nth-child(3n + 1) {
+  background: #cff0ea;
 }
-@keyframes hero-progress-fill {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+.hero-progress-segment.active:nth-child(3n + 2) {
+  background: #88c9c4;
 }
-.hero-progress-value.paused {
-  animation-play-state: paused;
+.hero-progress-segment.active:nth-child(3n) {
+  background: #3e9b94;
+}
+.hero-progress-segment.paused {
   opacity: 0.7;
 }
 .hero-stamp {

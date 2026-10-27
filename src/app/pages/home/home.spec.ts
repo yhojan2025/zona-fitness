@@ -135,7 +135,8 @@ describe('Home', () => {
       'siguiente imagen',
     );
     expect(page.querySelector('.hero-progress')?.textContent).toContain('5 s');
-    expect(page.querySelector('.hero-progress-value')?.classList.contains('paused')).toBe(false);
+    expect(page.querySelectorAll('.hero-progress-segment')).toHaveLength(5);
+    expect(page.querySelectorAll('.hero-progress-segment.active')).toHaveLength(0);
     expect(image?.getAttribute('alt')).toContain('Gimnasio equipado');
     expect(image?.classList.contains('hero-slide-image')).toBe(true);
 
@@ -157,6 +158,7 @@ describe('Home', () => {
       vi.advanceTimersByTime(1000);
       fixture.detectChanges();
       expect(page.querySelector('.hero-progress')?.textContent).toContain('4 s');
+      expect(page.querySelectorAll('.hero-progress-segment.active')).toHaveLength(1);
 
       vi.advanceTimersByTime(5000);
       fixture.detectChanges();
@@ -167,7 +169,7 @@ describe('Home', () => {
 
       page.querySelector<HTMLButtonElement>('[aria-label="Pausar rotación automática"]')?.click();
       fixture.detectChanges();
-      expect(page.querySelector('.hero-progress-value')?.classList.contains('paused')).toBe(true);
+      expect(page.querySelectorAll('.hero-progress-segment.paused')).toHaveLength(5);
       vi.advanceTimersByTime(5000);
       fixture.detectChanges();
       expect(page.querySelector('.hero-slide-image')?.getAttribute('alt')).toContain(

@@ -45,8 +45,12 @@
           }
         </div>
         <div class="hero-progress-track" aria-hidden="true">
-          @for (cycle of [activeHeroIndex()]; track cycle) {
-            <span class="hero-progress-value" [class.paused]="heroRotationPaused()"></span>
+          @for (segment of [0, 1, 2, 3, 4]; track segment) {
+            <span
+              class="hero-progress-segment"
+              [class.active]="segment < 5 - heroSecondsRemaining()"
+              [class.paused]="heroRotationPaused()"
+            ></span>
           }
         </div>
       </div>

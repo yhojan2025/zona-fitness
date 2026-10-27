@@ -11,10 +11,6 @@ import { SiteFooter } from '../../shared/site-footer/site-footer';
 })
 export class Home {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly prefersReducedMotion =
-    typeof window !== 'undefined' &&
-    typeof window.matchMedia === 'function' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   protected readonly socialLinks: { name: string; url: string }[] = [];
   protected readonly heroSlides = [
     {
@@ -51,7 +47,7 @@ export class Home {
     interval(1000)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
-        if (!this.prefersReducedMotion && !this.heroRotationPaused()) {
+        if (!this.heroRotationPaused()) {
           const secondsRemaining = this.heroSecondsRemaining();
           if (secondsRemaining <= 1) {
             this.moveHeroSlide(1);

@@ -153,12 +153,16 @@ describe('Home', () => {
       fixture.detectChanges();
       const page = fixture.nativeElement as HTMLElement;
 
+      vi.advanceTimersByTime(1000);
+      fixture.detectChanges();
+      expect(page.querySelector('.hero-progress')?.textContent).toContain('4 s');
+
       vi.advanceTimersByTime(5000);
       fixture.detectChanges();
       expect(page.querySelector('.hero-slide-image')?.getAttribute('alt')).toContain(
         'Persona entrenando fuerza',
       );
-      expect(page.querySelector('.hero-progress')?.textContent).toContain('5 s');
+      expect(page.querySelector('.hero-progress')?.textContent).toContain('4 s');
 
       page.querySelector<HTMLButtonElement>('[aria-label="Pausar rotación automática"]')?.click();
       fixture.detectChanges();

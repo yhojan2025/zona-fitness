@@ -34,7 +34,9 @@ publicación comercial.
   administrador. No son un sistema de cuentas o membresías para clientes del gimnasio.
 - **Documentación:** guía de actualización de contenido, revisión de entregables, diagrama de
   flujo y ubicación de la copia de seguridad local. El sitemap y wireframe se identifican como
-  preliminares, no como aprobaciones del cliente.
+  preliminares, no como aprobaciones del cliente. El repositorio también conserva la
+  [Propuesta técnica V2](Propuesta-tecnica-Zona-Fitness-V2.pdf) y el
+  [Manual de marca](Manual_Marca_Zona_Fitness.pptx) como documentos de referencia.
 
 ## Estado frente a requisitos de la propuesta V2
 

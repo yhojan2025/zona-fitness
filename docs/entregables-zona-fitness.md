@@ -6,6 +6,11 @@ Este documento compara el estado del repositorio con la propuesta técnica. El s
 
 [Mockup y prototipo web en Figma](https://www.figma.com/design/tJSu1aJTykZSVqmVA2XUOj/Zona-fitness---Mockup-y-prototipo-web?node-id=6-2&p=f&t=w3qnXSUsLxMHSPxf-0).
 
+## Documentos de referencia
+
+- [Propuesta técnica Zona Fitness V2](Propuesta-tecnica-Zona-Fitness-V2.pdf)
+- [Manual de marca Zona Fitness](Manual_Marca_Zona_Fitness.pptx)
+
 ## Matriz de cumplimiento
 
 | Entregable / criterio                                             | Estado                                                         | Evidencia y pendiente                                                                                                                                                                                                                                                                                                    |

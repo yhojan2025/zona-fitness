@@ -64,8 +64,9 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## Documentación de Zona Fitness
 
+- [Propuesta técnica Zona Fitness V2](docs/Propuesta-tecnica-Zona-Fitness-V2.pdf)
+- [Manual de marca Zona Fitness](docs/Manual_Marca_Zona_Fitness.pptx)
 - [Progreso del proyecto al 26 de octubre de 2026](docs/progreso-zona-fitness-2026-10-26.md)
-
 - [Mockup y prototipo web en Figma](https://www.figma.com/design/tJSu1aJTykZSVqmVA2XUOj/Zona-fitness---Mockup-y-prototipo-web?node-id=6-2)
 - [Entregables, mapa del sitio y wireframe preliminar](docs/entregables-zona-fitness.md)
 - [Guía breve para actualizar el contenido](docs/actualizar-contenido.md)

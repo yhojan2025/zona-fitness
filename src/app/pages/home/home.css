@@ -986,24 +986,46 @@ h2 em {
 }
 @media (max-width: 620px) {
   .hero {
-    padding: 48px 24px 76px;
+    min-height: calc(100svh - 112px);
+    align-items: start;
+    padding: 42px 20px 142px;
+  }
+  .hero-copy {
+    max-width: 100%;
+  }
+  .hero .eyebrow {
+    margin-bottom: 16px;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
   }
   .hero h1 {
-    font-size: clamp(2.7rem, 13vw, 4rem);
+    max-width: 370px;
+    font-size: clamp(2.55rem, 13vw, 3.65rem);
+    line-height: 1.04;
   }
   .hero-description {
+    max-width: 340px;
+    margin-top: 20px;
     font-size: 0.98rem;
+    line-height: 1.65;
+  }
+  .hero-actions {
+    align-items: flex-start;
+    gap: 18px;
+    margin-top: 4px;
+  }
+  .hero-actions .button {
+    min-width: 190px;
+    justify-content: center;
   }
   .hero-note {
-    margin-top: 30px;
+    max-width: 310px;
+    margin-top: 28px;
+    font-size: 0.78rem;
+    line-height: 1.45;
   }
   .hero-stamp {
-    top: auto;
-    right: 7%;
-    bottom: 90px;
-    width: 80px;
-    height: 80px;
-    font-size: 0.54rem;
+    display: none;
   }
   .hero-slider-controls {
     top: 12px;
@@ -1024,6 +1046,22 @@ h2 em {
   }
   .slider-dot.active {
     width: 16px;
+  }
+  .hero-progress {
+    right: 20px;
+    bottom: 66px;
+    width: min(220px, calc(100% - 40px));
+    padding: 8px 10px;
+  }
+  .hero-caption {
+    right: 20px;
+    bottom: 18px;
+    max-width: calc(100% - 40px);
+    padding: 9px 12px;
+    overflow: hidden;
+    font-size: 0.58rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .scroll-cue {
     display: none;

@@ -335,18 +335,19 @@ exitosas y el build terminó correctamente en `dist/frontend/browser/`.
 
 ## 11. Documentación y recursos
 
-| Documento o recurso                          | Propósito                                          |
-| -------------------------------------------- | -------------------------------------------------- |
-| `docs/Propuesta-tecnica-Zona-Fitness-V2.pdf` | Fuente de requisitos de producto                   |
-| `docs/Manual_Marca_Zona_Fitness.pptx`        | Manual visual                                      |
-| `docs/progreso-zona-fitness-2026-10-26.md`   | Estado y pendientes al corte documentado           |
-| `docs/progreso-zona-fitness-2026-10-28.md`   | Alcance aprobado, cambios recientes y placeholders |
-| `docs/entregables-zona-fitness.md`           | Entregables, sitemap y wireframe                   |
-| Figma Mockup y Wireframe V2                  | Referencia visual y de estructura                  |
-| `docs/actualizar-contenido.md`               | Guía operativa de edición                          |
-| `docs/diagrama-flujo.md`                     | Flujo de navegación                                |
-| `public/redes/README.txt`                    | Guía de las maquetas sociales                      |
-| `public/redes/`                              | Prototipos HTML y recursos de redes                |
+| Documento o recurso                                   | Propósito                                          |
+| ----------------------------------------------------- | -------------------------------------------------- |
+| `docs/Propuesta-tecnica-Zona-Fitness-V2.pdf`          | Fuente de requisitos de producto                   |
+| `docs/Manual_Marca_Zona_Fitness.pptx`                 | Manual visual                                      |
+| `docs/progreso-zona-fitness-2026-10-26.md`            | Estado y pendientes al corte documentado           |
+| `docs/progreso-zona-fitness-2026-10-28.md`            | Alcance aprobado, cambios recientes y placeholders |
+| `docs/cotizacion-revisada-zona-fitness-2026-10-28.md` | Estimación de equipo, CEO, publicación y operación |
+| `docs/entregables-zona-fitness.md`                    | Entregables, sitemap y wireframe                   |
+| Figma Mockup y Wireframe V2                           | Referencia visual y de estructura                  |
+| `docs/actualizar-contenido.md`                        | Guía operativa de edición                          |
+| `docs/diagrama-flujo.md`                              | Flujo de navegación                                |
+| `public/redes/README.txt`                             | Guía de las maquetas sociales                      |
+| `public/redes/`                                       | Prototipos HTML y recursos de redes                |
 
 ## 12. Datos pendientes y límites funcionales
 

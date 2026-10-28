@@ -2,13 +2,14 @@
 
 **Fecha de referencia:** 28 de octubre de 2026  
 **Moneda:** pesos colombianos (COP)  
-**Versión:** 1.1 — revisión con equipo junior y plazo de una semana
+**Versión:** 1.2 — implementación con tope de $3.500.000
 
 ## 1. Objetivo
 
 Esta cotización reúne el valor estimado de diseño, coordinación, desarrollo, validación
-y publicación del sitio promocional de Zona Fitness. Además del trabajo de los tres desarrolladores junior y la dirección mayoritaria del CEO,
-incorpora costos habituales de dominio, hosting,
+y publicación del sitio promocional de Zona Fitness. Además del trabajo de los tres
+desarrolladores junior y la dirección mayoritaria del CEO, incorpora costos habituales de
+dominio, hosting,
 copias de seguridad, monitoreo, despliegue y una reserva de contingencia.
 
 Los valores son una referencia presupuestal y no constituyen una factura, contrato ni
@@ -24,6 +25,9 @@ parte.
 - No se incluye e-commerce, reservas, pagos en línea ni inscripción comercial de socios.
 - El equipo de desarrollo está conformado por tres desarrolladores junior que trabajan en
   paralelo durante una semana laboral de cinco días.
+- El subtotal de implementación está limitado a un máximo de $3.500.000 COP.
+- La dedicación es parcial y coordinada dentro de la semana; no representa 40 horas por
+  persona ni disponibilidad de tiempo completo.
 - La dirección del CEO concentra la mayor parte del valor de implementación y contempla
   definición de alcance, decisiones ejecutivas, revisión diaria de hitos, coordinación y
   aprobación de entrega.
@@ -40,19 +44,23 @@ parte.
 
 **Plazo estimado:** 1 semana laboral, equivalente a 5 días hábiles.
 
-**Dedicación de referencia:** 45 horas del CEO y 40 horas por cada desarrollador junior,
-para un total de 165 horas-persona.
+**Dedicación de referencia:** 20 horas del CEO y 10 horas por cada desarrollador junior,
+para un total de 50 horas-persona.
 
-| Rol / actividad                                                   | Horas estimadas | Tarifa estándar/hora |        Subtotal |
-| ----------------------------------------------------------------- | --------------: | -------------------: | --------------: |
-| CEO — dirección mayoritaria, coordinación y aprobación ejecutiva  |            45 h |             $250.000 |     $11.250.000 |
-| Desarrollador junior 1 — frontend, componentes y responsive       |            40 h |              $50.000 |      $2.000.000 |
-| Desarrollador junior 2 — integración, contenido y soporte técnico |            40 h |              $50.000 |      $2.000.000 |
-| Desarrollador junior 3 — pruebas, accesibilidad y documentación   |            40 h |              $50.000 |      $2.000.000 |
-| **Subtotal implementación**                                       |       **165 h** |                      | **$17.250.000** |
+| Rol / actividad                                                  | Horas estimadas | Tarifa estándar/hora |       Subtotal |
+| ---------------------------------------------------------------- | --------------: | -------------------: | -------------: |
+| CEO — dirección mayoritaria, coordinación y aprobación ejecutiva |            20 h |             $100.000 |     $2.000.000 |
+| Desarrollador junior 1 — frontend y componentes                  |            10 h |              $50.000 |       $500.000 |
+| Desarrollador junior 2 — integración y contenido                 |            10 h |              $50.000 |       $500.000 |
+| Desarrollador junior 3 — pruebas y documentación                 |            10 h |              $50.000 |       $500.000 |
+| **Subtotal implementación**                                      |        **50 h** |                      | **$3.500.000** |
 
-El CEO representa aproximadamente el **65,2%** del subtotal de implementación. Los tres
-desarrolladores junior representan conjuntamente el **34,8%** restante.
+El CEO representa aproximadamente el **57,1%** del subtotal de implementación. Los tres
+desarrolladores junior representan conjuntamente el **42,9%** restante.
+
+El tope económico requiere trabajar sobre el alcance aprobado y priorizar correcciones,
+validación y documentación. Las funcionalidades nuevas o los cambios que excedan esta
+dedicación se cotizarán por separado.
 
 ### Incluido en el subtotal de implementación
 
@@ -90,17 +98,17 @@ desarrolladores junior representan conjuntamente el **34,8%** restante.
 
 ## 5. Resumen económico
 
-| Concepto                                                                   |           Valor |
-| -------------------------------------------------------------------------- | --------------: |
-| Subtotal implementación                                                    |     $17.250.000 |
-| Gastos externos estimados del primer año                                   |      $1.530.000 |
-| **Subtotal directo**                                                       | **$18.780.000** |
-| Contingencia técnica y de publicación (10% del subtotal de implementación) |      $1.725.000 |
-| **Total estimado antes de IVA**                                            | **$20.505.000** |
-| IVA de referencia (19%)                                                    |      $3.895.950 |
-| **Total estimado con IVA**                                                 | **$24.400.950** |
+| Concepto                                                                   |          Valor |
+| -------------------------------------------------------------------------- | -------------: |
+| Subtotal implementación                                                    |     $3.500.000 |
+| Gastos externos estimados del primer año                                   |     $1.530.000 |
+| **Subtotal directo**                                                       | **$5.030.000** |
+| Contingencia técnica y de publicación (10% del subtotal de implementación) |       $350.000 |
+| **Total estimado antes de IVA**                                            | **$5.380.000** |
+| IVA de referencia (19%)                                                    |     $1.022.200 |
+| **Total estimado con IVA**                                                 | **$6.402.200** |
 
-**Valor redondeado de referencia con IVA:** **$24.400.000 COP**.
+**Valor redondeado de referencia con IVA:** **$6.400.000 COP**.
 
 La contingencia cubre variaciones razonables de configuración, ajustes menores de
 despliegue y diferencias de tarifas de proveedores. No cubre cambios de alcance,
@@ -131,7 +139,8 @@ automáticamente al total inicial.
 - Comisiones bancarias, pasarelas de pago o cuentas de Nequi/Bancolombia.
 - Administración diaria de redes sociales o campañas publicitarias.
 - Compra de equipos, correo corporativo, CRM o herramientas internas del gimnasio.
-- Cambios que modifiquen el alcance aprobado después de la entrega.
+- Cambios que modifiquen el alcance aprobado después de la entrega o superen el tope de
+  implementación de $3.500.000 COP.
 - Migración desde otro hosting o recuperación de un dominio que no esté bajo control del
   cliente.
 

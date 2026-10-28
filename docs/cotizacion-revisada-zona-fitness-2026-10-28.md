@@ -2,13 +2,14 @@
 
 **Fecha de referencia:** 28 de octubre de 2026  
 **Moneda:** pesos colombianos (COP)  
-**Versión:** 1.2 — implementación con tope de $3.500.000
+**Versión:** 1.3 — roles del equipo actualizados
 
 ## 1. Objetivo
 
 Esta cotización reúne el valor estimado de diseño, coordinación, desarrollo, validación
-y publicación del sitio promocional de Zona Fitness. Además del trabajo de los tres
-desarrolladores junior y la dirección mayoritaria del CEO, incorpora costos habituales de
+y publicación del sitio promocional de Zona Fitness. Además del trabajo del analista de
+sistemas, el desarrollador, el gestor de proyectos y la dirección mayoritaria del CEO,
+incorpora costos habituales de
 dominio, hosting,
 copias de seguridad, monitoreo, despliegue y una reserva de contingencia.
 
@@ -23,8 +24,9 @@ parte.
   responsive, páginas de servicios, planes, horarios, espacio, productos, maquetas
   sociales, footer, documentación y pruebas.
 - No se incluye e-commerce, reservas, pagos en línea ni inscripción comercial de socios.
-- El equipo de desarrollo está conformado por tres desarrolladores junior que trabajan en
-  paralelo durante una semana laboral de cinco días.
+- El equipo de desarrollo está conformado por un analista de sistemas, un desarrollador y
+  un gestor de proyectos que trabajan en paralelo durante una semana laboral de cinco
+  días.
 - El subtotal de implementación está limitado a un máximo de $3.500.000 COP.
 - La dedicación es parcial y coordinada dentro de la semana; no representa 40 horas por
   persona ni disponibilidad de tiempo completo.
@@ -44,19 +46,19 @@ parte.
 
 **Plazo estimado:** 1 semana laboral, equivalente a 5 días hábiles.
 
-**Dedicación de referencia:** 20 horas del CEO y 10 horas por cada desarrollador junior,
+**Dedicación de referencia:** 20 horas del CEO y 10 horas por cada integrante del equipo,
 para un total de 50 horas-persona.
 
 | Rol / actividad                                                  | Horas estimadas | Tarifa estándar/hora |       Subtotal |
 | ---------------------------------------------------------------- | --------------: | -------------------: | -------------: |
 | CEO — dirección mayoritaria, coordinación y aprobación ejecutiva |            20 h |             $100.000 |     $2.000.000 |
-| Desarrollador junior 1 — frontend y componentes                  |            10 h |              $50.000 |       $500.000 |
-| Desarrollador junior 2 — integración y contenido                 |            10 h |              $50.000 |       $500.000 |
-| Desarrollador junior 3 — pruebas y documentación                 |            10 h |              $50.000 |       $500.000 |
+| Analista de sistemas — levantamiento, alcance y requisitos       |            10 h |              $50.000 |       $500.000 |
+| Desarrollador — frontend, integración y componentes              |            10 h |              $50.000 |       $500.000 |
+| Gestor de proyectos — seguimiento, pruebas y documentación       |            10 h |              $50.000 |       $500.000 |
 | **Subtotal implementación**                                      |        **50 h** |                      | **$3.500.000** |
 
-El CEO representa aproximadamente el **57,1%** del subtotal de implementación. Los tres
-desarrolladores junior representan conjuntamente el **42,9%** restante.
+El CEO representa aproximadamente el **57,1%** del subtotal de implementación. El equipo
+de análisis, desarrollo y gestión representa conjuntamente el **42,9%** restante.
 
 El tope económico requiere trabajar sobre el alcance aprobado y priorizar correcciones,
 validación y documentación. Las funcionalidades nuevas o los cambios que excedan esta
@@ -66,8 +68,8 @@ dedicación se cotizarán por separado.
 
 - Dirección mayoritaria, coordinación diaria y revisión de entregables por parte del CEO.
 - Implementación y ajuste de la experiencia visual aprobada.
-- Desarrollo, pruebas unitarias, build de producción y correcciones del alcance por parte
-  de los tres desarrolladores junior.
+- Levantamiento de requisitos, desarrollo, pruebas unitarias, build de producción,
+  seguimiento y documentación por parte del equipo asignado.
 - Configuración inicial de publicación y documentación para actualizar contenido.
 - Entrega del código fuente y de la documentación técnica del repositorio.
 

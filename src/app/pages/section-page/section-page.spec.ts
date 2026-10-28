@@ -102,6 +102,13 @@ describe('dedicated navigation pages', () => {
     expect(page?.textContent).toContain('Zona de pesas');
     expect(page?.textContent).toContain('Sauna');
     expect(page?.textContent).toContain('Jacuzzi');
+    expect(page?.querySelector('.space-about')).not.toBeNull();
+    expect(page?.querySelector('.space-about h2')?.textContent).toContain(
+      'Un lugar para hacer de tu rutina un hábito',
+    );
+    expect(page?.querySelector('.space-about-brand img')?.getAttribute('src')).toBe(
+      '/zona-fitness-logo.png',
+    );
     expect(page?.querySelector('.detail-description')?.textContent).toContain(
       'Explora algunos espacios',
     );

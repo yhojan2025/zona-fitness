@@ -172,6 +172,9 @@ Los datos que alimentan carrusel, servicios, planes y galería están en
 - Página `/espacio`, con las zonas de cardio, pesas, sauna y jacuzzi, subtítulos en
   negrilla y figuras uniformes:
   `section-page.html:117-128`, `section-page.css:266-313`.
+- Bloque “Acerca del gym”, con imagen referencial del local, logotipo superpuesto,
+  copy promocional neutral y aviso de reemplazo por fotografía oficial:
+  `section-page.html:129-153`, `section-page.css:313-407`.
 - Datos referenciales y aviso de aprobación de fotografías:
   `section-page.ts:108-141`.
 

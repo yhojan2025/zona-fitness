@@ -308,6 +308,88 @@
   line-height: 1.5;
 }
 
+.space-about {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 34px;
+  align-items: center;
+  margin-top: 42px;
+  padding: 18px;
+  border: 1px solid #dcebe8;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 36px #164d450a;
+}
+
+.space-about-media {
+  position: relative;
+  min-height: 330px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #dcebe8;
+}
+
+.space-about-media > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 330px;
+  object-fit: cover;
+}
+
+.space-about-brand {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  place-items: center;
+  width: 116px;
+  height: 116px;
+  padding: 14px;
+  border-radius: 50%;
+  background: #cff0eaf2;
+  box-shadow: 0 8px 24px #164d4540;
+}
+
+.space-about-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.space-about-content {
+  padding: 16px 18px 16px 0;
+}
+
+.space-about-content .eyebrow {
+  margin-bottom: 14px;
+}
+
+.space-about-content h2 {
+  max-width: 430px;
+  margin: 0;
+  color: #163b39;
+  font-size: clamp(1.7rem, 3vw, 2.45rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.space-about-content > p:not(.space-about-note) {
+  max-width: 510px;
+  margin: 18px 0 0;
+  color: #607a77;
+  line-height: 1.7;
+}
+
+.space-about-note {
+  max-width: 510px;
+  margin: 18px 0 0;
+  color: #77918e;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
 .detail-note {
   display: flex;
   align-items: flex-start;
@@ -363,6 +445,14 @@
   .space-photo {
     height: 320px;
   }
+
+  .space-about {
+    grid-template-columns: 1fr;
+  }
+
+  .space-about-content {
+    padding: 10px 12px 18px;
+  }
 }
 
 @media (max-width: 620px) {
@@ -397,6 +487,25 @@
   .detail-card,
   .plan-detail-card {
     min-height: auto;
+  }
+
+  .space-about {
+    gap: 18px;
+    margin-top: 30px;
+    padding: 12px;
+  }
+
+  .space-about-media,
+  .space-about-media > img {
+    min-height: 250px;
+  }
+
+  .space-about-brand {
+    right: 12px;
+    bottom: 12px;
+    width: 88px;
+    height: 88px;
+    padding: 11px;
   }
 
   .service-card {

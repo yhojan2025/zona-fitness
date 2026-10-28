@@ -30,6 +30,7 @@ sus componentes, estilos, datos, rutas, pruebas y documentación relacionada.
 11. [Documentación y recursos](#11-documentación-y-recursos)
 12. [Datos pendientes y límites funcionales](#12-datos-pendientes-y-límites-funcionales)
 13. [Guía rápida de mantenimiento](#13-guía-rápida-de-mantenimiento)
+14. [Placeholders de información no definida](#14-placeholders-de-información-no-definida)
 
 ## 1. Resumen de la solución
 
@@ -124,6 +125,10 @@ Los datos que alimentan carrusel, servicios, planes y galería están en
 - La reducción de movimiento desactiva la animación visual de la imagen, pero no bloquea
   la cuenta regresiva ni la rotación:
   `home.css:1175-1182`, `home.ts:50-60`.
+- En móviles el contenido se prioriza sobre la fotografía, las acciones se apilan, los
+  controles se compactan, el progreso y el caption ocupan franjas separadas y el sello
+  decorativo se oculta para evitar solapamientos:
+  `home.css:987-1068`.
 
 ### 4.2 Servicios
 
@@ -221,14 +226,15 @@ de confirmación pendiente en `home.html:348-354`.
 
 ## 5. Páginas públicas de sección
 
-`src/app/pages/section-page/section-page.ts:1-199` concentra el contenido de las cinco
+`src/app/pages/section-page/section-page.ts:1-205` concentra el contenido de las cinco
 secciones públicas en `CONTENT`. `section-page.html:1-147` decide qué presentación usar:
 
 - Servicios: tarjetas con iconos y numeración.
 - Planes: icono de categoría, duración, descripción, precio pendiente y CTA.
 - Horarios: tarjetas de mañana y tarde.
 - Productos: imagen, descripción y enlace de consulta.
-- Espacio: galería de tres imágenes, subtítulos y texto alternativo.
+- Espacio: galería de cuatro imágenes temáticas, subtítulos, texto alternativo y bloque
+  “Acerca del gym” con imagen referencial y logo superpuesto.
 
 El footer público se incluye al final de la vista en `section-page.html:146-147`.
 Los breadcrumbs y el CTA de regreso están en `section-page.html:3-14` y `135-145`.
@@ -329,16 +335,18 @@ exitosas y el build terminó correctamente en `dist/frontend/browser/`.
 
 ## 11. Documentación y recursos
 
-| Documento o recurso                          | Propósito                                |
-| -------------------------------------------- | ---------------------------------------- |
-| `docs/Propuesta-tecnica-Zona-Fitness-V2.pdf` | Fuente de requisitos de producto         |
-| `docs/Manual_Marca_Zona_Fitness.pptx`        | Manual visual                            |
-| `docs/progreso-zona-fitness-2026-10-26.md`   | Estado y pendientes al corte documentado |
-| `docs/entregables-zona-fitness.md`           | Entregables, sitemap y wireframe         |
-| `docs/actualizar-contenido.md`               | Guía operativa de edición                |
-| `docs/diagrama-flujo.md`                     | Flujo de navegación                      |
-| `public/redes/README.txt`                    | Guía de las maquetas sociales            |
-| `public/redes/`                              | Prototipos HTML y recursos de redes      |
+| Documento o recurso                          | Propósito                                          |
+| -------------------------------------------- | -------------------------------------------------- |
+| `docs/Propuesta-tecnica-Zona-Fitness-V2.pdf` | Fuente de requisitos de producto                   |
+| `docs/Manual_Marca_Zona_Fitness.pptx`        | Manual visual                                      |
+| `docs/progreso-zona-fitness-2026-10-26.md`   | Estado y pendientes al corte documentado           |
+| `docs/progreso-zona-fitness-2026-10-28.md`   | Alcance aprobado, cambios recientes y placeholders |
+| `docs/entregables-zona-fitness.md`           | Entregables, sitemap y wireframe                   |
+| Figma Mockup y Wireframe V2                  | Referencia visual y de estructura                  |
+| `docs/actualizar-contenido.md`               | Guía operativa de edición                          |
+| `docs/diagrama-flujo.md`                     | Flujo de navegación                                |
+| `public/redes/README.txt`                    | Guía de las maquetas sociales                      |
+| `public/redes/`                              | Prototipos HTML y recursos de redes                |
 
 ## 12. Datos pendientes y límites funcionales
 
@@ -358,6 +366,27 @@ Los marcadores neutrales y avisos de confirmación están implementados en:
 - `section-page.ts:82-83`, `section-page.ts:174-176`.
 - `site-footer.html:18-21`.
 - `home.html:348-354`, `home.html:468-481`.
+
+## 14. Placeholders de información no definida
+
+Cuando un dato todavía no está disponible, usar un placeholder explícito y no un valor
+inventado:
+
+| Dato            | Placeholder                                 |
+| --------------- | ------------------------------------------- |
+| Precio          | `[PENDIENTE_CONFIRMAR_PRECIO]`              |
+| Contacto        | `[PENDIENTE_CONFIRMAR_TELEFONO]`            |
+| Dirección       | `[PENDIENTE_CONFIRMAR_DIRECCION]`           |
+| Redes oficiales | `[PENDIENTE_CONFIRMAR_URL_SOCIAL]`          |
+| Pago            | `[PENDIENTE_CONFIRMAR_DATOS_PAGO]`          |
+| Imagen oficial  | `[PENDIENTE_REEMPLAZAR_IMAGEN_REFERENCIAL]` |
+| Dominio         | `[PENDIENTE_DEFINIR_DOMINIO]`               |
+| Hosting         | `[PENDIENTE_DEFINIR_HOSTING]`               |
+| API productiva  | `[PENDIENTE_DEFINIR_API_PRODUCCION]`        |
+| HTTPS           | `[PENDIENTE_CONFIGURAR_HTTPS]`              |
+
+Los placeholders son documentación de decisiones pendientes. No deben convertirse en
+datos visibles para clientes sin confirmación.
 
 ## 13. Guía rápida de mantenimiento
 

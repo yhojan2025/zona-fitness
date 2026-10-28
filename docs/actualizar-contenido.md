@@ -42,6 +42,27 @@ Desde `src/styles.css`, `src/app/app.css` y `src/app/pages/home/home.css`:
 - Mantén un `alt` descriptivo en las imágenes informativas y `alt=""` solo en imágenes puramente decorativas.
 - La mención de Nequi/Bancolombia es informativa: no agregues datos de transferencia o acciones que aparenten procesar un pago sin requisitos y autorización.
 
+## Placeholders para datos no definidos
+
+Si un dato todavía no ha sido entregado o aprobado, usa un placeholder explícito hasta
+recibir confirmación. No reemplaces estos valores por datos inventados:
+
+| Dato                         | Placeholder                                 |
+| ---------------------------- | ------------------------------------------- |
+| Precio de plan               | `[PENDIENTE_CONFIRMAR_PRECIO]`              |
+| Teléfono, correo o dirección | `[PENDIENTE_CONFIRMAR_CONTACTO]`            |
+| URL o handle social          | `[PENDIENTE_CONFIRMAR_URL_SOCIAL]`          |
+| Datos de pago                | `[PENDIENTE_CONFIRMAR_DATOS_PAGO]`          |
+| Fotografía oficial           | `[PENDIENTE_REEMPLAZAR_IMAGEN_REFERENCIAL]` |
+| Dominio                      | `[PENDIENTE_DEFINIR_DOMINIO]`               |
+| Hosting                      | `[PENDIENTE_DEFINIR_HOSTING]`               |
+| API de producción            | `[PENDIENTE_DEFINIR_API_PRODUCCION]`        |
+| HTTPS/certificado            | `[PENDIENTE_CONFIGURAR_HTTPS]`              |
+
+Los placeholders se pueden conservar en documentación, tickets de contenido o listas
+internas de entrega. Antes de publicar, deben sustituirse por valores confirmados o por
+copy neutral que no exponga el dato.
+
 ## Validación y publicación
 
 Desde la carpeta del frontend, ejecuta:

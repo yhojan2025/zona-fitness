@@ -2,7 +2,7 @@
 
 **Fecha de referencia:** 28 de octubre de 2026  
 **Moneda:** pesos colombianos (COP)  
-**Versión:** 1.3 — roles del equipo actualizados
+**Versión:** 1.4 — implementación con tope de $2.500.000
 
 ## 1. Objetivo
 
@@ -27,7 +27,7 @@ parte.
 - El equipo de desarrollo está conformado por un analista de sistemas, un desarrollador y
   un gestor de proyectos que trabajan en paralelo durante una semana laboral de cinco
   días.
-- El subtotal de implementación está limitado a un máximo de $3.500.000 COP.
+- El subtotal de implementación está limitado a un máximo de $2.500.000 COP.
 - La dedicación es parcial y coordinada dentro de la semana; no representa 40 horas por
   persona ni disponibilidad de tiempo completo.
 - La dirección del CEO concentra la mayor parte del valor de implementación y contempla
@@ -46,19 +46,19 @@ parte.
 
 **Plazo estimado:** 1 semana laboral, equivalente a 5 días hábiles.
 
-**Dedicación de referencia:** 20 horas del CEO y 10 horas por cada integrante del equipo,
-para un total de 50 horas-persona.
+**Dedicación de referencia:** 16 horas del CEO y 6 horas por cada integrante del equipo,
+para un total de 34 horas-persona.
 
 | Rol / actividad                                                  | Horas estimadas | Tarifa estándar/hora |       Subtotal |
 | ---------------------------------------------------------------- | --------------: | -------------------: | -------------: |
-| CEO — dirección mayoritaria, coordinación y aprobación ejecutiva |            20 h |             $100.000 |     $2.000.000 |
-| Analista de sistemas — levantamiento, alcance y requisitos       |            10 h |              $50.000 |       $500.000 |
-| Desarrollador — frontend, integración y componentes              |            10 h |              $50.000 |       $500.000 |
-| Gestor de proyectos — seguimiento, pruebas y documentación       |            10 h |              $50.000 |       $500.000 |
-| **Subtotal implementación**                                      |        **50 h** |                      | **$3.500.000** |
+| CEO — dirección mayoritaria, coordinación y aprobación ejecutiva |            16 h |             $100.000 |     $1.600.000 |
+| Analista de sistemas — levantamiento, alcance y requisitos       |             6 h |              $50.000 |       $300.000 |
+| Desarrollador — frontend, integración y componentes              |             6 h |              $50.000 |       $300.000 |
+| Gestor de proyectos — seguimiento, pruebas y documentación       |             6 h |              $50.000 |       $300.000 |
+| **Subtotal implementación**                                      |        **34 h** |                      | **$2.500.000** |
 
-El CEO representa aproximadamente el **57,1%** del subtotal de implementación. El equipo
-de análisis, desarrollo y gestión representa conjuntamente el **42,9%** restante.
+El CEO representa el **64%** del subtotal de implementación. El equipo de análisis,
+desarrollo y gestión representa conjuntamente el **36%** restante.
 
 El tope económico requiere trabajar sobre el alcance aprobado y priorizar correcciones,
 validación y documentación. Las funcionalidades nuevas o los cambios que excedan esta
@@ -102,15 +102,15 @@ dedicación se cotizarán por separado.
 
 | Concepto                                                                   |          Valor |
 | -------------------------------------------------------------------------- | -------------: |
-| Subtotal implementación                                                    |     $3.500.000 |
+| Subtotal implementación                                                    |     $2.500.000 |
 | Gastos externos estimados del primer año                                   |     $1.530.000 |
-| **Subtotal directo**                                                       | **$5.030.000** |
-| Contingencia técnica y de publicación (10% del subtotal de implementación) |       $350.000 |
-| **Total estimado antes de IVA**                                            | **$5.380.000** |
-| IVA de referencia (19%)                                                    |     $1.022.200 |
-| **Total estimado con IVA**                                                 | **$6.402.200** |
+| **Subtotal directo**                                                       | **$4.030.000** |
+| Contingencia técnica y de publicación (10% del subtotal de implementación) |       $250.000 |
+| **Total estimado antes de IVA**                                            | **$4.280.000** |
+| IVA de referencia (19%)                                                    |       $813.200 |
+| **Total estimado con IVA**                                                 | **$5.093.200** |
 
-**Valor redondeado de referencia con IVA:** **$6.400.000 COP**.
+**Valor redondeado de referencia con IVA:** **$5.100.000 COP**.
 
 La contingencia cubre variaciones razonables de configuración, ajustes menores de
 despliegue y diferencias de tarifas de proveedores. No cubre cambios de alcance,
@@ -142,7 +142,7 @@ automáticamente al total inicial.
 - Administración diaria de redes sociales o campañas publicitarias.
 - Compra de equipos, correo corporativo, CRM o herramientas internas del gimnasio.
 - Cambios que modifiquen el alcance aprobado después de la entrega o superen el tope de
-  implementación de $3.500.000 COP.
+  implementación de $2.500.000 COP.
 - Migración desde otro hosting o recuperación de un dominio que no esté bajo control del
   cliente.
 

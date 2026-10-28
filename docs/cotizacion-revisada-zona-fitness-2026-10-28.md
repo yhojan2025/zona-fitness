@@ -2,13 +2,13 @@
 
 **Fecha de referencia:** 28 de octubre de 2026  
 **Moneda:** pesos colombianos (COP)  
-**Versión:** 1.0 — estimación para revisión
+**Versión:** 1.1 — revisión con equipo junior y plazo de una semana
 
 ## 1. Objetivo
 
 Esta cotización reúne el valor estimado de diseño, coordinación, desarrollo, validación
-y publicación del sitio promocional de Zona Fitness. Además del trabajo del equipo de
-desarrollo y la dirección del CEO, incorpora costos habituales de dominio, hosting,
+y publicación del sitio promocional de Zona Fitness. Además del trabajo de los tres desarrolladores junior y la dirección mayoritaria del CEO,
+incorpora costos habituales de dominio, hosting,
 copias de seguridad, monitoreo, despliegue y una reserva de contingencia.
 
 Los valores son una referencia presupuestal y no constituyen una factura, contrato ni
@@ -22,10 +22,13 @@ parte.
   responsive, páginas de servicios, planes, horarios, espacio, productos, maquetas
   sociales, footer, documentación y pruebas.
 - No se incluye e-commerce, reservas, pagos en línea ni inscripción comercial de socios.
+- El equipo de desarrollo está conformado por tres desarrolladores junior que trabajan en
+  paralelo durante una semana laboral de cinco días.
+- La dirección del CEO concentra la mayor parte del valor de implementación y contempla
+  definición de alcance, decisiones ejecutivas, revisión diaria de hitos, coordinación y
+  aprobación de entrega.
 - Las tarifas internas son valores estándar de referencia para una cotización inicial:
-  cada responsable se factura por hora efectiva estimada.
-- La dirección del CEO contempla definición de alcance, decisiones ejecutivas, revisión de
-  hitos y aprobación de entrega.
+  cada integrante se factura por hora efectiva estimada.
 - El proyecto se publica como sitio Angular estático con una configuración estándar de
   hosting administrado.
 - Los servicios de terceros se presupuestan por un año, salvo que el proveedor facture
@@ -33,24 +36,30 @@ parte.
 - El IVA se muestra por separado al 19% como escenario fiscal de referencia; debe ser
   confirmado por el responsable tributario y la situación contractual del proveedor.
 
-## 3. Equipo y trabajo de implementación
+## 3. Equipo, plazo y trabajo de implementación
 
-| Rol / actividad                                                    | Horas estimadas | Tarifa estándar/hora |        Subtotal |
-| ------------------------------------------------------------------ | --------------: | -------------------: | --------------: |
-| CEO — dirección, decisiones y revisión ejecutiva                   |            20 h |             $150.000 |      $3.000.000 |
-| UX/UI — adaptación visual, responsive y criterios de accesibilidad |            24 h |              $70.000 |      $1.680.000 |
-| Desarrollo frontend Angular                                        |            80 h |              $85.000 |      $6.800.000 |
-| Backend e integración técnica                                      |            24 h |              $90.000 |      $2.160.000 |
-| QA y validación funcional                                          |            20 h |              $60.000 |      $1.200.000 |
-| Carga y edición inicial de contenido                               |            12 h |              $55.000 |        $660.000 |
-| Despliegue, configuración y documentación operativa                |             8 h |              $80.000 |        $640.000 |
-| **Subtotal implementación**                                        |       **188 h** |                      | **$16.140.000** |
+**Plazo estimado:** 1 semana laboral, equivalente a 5 días hábiles.
+
+**Dedicación de referencia:** 45 horas del CEO y 40 horas por cada desarrollador junior,
+para un total de 165 horas-persona.
+
+| Rol / actividad                                                   | Horas estimadas | Tarifa estándar/hora |        Subtotal |
+| ----------------------------------------------------------------- | --------------: | -------------------: | --------------: |
+| CEO — dirección mayoritaria, coordinación y aprobación ejecutiva  |            45 h |             $250.000 |     $11.250.000 |
+| Desarrollador junior 1 — frontend, componentes y responsive       |            40 h |              $50.000 |      $2.000.000 |
+| Desarrollador junior 2 — integración, contenido y soporte técnico |            40 h |              $50.000 |      $2.000.000 |
+| Desarrollador junior 3 — pruebas, accesibilidad y documentación   |            40 h |              $50.000 |      $2.000.000 |
+| **Subtotal implementación**                                       |       **165 h** |                      | **$17.250.000** |
+
+El CEO representa aproximadamente el **65,2%** del subtotal de implementación. Los tres
+desarrolladores junior representan conjuntamente el **34,8%** restante.
 
 ### Incluido en el subtotal de implementación
 
-- Coordinación ejecutiva y revisión de entregables por parte del CEO.
+- Dirección mayoritaria, coordinación diaria y revisión de entregables por parte del CEO.
 - Implementación y ajuste de la experiencia visual aprobada.
-- Desarrollo, pruebas unitarias, build de producción y correcciones del alcance.
+- Desarrollo, pruebas unitarias, build de producción y correcciones del alcance por parte
+  de los tres desarrolladores junior.
 - Configuración inicial de publicación y documentación para actualizar contenido.
 - Entrega del código fuente y de la documentación técnica del repositorio.
 
@@ -83,15 +92,15 @@ parte.
 
 | Concepto                                                                   |           Valor |
 | -------------------------------------------------------------------------- | --------------: |
-| Subtotal implementación                                                    |     $16.140.000 |
+| Subtotal implementación                                                    |     $17.250.000 |
 | Gastos externos estimados del primer año                                   |      $1.530.000 |
-| **Subtotal directo**                                                       | **$17.670.000** |
-| Contingencia técnica y de publicación (10% del subtotal de implementación) |      $1.614.000 |
-| **Total estimado antes de IVA**                                            | **$19.284.000** |
-| IVA de referencia (19%)                                                    |      $3.663.960 |
-| **Total estimado con IVA**                                                 | **$22.947.960** |
+| **Subtotal directo**                                                       | **$18.780.000** |
+| Contingencia técnica y de publicación (10% del subtotal de implementación) |      $1.725.000 |
+| **Total estimado antes de IVA**                                            | **$20.505.000** |
+| IVA de referencia (19%)                                                    |      $3.895.950 |
+| **Total estimado con IVA**                                                 | **$24.400.950** |
 
-**Valor redondeado de referencia con IVA:** **$22.950.000 COP**.
+**Valor redondeado de referencia con IVA:** **$24.400.000 COP**.
 
 La contingencia cubre variaciones razonables de configuración, ajustes menores de
 despliegue y diferencias de tarifas de proveedores. No cubre cambios de alcance,
@@ -144,7 +153,7 @@ automáticamente al total inicial.
 
 Como esquema estándar sujeto a negociación:
 
-1. **40% de anticipo:** reserva del equipo y comienzo de implementación.
+1. **40% de anticipo:** reserva del equipo y comienzo de la semana de implementación.
 2. **40% contra entrega del release candidato:** sitio funcional, pruebas y revisión.
 3. **20% contra publicación:** despliegue productivo, documentación y entrega final.
 

@@ -561,13 +561,28 @@ h2 em {
   font-weight: 600;
 }
 .plan-link {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: 14px;
+  padding: 9px 14px;
+  border: 1px solid #28716b;
+  border-radius: 999px;
+  background: #fff;
   color: #28716b;
   font-size: 0.8rem;
   font-weight: 700;
   text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.plan-link:hover,
+.plan-link:focus-visible {
+  background: #28716b;
+  color: #fff;
+  transform: translateX(3px);
 }
 .plans-note {
   margin: 20px 0 0;
@@ -1153,8 +1168,12 @@ h2 em {
     font-size: 0.5rem;
   }
   .plan-link {
-    gap: 8px;
-    font-size: 0.73rem;
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
+    padding-inline: 8px;
+    font-size: 0.68rem;
+    white-space: nowrap;
   }
   .schedule {
     grid-template-columns: 1fr;

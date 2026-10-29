@@ -92,20 +92,20 @@ describe('Home', () => {
     expect(page.querySelectorAll('#redes .social-platform-icon')).toHaveLength(3);
     expect(page.querySelector('#redes a[href^="https://"]')).toBeNull();
     expect(page.querySelector('#redes')?.textContent).toContain('Visita las redes de Zona Fitness');
-    expect(page.querySelector('#redes a[href="/redes/instagram.html"]')?.textContent).toContain(
+    expect(page.querySelector('#redes a[href="redes/instagram.html"]')?.textContent).toContain(
       'Visitar Instagram',
     );
-    expect(page.querySelector('#redes a[href="/redes/facebook.html"]')?.textContent).toContain(
+    expect(page.querySelector('#redes a[href="redes/facebook.html"]')?.textContent).toContain(
       'Visitar Facebook',
     );
-    expect(page.querySelector('#redes a[href="/redes/whatsapp.html"]')?.textContent).toContain(
+    expect(page.querySelector('#redes a[href="redes/whatsapp.html"]')?.textContent).toContain(
       'Abrir WhatsApp',
     );
     expect(page.textContent).toContain(
       '© 2026 Análisis y diseño de soluciones web 12. Todos los derechos reservados.',
     );
     expect(page.querySelector('.site-footer .footer-logo')?.getAttribute('src')).toBe(
-      '/zona-fitness-logo.png',
+      'zona-fitness-logo.png',
     );
     expect(page.querySelector('.site-footer .footer-logo')?.getAttribute('alt')).toBe(
       'Logo de Zona Fitness',

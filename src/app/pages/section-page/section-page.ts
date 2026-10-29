@@ -126,7 +126,7 @@ const CONTENT: Record<SectionKey, SectionContent> = {
       mapUrl:
         'https://www.google.com/maps/place/Cra.+7+%23+7-7,+Aguadas,+Caldas/@5.613327,-75.4571107,19z/data=!3m1!4b1!4m6!3m5!1s0x8e46e3eb5d185a53:0x370767b119f68c8f!8m2!3d5.613327!4d-75.456467!16s%2Fg%2F11x7gw0hqn?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D',
       embedUrl: 'https://www.google.com/maps?q=Cra.+7+%237-7,+Aguadas,+Caldas&output=embed',
-      image: '/zona-fitness-fachada.jpg',
+      image: 'zona-fitness-fachada.jpg',
       imageAlt: 'Fachada exterior generada como referencia para Zona Fitness',
     },
   },
@@ -167,7 +167,7 @@ const CONTENT: Record<SectionKey, SectionContent> = {
     ],
     note: 'Las imágenes son referenciales y están pendientes de aprobación o reemplazo por fotografías oficiales del gimnasio.',
     about: {
-      image: '/zona-fitness-atleta-hidratandose.jpg',
+      image: 'zona-fitness-atleta-hidratandose.jpg',
       imageAlt:
         'Atleta adulta hidratándose después de entrenar en una imagen generada para Zona Fitness',
     },

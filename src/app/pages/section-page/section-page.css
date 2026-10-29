@@ -176,9 +176,32 @@
 }
 
 .plan-detail-card .plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
   padding-top: 15px;
   border-top: 1px solid #e3efed;
-  font-size: 0.78rem;
+  color: #28716b;
+}
+
+.plan-detail-card .plan-price .plan-currency {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.plan-detail-card .plan-price strong {
+  color: #163b39;
+  font:
+    800 1.2rem 'Montserrat',
+    sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.plan-detail-card .plan-price .plan-period {
+  color: #66807d;
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
 .plan-action {

@@ -79,7 +79,11 @@
             <h2>{{ card.duration }}</h2>
             <p>{{ card.detail }}</p>
             <p class="plan-description">{{ card.description }}</p>
-            <p class="plan-price">Precio por confirmar</p>
+            <p class="plan-price" aria-label="Precio en pesos colombianos">
+              <span class="plan-currency">COP</span>
+              <strong>{{ card.price }}</strong>
+              <span class="plan-period">/ plan</span>
+            </p>
             <a class="button button-outline plan-action" routerLink="/" fragment="inscripcion">
               Consultar condiciones
               <span aria-hidden="true">↗</span>

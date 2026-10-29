@@ -536,10 +536,29 @@ h2 em {
   line-height: 1.5;
 }
 .plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
   padding-top: 13px;
   border-top: 1px solid #e3efed;
+  color: #28716b;
+}
+.plan-price .plan-currency {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.plan-price strong {
+  color: #163b39;
+  font:
+    800 1.15rem 'Montserrat',
+    sans-serif;
+  letter-spacing: -0.04em;
+}
+.plan-price .plan-period {
   color: #66807d;
-  font-size: 0.77rem;
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 .plan-link {
   display: flex;

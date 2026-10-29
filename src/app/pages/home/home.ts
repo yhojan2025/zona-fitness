@@ -82,24 +82,28 @@ export class Home {
       name: 'Cobre',
       duration: '15 días',
       detail: '2 horas de ejercicio al día',
+      price: '$45.000',
       featured: false,
     },
     {
       name: 'Bronce',
       duration: '3 meses',
       detail: 'Un plan para construir constancia',
+      price: '$260000',
       featured: false,
     },
     {
       name: 'Platino',
       duration: '6 meses',
       detail: 'Más tiempo para mantener tu ritmo',
+      price: '$500000',
       featured: true,
     },
     {
       name: 'Oro',
       duration: '1 año',
       detail: 'Un año para hacer del movimiento un hábito',
+      price: '$900000',
       featured: false,
     },
   ];

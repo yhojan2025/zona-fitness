@@ -35,7 +35,8 @@ describe('dedicated navigation pages', () => {
 
     await harness.navigateByUrl('/planes');
     expect(harness.routeNativeElement?.textContent).toContain('Cobre');
-    expect(harness.routeNativeElement?.textContent).toContain('Precio por confirmar');
+    expect(harness.routeNativeElement?.textContent).toContain('$45.000');
+    expect(harness.routeNativeElement?.textContent).toContain('COP');
   });
 
   it('shows category icons for every dedicated plan card', async () => {

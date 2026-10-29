@@ -198,7 +198,11 @@
             </div>
             <p class="plan-duration">{{ plan.duration }}</p>
             <p class="plan-detail">{{ plan.detail }}</p>
-            <div class="plan-price">Precio por confirmar</div>
+            <div class="plan-price" aria-label="Precio en pesos colombianos">
+              <span class="plan-currency">COP</span>
+              <strong>{{ plan.price }}</strong>
+              <span class="plan-period">/ plan</span>
+            </div>
             <a class="plan-link" href="#inscripcion"
               >Consultar este plan <span aria-hidden="true">↗</span></a
             >
@@ -206,7 +210,8 @@
         }
       </div>
       <p class="plans-note">
-        Los valores, condiciones y disponibilidad de cada plan deben confirmarse con el gimnasio.
+        Valores expresados en pesos colombianos. Consulta disponibilidad y condiciones directamente
+        con el gimnasio.
       </p>
     </div>
   </section>

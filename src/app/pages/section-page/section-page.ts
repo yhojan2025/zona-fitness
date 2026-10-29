@@ -12,6 +12,7 @@ interface FeatureCard {
   description: string;
   duration?: string;
   detail?: string;
+  price?: string;
   image?: string;
   alt?: string;
 }
@@ -68,34 +69,38 @@ const CONTENT: Record<SectionKey, SectionContent> = {
     eyebrow: 'EMPIEZA COMO QUIERAS',
     title: 'Planes para encontrar tu ritmo',
     description:
-      'Elige la duración que mejor se adapta a ti. Los valores y condiciones deben confirmarse con Zona Fitness.',
+      'Elige la duración que mejor se adapta a ti. Todos los valores están expresados en pesos colombianos.',
     cards: [
       {
         title: 'Cobre',
         duration: '15 días',
         detail: '2 horas de ejercicio al día',
+        price: '$45.000',
         description: 'Una opción para comenzar y conocer tu rutina.',
       },
       {
         title: 'Bronce',
         duration: '3 meses',
         detail: 'Un plan para construir constancia',
+        price: '$260000',
         description: 'Encuentra tu ritmo y sigue avanzando.',
       },
       {
         title: 'Platino',
         duration: '6 meses',
         detail: 'Más tiempo para mantener tu ritmo',
+        price: '$500000',
         description: 'Dale continuidad a tus objetivos.',
       },
       {
         title: 'Oro',
         duration: '1 año',
         detail: 'Un año para hacer del movimiento un hábito',
+        price: '$900000',
         description: 'Haz del entrenamiento parte de tu día a día.',
       },
     ],
-    note: 'Precio por confirmar. La web no registra inscripciones ni procesa pagos; consulta las condiciones directamente con el gimnasio.',
+    note: 'Valores expresados en pesos colombianos. La web no registra inscripciones ni procesa pagos; consulta las condiciones directamente con el gimnasio.',
   },
   hours: {
     key: 'hours',

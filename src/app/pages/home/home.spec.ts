@@ -68,12 +68,14 @@ describe('Home', () => {
     expect(link.classList.contains('text-link')).toBe(true);
   });
 
-  it('does not invent plan prices or official contact links', () => {
+  it('shows plan prices in Colombian pesos without inventing official contact links', () => {
     const fixture = TestBed.createComponent(Home);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
 
-    expect(page.textContent).toContain('Precio por confirmar');
+    expect(page.textContent).toContain('$45.000');
+    expect(page.textContent).toContain('$540.000');
+    expect(page.textContent).toContain('COP');
     expect(page.textContent).toContain('Confirma los datos oficiales de pago');
     expect(page.querySelectorAll('#redes a[href^="https://"]')).toHaveLength(0);
   });

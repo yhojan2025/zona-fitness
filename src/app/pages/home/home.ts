@@ -15,25 +15,25 @@ export class Home {
   protected readonly heroSlides = [
     {
       image:
-        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=90',
+        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=75&fm=webp',
       alt: 'Gimnasio equipado con máquinas y áreas de entrenamiento',
       label: 'UN ESPACIO PARA ENTRENAR',
     },
     {
       image:
-        'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=90',
+        'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=75&fm=webp',
       alt: 'Persona entrenando fuerza con pesas',
       label: 'FUERZA A TU MANERA',
     },
     {
       image:
-        'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=1200&q=90',
+        'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=1200&q=75&fm=webp',
       alt: 'Zona de entrenamiento y equipos de gimnasio',
       label: 'ENCUENTRA TU RITMO',
     },
     {
       image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=90',
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=75&fm=webp',
       alt: 'Entrenamiento personal en un espacio deportivo',
       label: 'HAZ ESPACIO PARA TI',
     },
@@ -107,21 +107,21 @@ export class Home {
   protected readonly gallery = [
     {
       image:
-        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=85',
+        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=75&fm=webp',
       alt: 'Interior de un gimnasio con equipos de entrenamiento',
       label: 'Un espacio para entrenar',
       className: '',
     },
     {
       image:
-        'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=720&q=85',
+        'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=720&q=75&fm=webp',
       alt: 'Persona entrenando con pesas',
       label: 'Fuerza a tu manera',
       className: '',
     },
     {
       image:
-        'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=720&q=85',
+        'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=720&q=75&fm=webp',
       alt: 'Zona de entrenamiento con máquinas de gimnasio',
       label: 'Muévete a tu ritmo',
       className: '',

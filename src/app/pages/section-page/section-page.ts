@@ -118,7 +118,7 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         'https://www.google.com/maps/place/Cra.+7+%23+7-7,+Aguadas,+Caldas/@5.613327,-75.4571107,19z/data=!3m1!4b1!4m6!3m5!1s0x8e46e3eb5d185a53:0x370767b119f68c8f!8m2!3d5.613327!4d-75.456467!16s%2Fg%2F11x7gw0hqn?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D',
       embedUrl: 'https://www.google.com/maps?q=Cra.+7+%237-7,+Aguadas,+Caldas&output=embed',
       image:
-        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=85',
+        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=75&fm=webp',
       imageAlt: 'Interior referencial de un gimnasio',
     },
   },
@@ -132,28 +132,28 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         title: 'Espacio de cardio',
         description: 'Activa tu energía con sesiones a tu propio ritmo.',
         image:
-          'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=960&q=85',
+          'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=960&q=75&fm=webp',
         alt: 'Máquinas de cardio en una zona de gimnasio',
       },
       {
         title: 'Zona de pesas',
         description: 'Entrena fuerza y avanza paso a paso.',
         image:
-          'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=720&q=85',
+          'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=720&q=75&fm=webp',
         alt: 'Persona entrenando con pesas',
       },
       {
         title: 'Sauna',
         description: 'Un momento de pausa para cerrar tu rutina.',
         image:
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=720&q=85',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=720&q=75&fm=webp',
         alt: 'Espacio de spa y recuperación con ambiente cálido',
       },
       {
         title: 'Jacuzzi',
         description: 'Completa tu visita con un espacio para relajarte.',
         image:
-          'https://images.unsplash.com/photo-1572331165267-854da2b10ccc?auto=format&fit=crop&w=720&q=85',
+          'https://images.unsplash.com/photo-1572331165267-854da2b10ccc?auto=format&fit=crop&w=720&q=75&fm=webp',
         alt: 'Piscina de hidromasaje en un espacio de bienestar',
       },
     ],
@@ -171,7 +171,7 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         description:
           'Alternativas para complementar tu alimentación alrededor de tu rutina. Consulta ingredientes, presentación y disponibilidad.',
         image:
-          'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=960&q=85',
+          'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=960&q=75&fm=webp',
         alt: 'Batido de frutos rojos servido en un vaso',
       },
       {
@@ -179,7 +179,7 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         description:
           'Conoce referencias de suplementación disponibles y revisa sus etiquetas e indicaciones antes de elegir.',
         image:
-          'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=960&q=85',
+          'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=960&q=75&fm=webp',
         alt: 'Productos de suplementación deportiva',
       },
       {
@@ -187,7 +187,7 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         description:
           'Accesorios y básicos para acompañar tus sesiones. Pregunta por los artículos y referencias disponibles.',
         image:
-          'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=960&q=85',
+          'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=960&q=75&fm=webp',
         alt: 'Persona entrenando en un gimnasio',
       },
     ],

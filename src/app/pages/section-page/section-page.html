@@ -118,7 +118,12 @@
           </div>
           <div class="hours-location-media">
             <div class="hours-location-photo">
-              <img [src]="location.image" [alt]="location.imageAlt" loading="lazy" />
+              <img
+                [src]="location.image"
+                [alt]="location.imageAlt"
+                loading="lazy"
+                decoding="async"
+              />
               <span>Foto referencial del local</span>
             </div>
             <div class="hours-location-map">
@@ -136,7 +141,7 @@
       <div class="detail-cards product-cards">
         @for (card of page().cards; track card.title) {
           <article class="detail-card product-detail-card">
-            <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+            <img [src]="card.image" [alt]="card.alt" loading="lazy" decoding="async" />
             <div class="product-card-content">
               <h2>{{ card.title }}</h2>
               <p>{{ card.description }}</p>
@@ -151,7 +156,7 @@
       <div class="space-gallery">
         @for (card of page().cards; track card.title) {
           <figure class="space-photo">
-            <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+            <img [src]="card.image" [alt]="card.alt" loading="lazy" decoding="async" />
             <figcaption>
               <strong>{{ card.title }}</strong>
               <strong class="space-subtitle">{{ card.description }}</strong>
@@ -162,9 +167,10 @@
       <section class="space-about" aria-labelledby="space-about-title">
         <div class="space-about-media">
           <img
-            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85"
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=720&q=75&fm=webp"
             alt="Interior referencial de un gimnasio"
             loading="lazy"
+            decoding="async"
           />
           <div class="space-about-brand">
             <img src="/zona-fitness-logo.png" alt="Logo de Zona Fitness" />

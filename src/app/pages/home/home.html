@@ -31,6 +31,7 @@
             [src]="slide.image"
             [alt]="slide.alt"
             fetchpriority="high"
+            decoding="async"
           />
         }
       }
@@ -253,7 +254,7 @@
       <div class="gallery-grid">
         @for (item of gallery; track item.label) {
           <figure [class]="item.className">
-            <img [src]="item.image" [alt]="item.alt" loading="lazy" />
+            <img [src]="item.image" [alt]="item.alt" loading="lazy" decoding="async" />
             <figcaption>{{ item.label }} <span aria-hidden="true">↗</span></figcaption>
           </figure>
         }
@@ -360,6 +361,7 @@
           src="/redes/assets/ig_post_3.jpg"
           alt="Ejemplo visual de una publicación para Instagram"
           loading="lazy"
+          decoding="async"
         />
         <div class="social-prototype-info">
           <p class="prototype-label">
@@ -380,16 +382,19 @@
               src="/redes/assets/ig_post_1.jpg"
               alt="Ejemplo de contenido de entrenamiento"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="/redes/assets/ig_post_5.jpg"
               alt="Ejemplo de contenido sobre bienestar"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="/redes/assets/ig_post_8.jpg"
               alt="Ejemplo de contenido motivacional"
               loading="lazy"
+              decoding="async"
             />
           </div>
           <a href="/redes/instagram.html"
@@ -402,6 +407,7 @@
           src="/redes/assets/fb_cover.jpg"
           alt="Ejemplo visual de una portada para Facebook"
           loading="lazy"
+          decoding="async"
         />
         <div class="social-prototype-info">
           <p class="prototype-label">
@@ -422,16 +428,19 @@
               src="/redes/assets/fb_post.jpg"
               alt="Ejemplo de publicación de Zona Fitness"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="/redes/assets/ig_post_3.jpg"
               alt="Ejemplo de publicación sobre cardio"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="/redes/assets/ig_post_6.jpg"
               alt="Ejemplo de publicación motivacional"
               loading="lazy"
+              decoding="async"
             />
           </div>
           <a href="/redes/facebook.html"
@@ -444,6 +453,7 @@
           src="/redes/assets/whatsapp-logo.png"
           alt="Ejemplo visual del perfil de WhatsApp Business de Zona Fitness"
           loading="lazy"
+          decoding="async"
         />
         <div class="social-prototype-info">
           <p class="prototype-label">

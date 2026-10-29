@@ -65,6 +65,37 @@
           </article>
         }
       </div>
+      @if (page().location; as location) {
+        <section class="hours-location" aria-labelledby="location-heading">
+          <div class="hours-location-heading">
+            <p class="eyebrow">¿DÓNDE ENCONTRARNOS?</p>
+            <h2 id="location-heading">Visítanos en Aguadas</h2>
+            <p>{{ location.address }}</p>
+            <a
+              class="button button-outline"
+              [href]="location.mapsUrl"
+              target="_blank"
+              rel="noopener"
+            >
+              Abrir en Google Maps <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="hours-location-media">
+            <figure class="hours-location-photo">
+              <img [src]="location.image" [alt]="location.imageAlt" loading="lazy" />
+              <figcaption>Fachada exterior referencial del local.</figcaption>
+            </figure>
+            <div class="hours-location-map">
+              <iframe
+                [src]="hoursMapEmbedUrl"
+                title="Mapa de ubicación de Zona Fitness en Aguadas"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+      }
     } @else if (page().key === 'products') {
       <div class="detail-cards product-cards">
         @for (card of page().cards; track card.title) {

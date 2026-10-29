@@ -80,4 +80,19 @@ describe('dedicated navigation pages', () => {
     expect(harness.routeNativeElement?.textContent).toContain('La fachada de Zona Fitness');
     expect(harness.routeNativeElement?.textContent).toContain('vista exterior referencial');
   });
+
+  it('shows the exterior reference image beside the map on the Horarios page', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/horarios');
+    const page = harness.routeNativeElement;
+
+    expect(page?.textContent).toContain('¿DÓNDE ENCONTRARNOS?');
+    expect(page?.textContent).toContain('Cra. 7 # 7-7, Aguadas, Caldas');
+    expect(page?.querySelector('.hours-location-photo img')?.getAttribute('alt')).toContain(
+      'Fachada exterior referencial',
+    );
+    expect(page?.querySelector('.hours-location-map iframe')?.getAttribute('title')).toContain(
+      'Mapa de ubicación',
+    );
+  });
 });

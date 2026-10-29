@@ -76,9 +76,9 @@ describe('dedicated navigation pages', () => {
       '.space-photo img[alt*="Fachada exterior"]',
     );
 
-    expect(facadeImage?.getAttribute('src')).toContain('photo-1561214115-f2f134cc4912');
+    expect(facadeImage?.getAttribute('src')).toBe('/zona-fitness-fachada.svg');
     expect(harness.routeNativeElement?.textContent).toContain('La fachada de Zona Fitness');
-    expect(harness.routeNativeElement?.textContent).toContain('vista exterior referencial');
+    expect(harness.routeNativeElement?.textContent).toContain('vista exterior ilustrada');
   });
 
   it('shows the exterior reference image beside the map on the Horarios page', async () => {
@@ -93,6 +93,20 @@ describe('dedicated navigation pages', () => {
     );
     expect(page?.querySelector('.hours-location-map iframe')?.getAttribute('title')).toContain(
       'Mapa de ubicación',
+    );
+  });
+
+  it('shows the hydration scene in the gym information block', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/espacio');
+    const page = harness.routeNativeElement;
+
+    expect(page?.textContent).toContain('ACERCA DEL GYM');
+    expect(page?.querySelector('.space-about-photo img')?.getAttribute('src')).toBe(
+      '/zona-fitness-atleta-hidratandose.svg',
+    );
+    expect(page?.querySelector('.space-about-photo img')?.getAttribute('alt')).toContain(
+      'Atleta adulta hidratándose',
     );
   });
 });

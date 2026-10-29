@@ -123,6 +123,18 @@
           </figure>
         }
       </div>
+      @if (page().about; as about) {
+        <section class="space-about" aria-labelledby="space-about-heading">
+          <div class="space-about-copy">
+            <p class="eyebrow">ACERCA DEL GYM</p>
+            <h2 id="space-about-heading">{{ about.title }}</h2>
+            <p>{{ about.description }}</p>
+          </div>
+          <figure class="space-about-photo">
+            <img [src]="about.image" [alt]="about.imageAlt" loading="lazy" />
+          </figure>
+        </section>
+      }
     }
 
     <aside class="detail-note">

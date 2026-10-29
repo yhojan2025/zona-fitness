@@ -1,0 +1,211 @@
+<section class="account-container">
+  <!-- Cabecera de cuenta -->
+  <div class="account-header-card">
+    <div class="user-avatar-initials">
+      {{ userInitials }}
+    </div>
+    <div class="user-meta">
+      <span class="role-badge" [class.badge-admin]="auth.hasRole('admin')" [class.badge-user]="!auth.hasRole('admin')">
+        {{ auth.hasRole('admin') ? 'Administrador' : 'Usuario' }}
+      </span>
+      <h1 class="user-display-name">{{ auth.user()?.name }}</h1>
+      <p class="user-email-text">{{ auth.user()?.email }}</p>
+    </div>
+    <div class="header-logout-btn">
+      <button type="button" class="btn-logout" (click)="logout()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Cerrar Sesión
+      </button>
+    </div>
+  </div>
+
+  <!-- Pestañas de navegación -->
+  <div class="tabs-nav" role="tablist">
+    <button
+      type="button"
+      class="tab-btn"
+      [class.active]="activeTab === 'profile'"
+      (click)="setTab('profile')"
+      role="tab"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Mis Datos Personales
+    </button>
+
+    <button
+      type="button"
+      class="tab-btn"
+      [class.active]="activeTab === 'orders'"
+      (click)="setTab('orders')"
+      role="tab"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Mis Pedidos ({{ orders.length }})
+    </button>
+
+    <button
+      type="button"
+      class="tab-btn"
+      [class.active]="activeTab === 'memberships'"
+      (click)="setTab('memberships')"
+      role="tab"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      Mis Membresías
+    </button>
+  </div>
+
+  <!-- Contenido de Pestaña 1: Perfil -->
+  <div *ngIf="activeTab === 'profile'" class="tab-pane-card">
+    <div class="pane-header">
+      <h2>Información de tu Perfil</h2>
+      <p>Actualiza tus datos de contacto y preferencias personales asociadas a tu cuenta de ZONA FITNESS.</p>
+    </div>
+
+    <div *ngIf="auth.hasRole('admin')" class="admin-notice-banner">
+      <div class="notice-icon">🛡️</div>
+      <div class="notice-text">
+        <strong>Modo Administrador Autorizado</strong>
+        <p>Tu cuenta cuenta con privilegios administrativos para gestionar usuarios y supervisar la plataforma.</p>
+      </div>
+      <a routerLink="/users" class="btn-goto-admin">Gestión de Usuarios →</a>
+    </div>
+
+    <div *ngIf="successMessage" class="alert-success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert-error">{{ errorMessage }}</div>
+
+    <form (ngSubmit)="saveProfile()" class="profile-form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="profName">Nombre Completo:</label>
+          <input id="profName" type="text" [(ngModel)]="profileForm.name" name="name" required class="form-input" />
+        </div>
+
+        <div class="form-group">
+          <label for="profEmail">Correo Electrónico (No modificable):</label>
+          <input id="profEmail" type="email" [value]="profileForm.email" disabled class="form-input input-disabled" />
+        </div>
+
+        <div class="form-group">
+          <label for="profPhone">Teléfono de Contacto:</label>
+          <input id="profPhone" type="tel" [(ngModel)]="profileForm.phone" name="phone" placeholder="300 123 4567" class="form-input" />
+        </div>
+
+        <div class="form-group">
+          <label for="profGender">Género:</label>
+          <select id="profGender" [(ngModel)]="profileForm.gender" name="gender" class="form-input">
+            <option value="">Selecciona una opción</option>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+            <option value="no_binario">No binario</option>
+            <option value="prefiero_no_decir">Prefiero no decir</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="profBirthDate">Fecha de Nacimiento:</label>
+          <input id="profBirthDate" type="date" [(ngModel)]="profileForm.birth_date" name="birth_date" class="form-input" />
+        </div>
+
+        <div class="form-group">
+          <label for="profRole">Rol en el Sistema (Inmutable):</label>
+          <input id="profRole" type="text" [value]="auth.hasRole('admin') ? 'Administrador' : 'Usuario'" disabled class="form-input input-disabled" />
+          <small class="field-hint">Los permisos son gestionados exclusivamente por los administradores en el servidor.</small>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-save-profile" [disabled]="isSavingProfile">
+          {{ isSavingProfile ? 'Guardando Cambios...' : 'Guardar Cambios' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Contenido de Pestaña 2: Pedidos -->
+  <div *ngIf="activeTab === 'orders'" class="tab-pane-card">
+    <div class="pane-header">
+      <h2>Historial de Pedidos</h2>
+      <p>Consulta tus órdenes pendientes y finalizadas generadas en la plataforma.</p>
+    </div>
+
+    <div *ngIf="isLoadingOrders" class="loading-state">
+      <p>Cargando tus pedidos...</p>
+    </div>
+
+    <div *ngIf="!isLoadingOrders && orders.length === 0" class="empty-state-box">
+      <p>Aún no has generado pedidos en ZONA FITNESS.</p>
+      <a routerLink="/planes" class="btn-action-sm">Explorar Planes</a>
+    </div>
+
+    <div *ngIf="!isLoadingOrders && orders.length > 0" class="orders-list">
+      <div *ngFor="let order of orders" class="order-card-item">
+        <div class="order-top-bar">
+          <div class="order-code-group">
+            <span class="order-label">Pedido:</span>
+            <strong class="order-code">{{ order.order_number }}</strong>
+          </div>
+          <div class="order-status-badge" [class.badge-pending]="order.status === 'pending'" [class.badge-completed]="order.status === 'completed'">
+            {{ order.status === 'pending' ? 'Pendiente en recepción' : order.status }}
+          </div>
+        </div>
+
+        <div class="order-items-preview" *ngIf="order.items && order.items.length > 0">
+          <div *ngFor="let it of order.items" class="order-item-line">
+            <span>{{ it.quantity }}x {{ it.item_name }}</span>
+            <strong>${{ it.subtotal | number:'1.0-0' }} COP</strong>
+          </div>
+        </div>
+
+        <div class="order-footer-bar">
+          <div class="order-meta-info">
+            <span>Método: <strong>{{ order.payment_method }}</strong></span>
+            <span>Fecha: {{ order.created_at | date:'short' }}</span>
+          </div>
+          <div class="order-total-price">
+            Total: <strong>${{ order.total_amount | number:'1.0-0' }} COP</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido de Pestaña 3: Membresías -->
+  <div *ngIf="activeTab === 'memberships'" class="tab-pane-card">
+    <div class="pane-header">
+      <h2>Estado de tus Membresías</h2>
+      <p>Detalle de tus planes de entrenamiento activos y vigencia en sala.</p>
+    </div>
+
+    <div class="membership-info-card">
+      <div class="membership-status-header">
+        <span class="active-dot"></span>
+        <strong>Registro de Acceso y Estado de Membresía</strong>
+      </div>
+      <p class="membership-instructions">
+        Las membresías oficiales de ZONA FITNESS se asocian a tu documento de identidad en el sistema de recepción. Si acabas de realizar tu registro o tienes un pedido pendiente, acércate al mostrador para la toma de huella o activación del carnet de acceso.
+      </p>
+      <div class="reception-contacts">
+        <div><strong>Sede Principal:</strong> Calle 84 # 47-22, Barranquilla</div>
+        <div><strong>Horario de Atención:</strong> Lunes a Viernes 5:00 a.m. - 9:00 p.m. | Sábados 6:00 a.m. - 4:00 p.m.</div>
+      </div>
+    </div>
+  </div>
+</section>

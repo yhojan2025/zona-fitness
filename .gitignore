@@ -42,3 +42,31 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+/backups
+
+# Dependencias de Node.js
+node_modules/
+**/node_modules/
+
+
+# Dependencias y archivos locales
+node_modules/
+**/node_modules/
+.env
+.env.*
+!.env.example
+backups/
+
+# Dependencias y archivos locales
+node_modules/
+**/node_modules/
+.env
+.env.*
+!.env.example
+backups/

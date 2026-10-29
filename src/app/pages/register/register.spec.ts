@@ -31,10 +31,15 @@ describe('Register', () => {
     expect(component).toBeTruthy();
   });
 
-  it('renders name, email and password fields', () => {
+  it('renders name, email, password and privacy policy fields', () => {
     const el: HTMLElement = fixture.nativeElement;
     expect(el.querySelector('h2')?.textContent).toContain('Crear cuenta');
-    expect(el.querySelectorAll('input').length).toBe(3);
+    // Verifica que existan los inputs principales de registro
+    expect(el.querySelector('input[name="name"]')).toBeTruthy();
+    expect(el.querySelector('input[name="email"]')).toBeTruthy();
+    expect(el.querySelector('input[name="password"]')).toBeTruthy();
+    expect(el.querySelector('input[name="birthDate"]')).toBeTruthy();
+    expect(el.querySelector('input[name="acceptedPrivacyPolicy"]')).toBeTruthy();
   });
 
   it('goes to /login after registering', () => {
@@ -42,13 +47,28 @@ describe('Register', () => {
     component.name = 'Ana';
     component.email = 'ana@example.com';
     component.password = 'password123';
+    component.acceptedPrivacyPolicy = true;
     component.submit();
 
     const req = http.expectOne(`${environment.apiUrl}/auth/register`);
-    expect(req.request.body).toEqual({ name: 'Ana', email: 'ana@example.com', password: 'password123' });
+    expect(req.request.body).toEqual({
+      name: 'Ana',
+      email: 'ana@example.com',
+      password: 'password123',
+      accepted_privacy_policy: true,
+    });
     req.flush({ id: 1, name: 'Ana', email: 'ana@example.com', role: 'user', is_active: true });
 
     expect(navigate).toHaveBeenCalledWith(['/login']);
+  });
+
+  it('blocks submit if age is under 14 and shows alert', () => {
+    component.birthDate = '2015-01-01'; // 11 años
+    expect(component.isUnderageRestricted()).toBe(true);
+
+    component.submit();
+    expect(component.error()).toContain('edad mínima de 14 años');
+    http.expectNone(`${environment.apiUrl}/auth/register`);
   });
 
   it('explains that the email is already registered on 409', () => {

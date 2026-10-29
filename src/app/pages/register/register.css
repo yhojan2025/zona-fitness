@@ -1,11 +1,533 @@
 :host {
   display: block;
-  max-width: 960px;
-  margin: 24px auto;
-  padding: 0 16px;
+  width: 100%;
+  min-height: calc(100vh - 76px);
+  margin: 0;
+  padding: 0;
 }
 
-.auth-card {
-  max-width: 380px;
-  margin: 48px auto;
+/* Contenedor principal con fondo fitness e overlay institucional */
+.auth-page-container {
+  min-height: calc(100vh - 76px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  box-sizing: border-box;
+  background-color: #173330;
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(11, 39, 37, 0.92) 0%,
+      rgba(23, 51, 48, 0.85) 40%,
+      rgba(62, 155, 148, 0.52) 85%,
+      rgba(207, 240, 234, 0.32) 100%
+    ),
+    url('/auth-fitness-bg.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Envoltorio split: 2 columnas en escritorio */
+.auth-split-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 48px;
+  max-width: 1120px;
+  width: 100%;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* ========================================================
+   Panel Visual Izquierdo (Hero de Marca)
+   ======================================================== */
+.auth-visual-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #ffffff;
+  padding: 16px 20px 16px 0;
+}
+
+.visual-brand-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(207, 240, 234, 0.15);
+  border: 1px solid rgba(207, 240, 234, 0.35);
+  color: #cff0ea;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  width: fit-content;
+  backdrop-filter: blur(8px);
+}
+
+.brand-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #88c9c4;
+  box-shadow: 0 0 8px #88c9c4;
+}
+
+.visual-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.visual-title .highlight {
+  color: #88c9c4;
+  display: inline-block;
+  position: relative;
+}
+
+.visual-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  max-width: 520px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.visual-features {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.visual-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.feature-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(62, 155, 148, 0.35);
+  border: 1px solid rgba(136, 201, 196, 0.5);
+  color: #cff0ea;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.visual-feature-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.visual-feature-item strong {
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.visual-feature-item span {
+  font-size: 0.85rem;
+  color: rgba(207, 240, 234, 0.85);
+}
+
+.visual-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: rgba(11, 39, 37, 0.55);
+  border: 1px solid rgba(136, 201, 196, 0.25);
+  border-radius: 12px;
+  font-size: 0.82rem;
+  color: #cff0ea;
+  margin-top: 8px;
+  width: fit-content;
+}
+
+/* ========================================================
+   Tarjeta de Registro (Register Card)
+   ======================================================== */
+.register-card {
+  max-width: 540px;
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(136, 201, 196, 0.38);
+  border-radius: 20px;
+  padding: 34px 30px;
+  box-shadow:
+    0 24px 50px rgba(11, 39, 37, 0.35),
+    0 4px 16px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  color: #173330;
+}
+
+.auth-card-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.auth-card-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #3e9b94;
+  margin: 0 0 6px 0;
+}
+
+.auth-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0b2725;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
+}
+
+.auth-card-subtitle {
+  font-size: 0.88rem;
+  color: #54716e;
+  margin: 0;
+}
+
+/* Alertas informativas */
+.alert-info {
+  background: #f0fdfa;
+  border: 1px solid #88c9c4;
+  color: #164d45;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* Botón de Google informativo */
+.btn-google {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  border: 1px solid #dcebe8;
+  border-radius: 10px;
+  padding: 0.72rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #173330;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.btn-google:hover {
+  background: #f4faf8;
+  border-color: #88c9c4;
+  box-shadow: 0 4px 12px rgba(62, 155, 148, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Divisor */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.25rem 0;
+  color: #8fa8a5;
+  font-size: 0.82rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #dcebe8;
+}
+
+.auth-divider span {
+  padding: 0 0.85rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #54716e;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #173330;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1.5px solid #c9dedb;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  color: #0b2725;
+  background: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+input:focus,
+select:focus {
+  border-color: #3e9b94;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(62, 155, 148, 0.25);
+}
+
+/* Grid de filas para inputs paralelos */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Alertas de edad y cajas especiales */
+.alert-warning {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  color: #92400e;
+  line-height: 1.45;
+}
+
+.minor-box {
+  background: #f4faf8;
+  border: 1.5px solid #88c9c4;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.minor-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #173330;
+  margin: 0;
+}
+
+.minor-desc {
+  font-size: 0.8rem;
+  color: #54716e;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Grupos de contraseña */
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-field-group label {
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-input-wrapper input {
+  padding-right: 42px !important;
+}
+
+.btn-toggle-eye {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #54716e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.btn-toggle-eye:hover {
+  color: #173330;
+  background: #f4faf8;
+}
+
+/* Checkbox Ley 1581 */
+.checkbox-container {
+  margin: 4px 0 6px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 0.84rem;
+  color: #173330;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.checkbox-label input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #3e9b94;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checkbox-label a {
+  color: #3e9b94;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.checkbox-label a:hover {
+  color: #173330;
+}
+
+/* Errores */
+.error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 9px 13px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Botón submit */
+.btn-submit {
+  width: 100%;
+  min-height: 48px;
+  border: none;
+  border-radius: 999px;
+  background: #3e9b94;
+  color: #ffffff;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(62, 155, 148, 0.35);
+  margin-top: 4px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #287e78;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(35, 110, 105, 0.4);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Footer switch */
+.auth-footer {
+  text-align: center;
+  margin: 18px 0 0 0;
+  font-size: 0.88rem;
+  color: #54716e;
+}
+
+.auth-footer a {
+  color: #3e9b94;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.auth-footer a:hover {
+  color: #173330;
+}
+
+/* ========================================================
+   Responsive Breakpoints
+   ======================================================== */
+@media (max-width: 960px) {
+  .auth-page-container {
+    padding: 32px 16px;
+    background-attachment: scroll;
+  }
+
+  .auth-split-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    gap: 0;
+  }
+
+  .auth-visual-panel {
+    display: none;
+  }
+
+  .register-card {
+    padding: 28px 20px;
+  }
+}
+
+@media (max-width: 540px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-page-container {
+    padding: 20px 12px;
+  }
+
+  .register-card {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .auth-card-title {
+    font-size: 1.4rem;
+  }
 }

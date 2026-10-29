@@ -59,7 +59,7 @@ h3 {
   gap: 32px;
   min-height: 76px;
   padding: 12px clamp(20px, 5vw, 76px);
-  background: #f7fbfaf2;
+  background: #99a721f2;
   border-bottom: 1px solid #dcebe7;
   backdrop-filter: blur(12px);
 }

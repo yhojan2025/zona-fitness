@@ -6,7 +6,15 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "server": "node server/src/server.js",
+    "db:setup": "node server/src/db/setup_db.js",
+    "db:migrate": "node server/src/db/migrate.js",
+    "db:test": "node server/tests/db.test.js",
+    "api:test": "node server/tests/api.test.js",
+    "phase3:test": "node server/tests/phase3_auth_consent.test.js",
+    "cart:test": "node server/tests/cart_orders.test.js",
+    "rbac:test": "node server/tests/rbac_roles.test.js"
   },
   "private": true,
   "packageManager": "npm@11.19.1",

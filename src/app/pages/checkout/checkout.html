@@ -1,0 +1,232 @@
+<section class="checkout-container">
+  <!-- Encabezado de página -->
+  <div class="checkout-header">
+    <div class="header-titles">
+      <span class="eyebrow">Finalizar Registro</span>
+      <h1 class="page-title">Confirmación y Pago</h1>
+    </div>
+    <a routerLink="/carrito" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Regresar al carrito
+    </a>
+  </div>
+
+  <!-- Alerta informativa al hacer clic en pasarelas en línea -->
+  <div *ngIf="informationalAlert" class="info-alert-modal" role="alert">
+    <div class="alert-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="16" x2="12" y2="12"/>
+        <line x1="12" y1="8" x2="12.01" y2="8"/>
+      </svg>
+    </div>
+    <div class="alert-body">
+      <strong>Información de Pago Electrónico</strong>
+      <p>{{ informationalAlert }}</p>
+    </div>
+    <button type="button" class="btn-close-alert" (click)="dismissAlert()" aria-label="Cerrar notificación">×</button>
+  </div>
+
+  <!-- Vista cuando el pedido fue generado exitosamente -->
+  <div *ngIf="createdOrder" class="order-success-card">
+    <div class="success-badge-icon">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    </div>
+    <span class="success-subtitle">¡Pedido Registrado con Éxito!</span>
+    <h2 class="order-id-display">Número de Pedido: <code>{{ createdOrder.order_number }}</code></h2>
+
+    <div class="order-details-box">
+      <div class="detail-row">
+        <span>Estado del pedido:</span>
+        <span class="badge-status-pending">Pendiente de pago en recepción</span>
+      </div>
+      <div class="detail-row">
+        <span>Total a cancelar:</span>
+        <strong class="total-amount">${{ createdOrder.total_amount | number:'1.0-0' }} COP</strong>
+      </div>
+      <div class="detail-row">
+        <span>Método preferido:</span>
+        <strong class="text-capitalize">{{ createdOrder.payment_method }}</strong>
+      </div>
+      <div class="detail-row">
+        <span>Fecha de registro:</span>
+        <span>{{ createdOrder.created_at | date:'medium' }}</span>
+      </div>
+    </div>
+
+    <div class="instructions-card">
+      <h3>Instrucciones de Activación y Pago</h3>
+      <ol>
+        <li>Presenta el código <strong>{{ createdOrder.order_number }}</strong> en la recepción de ZONA FITNESS.</li>
+        <li><strong>Dirección:</strong> Calle 84 # 47-22, Barrio El Golf, Barranquilla, Atlántico.</li>
+        <li>Realiza el pago con tu método de preferencia (efectivo, datáfono o transferencia directa verificada).</li>
+        <li>El equipo de recepción activará tu membresía o te entregará tus artículos de forma inmediata.</li>
+      </ol>
+    </div>
+
+    <div class="success-actions">
+      <a routerLink="/mi-cuenta" class="btn-primary-action">Ver Mis Pedidos en Mi Cuenta</a>
+      <a routerLink="/" class="btn-secondary-action">Volver al Inicio</a>
+    </div>
+  </div>
+
+  <!-- Formulario de Checkout cuando no se ha creado pedido aún -->
+  <div *ngIf="!createdOrder" class="checkout-layout">
+    <!-- Columna izquierda: Selección de método y notas -->
+    <div class="checkout-main-section">
+      <!-- Error general -->
+      <div *ngIf="errorMessage" class="error-banner">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Pasarelas de pago electrónico (Informativas) -->
+      <div class="payment-methods-card">
+        <h2 class="section-title">Pasarelas y Métodos de Pago</h2>
+        <p class="section-subtitle">
+          Selecciona tu método preferido. <em>Nota: Los pagos en línea están en integración y no realizan cobros automáticos en este momento.</em>
+        </p>
+
+        <div class="gateway-buttons-grid">
+          <button
+            type="button"
+            class="btn-gateway-info gateway-nequi"
+            (click)="handleOnlinePaymentClick('Nequi')"
+            aria-label="Información de pago con Nequi"
+          >
+            <span class="gateway-icon">🟣</span>
+            <span class="gateway-name">Pagar con Nequi</span>
+            <small class="gateway-tag">Próximamente en línea</small>
+          </button>
+
+          <button
+            type="button"
+            class="btn-gateway-info gateway-bancolombia"
+            (click)="handleOnlinePaymentClick('Bancolombia Transferencia')"
+            aria-label="Información de pago con Bancolombia"
+          >
+            <span class="gateway-icon">🟡</span>
+            <span class="gateway-name">Bancolombia</span>
+            <small class="gateway-tag">Próximamente en línea</small>
+          </button>
+
+          <button
+            type="button"
+            class="btn-gateway-info gateway-card"
+            (click)="handleOnlinePaymentClick('Tarjeta Débito / Crédito')"
+            aria-label="Información de pago con Tarjeta"
+          >
+            <span class="gateway-icon">💳</span>
+            <span class="gateway-name">Tarjeta Débito/Crédito</span>
+            <small class="gateway-tag">Próximamente en línea</small>
+          </button>
+        </div>
+
+        <div class="payment-selector-section">
+          <h3 class="method-select-title">Indica el método con el que cancelarás en recepción:</h3>
+
+          <div class="radio-options-list">
+            <label class="radio-option" [class.selected]="selectedPaymentMethod === 'nequi'">
+              <input type="radio" name="paymentMethod" value="nequi" [(ngModel)]="selectedPaymentMethod" />
+              <div class="radio-content">
+                <strong>Nequi (Transferencia o QR en sede)</strong>
+                <p>Transferencia a la cuenta autorizada de ZONA FITNESS al momento de tu visita.</p>
+              </div>
+            </label>
+
+            <label class="radio-option" [class.selected]="selectedPaymentMethod === 'bancolombia'">
+              <input type="radio" name="paymentMethod" value="bancolombia" [(ngModel)]="selectedPaymentMethod" />
+              <div class="radio-content">
+                <strong>Bancolombia (Transferencia o QR en sede)</strong>
+                <p>Pago mediante app Bancolombia en el punto de registro.</p>
+              </div>
+            </label>
+
+            <label class="radio-option" [class.selected]="selectedPaymentMethod === 'efectivo'">
+              <input type="radio" name="paymentMethod" value="efectivo" [(ngModel)]="selectedPaymentMethod" />
+              <div class="radio-content">
+                <strong>Efectivo en Recepción</strong>
+                <p>Pago en moneda local en caja durante el horario de atención.</p>
+              </div>
+            </label>
+
+            <label class="radio-option" [class.selected]="selectedPaymentMethod === 'tarjeta'">
+              <input type="radio" name="paymentMethod" value="tarjeta" [(ngModel)]="selectedPaymentMethod" />
+              <div class="radio-content">
+                <strong>Datáfono en Recepción</strong>
+                <p>Aceptamos tarjetas Visa, MasterCard y débito con chip en la recepción del gimnasio.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="order-notes-section">
+          <label for="orderNotes" class="notes-label">Observaciones adicionales (opcional):</label>
+          <textarea
+            id="orderNotes"
+            [(ngModel)]="notes"
+            rows="3"
+            class="notes-textarea"
+            placeholder="Horario estimado de llegada, plan seleccionado o requerimiento especial..."
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha: Resumen de artículos y confirmación -->
+    <div class="checkout-side-section">
+      <div class="order-summary-card">
+        <h2 class="summary-card-title">Resumen de tu Orden</h2>
+
+        <div class="summary-items-list">
+          <div *ngFor="let item of cartService.items()" class="summary-item-row">
+            <div class="item-name-qty">
+              <span class="qty-badge">{{ item.quantity }}x</span>
+              <span class="item-title">{{ item.name }}</span>
+            </div>
+            <div class="item-amount">
+              <span *ngIf="!item.price_unconfirmed && item.subtotal !== null">
+                ${{ item.subtotal | number:'1.0-0' }} COP
+              </span>
+              <span *ngIf="item.price_unconfirmed || item.subtotal === null" class="badge-unconfirmed">
+                Por confirmar
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-totals">
+          <div class="total-row">
+            <span>Total a Pagar en Recepción:</span>
+            <strong class="total-highlight">${{ cartService.total() | number:'1.0-0' }} COP</strong>
+          </div>
+        </div>
+
+        <div class="policy-reminder-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3e9b94" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <p>
+            Al crear el pedido, se registrará en estado <strong>pendiente</strong>. No se realizarán cargos a ninguna cuenta bancaria hasta que confirmes tu pago personalmente.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="btn-confirm-order"
+          (click)="submitOrder()"
+          [disabled]="isSubmitting || !cartService.canCheckout()"
+        >
+          <span *ngIf="!isSubmitting">Crear Pedido Pendiente</span>
+          <span *ngIf="isSubmitting">Registrando Pedido...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

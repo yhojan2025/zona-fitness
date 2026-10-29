@@ -67,4 +67,35 @@ describe('App', () => {
   it('hides the "Usuarios" link from non-admins', async () => {
     expect((await render('user')).querySelector('.session')?.textContent).not.toContain('Usuarios');
   });
+
+  it('toggles profile menu when clicking the profile trigger', async () => {
+    const auth = TestBed.inject(AuthService);
+    auth.token.set('abc');
+    auth.user.set({ id: 1, name: 'Carlos Pérez', email: 'carlos@test.com', role: 'user', is_active: true });
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const trigger = fixture.nativeElement.querySelector('.user-profile-trigger') as HTMLButtonElement;
+    expect(trigger).toBeTruthy();
+    expect(fixture.componentInstance.profileMenuOpen()).toBe(false);
+
+    trigger.click();
+    fixture.detectChanges();
+    expect(fixture.componentInstance.profileMenuOpen()).toBe(true);
+    expect(fixture.nativeElement.querySelector('.profile-dropdown-menu')).toBeTruthy();
+
+    trigger.click();
+    fixture.detectChanges();
+    expect(fixture.componentInstance.profileMenuOpen()).toBe(false);
+  });
+
+  it('closes profile menu on escape key', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.componentInstance.profileMenuOpen.set(true);
+    expect(fixture.componentInstance.profileMenuOpen()).toBe(true);
+
+    fixture.componentInstance.onEscapeKey();
+    expect(fixture.componentInstance.profileMenuOpen()).toBe(false);
+  });
 });

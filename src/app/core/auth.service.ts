@@ -3,7 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { LoginResponse, Role, User } from './models';
+import { LoginResponse, RegisterRequest, Role, User } from './models';
 
 const TOKEN_KEY = 'token';
 const USER_KEY = 'user';
@@ -27,8 +27,28 @@ export class AuthService {
       .pipe(tap((r) => this.setSession(r)));
   }
 
-  register(name: string, email: string, password: string) {
-    return this.http.post<User>(`${environment.apiUrl}/auth/register`, { name, email, password });
+  register(nameOrData: string | RegisterRequest, email?: string, password?: string) {
+    if (typeof nameOrData === 'object') {
+      return this.http.post<User>(`${environment.apiUrl}/auth/register`, nameOrData);
+    }
+    return this.http.post<User>(`${environment.apiUrl}/auth/register`, { name: nameOrData, email, password });
+  }
+
+  getProfile() {
+    return this.http.get<User>(`${environment.apiUrl}/auth/profile`);
+  }
+
+  updateProfile(data: Partial<User>) {
+    return this.http.patch<User>(`${environment.apiUrl}/auth/profile`, data).pipe(
+      tap((updated) => {
+        const current = this.user();
+        if (current) {
+          const merged = { ...current, ...updated };
+          this.user.set(merged);
+          localStorage.setItem(USER_KEY, JSON.stringify(merged));
+        }
+      }),
+    );
   }
 
   logout() {

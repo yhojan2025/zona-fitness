@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Priority, Role, Ticket, TicketStatus, User } from './models';
+import { Priority, Role, Ticket, TicketStatus, User, Plan, Product } from './models';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,14 @@ import { Priority, Role, Ticket, TicketStatus, User } from './models';
 export class ApiService {
   private http = inject(HttpClient);
   private url = environment.apiUrl;
+
+  plans() {
+    return this.http.get<Plan[]>(`${this.url}/plans`);
+  }
+
+  products() {
+    return this.http.get<Product[]>(`${this.url}/products`);
+  }
 
   tickets() {
     return this.http.get<Ticket[]>(`${this.url}/tickets`);

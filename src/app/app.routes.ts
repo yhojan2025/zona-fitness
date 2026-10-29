@@ -33,6 +33,35 @@ export const routes: Routes = [
     data: { section: 'products' },
     loadComponent: () => import('./pages/section-page/section-page').then((m) => m.SectionPage),
   },
+  {
+    path: 'politica-datos',
+    loadComponent: () =>
+      import('./pages/privacy-policy/privacy-policy').then((m) => m.PrivacyPolicy),
+  },
+  {
+    path: 'privacidad',
+    redirectTo: 'politica-datos',
+    pathMatch: 'full',
+  },
+  {
+    path: 'carrito',
+    loadComponent: () => import('./pages/cart/cart').then((m) => m.Cart),
+  },
+  {
+    path: 'checkout',
+    canActivate: [authGuard],
+    loadComponent: () => import('./pages/checkout/checkout').then((m) => m.Checkout),
+  },
+  {
+    path: 'mi-cuenta',
+    canActivate: [authGuard],
+    loadComponent: () => import('./pages/account/account').then((m) => m.Account),
+  },
+  {
+    path: 'mis-pedidos',
+    redirectTo: 'mi-cuenta',
+    pathMatch: 'full',
+  },
   { path: 'login', loadComponent: () => import('./pages/login/login').then((m) => m.Login) },
   {
     path: 'register',

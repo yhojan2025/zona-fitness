@@ -1,32 +1,291 @@
 <a class="skip-link" href="#main-content">Saltar al contenido</a>
 <header class="site-header">
-  <a class="brand" routerLink="/" aria-label="Zona Fitness, inicio">
-    <img class="brand-mark" src="/zona-fitness-icon.png" alt="" />
-    <span class="brand-wordmark" aria-hidden="true"><strong>ZONA</strong><span>FITNESS</span></span>
-  </a>
-  <nav class="primary-nav" aria-label="Navegación principal">
-    <a routerLink="/servicios" routerLinkActive="active" ariaCurrentWhenActive="page">Servicios</a>
-    <a routerLink="/planes" routerLinkActive="active" ariaCurrentWhenActive="page">Planes</a>
-    <a routerLink="/horarios" routerLinkActive="active" ariaCurrentWhenActive="page">Horarios</a>
-    <a routerLink="/espacio" routerLinkActive="active" ariaCurrentWhenActive="page">El espacio</a>
-    <a routerLink="/productos" routerLinkActive="active" ariaCurrentWhenActive="page">Productos</a>
-  </nav>
-  @if (auth.isLoggedIn()) {
-    <div class="session">
-      <a class="staff-link" routerLink="/tickets">Soporte</a>
-      @if (auth.hasRole('admin')) {
-        <a class="staff-link" routerLink="/users">Usuarios</a>
+  <div class="header-main-bar">
+    <!-- Logotipo y Nombre Oficial -->
+    <a class="brand" routerLink="/" (click)="closeAllMenus()" aria-label="Zona Fitness, inicio">
+      <img class="brand-mark" src="/zona-fitness-icon.png" alt="" />
+      <span class="brand-wordmark" aria-hidden="true"><strong>ZONA</strong><span>FITNESS</span></span>
+    </a>
+
+    <!-- Navegación de Escritorio -->
+    <nav class="primary-nav" aria-label="Navegación principal">
+      <a routerLink="/servicios" routerLinkActive="active" ariaCurrentWhenActive="page">Servicios</a>
+      <a routerLink="/planes" routerLinkActive="active" ariaCurrentWhenActive="page">Planes</a>
+      <a routerLink="/horarios" routerLinkActive="active" ariaCurrentWhenActive="page">Horarios</a>
+      <a routerLink="/espacio" routerLinkActive="active" ariaCurrentWhenActive="page">El espacio</a>
+      <a routerLink="/productos" routerLinkActive="active" ariaCurrentWhenActive="page">Productos</a>
+    </nav>
+
+    <!-- Controles de Cabecera: Carrito + Sesión + Menú Móvil -->
+    <div class="header-controls">
+      <!-- Icono y Contador de Carrito -->
+      <a routerLink="/carrito" (click)="closeAllMenus()" class="cart-nav-link" aria-label="Ver carrito de compras">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        @if (cart.count() > 0) {
+          <span class="cart-badge-count">{{ cart.count() }}</span>
+        }
+      </a>
+
+      <!-- Estado Autenticado -->
+      @if (auth.isLoggedIn()) {
+        <div class="session">
+          <!-- Enlaces rápidos de escritorio según ROL -->
+          @if (auth.hasRole('admin')) {
+            <a class="staff-link admin-quick-link" routerLink="/users" (click)="closeAllMenus()">Usuarios</a>
+          } @else {
+            <a class="staff-link user-quick-link" routerLink="/mi-cuenta" (click)="closeAllMenus()">Mi cuenta</a>
+          }
+          <a class="staff-link" routerLink="/tickets" (click)="closeAllMenus()">Soporte</a>
+
+          <!-- Pill disparador del Menú de Perfil Interactivo -->
+          <div class="profile-dropdown-wrapper">
+            <button
+              type="button"
+              class="user-profile-trigger"
+              (click)="toggleProfileMenu($event)"
+              [attr.aria-expanded]="profileMenuOpen()"
+              aria-haspopup="true"
+              aria-label="Opciones de perfil de usuario"
+            >
+              <span class="user-avatar-badge">{{ userInitials() }}</span>
+              <div class="user-profile-text">
+                <span class="session-name">{{ auth.user()?.name }}</span>
+                <small class="badge {{ auth.user()?.role }}">{{ auth.user()?.role }}</small>
+              </div>
+              <svg class="chevron-icon" [class.rotated]="profileMenuOpen()" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+
+            <!-- Menú Desplegable Profesional -->
+            @if (profileMenuOpen()) {
+              <div class="profile-dropdown-menu" role="menu" (click)="$event.stopPropagation()">
+                <!-- Encabezado del dropdown con datos del usuario y rol -->
+                <div class="dropdown-header">
+                  <div class="dropdown-avatar">{{ userInitials() }}</div>
+                  <div class="dropdown-user-details">
+                    <strong class="dropdown-user-name">{{ auth.user()?.name }}</strong>
+                    <span class="dropdown-user-email">{{ auth.user()?.email }}</span>
+                    <span class="dropdown-role-badge" [class.badge-admin-tag]="auth.hasRole('admin')" [class.badge-user-tag]="!auth.hasRole('admin')">
+                      {{ roleLabel() }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- Opciones diferenciadas por ROL -->
+                <div class="dropdown-section">
+                  <span class="dropdown-section-title">
+                    {{ auth.hasRole('admin') ? 'GESTIÓN ADMINISTRATIVA' : 'MI CUENTA FITNESS' }}
+                  </span>
+
+                  @if (auth.hasRole('admin')) {
+                    <!-- Opciones Exclusivas de Administrador -->
+                    <a class="dropdown-item" routerLink="/users" (click)="closeAllMenus()" role="menuitem">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                      <span>Gestión de Usuarios</span>
+                      <small class="tag-pill tag-admin">Admin</small>
+                    </a>
+
+                    <a class="dropdown-item" routerLink="/tickets" (click)="closeAllMenus()" role="menuitem">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                        <path d="M13 5v2"/>
+                        <path d="M13 17v2"/>
+                        <path d="M13 11v2"/>
+                      </svg>
+                      <span>Tickets de Soporte</span>
+                    </a>
+
+                    <a class="dropdown-item" routerLink="/mi-cuenta" (click)="closeAllMenus()" role="menuitem">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                      </svg>
+                      <span>Mi Perfil Administrativo</span>
+                    </a>
+                  } @else {
+                    <!-- Opciones de Usuario Normal / Socio -->
+                    <a class="dropdown-item" routerLink="/mi-cuenta" [queryParams]="{ tab: 'profile' }" (click)="closeAllMenus()" role="menuitem">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                      </svg>
+                      <span>Mis Datos Personales</span>
+                    </a>
+
+                    <a class="dropdown-item" routerLink="/mi-cuenta" [queryParams]="{ tab: 'orders' }" (click)="closeAllMenus()" role="menuitem">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                      </svg>
+                      <span>Mis Pedidos</span>
+                    </a>
+
+                    <a class="dropdown-item" routerLink="/mi-cuenta" [queryParams]="{ tab: 'memberships' }" (click)="closeAllMenus()" role="menuitem">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      <span>Mis Membresías</span>
+                    </a>
+
+                    <a class="dropdown-item" routerLink="/tickets" (click)="closeAllMenus()" role="menuitem">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                      </svg>
+                      <span>Centro de Ayuda / Soporte</span>
+                    </a>
+                  }
+
+                  <a class="dropdown-item" routerLink="/carrito" (click)="closeAllMenus()" role="menuitem">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"/>
+                      <circle cx="20" cy="21" r="1"/>
+                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span>Mi Carrito ({{ cart.count() }})</span>
+                  </a>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- Botón de Cerrar Sesión -->
+                <button type="button" class="dropdown-logout-btn" (click)="logoutAndClose()" role="menuitem">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                  </svg>
+                  <span>Cerrar Sesión</span>
+                </button>
+              </div>
+            }
+          </div>
+
+          <!-- Botón de salida rápido -->
+          <button class="button button-small button-outline btn-logout-nav" (click)="auth.logout()">Salir</button>
+        </div>
+      } @else {
+        <!-- Estado No Autenticado -->
+        <div class="guest-actions">
+          <a class="button button-small button-outline header-action" routerLink="/login" (click)="closeAllMenus()">
+            Acceso del equipo
+          </a>
+          <a class="button button-small button-primary btn-register-nav" routerLink="/register" (click)="closeAllMenus()">
+            Registrarse
+          </a>
+        </div>
       }
-      <span class="session-name">
-        {{ auth.user()?.name }}
-        <small class="badge {{ auth.user()?.role }}">{{ auth.user()?.role }}</small>
-      </span>
-      <button class="button button-small button-outline" (click)="auth.logout()">Salir</button>
+
+      <!-- Botón de Menú Hamburguesa Móvil -->
+      <button
+        type="button"
+        class="mobile-menu-toggle"
+        (click)="toggleMobileMenu()"
+        [attr.aria-expanded]="mobileMenuOpen()"
+        aria-label="Abrir menú de navegación"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          @if (mobileMenuOpen()) {
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          } @else {
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          }
+        </svg>
+      </button>
     </div>
-  } @else {
-    <a class="button button-small button-outline header-action" routerLink="/login"
-      >Acceso del equipo</a
-    >
+  </div>
+
+  <!-- Drawer para Dispositivos Móviles -->
+  @if (mobileMenuOpen()) {
+    <div class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menú de navegación móvil">
+      <nav class="mobile-nav-links">
+        @if (auth.isLoggedIn()) {
+          <!-- Tarjeta de usuario en móvil -->
+          <div class="mobile-user-card">
+            <span class="user-avatar-badge mobile-avatar">{{ userInitials() }}</span>
+            <div class="mobile-user-info">
+              <strong class="mobile-user-name">{{ auth.user()?.name }}</strong>
+              <span class="mobile-user-email">{{ auth.user()?.email }}</span>
+              <span class="dropdown-role-badge" [class.badge-admin-tag]="auth.hasRole('admin')" [class.badge-user-tag]="!auth.hasRole('admin')">
+                {{ roleLabel() }}
+              </span>
+            </div>
+          </div>
+
+          <div class="mobile-section-heading">
+            {{ auth.hasRole('admin') ? 'GESTIÓN ADMINISTRATIVA' : 'MI CUENTA' }}
+          </div>
+
+          @if (auth.hasRole('admin')) {
+            <a routerLink="/users" (click)="closeMobileMenu()" class="mobile-link">
+              🛡️ Gestión de Usuarios (Admin)
+            </a>
+            <a routerLink="/tickets" (click)="closeMobileMenu()" class="mobile-link">
+              🎫 Tickets de Soporte
+            </a>
+            <a routerLink="/mi-cuenta" (click)="closeMobileMenu()" class="mobile-link">
+              👤 Mi Perfil Administrativo
+            </a>
+          } @else {
+            <a routerLink="/mi-cuenta" [queryParams]="{ tab: 'profile' }" (click)="closeMobileMenu()" class="mobile-link">
+              👤 Mis Datos Personales
+            </a>
+            <a routerLink="/mi-cuenta" [queryParams]="{ tab: 'orders' }" (click)="closeMobileMenu()" class="mobile-link">
+              📦 Mis Pedidos
+            </a>
+            <a routerLink="/mi-cuenta" [queryParams]="{ tab: 'memberships' }" (click)="closeMobileMenu()" class="mobile-link">
+              💳 Mis Membresías
+            </a>
+            <a routerLink="/tickets" (click)="closeMobileMenu()" class="mobile-link">
+              🎫 Soporte y Consultas
+            </a>
+          }
+
+          <div class="mobile-divider"></div>
+        }
+
+        <div class="mobile-section-heading">NAVEGACIÓN DEL GIMNASIO</div>
+        <a routerLink="/servicios" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-link">Servicios</a>
+        <a routerLink="/planes" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-link">Planes de Entrenamiento</a>
+        <a routerLink="/horarios" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-link">Horarios</a>
+        <a routerLink="/espacio" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-link">El Espacio</a>
+        <a routerLink="/productos" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-link">Productos</a>
+        <a routerLink="/carrito" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-link cart-mobile-link">
+          🛒 Mi Carrito ({{ cart.count() }})
+        </a>
+
+        <div class="mobile-divider"></div>
+
+        @if (auth.isLoggedIn()) {
+          <button type="button" class="btn-mobile-logout" (click)="logoutAndClose()">
+            Cerrar Sesión
+          </button>
+        } @else {
+          <div class="mobile-guest-buttons">
+            <a routerLink="/login" (click)="closeMobileMenu()" class="btn-mobile-login">Iniciar Sesión</a>
+            <a routerLink="/register" (click)="closeMobileMenu()" class="btn-mobile-register">Crear Cuenta</a>
+          </div>
+        }
+      </nav>
+    </div>
   }
 </header>
 <main id="main-content"><router-outlet /></main>

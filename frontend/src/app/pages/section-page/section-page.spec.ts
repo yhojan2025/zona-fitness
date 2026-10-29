@@ -76,7 +76,7 @@ describe('dedicated navigation pages', () => {
       '.space-photo img[alt*="Fachada exterior"]',
     );
 
-    expect(facadeImage?.getAttribute('src')).toBe('/zona-fitness-fachada.svg');
+    expect(facadeImage?.getAttribute('src')).toBe('/zona-fitness-fachada.jpg');
     expect(harness.routeNativeElement?.textContent).toContain('La fachada de Zona Fitness');
     expect(harness.routeNativeElement?.textContent).toContain('vista exterior ilustrada');
   });
@@ -89,7 +89,7 @@ describe('dedicated navigation pages', () => {
     expect(page?.textContent).toContain('¿DÓNDE ENCONTRARNOS?');
     expect(page?.textContent).toContain('Cra. 7 # 7-7, Aguadas, Caldas');
     expect(page?.querySelector('.hours-location-photo img')?.getAttribute('alt')).toContain(
-      'Fachada exterior referencial',
+      'Fachada exterior generada',
     );
     expect(page?.querySelector('.hours-location-map iframe')?.getAttribute('title')).toContain(
       'Mapa de ubicación',
@@ -103,7 +103,7 @@ describe('dedicated navigation pages', () => {
 
     expect(page?.textContent).toContain('ACERCA DEL GYM');
     expect(page?.querySelector('.space-about-photo img')?.getAttribute('src')).toBe(
-      '/zona-fitness-atleta-hidratandose.svg',
+      '/zona-fitness-atleta-hidratandose.jpg',
     );
     expect(page?.querySelector('.space-about-photo img')?.getAttribute('alt')).toContain(
       'Atleta adulta hidratándose',

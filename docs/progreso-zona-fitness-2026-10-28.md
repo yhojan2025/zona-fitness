@@ -22,6 +22,10 @@ datos comerciales, legales, de infraestructura o de publicación.
   superpuesto, texto promocional neutral y aviso para reemplazar la fotografía por una
   imagen oficial cuando exista.
 - **Horarios:** lunes a sábado, 5:00–11:00 y 15:00–22:00.
+- **Ubicación:** la página `/horarios` incluye el bloque “¿Dónde encontrarnos?” con la
+  dirección `Cra. 7 # 7-7, Aguadas, Caldas`, enlace directo a Google Maps, mapa embebido
+  y fotografía referencial del local. La imagen debe reemplazarse por una fotografía
+  oficial cuando sea entregada y autorizada.
 - **Productos:** catálogo informativo de batidos de proteína, suplementación y artículos
   para entrenar; no hay carrito ni checkout.
 - **Redes:** maquetas locales de Instagram, Facebook y WhatsApp Business, identificadas

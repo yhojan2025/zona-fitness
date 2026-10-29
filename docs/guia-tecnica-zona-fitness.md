@@ -164,6 +164,10 @@ Los datos que alimentan carrusel, servicios, planes y galería están en
   `home.css:565-614`.
 - Contenido de la página dedicada `/horarios`:
   `section-page.ts:84-107`, `section-page.html:91-101`.
+- Bloque “¿Dónde encontrarnos?” con la dirección `Cra. 7 # 7-7, Aguadas, Caldas`,
+  enlace directo a Google Maps, mapa embebido y fotografía referencial del local:
+  `section-page.ts:107-123`, `section-page.html:101-135`,
+  `section-page.css:220-314`.
 
 ### 4.5 Galería y espacio
 
@@ -248,7 +252,7 @@ Los breadcrumbs y el CTA de regreso están en `section-page.html:3-14` y `135-14
 | Paleta principal `#CFF0EA`, `#88C9C4`, `#3E9B94` | `home.css:38-39`, `home.css:285-292`, `app.css:38-39` |
 | Botones redondeados y estilos globales           | `src/styles.css` y `home.css`                         |
 | Responsive de la landing                         | `home.css:965-1174`                                   |
-| Responsive de páginas de sección                 | `section-page.css:349-425`                            |
+| Responsive de páginas de sección                 | `section-page.css:533-610`                            |
 | Responsive del footer                            | `site-footer.css:99-128`                              |
 | Logo completo del footer                         | `public/zona-fitness-logo.png`                        |
 | Icono de navegación superior                     | `public/zona-fitness-icon.png`                        |

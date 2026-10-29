@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
@@ -22,6 +23,13 @@ interface SectionContent {
   description: string;
   cards: FeatureCard[];
   note: string;
+  location?: {
+    address: string;
+    mapUrl: string;
+    embedUrl: string;
+    image: string;
+    imageAlt: string;
+  };
 }
 
 const CONTENT: Record<SectionKey, SectionContent> = {
@@ -104,6 +112,15 @@ const CONTENT: Record<SectionKey, SectionContent> = {
       },
     ],
     note: 'Confirma directamente con Zona Fitness cualquier cambio u horario especial.',
+    location: {
+      address: 'Cra. 7 # 7-7, Aguadas, Caldas',
+      mapUrl:
+        'https://www.google.com/maps/place/Cra.+7+%23+7-7,+Aguadas,+Caldas/@5.613327,-75.4571107,19z/data=!3m1!4b1!4m6!3m5!1s0x8e46e3eb5d185a53:0x370767b119f68c8f!8m2!3d5.613327!4d-75.456467!16s%2Fg%2F11x7gw0hqn?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D',
+      embedUrl: 'https://www.google.com/maps?q=Cra.+7+%237-7,+Aguadas,+Caldas&output=embed',
+      image:
+        'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=85',
+      imageAlt: 'Interior referencial de un gimnasio',
+    },
   },
   space: {
     key: 'space',
@@ -189,6 +206,7 @@ function isSectionKey(value: unknown): value is SectionKey {
 })
 export class SectionPage {
   private readonly route = inject(ActivatedRoute);
+  private readonly sanitizer = inject(DomSanitizer);
 
   protected readonly page = toSignal(
     this.route.data.pipe(
@@ -196,4 +214,7 @@ export class SectionPage {
     ),
     { initialValue: CONTENT.services },
   );
+
+  protected readonly hoursMapEmbedUrl: SafeResourceUrl =
+    this.sanitizer.bypassSecurityTrustResourceUrl(CONTENT.hours.location?.embedUrl ?? '');
 }

@@ -107,6 +107,7 @@
   align-items: center;
   gap: 14px;
   margin-left: auto;
+  min-width: 0;
 }
 
 /* Icono y Badge de Carrito */
@@ -463,6 +464,7 @@
   border-radius: 8px;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
 }
 
 .mobile-menu-toggle:hover {
@@ -605,6 +607,11 @@ main {
 
 /* Media Queries */
 @media (max-width: 960px) {
+  .header-main-bar {
+    gap: 10px;
+    padding-inline: 16px;
+  }
+
   .primary-nav {
     display: none;
   }
@@ -625,6 +632,10 @@ main {
   }
 
   .guest-actions .btn-register-nav {
+    display: none;
+  }
+
+  .guest-actions .header-action {
     display: none;
   }
 }

@@ -112,11 +112,11 @@ const CONTENT: Record<SectionKey, SectionContent> = {
     description: 'Explora algunos espacios de entrenamiento y encuentra nuevas formas de moverte.',
     cards: [
       {
-        title: 'Un espacio para entrenar',
-        description: 'Conoce el entorno y sus equipos.',
+        title: 'La fachada de Zona Fitness',
+        description: 'Una vista exterior referencial del local.',
         image:
-          'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=960&q=85',
-        alt: 'Interior de un gimnasio con equipos de entrenamiento',
+          'https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=960&q=85',
+        alt: 'Fachada exterior referencial de un local moderno',
       },
       {
         title: 'Fuerza a tu manera',

@@ -68,4 +68,16 @@ describe('dedicated navigation pages', () => {
       );
     }
   });
+
+  it('shows an exterior reference image for the gym facade', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/espacio');
+    const facadeImage = harness.routeNativeElement?.querySelector(
+      '.space-photo img[alt*="Fachada exterior"]',
+    );
+
+    expect(facadeImage?.getAttribute('src')).toContain('photo-1561214115-f2f134cc4912');
+    expect(harness.routeNativeElement?.textContent).toContain('La fachada de Zona Fitness');
+    expect(harness.routeNativeElement?.textContent).toContain('vista exterior referencial');
+  });
 });

@@ -100,8 +100,8 @@ describe('dedicated navigation pages', () => {
     expect(page?.querySelector('.hours-location-map iframe')?.getAttribute('title')).toContain(
       'Zona Fitness',
     );
-    expect(page?.querySelector('.hours-location-photo img')?.getAttribute('alt')).toContain(
-      'Interior referencial',
+    expect(page?.querySelector('.hours-location-photo img')?.getAttribute('src')).toBe(
+      '/zona-fitness-fachada.jpg',
     );
     expect(page?.querySelector('.hours-location-heading a')?.getAttribute('href')).toContain(
       'google.com/maps',
@@ -126,6 +126,9 @@ describe('dedicated navigation pages', () => {
     );
     expect(page?.querySelector('.space-about-brand img')?.getAttribute('src')).toBe(
       '/zona-fitness-logo.png',
+    );
+    expect(page?.querySelector('.space-about-media > img')?.getAttribute('src')).toBe(
+      '/zona-fitness-atleta-hidratandose.jpg',
     );
     expect(page?.querySelector('.detail-description')?.textContent).toContain(
       'Explora algunos espacios',

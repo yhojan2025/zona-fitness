@@ -1,0 +1,399 @@
+<div class="home-page">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span></span> TU ESPACIO, TU RITMO</p>
+      <h1 id="hero-title">Un día a la vez.<br /><em>Más fuerte cada día.</em></h1>
+      <p class="hero-description">
+        Encuentra tu lugar para moverte, entrenar y hacer una pausa. En Zona Fitness, cada rutina
+        empieza contigo.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="#planes">Explorar planes <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="#servicios"
+          >Conoce el espacio <span aria-hidden="true">↓</span></a
+        >
+      </div>
+      <div class="hero-note">
+        <span class="note-icon" aria-hidden="true">✳</span>
+        <span>Tu bienestar no tiene que esperar al lunes.</span>
+      </div>
+    </div>
+    <div
+      class="hero-visual"
+      role="region"
+      aria-roledescription="carrusel"
+      aria-label="Galería de Zona Fitness"
+    >
+      @for (slide of heroSlides; track slide.image; let index = $index) {
+        @if (activeHeroIndex() === index) {
+          <img
+            class="hero-slide-image"
+            [src]="slide.image"
+            [alt]="slide.alt"
+            fetchpriority="high"
+          />
+        }
+      }
+      <div class="hero-caption" aria-live="polite">
+        <span class="caption-dot"></span>{{ activeHeroSlide().label }}
+      </div>
+      <div class="hero-stamp" aria-hidden="true">
+        <span>MOVE<br />YOUR<br />WAY</span>
+      </div>
+      <div class="hero-slider-controls" role="group" aria-label="Controles de la galería">
+        <button
+          class="slider-arrow"
+          type="button"
+          aria-label="Imagen anterior"
+          (click)="moveHeroSlide(-1)"
+        >
+          <span aria-hidden="true">←</span>
+        </button>
+        <div class="slider-dots" role="group" aria-label="Elegir imagen">
+          @for (slide of heroSlides; track slide.image; let index = $index) {
+            <button
+              class="slider-dot"
+              type="button"
+              [class.active]="activeHeroIndex() === index"
+              [attr.aria-label]="'Mostrar imagen ' + (index + 1) + ': ' + slide.label"
+              [attr.aria-pressed]="activeHeroIndex() === index"
+              (click)="showHeroSlide(index)"
+            ></button>
+          }
+        </div>
+        <button
+          class="slider-arrow"
+          type="button"
+          aria-label="Imagen siguiente"
+          (click)="moveHeroSlide(1)"
+        >
+          <span aria-hidden="true">→</span>
+        </button>
+        <button
+          class="slider-arrow slider-rotation"
+          type="button"
+          [attr.aria-label]="
+            heroRotationPaused() ? 'Reanudar rotación automática' : 'Pausar rotación automática'
+          "
+          (click)="toggleHeroRotation()"
+        >
+          <span aria-hidden="true">{{ heroRotationPaused() ? '▶' : 'Ⅱ' }}</span>
+        </button>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#servicios" aria-label="Desplazarse para conocer los servicios">
+      <span aria-hidden="true">↓</span>
+    </a>
+  </section>
+
+  <section class="intro section-wrap" id="servicios" aria-labelledby="services-title">
+    <div class="section-heading">
+      <p class="eyebrow">ENTRENA · RECUPERA · REPITE</p>
+      <h2 id="services-title">Todo lo que necesitas<br />para sentirte <em>en movimiento.</em></h2>
+      <p>Un espacio con distintas formas de acompañar tu rutina y ayudarte a encontrar tu ritmo.</p>
+    </div>
+    <div class="service-grid">
+      @for (service of services; track service.number) {
+        <article class="service-card">
+          <span class="service-number">{{ service.number }}</span>
+          <div class="service-icon" aria-hidden="true">
+            @switch (service.number) {
+              @case ('01') {
+                <svg viewBox="0 0 40 40"><path d="M5 22h5l4-10 7 18 5-12 3 4h6" /></svg>
+              }
+              @case ('02') {
+                <svg viewBox="0 0 40 40">
+                  <path d="M8 14v12m5-17v22m14-22v22m5-17v12M13 20h14" />
+                </svg>
+              }
+              @case ('03') {
+                <svg viewBox="0 0 40 40">
+                  <path d="M20 7v5m0 16v5M7 20h5m16 0h5M11 11l4 4m10 10 4 4m0-18-4 4m-10 10-4 4" />
+                  <circle cx="20" cy="20" r="6" />
+                </svg>
+              }
+              @default {
+                <svg viewBox="0 0 40 40">
+                  <path d="M7 25h26l-3 7H10l-3-7Zm4-5c0-5 4-9 9-9s9 4 9 9m-13-9V8m9 5 3-3" />
+                </svg>
+              }
+            }
+          </div>
+          <h3>{{ service.name }}</h3>
+          <p>{{ service.description }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="plans-section" id="planes" aria-labelledby="plans-title">
+    <div class="section-wrap">
+      <div class="plans-heading">
+        <div>
+          <p class="eyebrow">EMPIEZA COMO QUIERAS</p>
+          <h2 id="plans-title">Tu siguiente paso<br /><em>empieza aquí.</em></h2>
+        </div>
+        <p>
+          Elige la duración que mejor se adapta a ti. Consulta disponibilidad y valor directamente
+          con Zona Fitness.
+        </p>
+      </div>
+      <div class="plan-grid">
+        @for (plan of plans; track plan.name) {
+          <article class="plan-card" [class.plan-featured]="plan.featured">
+            @if (plan.featured) {
+              <span class="plan-tag">PARA SEGUIR AVANZANDO</span>
+            }
+            <p class="plan-name">{{ plan.name }}</p>
+            <p class="plan-duration">{{ plan.duration }}</p>
+            <p class="plan-detail">{{ plan.detail }}</p>
+            <div class="plan-price">Precio por confirmar</div>
+            <a class="plan-link" href="#inscripcion"
+              >Consultar este plan <span aria-hidden="true">↗</span></a
+            >
+          </article>
+        }
+      </div>
+      <p class="plans-note">
+        Los valores, condiciones y disponibilidad de cada plan deben confirmarse con el gimnasio.
+      </p>
+    </div>
+  </section>
+
+  <section class="schedule section-wrap" id="horarios" aria-labelledby="schedule-title">
+    <div class="schedule-copy">
+      <p class="eyebrow">UN HORARIO QUE TE ACOMPAÑA</p>
+      <h2 id="schedule-title">Hazle un espacio<br />a <em>tu bienestar.</em></h2>
+      <p>
+        Ven en el momento que mejor encaje con tu día. Estamos para acompañar tu rutina de lunes a
+        sábado.
+      </p>
+      <a class="text-link" href="#inscripcion"
+        >Conoce cómo empezar <span aria-hidden="true">↗</span></a
+      >
+    </div>
+    <div class="hours-card">
+      <div class="hours-heading">
+        <span class="hours-icon" aria-hidden="true">◷</span><span>HORARIO DE ATENCIÓN</span>
+      </div>
+      <div class="hours-row">
+        <span>Lunes a sábado</span><strong>5:00 a. m. – 11:00 a. m.</strong>
+      </div>
+      <div class="hours-row">
+        <span>Lunes a sábado</span><strong>3:00 p. m. – 10:00 p. m.</strong>
+      </div>
+      <p>Dos momentos del día para que encuentres el tuyo.</p>
+    </div>
+  </section>
+
+  <section class="gallery-section" id="espacio" aria-labelledby="gallery-title">
+    <div class="section-wrap">
+      <div class="gallery-heading">
+        <div>
+          <p class="eyebrow">CONOCE ZONA FITNESS</p>
+          <h2 id="gallery-title">Un espacio para<br /><em>cada versión de ti.</em></h2>
+        </div>
+        <p>
+          Cardio, pesas y momentos para recuperar. Aquí puedes construir una rutina que se sienta
+          tuya.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        @for (item of gallery; track item.label) {
+          <figure [class]="item.className">
+            <img [src]="item.image" [alt]="item.alt" loading="lazy" />
+            <figcaption>{{ item.label }} <span aria-hidden="true">↗</span></figcaption>
+          </figure>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="products section-wrap" aria-labelledby="products-title">
+    <div class="products-heading">
+      <p class="eyebrow">UN EXTRA PARA TU RUTINA</p>
+      <h2 id="products-title">Encuentra tus <em>favoritos.</em></h2>
+      <p>Conoce la selección informativa de productos disponibles en Zona Fitness.</p>
+    </div>
+    <div class="product-list">
+      <article class="product-item">
+        <span class="product-symbol" aria-hidden="true">01</span>
+        <div>
+          <h3>Batidos de proteína</h3>
+          <p>Alternativas para complementar tu día.</p>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </article>
+      <article class="product-item">
+        <span class="product-symbol" aria-hidden="true">02</span>
+        <div>
+          <h3>Suplementación</h3>
+          <p>Consulta referencias y disponibilidad.</p>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </article>
+      <article class="product-item">
+        <span class="product-symbol" aria-hidden="true">03</span>
+        <div>
+          <h3>Productos para entrenar</h3>
+          <p>Accesorios y básicos para acompañarte.</p>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </article>
+    </div>
+    <a class="button product-catalog-link" routerLink="/productos">
+      Explorar productos <span aria-hidden="true">↗</span>
+    </a>
+    <p class="product-note">
+      La información no reemplaza la orientación de un profesional de la salud. Consulta la
+      disponibilidad directamente con el gimnasio.
+    </p>
+  </section>
+
+  <section class="join-section" id="inscripcion" aria-labelledby="join-title">
+    <div class="join-content">
+      <p class="eyebrow">TU PRÓXIMO PASO</p>
+      <h2 id="join-title">Empieza por<br /><em>elegir moverte.</em></h2>
+      <p>
+        Consulta directamente con Zona Fitness el precio de los planes, sus condiciones y cómo
+        inscribirte.
+      </p>
+      <div class="payment-box">
+        <span class="payment-icon" aria-hidden="true">↗</span>
+        <div>
+          <strong>Medios de pago informativos</strong>
+          <p>
+            Se aceptan Nequi y Bancolombia. Confirma los datos oficiales de pago directamente con
+            Zona Fitness antes de realizar una transferencia.
+          </p>
+        </div>
+      </div>
+      <p class="age-note">
+        <strong>Edad mínima:</strong> 14 años. La inscripción de personas menores de edad podría
+        requerir autorización o acompañamiento de acudiente, de acuerdo con las condiciones que
+        confirme el gimnasio.
+      </p>
+    </div>
+    <div class="join-art" aria-hidden="true">
+      <div class="art-circle"></div>
+      <div class="art-word">MOVE<br />WITH<br /><span>INTENT</span></div>
+      <div class="art-mark">ZF</div>
+    </div>
+  </section>
+
+  <section class="social-section" id="redes" aria-labelledby="social-title">
+    <div class="social-content">
+      <div>
+        <p class="eyebrow">SIGUE EN MOVIMIENTO</p>
+        <h2 id="social-title">Zona Fitness <em>en redes.</em></h2>
+      </div>
+      @if (socialLinks.length > 0) {
+        <nav class="social-links" aria-label="Redes sociales oficiales">
+          @for (social of socialLinks; track social.name) {
+            <a [href]="social.url" target="_blank" rel="noopener noreferrer">
+              {{ social.name }} <span aria-hidden="true">↗</span>
+            </a>
+          }
+        </nav>
+      } @else {
+        <p class="social-note">
+          Los perfiles oficiales de Zona Fitness se añadirán cuando el gimnasio confirme sus
+          enlaces.
+        </p>
+      }
+    </div>
+    <div class="social-prototypes section-wrap">
+      <article class="social-prototype-card">
+        <img
+          src="/redes/assets/ig_post_3.jpg"
+          alt="Ejemplo visual de una publicación para Instagram"
+          loading="lazy"
+        />
+        <div class="social-prototype-info">
+          <p class="prototype-label">
+            <svg class="social-platform-icon instagram-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle class="icon-dot" cx="17.5" cy="6.5" r="1" />
+            </svg>
+            Instagram · publicaciones de ejemplo
+          </p>
+          <h3>Inspírate para moverte</h3>
+          <p>
+            Visita las redes de Zona Fitness para descubrir ideas, conocer el espacio y seguir sus
+            novedades.
+          </p>
+          <div class="social-sample-gallery" aria-label="Ejemplos de publicaciones de Instagram">
+            <img
+              src="/redes/assets/ig_post_1.jpg"
+              alt="Ejemplo de contenido de entrenamiento"
+              loading="lazy"
+            />
+            <img
+              src="/redes/assets/ig_post_5.jpg"
+              alt="Ejemplo de contenido sobre bienestar"
+              loading="lazy"
+            />
+            <img
+              src="/redes/assets/ig_post_8.jpg"
+              alt="Ejemplo de contenido motivacional"
+              loading="lazy"
+            />
+          </div>
+          <a href="/redes/instagram.html"
+            >Visitar Instagram (maqueta) <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </article>
+      <article class="social-prototype-card">
+        <img
+          src="/redes/assets/fb_cover.jpg"
+          alt="Ejemplo visual de una portada para Facebook"
+          loading="lazy"
+        />
+        <div class="social-prototype-info">
+          <p class="prototype-label">
+            <svg class="social-platform-icon facebook-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8h3.4Z"
+              />
+            </svg>
+            Facebook · publicaciones de ejemplo
+          </p>
+          <h3>Descubre Zona Fitness</h3>
+          <p>
+            Visita las redes sociales de Zona Fitness para ver imágenes del gimnasio y enterarte de
+            sus novedades.
+          </p>
+          <div class="social-sample-gallery" aria-label="Ejemplos de publicaciones de Facebook">
+            <img
+              src="/redes/assets/fb_post.jpg"
+              alt="Ejemplo de publicación de Zona Fitness"
+              loading="lazy"
+            />
+            <img
+              src="/redes/assets/ig_post_3.jpg"
+              alt="Ejemplo de publicación sobre cardio"
+              loading="lazy"
+            />
+            <img
+              src="/redes/assets/ig_post_6.jpg"
+              alt="Ejemplo de publicación motivacional"
+              loading="lazy"
+            />
+          </div>
+          <a href="/redes/facebook.html"
+            >Visitar Facebook (maqueta) <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </article>
+    </div>
+    <p class="social-prototype-disclaimer section-wrap">
+      Estas son maquetas visuales locales, no perfiles oficiales. Sus nombres, contenidos y métricas
+      no representan cuentas existentes; los enlaces oficiales se publicarán cuando el gimnasio los
+      confirme.
+    </p>
+  </section>
+
+  <app-site-footer />
+</div>

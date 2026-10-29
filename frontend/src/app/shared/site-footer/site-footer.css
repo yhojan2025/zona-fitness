@@ -1,0 +1,127 @@
+:host {
+  display: block;
+}
+
+.site-footer {
+  padding: 34px clamp(24px, 7vw, 100px) 18px;
+  background: #e8f4f0;
+  color: #254b48;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(190px, 1fr) minmax(280px, 1.4fr) minmax(190px, 1fr);
+  align-items: center;
+  gap: 34px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.footer-branding {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+}
+
+.footer-brand {
+  display: inline-flex;
+  width: min(100%, 220px);
+  border-radius: 9px;
+  text-decoration: none;
+}
+
+.footer-brand:focus-visible,
+.footer-navigation a:focus-visible,
+.support-link:focus-visible {
+  outline: 3px solid #286d68;
+  outline-offset: 4px;
+}
+
+.footer-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 9px;
+  object-fit: contain;
+}
+
+.footer-branding p,
+.footer-contact p {
+  margin: 0;
+  color: #456260;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.footer-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 22px;
+}
+
+.footer-navigation a,
+.support-link {
+  color: #365e5a;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-navigation a:hover,
+.support-link:hover {
+  color: #075d60;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.footer-contact {
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+  text-align: right;
+}
+
+.footer-bottom {
+  max-width: 1440px;
+  margin: 24px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid #cfe2dd;
+  text-align: center;
+}
+
+.copyright {
+  color: #456260;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .site-footer {
+    padding: 30px 22px 18px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 22px;
+  }
+
+  .footer-branding {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .footer-navigation {
+    gap: 12px 18px;
+  }
+
+  .footer-contact {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .footer-bottom {
+    margin-top: 22px;
+  }
+}

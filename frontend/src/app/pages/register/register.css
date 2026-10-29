@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.auth-card {
+  max-width: 380px;
+  margin: 48px auto;
+}

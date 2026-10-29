@@ -1,0 +1,502 @@
+.detail-page {
+  min-height: calc(100vh - 76px);
+  padding: 38px 0 82px;
+  background: radial-gradient(ellipse at 92% 0, #ffffffa8, transparent 32rem), #edf6f3;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #77918e;
+  font-size: 0.8rem;
+}
+
+.breadcrumbs a {
+  color: #3e817b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.detail-heading {
+  max-width: 760px;
+  padding: 58px 0 48px;
+}
+
+.detail-heading .eyebrow {
+  margin-bottom: 15px;
+}
+
+.detail-heading h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.7rem, 6vw, 4.7rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+}
+
+.detail-description {
+  max-width: 620px;
+  margin: 20px 0 0;
+  color: #607a77;
+  font-size: 1.04rem;
+  line-height: 1.75;
+}
+
+.detail-cards {
+  display: grid;
+  gap: 16px;
+}
+
+.service-cards,
+.plan-cards {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.product-cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.detail-card {
+  position: relative;
+  min-height: 230px;
+  padding: 26px;
+  border: 1px solid #dcebe8;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 36px #164d450a;
+}
+
+.card-index {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: #93b3af;
+  font:
+    600 0.75rem 'Montserrat',
+    sans-serif;
+}
+
+.detail-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 28px;
+  border-radius: 16px;
+  background: #e7f6f2;
+  color: #3e817b;
+  font:
+    600 1.7rem 'Montserrat',
+    sans-serif;
+}
+
+.detail-card h2 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+}
+
+.detail-card > p {
+  margin: 0;
+  color: #67817e;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.plan-detail-card {
+  min-height: 330px;
+  padding: 25px 22px;
+}
+
+.plan-label {
+  margin: 0 0 12px !important;
+  color: #3e817b !important;
+  font-size: 0.73rem !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.plan-detail-card h2 {
+  font-size: 1.8rem;
+}
+
+.plan-detail-card .plan-description {
+  min-height: 60px;
+  margin-top: 12px;
+}
+
+.plan-detail-card .plan-price {
+  padding-top: 15px;
+  border-top: 1px solid #e3efed;
+  font-size: 0.78rem;
+}
+
+.plan-action {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 14px;
+  padding: 0 12px;
+  font-size: 0.76rem;
+}
+
+.hours-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hours-detail-card {
+  min-height: auto;
+  padding: 32px;
+  background: #e8f4f0;
+  border-color: #d6e9e4;
+}
+
+.hours-detail-card .detail-icon {
+  background: #fff;
+}
+
+.hours-detail-card h2 {
+  font-size: 1.5rem;
+}
+
+.hours-time {
+  margin-top: 10px !important;
+  color: #163b39 !important;
+  font:
+    600 clamp(1.4rem, 3vw, 2.1rem) 'Montserrat',
+    sans-serif !important;
+  letter-spacing: -0.04em;
+}
+
+.hours-location {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr);
+  gap: 24px;
+  margin-top: 32px;
+  padding: 28px;
+  border: 1px solid #dcebe8;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.hours-location-heading h2 {
+  margin: 0 0 10px;
+  font-size: 1.7rem;
+  letter-spacing: -0.04em;
+}
+
+.hours-location-heading > p:not(.eyebrow) {
+  margin: 0 0 20px;
+  color: #607a77;
+  line-height: 1.6;
+}
+
+.hours-location-media {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hours-location-photo,
+.hours-location-map {
+  min-height: 270px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #dcebe8;
+}
+
+.hours-location-photo {
+  position: relative;
+}
+
+.hours-location-photo img,
+.hours-location-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 270px;
+  border: 0;
+  object-fit: cover;
+}
+
+.hours-location-photo figcaption {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fffffff2;
+  color: #456b67;
+  font-size: 0.76rem;
+}
+
+.space-gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 16px;
+}
+
+.product-detail-card {
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.product-detail-card > img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.product-card-content {
+  padding: 24px;
+}
+
+.product-card-content h2 {
+  margin-bottom: 10px;
+}
+
+.product-card-content > p {
+  min-height: 86px;
+  margin: 0;
+  color: #67817e;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.product-card-content .text-link {
+  display: inline-block;
+  margin-top: 18px;
+  color: #286d68;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.space-photo {
+  position: relative;
+  min-height: 320px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #dcebe8;
+}
+
+.space-photo:first-child {
+  min-height: 410px;
+  grid-row: span 2;
+}
+
+.space-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.space-photo:hover img {
+  transform: scale(1.035);
+}
+
+.space-photo figcaption {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #fff;
+  color: #254b48;
+}
+
+.space-photo figcaption span {
+  color: #67817e;
+  font-size: 0.8rem;
+}
+
+.space-about {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 24px;
+  align-items: center;
+  margin-top: 32px;
+  padding: 28px;
+  border: 1px solid #dcebe8;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.space-about-copy h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  letter-spacing: -0.05em;
+}
+
+.space-about-copy > p:not(.eyebrow) {
+  max-width: 470px;
+  margin: 0;
+  color: #607a77;
+  line-height: 1.75;
+}
+
+.space-about-photo {
+  min-height: 280px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #dcebe8;
+}
+
+.space-about-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+}
+
+.detail-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 18px 20px;
+  border: 1px solid #dcebe8;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.note-mark {
+  display: grid;
+  flex: 0 0 23px;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: #e7f6f2;
+  color: #286d68;
+  font-weight: 700;
+}
+
+.detail-note p {
+  margin: 0;
+  color: #607a77;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.detail-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+@media (max-width: 900px) {
+  .service-cards,
+  .plan-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .space-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .space-photo:first-child {
+    min-height: 320px;
+    grid-column: span 2;
+    grid-row: auto;
+  }
+
+  .hours-location {
+    grid-template-columns: 1fr;
+  }
+
+  .space-about {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .detail-page {
+    padding: 25px 0 60px;
+  }
+
+  .section-wrap {
+    width: calc(100% - 40px);
+  }
+
+  .detail-heading {
+    padding: 42px 0 30px;
+  }
+
+  .detail-heading h1 {
+    font-size: 2.6rem;
+  }
+
+  .detail-description {
+    font-size: 0.95rem;
+  }
+
+  .service-cards,
+  .plan-cards,
+  .hours-cards,
+  .space-gallery,
+  .product-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card,
+  .plan-detail-card {
+    min-height: auto;
+  }
+
+  .service-card {
+    min-height: 210px;
+  }
+
+  .plan-detail-card .plan-description {
+    min-height: auto;
+  }
+
+  .space-photo,
+  .space-photo:first-child {
+    min-height: 270px;
+    grid-column: auto;
+  }
+
+  .product-card-content > p {
+    min-height: 0;
+  }
+
+  .detail-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hours-location {
+    padding: 20px;
+  }
+
+  .hours-location-media {
+    grid-template-columns: 1fr;
+  }
+
+  .space-about {
+    padding: 20px;
+  }
+}

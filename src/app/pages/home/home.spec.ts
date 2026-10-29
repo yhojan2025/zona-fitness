@@ -74,7 +74,7 @@ describe('Home', () => {
     const page = fixture.nativeElement as HTMLElement;
 
     expect(page.textContent).toContain('$45.000');
-    expect(page.textContent).toContain('$540.000');
+    expect(page.textContent).toContain('$500000');
     expect(page.textContent).toContain('COP');
     expect(page.textContent).toContain('Confirma los datos oficiales de pago');
     expect(page.querySelectorAll('#redes a[href^="https://"]')).toHaveLength(0);

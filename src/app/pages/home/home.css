@@ -560,6 +560,22 @@ h2 em {
   font-size: 0.7rem;
   font-weight: 600;
 }
+.btn-comprar-plan {
+  width: 100%;
+  margin-top: 14px;
+  background: var(--teal, #3e9b94);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.btn-comprar-plan:hover {
+  background: #287e78;
+  transform: translateY(-2px);
+}
 .plan-link {
   display: flex;
   justify-content: space-between;
@@ -1152,7 +1168,23 @@ h2 em {
     min-height: 28px;
     font-size: 0.5rem;
   }
-  .plan-link {
+  .btn-comprar-plan {
+  width: 100%;
+  margin-top: 14px;
+  background: var(--teal, #3e9b94);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.btn-comprar-plan:hover {
+  background: #287e78;
+  transform: translateY(-2px);
+}
+.plan-link {
     gap: 8px;
     font-size: 0.73rem;
   }

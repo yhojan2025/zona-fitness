@@ -57,6 +57,22 @@ router.get('/opening-hours', async (req, res) => {
 });
 
 // ====================================================================
+// 2.1 CUENTAS BANCARIAS OFICIALES (Públicas para proceso de transferencia)
+// ====================================================================
+router.get('/bank-accounts', async (req, res) => {
+  const pool = getAppPool();
+  try {
+    const result = await pool.query(
+      'SELECT id, bank_name, account_type, account_number, account_holder, holder_document, instructions FROM bank_accounts WHERE is_active = true ORDER BY id ASC'
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Error al consultar cuentas bancarias:', err.message);
+    res.status(500).json({ error: 'Error al consultar cuentas bancarias' });
+  }
+});
+
+// ====================================================================
 // 3. SOCIOS / CLIENTES (MEMBERS)
 // ====================================================================
 router.get('/members', authenticateToken, requireRole('admin', 'agent'), async (req, res) => {

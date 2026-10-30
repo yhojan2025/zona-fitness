@@ -37,42 +37,147 @@
         <polyline points="22 4 12 14.01 9 11.01"/>
       </svg>
     </div>
-    <span class="success-subtitle">¡Pedido Registrado con Éxito!</span>
-    <h2 class="order-id-display">Número de Pedido: <code>{{ createdOrder.order_number }}</code></h2>
 
-    <div class="order-details-box">
-      <div class="detail-row">
-        <span>Estado del pedido:</span>
-        <span class="badge-status-pending">Pendiente de pago en recepción</span>
-      </div>
-      <div class="detail-row">
-        <span>Total a cancelar:</span>
-        <strong class="total-amount">${{ createdOrder.total_amount | number:'1.0-0' }} COP</strong>
-      </div>
-      <div class="detail-row">
-        <span>Método preferido:</span>
-        <strong class="text-capitalize">{{ createdOrder.payment_method }}</strong>
-      </div>
-      <div class="detail-row">
-        <span>Fecha de registro:</span>
-        <span>{{ createdOrder.created_at | date:'medium' }}</span>
-      </div>
-    </div>
+    <!-- CASO 1: PAGO POR TRANSFERENCIA CON COMPROBANTE PENDIENTE DE VERIFICACIÓN -->
+    <ng-container *ngIf="createdOrder.payment_method === 'transferencia' || transferResult; else nonTransferSuccessTpl">
+      <div class="verification-badge-tag">PAGO PENDIENTE DE VERIFICACIÓN ADMINISTRATIVA</div>
+      <span class="success-subtitle">¡Comprobante Registrado con Éxito!</span>
+      <h2 class="order-id-display">Número de Pedido: <code>{{ createdOrder.order_number }}</code></h2>
 
-    <div class="instructions-card">
-      <h3>Instrucciones de Activación y Pago</h3>
-      <ol>
-        <li>Presenta el código <strong>{{ createdOrder.order_number }}</strong> en la recepción de ZONA FITNESS.</li>
-        <li><strong>Dirección:</strong> Calle 84 # 47-22, Barrio El Golf, Barranquilla, Atlántico.</li>
-        <li>Realiza el pago con tu método de preferencia (efectivo, datáfono o transferencia directa verificada).</li>
-        <li>El equipo de recepción activará tu membresía o te entregará tus artículos de forma inmediata.</li>
-      </ol>
-    </div>
+      <!-- MENSAJE OFICIAL OBLIGATORIO -->
+      <div class="transfer-notice-banner" role="alert">
+        <div class="banner-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <p class="banner-text">
+          Tu comprobante fue recibido correctamente. Tu pago está pendiente de verificación por parte del administrador. Tu membresía se activará una vez confirmado el pago.
+        </p>
+      </div>
 
-    <div class="success-actions">
-      <a routerLink="/mi-cuenta" class="btn-primary-action">Ver Mis Pedidos en Mi Cuenta</a>
-      <a routerLink="/" class="btn-secondary-action">Volver al Inicio</a>
-    </div>
+      <div class="order-details-box">
+        <div class="detail-row">
+          <span>Estado del pedido:</span>
+          <span class="badge-status-pending">Pendiente de Verificación</span>
+        </div>
+        <div class="detail-row">
+          <span>Total transferido:</span>
+          <strong class="total-amount">${{ createdOrder.total_amount | number:'1.0-0' }} COP</strong>
+        </div>
+        <div class="detail-row">
+          <span>Método de pago:</span>
+          <strong>Transferencia Bancaria con Comprobante</strong>
+        </div>
+        <div class="detail-row">
+          <span>Estado del pago:</span>
+          <span class="badge-status-pending">Pendiente de revisión administrativa</span>
+        </div>
+        <div class="detail-row">
+          <span>Activación de membresía:</span>
+          <span class="text-muted">Se habilitará automáticamente al ser aprobado por recepción</span>
+        </div>
+        <div class="detail-row">
+          <span>Fecha de recepción:</span>
+          <span>{{ createdOrder.created_at | date:'medium' }}</span>
+        </div>
+      </div>
+
+      <div class="instructions-card">
+        <h3>¿Qué sucede a continuación?</h3>
+        <ol>
+          <li>El equipo administrativo de <strong>ZONA FITNESS</strong> cotejará los datos bancarios y el comprobante adjunto.</li>
+          <li>Una vez verificado el ingreso del dinero, el estado pasará a <strong>Aprobado</strong> y tu membresía quedará activa de inmediato.</li>
+          <li>Puedes consultar en todo momento el avance de tu verificación desde la sección <strong>Mi Cuenta &gt; Mis Pedidos</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="success-actions">
+        <a routerLink="/mi-cuenta" [queryParams]="{ tab: 'orders' }" class="btn-primary-action">Ver Mis Pedidos en Mi Cuenta</a>
+        <a routerLink="/" class="btn-secondary-action">Volver al Inicio</a>
+      </div>
+    </ng-container>
+
+    <!-- CASO 2: SIMULACIÓN O PEDIDO NORMAL -->
+    <ng-template #nonTransferSuccessTpl>
+      <ng-container *ngIf="createdOrder.payment_method === 'simulacion' || simulatedPurchaseResult; else pendingOrderTpl">
+        <div class="simulated-badge-tag">SIMULACIÓN — SIN COBRO REAL</div>
+        <span class="success-subtitle">¡Compra Simulada Exitosa!</span>
+        <h2 class="order-id-display">Número de Pedido: <code>{{ createdOrder.order_number }}</code></h2>
+
+        <div class="order-details-box">
+          <div class="detail-row">
+            <span>Estado del pedido:</span>
+            <span class="badge-status-approved">Aprobado y Verificado</span>
+          </div>
+          <div class="detail-row">
+            <span>Total registrado:</span>
+            <strong class="total-amount">${{ createdOrder.total_amount | number:'1.0-0' }} COP</strong>
+          </div>
+          <div class="detail-row">
+            <span>Estado del pago:</span>
+            <strong class="text-simulated">SIMULADO — SIN COBRO REAL</strong>
+          </div>
+          <div class="detail-row">
+            <span>Membresía activada:</span>
+            <strong class="badge-status-active">CONFIRMADA EN TU PERFIL</strong>
+          </div>
+          <div class="detail-row">
+            <span>Fecha de activación:</span>
+            <span>{{ createdOrder.created_at | date:'medium' }}</span>
+          </div>
+        </div>
+
+        <div class="instructions-card instructions-simulated">
+          <h3>Activación Inmediata de Membresía</h3>
+          <p>Tu membresía ha sido registrada y activada en el sistema de ZONA FITNESS mediante el proceso de compra simulada. Puedes verificar su vigencia, fecha de expiración y beneficios directamente en tu perfil.</p>
+        </div>
+
+        <div class="success-actions">
+          <a routerLink="/mi-cuenta" [queryParams]="{ tab: 'memberships' }" class="btn-primary-action">Ver Mi Membresía Activa</a>
+          <a routerLink="/" class="btn-secondary-action">Volver al Inicio</a>
+        </div>
+      </ng-container>
+
+      <ng-template #pendingOrderTpl>
+        <span class="success-subtitle">¡Pedido Registrado con Éxito!</span>
+        <h2 class="order-id-display">Número de Pedido: <code>{{ createdOrder.order_number }}</code></h2>
+
+        <div class="order-details-box">
+          <div class="detail-row">
+            <span>Estado del pedido:</span>
+            <span class="badge-status-pending">Pendiente de pago en recepción</span>
+          </div>
+          <div class="detail-row">
+            <span>Total a cancelar:</span>
+            <strong class="total-amount">${{ createdOrder.total_amount | number:'1.0-0' }} COP</strong>
+          </div>
+          <div class="detail-row">
+            <span>Método preferido:</span>
+            <strong class="text-capitalize">{{ createdOrder.payment_method }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Fecha de registro:</span>
+            <span>{{ createdOrder.created_at | date:'medium' }}</span>
+          </div>
+        </div>
+
+        <div class="instructions-card">
+          <h3>Instrucciones de Activación y Pago</h3>
+          <ol>
+            <li>Presenta el código <strong>{{ createdOrder.order_number }}</strong> en la recepción de ZONA FITNESS.</li>
+            <li><strong>Dirección:</strong> Cra. 7 # 7-7, Aguadas, Caldas.</li>
+            <li>Realiza el pago con tu método de preferencia (efectivo, datáfono o transferencia directa).</li>
+            <li>El equipo de recepción activará tu membresía o te entregará tus artículos de forma inmediata.</li>
+          </ol>
+        </div>
+
+        <div class="success-actions">
+          <a routerLink="/mi-cuenta" class="btn-primary-action">Ver Mis Pedidos en Mi Cuenta</a>
+          <a routerLink="/" class="btn-secondary-action">Volver al Inicio</a>
+        </div>
+      </ng-template>
+    </ng-template>
   </div>
 
   <!-- Formulario de Checkout cuando no se ha creado pedido aún -->
@@ -86,81 +191,130 @@
 
       <!-- Pasarelas de pago electrónico (Informativas) -->
       <div class="payment-methods-card">
-        <h2 class="section-title">Pasarelas y Métodos de Pago</h2>
+        <h2 class="section-title">Métodos de Pago Oficiales</h2>
         <p class="section-subtitle">
-          Selecciona tu método preferido. <em>Nota: Los pagos en línea están en integración y no realizan cobros automáticos en este momento.</em>
+          Selecciona tu forma de pago. Para transferencias directas por banco o billetera digital, adjunta la foto o captura del comprobante para verificación administrativa.
         </p>
 
-        <div class="gateway-buttons-grid">
-          <button
-            type="button"
-            class="btn-gateway-info gateway-nequi"
-            (click)="handleOnlinePaymentClick('Nequi')"
-            aria-label="Información de pago con Nequi"
-          >
-            <span class="gateway-icon">🟣</span>
-            <span class="gateway-name">Pagar con Nequi</span>
-            <small class="gateway-tag">Próximamente en línea</small>
-          </button>
-
-          <button
-            type="button"
-            class="btn-gateway-info gateway-bancolombia"
-            (click)="handleOnlinePaymentClick('Bancolombia Transferencia')"
-            aria-label="Información de pago con Bancolombia"
-          >
-            <span class="gateway-icon">🟡</span>
-            <span class="gateway-name">Bancolombia</span>
-            <small class="gateway-tag">Próximamente en línea</small>
-          </button>
-
-          <button
-            type="button"
-            class="btn-gateway-info gateway-card"
-            (click)="handleOnlinePaymentClick('Tarjeta Débito / Crédito')"
-            aria-label="Información de pago con Tarjeta"
-          >
-            <span class="gateway-icon">💳</span>
-            <span class="gateway-name">Tarjeta Débito/Crédito</span>
-            <small class="gateway-tag">Próximamente en línea</small>
-          </button>
-        </div>
-
         <div class="payment-selector-section">
-          <h3 class="method-select-title">Indica el método con el que cancelarás en recepción:</h3>
-
           <div class="radio-options-list">
-            <label class="radio-option" [class.selected]="selectedPaymentMethod === 'nequi'">
-              <input type="radio" name="paymentMethod" value="nequi" [(ngModel)]="selectedPaymentMethod" />
+            <!-- OPCIÓN 1: TRANSFERENCIA BANCARIA CON COMPROBANTE -->
+            <label class="radio-option" [class.selected]="selectedPaymentMethod === 'transferencia'">
+              <input type="radio" name="paymentMethod" value="transferencia" [(ngModel)]="selectedPaymentMethod" />
               <div class="radio-content">
-                <strong>Nequi (Transferencia o QR en sede)</strong>
-                <p>Transferencia a la cuenta autorizada de ZONA FITNESS al momento de tu visita.</p>
+                <div class="option-header-row">
+                  <strong>Transferencia Bancaria (Bancolombia, Nequi, Daviplata)</strong>
+                  <span class="badge-recommended">RECOMENDADO</span>
+                </div>
+                <p>Transfiere desde tu app bancaria y adjunta el comprobante para activación por parte del administrador.</p>
               </div>
             </label>
 
-            <label class="radio-option" [class.selected]="selectedPaymentMethod === 'bancolombia'">
-              <input type="radio" name="paymentMethod" value="bancolombia" [(ngModel)]="selectedPaymentMethod" />
-              <div class="radio-content">
-                <strong>Bancolombia (Transferencia o QR en sede)</strong>
-                <p>Pago mediante app Bancolombia en el punto de registro.</p>
-              </div>
-            </label>
-
+            <!-- OPCIÓN 2: EFECTIVO EN RECEPCIÓN -->
             <label class="radio-option" [class.selected]="selectedPaymentMethod === 'efectivo'">
               <input type="radio" name="paymentMethod" value="efectivo" [(ngModel)]="selectedPaymentMethod" />
               <div class="radio-content">
-                <strong>Efectivo en Recepción</strong>
-                <p>Pago en moneda local en caja durante el horario de atención.</p>
+                <strong>Pago en Efectivo en Recepción</strong>
+                <p>Genera el pedido y cancela en taquilla durante tu próxima visita al gimnasio.</p>
               </div>
             </label>
 
+            <!-- OPCIÓN 3: DATÁFONO EN RECEPCIÓN -->
             <label class="radio-option" [class.selected]="selectedPaymentMethod === 'tarjeta'">
               <input type="radio" name="paymentMethod" value="tarjeta" [(ngModel)]="selectedPaymentMethod" />
               <div class="radio-content">
-                <strong>Datáfono en Recepción</strong>
-                <p>Aceptamos tarjetas Visa, MasterCard y débito con chip en la recepción del gimnasio.</p>
+                <strong>Datáfono en Recepción (Tarjeta Débito / Crédito)</strong>
+                <p>Aceptamos tarjetas Visa, MasterCard y débito con chip en la recepción de la sede.</p>
               </div>
             </label>
+
+            <!-- OPCIÓN 4: NEQUI DIRECTO EN SEDE -->
+            <label class="radio-option" [class.selected]="selectedPaymentMethod === 'nequi'">
+              <input type="radio" name="paymentMethod" value="nequi" [(ngModel)]="selectedPaymentMethod" />
+              <div class="radio-content">
+                <strong>Nequi / Daviplata Presencial en Sede</strong>
+                <p>Escaneo del código QR oficial directamente en el mostrador del gimnasio.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- PANEL DE TRANSFERENCIA BANCARIA Y ADJUNTO DE COMPROBANTE -->
+        <div *ngIf="selectedPaymentMethod === 'transferencia'" class="bank-transfer-details-box">
+          <div class="box-header">
+            <h3 class="bank-box-title">Cuentas Bancarias Oficiales de ZONA FITNESS</h3>
+            <span class="bank-box-subtitle">Realiza el pago exacto a cualquiera de nuestras cuentas oficiales:</span>
+          </div>
+
+          <div class="bank-accounts-grid">
+            <div *ngFor="let acc of (bankAccounts.length > 0 ? bankAccounts : defaultFallbackAccounts)" 
+                 class="bank-account-card"
+                 [class.active-bank]="selectedBankAccountId === acc.id"
+                 (click)="selectedBankAccountId = acc.id">
+              <div class="bank-card-header">
+                <span class="bank-badge">{{ acc.bank_name }}</span>
+                <span class="account-type-tag">{{ acc.account_type }}</span>
+              </div>
+              <div class="bank-card-number">
+                <code>{{ acc.account_number }}</code>
+              </div>
+              <div class="bank-card-holder">
+                <span class="holder-name">{{ acc.account_holder }}</span>
+                <span class="holder-doc">{{ acc.document_type }}: {{ acc.document_number }}</span>
+              </div>
+              <div *ngIf="acc.instructions" class="bank-instructions">
+                <small>{{ acc.instructions }}</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- ÁREA DE CARGA DE COMPROBANTE -->
+          <div class="receipt-upload-section">
+            <h4 class="upload-title">Adjuntar Comprobante de Pago</h4>
+            <p class="upload-description">
+              Sube una fotografía clara o captura de pantalla donde se visualice la fecha, el valor transferido y el número de aprobación.
+              <br><small>Formatos permitidos: <strong>JPG, JPEG, PNG, WEBP</strong>. Tamaño máximo: <strong>5 MB</strong>.</small>
+            </p>
+
+            <div *ngIf="fileError" class="file-error-alert" role="alert">
+              {{ fileError }}
+            </div>
+
+            <!-- Vista previa si hay archivo seleccionado -->
+            <div *ngIf="selectedFile && receiptPreviewUrl" class="receipt-preview-card">
+              <div class="preview-image-container">
+                <img [src]="receiptPreviewUrl" alt="Vista previa del comprobante" class="preview-img" />
+              </div>
+              <div class="preview-details">
+                <span class="preview-filename">{{ selectedFile.name }}</span>
+                <span class="preview-filesize">{{ (selectedFile.size / 1024).toFixed(1) }} KB</span>
+                <button type="button" class="btn-remove-file" (click)="removeReceipt()" title="Quitar archivo">
+                  ✕ Cambiar comprobante
+                </button>
+              </div>
+            </div>
+
+            <!-- Dropzone o selector cuando no hay archivo -->
+            <div *ngIf="!selectedFile" class="upload-dropzone" (click)="fileInput.click()">
+              <input
+                #fileInput
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                (change)="onFileSelected($event)"
+                class="hidden-file-input"
+              />
+              <div class="dropzone-content">
+                <div class="dropzone-icon">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                </div>
+                <strong class="dropzone-text">Haz clic aquí para seleccionar el comprobante</strong>
+                <span class="dropzone-hint">O arrastra la imagen a este espacio</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -171,7 +325,7 @@
             [(ngModel)]="notes"
             rows="3"
             class="notes-textarea"
-            placeholder="Horario estimado de llegada, plan seleccionado o requerimiento especial..."
+            placeholder="Número de referencia de la transferencia, sede de entrenamiento u observación..."
           ></textarea>
         </div>
       </div>
@@ -203,29 +357,64 @@
 
         <div class="summary-totals">
           <div class="total-row">
-            <span>Total a Pagar en Recepción:</span>
+            <span>Total a Pagar:</span>
             <strong class="total-highlight">${{ cartService.total() | number:'1.0-0' }} COP</strong>
           </div>
         </div>
 
-        <div class="policy-reminder-box">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3e9b94" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          <p>
-            Al crear el pedido, se registrará en estado <strong>pendiente</strong>. No se realizarán cargos a ninguna cuenta bancaria hasta que confirmes tu pago personalmente.
+        <!-- ACCIÓN PRINCIPAL CUANDO EL MÉTODO ES TRANSFERENCIA BANCARIA -->
+        <div *ngIf="selectedPaymentMethod === 'transferencia'" class="transfer-action-box">
+          <button
+            type="button"
+            class="btn-confirm-order btn-transfer-buy"
+            (click)="submitTransferOrder()"
+            [disabled]="isSubmitting || !cartService.canCheckout()"
+          >
+            <span *ngIf="!isSubmitting">ENVIAR COMPROBANTE Y COMPLETAR</span>
+            <span *ngIf="isSubmitting">Subiendo Comprobante...</span>
+          </button>
+          <p class="action-security-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Comprobante almacenado de forma privada y verificado exclusivamente por el administrador.
           </p>
         </div>
 
-        <button
-          type="button"
-          class="btn-confirm-order"
-          (click)="submitOrder()"
-          [disabled]="isSubmitting || !cartService.canCheckout()"
-        >
-          <span *ngIf="!isSubmitting">Crear Pedido Pendiente</span>
-          <span *ngIf="isSubmitting">Registrando Pedido...</span>
-        </button>
+        <!-- ACCIÓN CUANDO EL MÉTODO ES PAGO PRESENCIAL EN RECEPCIÓN -->
+        <div *ngIf="selectedPaymentMethod !== 'transferencia'" class="reception-action-box">
+          <button
+            type="button"
+            class="btn-confirm-order"
+            (click)="submitOrder()"
+            [disabled]="isSubmitting || !cartService.canCheckout()"
+          >
+            <span *ngIf="!isSubmitting">GENERAR PEDIDO PARA PAGO EN SEDE</span>
+            <span *ngIf="isSubmitting">Registrando Pedido...</span>
+          </button>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <!-- SECCIÓN DE COMPRA SIMULADA (ALTERNATIVA SEGURA) -->
+        <div class="simulated-checkout-box">
+          <div class="simulated-header">
+            <span class="simulated-pill">MODO DEMO / SIMULACIÓN</span>
+          </div>
+          <p class="simulated-explainer">
+            Prueba el flujo completo con activación inmediata de tu membresía sin cobro real.
+          </p>
+          <button
+            type="button"
+            class="btn-simulated-buy"
+            (click)="confirmSimulatedPurchase()"
+            [disabled]="isSubmitting || !cartService.canCheckout()"
+          >
+            <span *ngIf="!isSubmitting">COMPRA SIMULADA (ACTIVACIÓN INMEDIATA)</span>
+            <span *ngIf="isSubmitting">Procesando...</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

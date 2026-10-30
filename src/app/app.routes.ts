@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/auth-guard';
 import { roleGuard } from './core/role-guard';
+import { customerGuard } from './core/customer.guard';
 
 export const routes: Routes = [
   {
@@ -45,11 +46,12 @@ export const routes: Routes = [
   },
   {
     path: 'carrito',
+    canActivate: [customerGuard],
     loadComponent: () => import('./pages/cart/cart').then((m) => m.Cart),
   },
   {
     path: 'checkout',
-    canActivate: [authGuard],
+    canActivate: [authGuard, customerGuard],
     loadComponent: () => import('./pages/checkout/checkout').then((m) => m.Checkout),
   },
   {
@@ -76,6 +78,59 @@ export const routes: Routes = [
     path: 'users',
     canActivate: [roleGuard('admin')],
     loadComponent: () => import('./pages/users/users').then((m) => m.Users),
+  },
+  // Rutas Administrativas Autónomas
+  {
+    path: 'admin/login',
+    loadComponent: () =>
+      import('./pages/admin/admin-login/admin-login').then((m) => m.AdminLogin),
+  },
+  {
+    path: 'admin/dashboard',
+    canActivate: [roleGuard('admin')],
+    loadComponent: () =>
+      import('./pages/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+  },
+  {
+    path: 'admin/users',
+    canActivate: [roleGuard('admin')],
+    loadComponent: () =>
+      import('./pages/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+  },
+  {
+    path: 'admin/memberships',
+    canActivate: [roleGuard('admin')],
+    loadComponent: () =>
+      import('./pages/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+  },
+  {
+    path: 'admin/plans',
+    canActivate: [roleGuard('admin')],
+    loadComponent: () =>
+      import('./pages/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+  },
+  {
+    path: 'admin/orders',
+    canActivate: [roleGuard('admin')],
+    loadComponent: () =>
+      import('./pages/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+  },
+  {
+    path: 'admin/audit',
+    canActivate: [roleGuard('admin')],
+    loadComponent: () =>
+      import('./pages/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+  },
+  {
+    path: 'admin/config',
+    canActivate: [roleGuard('admin')],
+    loadComponent: () =>
+      import('./pages/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+  },
+  {
+    path: 'admin',
+    redirectTo: 'admin/dashboard',
+    pathMatch: 'full',
   },
   { path: '**', redirectTo: '' },
 ];

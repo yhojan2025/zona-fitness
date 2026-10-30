@@ -70,3 +70,13 @@ node_modules/
 .env.*
 !.env.example
 backups/
+
+# Credenciales administrativas locales
+*CREDENCIALES*
+CREDENCIALES_ADMIN_ZONA_FITNESS.txt
+
+# Almacenamiento privado de comprobantes (seguridad)
+server/storage/receipts/*
+!server/storage/receipts/.gitkeep
+
+

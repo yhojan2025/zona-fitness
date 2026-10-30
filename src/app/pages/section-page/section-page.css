@@ -204,6 +204,23 @@
   font-weight: 600;
 }
 
+.btn-comprar-plan {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 14px;
+  margin-bottom: 8px;
+  background: var(--teal, #3e9b94);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.btn-comprar-plan:hover {
+  background: #287e78;
+  transform: translateY(-2px);
+}
 .plan-action {
   width: 100%;
   min-height: 42px;

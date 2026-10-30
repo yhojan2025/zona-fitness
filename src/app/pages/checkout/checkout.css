@@ -515,3 +515,413 @@
   cursor: not-allowed;
   box-shadow: none;
 }
+
+
+.simulated-checkout-box {
+  background: #f0fdfa;
+  border: 2px dashed #3e9b94;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.simulated-header {
+  margin-bottom: 0.5rem;
+}
+
+.simulated-pill {
+  display: inline-block;
+  background: #173330;
+  color: #cff0ea;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+
+.simulated-explainer {
+  font-size: 0.82rem;
+  color: #274844;
+  margin: 0 0 0.85rem;
+  line-height: 1.4;
+}
+
+.btn-simulated-buy {
+  background: #173330;
+  color: #cff0ea;
+  border: 1px solid #3e9b94;
+}
+
+.btn-simulated-buy:hover:not(:disabled) {
+  background: #274844;
+  color: #ffffff;
+}
+
+.btn-secondary-order {
+  width: 100%;
+  background: transparent;
+  color: #54716e;
+  border: 1px solid #dcebe8;
+  padding: 0.65rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary-order:hover:not(:disabled) {
+  background: #f4faf8;
+  color: #173330;
+  border-color: #88c9c4;
+}
+
+.simulated-badge-tag {
+  display: inline-block;
+  background: #173330;
+  color: #cff0ea;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.badge-status-approved {
+  background: #ecfdf5;
+  color: #065f46;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #a7f3d0;
+}
+
+.text-simulated {
+  color: #0f766e;
+  font-weight: 800;
+}
+
+.badge-status-active {
+  background: #cff0ea;
+  color: #0f766e;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 800;
+}
+
+.instructions-simulated {
+  background: #f0fdfa;
+  border: 1px solid #88c9c4;
+}
+
+/* ==================================================================== */
+/* ESTILOS TRANSFERENCIA BANCARIA Y COMPROBANTE */
+/* ==================================================================== */
+
+.verification-badge-tag {
+  display: inline-block;
+  background: #0d9488;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.transfer-notice-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f0fdfa;
+  border: 2px solid #0d9488;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.12);
+}
+
+.transfer-notice-banner .banner-icon {
+  flex-shrink: 0;
+}
+
+.transfer-notice-banner .banner-text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #134e4a;
+  line-height: 1.5;
+}
+
+.option-header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.badge-recommended {
+  background: #3e9b94;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.bank-transfer-details-box {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.bank-box-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #173330;
+  margin: 0 0 0.25rem 0;
+}
+
+.bank-box-subtitle {
+  font-size: 0.85rem;
+  color: #64748b;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.bank-accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.bank-account-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.bank-account-card:hover {
+  border-color: #3e9b94;
+  box-shadow: 0 4px 10px rgba(62, 155, 148, 0.1);
+}
+
+.bank-account-card.active-bank {
+  border-color: #3e9b94;
+  background: #f0fdfa;
+  box-shadow: 0 0 0 1px #3e9b94;
+}
+
+.bank-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.bank-badge {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #173330;
+}
+
+.account-type-tag {
+  font-size: 0.75rem;
+  background: #e2e8f0;
+  color: #334155;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.bank-card-number {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.bank-card-number code {
+  font-family: monospace;
+  font-weight: 800;
+  color: #0f766e;
+}
+
+.bank-card-holder {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  color: #475569;
+}
+
+.bank-instructions {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #cbd5e1;
+  color: #0d9488;
+  font-style: italic;
+}
+
+/* CARGA DE COMPROBANTE */
+.receipt-upload-section {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.25rem;
+}
+
+.upload-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #173330;
+  margin: 0 0 0.25rem 0;
+}
+
+.upload-description {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+}
+
+.file-error-alert {
+  background: #fef2f2;
+  border: 1px solid #f87171;
+  color: #991b1b;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.upload-dropzone {
+  border: 2px dashed #94a3b8;
+  border-radius: 10px;
+  padding: 2rem 1rem;
+  text-align: center;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upload-dropzone:hover {
+  border-color: #3e9b94;
+  background: #f0fdfa;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dropzone-text {
+  font-size: 0.95rem;
+  color: #173330;
+}
+
+.dropzone-hint {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.receipt-preview-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #88c9c4;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.preview-image-container {
+  width: 70px;
+  height: 70px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  background: #f1f5f9;
+  flex-shrink: 0;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.preview-filename {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #173330;
+  word-break: break-all;
+}
+
+.preview-filesize {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.btn-remove-file {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  background: transparent;
+  border: none;
+  color: #dc2626;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-remove-file:hover {
+  text-decoration: underline;
+}
+
+/* BOTÓN TRANSFERENCIA */
+.transfer-action-box {
+  margin-top: 1rem;
+}
+
+.btn-transfer-buy {
+  background: #0d9488;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+}
+
+.btn-transfer-buy:hover:not(:disabled) {
+  background: #0f766e;
+  box-shadow: 0 6px 16px rgba(13, 148, 136, 0.35);
+}
+
+.action-security-note {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+  text-align: center;
+  justify-content: center;
+}

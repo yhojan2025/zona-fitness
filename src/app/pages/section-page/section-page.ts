@@ -1,13 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/auth.service';
+import { CartService } from '../../core/cart.service';
 import { map } from 'rxjs';
 import { SiteFooter } from '../../shared/site-footer/site-footer';
 
 type SectionKey = 'services' | 'plans' | 'hours' | 'space' | 'products';
 
 interface FeatureCard {
+  id?: number;
+  slug?: string;
   title: string;
   description: string;
   duration?: string;
@@ -72,28 +76,28 @@ const CONTENT: Record<SectionKey, SectionContent> = {
       'Elige la duración que mejor se adapta a ti. Todos los valores están expresados en pesos colombianos.',
     cards: [
       {
-        title: 'Cobre',
+        id: 1, slug: 'cobre', title: 'Cobre',
         duration: '15 días',
         detail: '2 horas de ejercicio al día',
         price: '$45.000',
         description: 'Una opción para comenzar y conocer tu rutina.',
       },
       {
-        title: 'Bronce',
+        id: 2, slug: 'bronce', title: 'Bronce',
         duration: '3 meses',
         detail: 'Un plan para construir constancia',
         price: '$260000',
         description: 'Encuentra tu ritmo y sigue avanzando.',
       },
       {
-        title: 'Platino',
+        id: 3, slug: 'platino', title: 'Platino',
         duration: '6 meses',
         detail: 'Más tiempo para mantener tu ritmo',
         price: '$500000',
         description: 'Dale continuidad a tus objetivos.',
       },
       {
-        title: 'Oro',
+        id: 4, slug: 'oro', title: 'Oro',
         duration: '1 año',
         detail: 'Un año para hacer del movimiento un hábito',
         price: '$900000',
@@ -219,6 +223,9 @@ function isSectionKey(value: unknown): value is SectionKey {
 })
 export class SectionPage {
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  protected readonly auth = inject(AuthService);
+  private readonly cartService = inject(CartService);
   private readonly sanitizer = inject(DomSanitizer);
 
   protected readonly page = toSignal(
@@ -230,4 +237,28 @@ export class SectionPage {
 
   protected readonly hoursMapEmbedUrl: SafeResourceUrl =
     this.sanitizer.bypassSecurityTrustResourceUrl(CONTENT.hours.location?.embedUrl ?? '');
+  protected buyPlan(card: FeatureCard): void {
+    const planIdMap: Record<string, number> = {
+      Cobre: 1,
+      Bronce: 2,
+      Platino: 3,
+      Oro: 4,
+    };
+    const id = card.id || planIdMap[card.title] || 1;
+    if (!this.auth.isLoggedIn()) {
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.setItem(
+          'pending_buy_plan',
+          JSON.stringify({ id, name: card.title, slug: card.slug || card.title.toLowerCase() })
+        );
+      }
+      this.router.navigate(['/login'], { queryParams: { returnUrl: '/carrito' } });
+      return;
+    }
+    this.cartService.addItem('plan', id).subscribe({
+      next: () => {
+        this.router.navigate(['/carrito']);
+      },
+    });
+  }
 }

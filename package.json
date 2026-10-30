@@ -14,7 +14,9 @@
     "api:test": "node server/tests/api.test.js",
     "phase3:test": "node server/tests/phase3_auth_consent.test.js",
     "cart:test": "node server/tests/cart_orders.test.js",
-    "rbac:test": "node server/tests/rbac_roles.test.js"
+    "rbac:test": "node server/tests/rbac_roles.test.js",
+    "admin:test": "node server/tests/admin_and_simulated_purchase.test.js",
+    "transfer:test": "node server/tests/transfer_and_payment_verification.test.js"
   },
   "private": true,
   "packageManager": "npm@11.19.1",

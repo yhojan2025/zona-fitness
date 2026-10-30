@@ -1,0 +1,1382 @@
+<div class="admin-layout">
+  <!-- 1. Menú Lateral Administrativo (Sidebar) -->
+  <aside class="admin-sidebar" aria-label="Navegación administrativa">
+    <div class="sidebar-brand">
+      <img src="/zona-fitness-logo.png" alt="ZONA FITNESS" class="admin-sidebar-logo-img" />
+      <span class="brand-role-tag">PANEL ADMINISTRATIVO</span>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <nav class="sidebar-menu">
+      <button
+        type="button"
+        class="sidebar-item"
+        [class.active]="activeTab === 'dashboard'"
+        (click)="setTab('dashboard')"
+      >
+        <span class="item-icon">📊</span>
+        <span class="item-text">Dashboard</span>
+      </button>
+
+      <button
+        type="button"
+        class="sidebar-item"
+        [class.active]="activeTab === 'users'"
+        (click)="setTab('users')"
+      >
+        <span class="item-icon">👥</span>
+        <span class="item-text">Usuarios</span>
+        <span class="item-badge" *ngIf="users.length">{{ users.length }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="sidebar-item sidebar-item-highlight"
+        [class.active]="activeTab === 'payments'"
+        (click)="setTab('payments')"
+      >
+        <span class="item-icon">💳</span>
+        <span class="item-text">Verificación Pagos</span>
+        <span class="item-badge badge-pending-count" *ngIf="metrics?.payments?.pending_verifications">
+          {{ metrics?.payments?.pending_verifications }}
+        </span>
+      </button>
+
+      <button
+        type="button"
+        class="sidebar-item"
+        [class.active]="activeTab === 'memberships'"
+        (click)="setTab('memberships')"
+      >
+        <span class="item-icon">🎫</span>
+        <span class="item-text">Membresías</span>
+        <span class="item-badge" *ngIf="metrics?.memberships?.active">{{ metrics?.memberships?.active }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="sidebar-item"
+        [class.active]="activeTab === 'plans'"
+        (click)="setTab('plans')"
+      >
+        <span class="item-icon">🏋️</span>
+        <span class="item-text">Planes y Precios</span>
+      </button>
+
+      <button
+        type="button"
+        class="sidebar-item"
+        [class.active]="activeTab === 'orders'"
+        (click)="setTab('orders')"
+      >
+        <span class="item-icon">📦</span>
+        <span class="item-text">Pedidos</span>
+        <span class="item-badge" *ngIf="orders.length">{{ orders.length }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="sidebar-item"
+        [class.active]="activeTab === 'audit'"
+        (click)="setTab('audit')"
+      >
+        <span class="item-icon">🛡️</span>
+        <span class="item-text">Auditoría</span>
+      </button>
+
+      <button
+        type="button"
+        class="sidebar-item"
+        [class.active]="activeTab === 'config'"
+        (click)="setTab('config')"
+      >
+        <span class="item-icon">⚙️</span>
+        <span class="item-text">Configuración</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user-card">
+        <div class="user-avatar-sm">{{ auth.user()?.name?.charAt(0) || 'A' }}</div>
+        <div class="user-details-sm">
+          <strong class="user-name-sm">{{ auth.user()?.name }}</strong>
+          <span class="user-email-sm">{{ auth.user()?.email }}</span>
+        </div>
+      </div>
+      <button type="button" class="btn-sidebar-logout" (click)="logout()">
+        🚪 Cerrar Sesión
+      </button>
+    </div>
+  </aside>
+
+  <!-- 2. Área de Contenido Principal -->
+  <div class="admin-main-area">
+    <!-- Encabezado Administrativo Superior -->
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <h1 class="current-section-title">
+          <span *ngIf="activeTab === 'dashboard'">Dashboard General</span>
+          <span *ngIf="activeTab === 'users'">Administración de Usuarios</span>
+          <span *ngIf="activeTab === 'payments'">Verificación de Pagos y Comprobantes</span>
+          <span *ngIf="activeTab === 'memberships'">Gestión de Membresías</span>
+          <span *ngIf="activeTab === 'plans'">Administración de Planes y Precios</span>
+          <span *ngIf="activeTab === 'orders'">Historial de Pedidos</span>
+          <span *ngIf="activeTab === 'audit'">Historial de Auditoría y Seguridad</span>
+          <span *ngIf="activeTab === 'config'">Configuración del Sistema</span>
+        </h1>
+        <span class="topbar-tag">ZONA FITNESS · Consola Central</span>
+      </div>
+
+      <div class="topbar-right">
+        <div class="db-status-pill">
+          <span class="status-dot-pulse"></span>
+          <span>PostgreSQL 18: Conectado</span>
+        </div>
+        <button type="button" class="btn-quick-refresh" (click)="loadAllData()" title="Refrescar datos">
+          🔄 Actualizar
+        </button>
+      </div>
+    </header>
+
+    <!-- Alertas Flash -->
+    <div *ngIf="statusMessage" class="alert-banner alert-success" role="alert">
+      <span>{{ statusMessage }}</span>
+      <button type="button" class="alert-close-btn" (click)="statusMessage = null">×</button>
+    </div>
+    <div *ngIf="errorMessage" class="alert-banner alert-error" role="alert">
+      <span>{{ errorMessage }}</span>
+      <button type="button" class="alert-close-btn" (click)="errorMessage = null">×</button>
+    </div>
+
+    <!-- Contenido según la pestaña activa -->
+    <main class="admin-content-viewport">
+      <!-- ============================================================== -->
+      <!-- TAB 1: DASHBOARD (INFORMACIÓN GENERAL)                          -->
+      <!-- ============================================================== -->
+      <section *ngIf="activeTab === 'dashboard'" class="tab-section-block">
+        <div class="metrics-grid" *ngIf="metrics">
+          <!-- Total Usuarios -->
+          <div class="metric-card">
+            <div class="metric-icon-box icon-users">👥</div>
+            <div class="metric-info">
+              <span class="metric-label">Usuarios Registrados</span>
+              <h2 class="metric-number">{{ metrics.users.total }}</h2>
+              <div class="metric-sub-pills">
+                <span class="pill-green">{{ metrics.users.active }} activos</span>
+                <span class="pill-gray">{{ metrics.users.inactive }} inactivos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verificación de Pagos (Accionable) -->
+          <div class="metric-card metric-card-actionable" (click)="setTab('payments')">
+            <div class="metric-icon-box icon-payments">💳</div>
+            <div class="metric-info">
+              <span class="metric-label">Verificación de Pagos</span>
+              <h2 class="metric-number">{{ metrics.payments?.pending_verifications || 0 }}</h2>
+              <div class="metric-sub-pills">
+                <span class="pill-amber">{{ metrics.payments?.pending_verifications || 0 }} pendientes</span>
+                <span class="pill-green">{{ metrics.payments?.approved || 0 }} aprobados</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Membresías Activas -->
+          <div class="metric-card">
+            <div class="metric-icon-box icon-memberships">🎫</div>
+            <div class="metric-info">
+              <span class="metric-label">Membresías Activas</span>
+              <h2 class="metric-number">{{ metrics.memberships.active }}</h2>
+              <div class="metric-sub-pills">
+                <span class="pill-green">{{ metrics.memberships.active }} vigentes</span>
+                <span class="pill-amber" *ngIf="metrics.memberships.expiring_soon > 0">
+                  {{ metrics.memberships.expiring_soon }} por vencer
+                </span>
+                <span class="pill-gray">{{ metrics.memberships.expired }} vencidas</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pedidos Registrados -->
+          <div class="metric-card">
+            <div class="metric-icon-box icon-orders">📦</div>
+            <div class="metric-info">
+              <span class="metric-label">Total Pedidos</span>
+              <h2 class="metric-number">{{ metrics.orders.total }}</h2>
+              <div class="metric-sub-pills">
+                <span class="pill-green">{{ metrics.orders.approved }} aprobados</span>
+                <span class="pill-amber">{{ metrics.orders.pending }} pendientes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ingresos Reales vs Simulados -->
+          <div class="metric-card metric-card-wide">
+            <div class="metric-icon-box icon-revenue">💰</div>
+            <div class="metric-info">
+              <span class="metric-label">Recaudo y Facturación</span>
+              <div class="revenue-values-row">
+                <div>
+                  <span class="revenue-sublabel">Recaudo Real Confirmado:</span>
+                  <h3 class="revenue-real-number">${{ metrics.revenue.real_revenue | number:'1.0-0' }} COP</h3>
+                </div>
+                <div class="divider-v"></div>
+                <div>
+                  <span class="revenue-sublabel">Volumen Simulado (Demo):</span>
+                  <h3 class="revenue-sim-number">${{ metrics.revenue.simulated_revenue | number:'1.0-0' }} COP</h3>
+                </div>
+              </div>
+              <p class="metric-disclaimer">{{ metrics.revenue.disclaimer }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tablas de Actividad Reciente -->
+        <div class="dashboard-activity-grid">
+          <!-- Últimos Pedidos -->
+          <div class="dashboard-card-table">
+            <div class="card-table-header">
+              <h3>📦 Últimos Pedidos</h3>
+              <button type="button" class="link-btn-table" (click)="setTab('orders')">Ver todos →</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table-compact">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Cliente</th>
+                    <th>Valor</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let ord of metrics?.recent_activity?.orders || []">
+                    <td><code>{{ ord.order_number }}</code></td>
+                    <td>{{ ord.user_name || 'Usuario' }}</td>
+                    <td><strong>${{ ord.total_amount | number:'1.0-0' }} COP</strong></td>
+                    <td>
+                      <span class="badge-status-sm" [class.badge-approved]="ord.status === 'approved'" [class.badge-pending]="ord.status === 'pending' || ord.status === 'pending_verification'">
+                        {{ ord.status === 'approved' ? 'Aprobado' : (ord.status === 'pending_verification' ? 'Por Verificar' : ord.status) }}
+                      </span>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!metrics?.recent_activity?.orders?.length">
+                    <td colspan="4" class="text-center-empty">No hay pedidos recientes registrados.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Últimas Membresías -->
+          <div class="dashboard-card-table">
+            <div class="card-table-header">
+              <h3>🎫 Últimas Membresías Activadas</h3>
+              <button type="button" class="link-btn-table" (click)="setTab('memberships')">Ver todas →</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table-compact">
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Plan</th>
+                    <th>Vencimiento</th>
+                    <th>Tipo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let mem of metrics?.recent_activity?.memberships || []">
+                    <td>{{ mem.user_name || 'Usuario' }}</td>
+                    <td><strong>Plan {{ mem.plan_name }}</strong></td>
+                    <td>{{ mem.end_date | date:'shortDate' }}</td>
+                    <td>
+                      <span class="badge-simulated-pill" *ngIf="mem.is_simulated">Simulado</span>
+                      <span class="badge-real-pill" *ngIf="!mem.is_simulated">Real</span>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!metrics?.recent_activity?.memberships?.length">
+                    <td colspan="4" class="text-center-empty">No hay membresías recientes.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- TAB 2: ADMINISTRACIÓN DE USUARIOS                               -->
+      <!-- ============================================================== -->
+      <section *ngIf="activeTab === 'users'" class="tab-section-block">
+        <div class="section-toolbar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              [(ngModel)]="userSearch"
+              (ngModelChange)="loadUsers()"
+              placeholder="Buscar por nombre, correo o teléfono..."
+              class="toolbar-input"
+            />
+          </div>
+
+          <div class="filter-box">
+            <label for="userFilterSelect">Filtrar por:</label>
+            <select
+              id="userFilterSelect"
+              [(ngModel)]="userFilter"
+              (ngModelChange)="loadUsers()"
+              class="toolbar-select"
+            >
+              <option value="all">Todos los usuarios</option>
+              <option value="active">Activos</option>
+              <option value="inactive">Inactivos / Eliminados</option>
+              <option value="with_active_membership">Con membresía activa</option>
+              <option value="without_membership">Sin membresía</option>
+              <option value="expiring_soon">Membresía próxima a vencer (&le; 7 días)</option>
+              <option value="expired_membership">Membresía vencida</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Barra Flotante de Acciones Masivas -->
+        <div *ngIf="selectedCount > 0" class="bulk-actions-floating-bar" role="toolbar" aria-label="Acciones masivas de usuarios">
+          <div class="bulk-counter-box">
+            <span class="bulk-counter-badge">{{ selectedCount }}</span>
+            <span class="bulk-counter-label">usuario(s) seleccionado(s)</span>
+          </div>
+          <div class="bulk-buttons-group">
+            <button type="button" class="btn-bulk btn-bulk-activate" (click)="openBulkActionModal('activate')">
+              ✓ ACTIVAR SELECCIONADOS
+            </button>
+            <button type="button" class="btn-bulk btn-bulk-inactivate" (click)="openBulkActionModal('inactivate')">
+              ⏸ INACTIVAR SELECCIONADOS
+            </button>
+            <button type="button" class="btn-bulk btn-bulk-delete" (click)="openBulkActionModal('delete')">
+              🗑 ELIMINAR SELECCIONADOS
+            </button>
+            <button type="button" class="btn-bulk btn-bulk-cancel" (click)="clearUserSelection()">
+              ✕ Cancelar
+            </button>
+          </div>
+        </div>
+
+        <div class="card-table-wrapper">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th class="col-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="isAllUsersSelected"
+                      (change)="toggleSelectAllUsers()"
+                      title="Seleccionar todos los usuarios visibles"
+                    />
+                  </th>
+                  <th>Nombre Completo</th>
+                  <th>Correo Electrónico</th>
+                  <th>Teléfono</th>
+                  <th>Edad / Nac.</th>
+                  <th>Registro</th>
+                  <th>Estado Cuenta</th>
+                  <th>Plan Activo</th>
+                  <th>Rol</th>
+                  <th class="text-right">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let u of users" [class.row-selected]="isUserSelected(u.id)">
+                  <td class="col-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="isUserSelected(u.id)"
+                      (change)="toggleSelectUser(u.id)"
+                      [disabled]="u.id === auth.user()?.id"
+                      title="{{ u.id === auth.user()?.id ? 'No puedes auto-seleccionarte' : 'Seleccionar usuario' }}"
+                    />
+                  </td>
+                  <td>
+                    <strong>{{ u.name }}</strong>
+                    <div *ngIf="u.deleted_at" class="badge-deleted-sub">Eliminado (Baja lógica)</div>
+                  </td>
+                  <td>{{ u.email }}</td>
+                  <td>{{ u.phone || '-' }}</td>
+                  <td>
+                    <span *ngIf="u.age !== null">{{ u.age }} años</span>
+                    <span *ngIf="u.age === null">-</span>
+                  </td>
+                  <td>{{ u.created_at | date:'shortDate' }}</td>
+                  <td>
+                    <span class="badge-status-sm" [class.badge-active]="u.is_active" [class.badge-inactive]="!u.is_active">
+                      {{ u.is_active ? 'Activo' : 'Inactivo' }}
+                    </span>
+                  </td>
+                  <td>
+                    <span *ngIf="u.active_plan_name" class="badge-plan-tag">
+                      Plan {{ u.active_plan_name }} ({{ u.membership_days_left }}d)
+                    </span>
+                    <span *ngIf="!u.active_plan_name" class="text-muted-sm">Sin plan</span>
+                  </td>
+                  <td><span class="role-badge-table">{{ u.role }}</span></td>
+                  <td class="text-right">
+                    <div class="action-buttons-group">
+                      <button type="button" class="btn-action-icon btn-view" (click)="viewUserDetail(u.id)" title="Ver detalle completo">
+                        👁️
+                      </button>
+                      <button type="button" class="btn-action-icon btn-edit" (click)="openEditUser(u)" title="Editar información personal">
+                        ✏️
+                      </button>
+                      <button
+                        type="button"
+                        class="btn-action-icon btn-toggle"
+                        [class.btn-toggle-off]="u.is_active"
+                        [class.btn-toggle-on]="!u.is_active"
+                        (click)="toggleUser(u)"
+                        title="{{ u.is_active ? 'Inactivar usuario' : 'Activar usuario' }}"
+                      >
+                        {{ u.is_active ? '⏸️' : '▶️' }}
+                      </button>
+                      <button type="button" class="btn-action-icon btn-delete" (click)="openDeleteConfirm(u)" title="Eliminación lógica segura">
+                        🗑️
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="users.length === 0">
+                  <td colspan="10" class="text-center-empty">No se encontraron usuarios bajo el criterio de búsqueda.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- TAB 3: VERIFICACIÓN DE PAGOS POR TRANSFERENCIA                  -->
+      <!-- ============================================================== -->
+      <section *ngIf="activeTab === 'payments'" class="tab-section-block">
+        <div class="section-toolbar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              [(ngModel)]="paymentSearch"
+              (ngModelChange)="loadPayments()"
+              placeholder="Buscar por cliente, pedido, método..."
+              class="toolbar-input"
+            />
+          </div>
+
+          <div class="filter-box">
+            <label for="paymentStatusSelect">Estado:</label>
+            <select
+              id="paymentStatusSelect"
+              [(ngModel)]="paymentStatusFilter"
+              (ngModelChange)="loadPayments()"
+              class="toolbar-select"
+            >
+              <option value="pending_verification">⏳ Pendientes de Verificación</option>
+              <option value="approved">✓ Aprobados</option>
+              <option value="rejected">✕ Rechazados</option>
+              <option value="all">Todos los pagos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card-table-wrapper">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Pedido / Ref.</th>
+                  <th>Cliente</th>
+                  <th>Plan Adquirido</th>
+                  <th>Valor</th>
+                  <th>Fecha</th>
+                  <th>Comprobante</th>
+                  <th>Estado</th>
+                  <th>Auditoría / Verificador</th>
+                  <th class="text-right">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of payments">
+                  <td>
+                    <strong><code>{{ p.order_number }}</code></strong>
+                    <div class="text-sub-detail">Pago #{{ p.id }} · {{ p.payment_method }}</div>
+                  </td>
+                  <td>
+                    <div class="cell-user-name">{{ p.user_name }}</div>
+                    <div class="cell-user-email">{{ p.user_email }}</div>
+                    <div class="cell-user-phone" *ngIf="p.user_phone">{{ p.user_phone }}</div>
+                  </td>
+                  <td>
+                    <span class="badge-plan-tag">{{ p.plan_name || 'Plan Fitness' }}</span>
+                  </td>
+                  <td>
+                    <strong class="price-highlight">${{ p.amount | number:'1.0-0' }} COP</strong>
+                  </td>
+                  <td>
+                    <span>{{ p.created_at | date:'short' }}</span>
+                  </td>
+                  <td>
+                    <div *ngIf="p.has_receipt" class="receipt-thumbnail-container" (click)="openReceiptModal(p)" title="Clic para ampliar imagen del comprobante">
+                      <span class="btn-thumbnail-view">👁 Ver Comprobante</span>
+                    </div>
+                    <span *ngIf="!p.has_receipt" class="text-muted-sm">Sin comprobante</span>
+                  </td>
+                  <td>
+                    <span class="badge-status-sm" 
+                          [class.badge-pending]="p.status === 'pending_verification' || p.status === 'pending'"
+                          [class.badge-approved]="p.status === 'approved'"
+                          [class.badge-rejected]="p.status === 'rejected'">
+                      {{ p.status === 'pending_verification' ? '⏳ Por Verificar' : (p.status === 'approved' ? '✓ Aprobado' : (p.status === 'rejected' ? '✕ Rechazado' : p.status)) }}
+                    </span>
+                  </td>
+                  <td>
+                    <div *ngIf="p.verified_by" class="verifier-info-box">
+                      <span class="verifier-name">Por: {{ p.verifier_name || 'Admin' }}</span>
+                      <small class="verifier-date">{{ p.verified_at | date:'short' }}</small>
+                    </div>
+                    <div *ngIf="p.rejection_reason" class="rejection-reason-box" title="{{ p.rejection_reason }}">
+                      <small class="text-danger">Motivo: {{ p.rejection_reason }}</small>
+                    </div>
+                    <span *ngIf="!p.verified_by && !p.rejection_reason" class="text-muted-sm">Pendiente de revisión</span>
+                  </td>
+                  <td class="text-right">
+                    <div class="action-buttons-group" *ngIf="p.status === 'pending_verification' || p.status === 'pending'">
+                      <button type="button" class="btn-action-approve" (click)="openApproveConfirm(p)" title="Aprobar comprobante y activar membresía">
+                        ✓ Aprobar
+                      </button>
+                      <button type="button" class="btn-action-reject" (click)="openRejectModal(p)" title="Rechazar comprobante con motivo obligatorio">
+                        ✕ Rechazar
+                      </button>
+                    </div>
+                    <span *ngIf="p.status === 'approved' || p.status === 'rejected'" class="badge-processed">
+                      Procesado
+                    </span>
+                  </td>
+                </tr>
+                <tr *ngIf="payments.length === 0">
+                  <td colspan="9" class="text-center-empty">
+                    No se encontraron pagos con el filtro seleccionado.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- TAB 4: GESTIÓN DE MEMBRESÍAS                                    -->
+      <!-- ============================================================== -->
+      <section *ngIf="activeTab === 'memberships'" class="tab-section-block">
+        <div class="section-toolbar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              [(ngModel)]="membershipSearch"
+              (ngModelChange)="loadMemberships()"
+              placeholder="Buscar por usuario o plan..."
+              class="toolbar-input"
+            />
+          </div>
+
+          <div class="filter-box">
+            <label for="memStatusSelect">Estado:</label>
+            <select
+              id="memStatusSelect"
+              [(ngModel)]="membershipStatusFilter"
+              (ngModelChange)="loadMemberships()"
+              class="toolbar-select"
+            >
+              <option value="all">Todas las membresías</option>
+              <option value="active">Activas</option>
+              <option value="expiring_soon">Próximas a vencer (&le; 7 días)</option>
+              <option value="expired">Vencidas</option>
+              <option value="cancelled">Canceladas / Suspendidas</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card-table-wrapper">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Usuario</th>
+                  <th>Plan Oficial</th>
+                  <th>Inicio</th>
+                  <th>Fin / Vencimiento</th>
+                  <th>Días Restantes</th>
+                  <th>Precio Registrado</th>
+                  <th>Modalidad</th>
+                  <th>Estado</th>
+                  <th class="text-center">Modificar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let m of memberships">
+                  <td>#{{ m.id }}</td>
+                  <td>
+                    <strong>{{ m.user_name }}</strong>
+                    <small class="user-email-sub">{{ m.user_email }}</small>
+                  </td>
+                  <td><span class="badge-plan-tag">Plan {{ m.plan_name }}</span></td>
+                  <td>{{ m.start_date | date:'shortDate' }}</td>
+                  <td>{{ m.end_date | date:'shortDate' }}</td>
+                  <td>
+                    <span *ngIf="m.days_remaining !== null" class="days-pill" [class.days-warning]="m.days_remaining <= 7 && m.days_remaining >= 0" [class.days-danger]="m.days_remaining < 0">
+                      {{ m.days_remaining >= 0 ? m.days_remaining + ' días' : 'Vencida' }}
+                    </span>
+                    <span *ngIf="m.days_remaining === null">-</span>
+                  </td>
+                  <td>${{ (m.price_paid || 0) | number:'1.0-0' }} COP</td>
+                  <td>
+                    <span class="badge-simulated-pill" *ngIf="m.is_simulated">Simulada</span>
+                    <span class="badge-real-pill" *ngIf="!m.is_simulated">Real</span>
+                  </td>
+                  <td>
+                    <span class="mem-badge" [ngClass]="{
+                      'mem-activa': m.computed_status === 'ACTIVA',
+                      'mem-proxima': m.computed_status === 'PRÓXIMA A VENCER',
+                      'mem-vencida': m.computed_status === 'VENCIDA',
+                      'mem-cancelada': m.computed_status === 'CANCELADA',
+                      'mem-suspendida': m.computed_status === 'SUSPENDIDA'
+                    }">
+                      {{ m.computed_status }}
+                    </span>
+                  </td>
+                  <td class="text-center">
+                    <button type="button" class="btn-action-icon btn-edit" (click)="openEditMembership(m)" title="Modificar membresía">
+                      ⚙️
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="memberships.length === 0">
+                  <td colspan="10" class="text-center-empty">No se encontraron membresías bajo el criterio de búsqueda seleccionado.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- TAB 5: ADMINISTRACIÓN DE PLANES Y PRECIOS                      -->
+      <!-- ============================================================== -->
+      <section *ngIf="activeTab === 'plans'" class="tab-section-block">
+        <div class="plans-admin-grid">
+          <div *ngFor="let p of plans" class="plan-admin-card" [class.plan-card-inactive]="!p.is_active">
+            <div class="plan-card-topbar">
+              <span class="plan-metal-tag metal-{{ p.slug }}">PLAN {{ p.name }}</span>
+              <span class="plan-status-pill" [class.pill-active]="p.is_active" [class.pill-inactive]="!p.is_active">
+                {{ p.is_active ? 'Disponible' : 'Inactivo / Oculto' }}
+              </span>
+            </div>
+
+            <div class="plan-card-body">
+              <h3 class="plan-card-title">{{ p.name }}</h3>
+              <p class="plan-card-duration">⏱️ Duración: <strong>{{ p.duration_days }} días</strong></p>
+              <div class="plan-card-price">
+                <span class="currency">COP</span>
+                <strong>${{ p.price | number:'1.0-0' }}</strong>
+              </div>
+              <p class="plan-card-desc">{{ p.description || 'Sin descripción ingresada' }}</p>
+              <div class="plan-sales-counter">
+                Ventas acumuladas: <strong>{{ p.total_sold_count || 0 }}</strong>
+              </div>
+            </div>
+
+            <div class="plan-card-actions">
+              <button type="button" class="btn-plan-edit" (click)="openEditPlan(p)">
+                ✏️ Modificar Precio / Duración
+              </button>
+              <button type="button" class="btn-plan-history" (click)="viewPlanHistory(p)">
+                📜 Historial de Cambios
+              </button>
+              <button
+                type="button"
+                class="btn-plan-toggle"
+                [class.btn-toggle-deactivate]="p.is_active"
+                [class.btn-toggle-activate]="!p.is_active"
+                (click)="togglePlan(p)"
+              >
+                {{ p.is_active ? 'Ocultar del Catálogo' : 'Publicar en Catálogo' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- TAB 6: HISTORIAL DE PEDIDOS                                     -->
+      <!-- ============================================================== -->
+      <section *ngIf="activeTab === 'orders'" class="tab-section-block">
+        <div class="card-table-wrapper">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Código Pedido</th>
+                  <th>Cliente</th>
+                  <th>Total</th>
+                  <th>Método</th>
+                  <th>Modalidad</th>
+                  <th>Estado</th>
+                  <th>Fecha Registro</th>
+                  <th>Artículos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ord of orders">
+                  <td><code>{{ ord.order_number }}</code></td>
+                  <td>
+                    <strong>{{ ord.user_name || 'Usuario' }}</strong>
+                    <small class="user-email-sub">{{ ord.user_email }}</small>
+                  </td>
+                  <td><strong>${{ ord.total_amount | number:'1.0-0' }} COP</strong></td>
+                  <td><span class="method-tag">{{ ord.payment_method }}</span></td>
+                  <td>
+                    <span class="badge-simulated-pill" *ngIf="ord.is_simulated">SIMULADO</span>
+                    <span class="badge-real-pill" *ngIf="!ord.is_simulated">REAL</span>
+                  </td>
+                  <td>
+                    <span class="badge-status-sm" 
+                          [class.badge-approved]="ord.status === 'approved' || ord.status === 'completed'" 
+                          [class.badge-pending]="ord.status === 'pending' || ord.status === 'pending_verification'" 
+                          [class.badge-cancelled]="ord.status === 'cancelled' || ord.status === 'rejected'">
+                      {{ ord.status === 'approved' ? 'Aprobado' : (ord.status === 'pending_verification' ? 'Por Verificar' : (ord.status === 'rejected' ? 'Rechazado' : ord.status)) }}
+                    </span>
+                  </td>
+                  <td>{{ ord.created_at | date:'medium' }}</td>
+                  <td>
+                    <div class="order-items-compact" *ngFor="let it of ord.items">
+                      <span>{{ it.quantity }}x {{ it.item_name }}</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="orders.length === 0">
+                  <td colspan="8" class="text-center-empty">No hay pedidos registrados en el sistema.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- TAB 7: AUDITORÍA Y SEGURIDAD                                   -->
+      <!-- ============================================================== -->
+      <section *ngIf="activeTab === 'audit'" class="tab-section-block">
+        <div class="card-table-wrapper">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Fecha y Hora</th>
+                  <th>Responsable</th>
+                  <th>Tabla</th>
+                  <th>Acción</th>
+                  <th>Motivo / Razón</th>
+                  <th>Dirección IP</th>
+                  <th>Datos Modificados (JSON)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let log of auditLogs">
+                  <td>#{{ log.id }}</td>
+                  <td>{{ log.created_at | date:'medium' }}</td>
+                  <td>
+                    <strong>{{ log.performer_name || ('ID: ' + log.performed_by) }}</strong>
+                    <small class="user-email-sub" *ngIf="log.performer_email">{{ log.performer_email }}</small>
+                  </td>
+                  <td><code>{{ log.table_name }}</code></td>
+                  <td><strong class="action-tag action-{{ log.action.toLowerCase() }}">{{ log.action }}</strong></td>
+                  <td>{{ log.reason || '-' }}</td>
+                  <td><code>{{ log.ip_address || '127.0.0.1' }}</code></td>
+                  <td>
+                    <pre class="json-preview-box">{{ log.new_data | json }}</pre>
+                  </td>
+                </tr>
+                <tr *ngIf="auditLogs.length === 0">
+                  <td colspan="8" class="text-center-empty">No hay eventos de auditoría registrados.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- TAB 8: CONFIGURACIÓN ADMINISTRATIVA                            -->
+      <!-- ============================================================== -->
+      <section *ngIf="activeTab === 'config'" class="tab-section-block">
+        <div class="config-cards-grid" *ngIf="systemConfig">
+          <div class="config-card">
+            <h3>🏢 Información del Sistema</h3>
+            <div class="config-row"><span>Aplicación:</span><strong>{{ systemConfig.application }}</strong></div>
+            <div class="config-row"><span>Versión:</span><strong>{{ systemConfig.version }}</strong></div>
+            <div class="config-row"><span>Entorno:</span><strong>{{ systemConfig.environment }}</strong></div>
+            <div class="config-row"><span>Último Chequeo:</span><strong>{{ systemConfig.timestamp | date:'medium' }}</strong></div>
+          </div>
+
+          <div class="config-card">
+            <h3>🗄️ Base de Datos Relacional</h3>
+            <div class="config-row"><span>Motor:</span><strong>{{ systemConfig.database?.engine }}</strong></div>
+            <div class="config-row"><span>Base de Datos:</span><strong>{{ systemConfig.database?.connected_db }}</strong></div>
+            <div class="config-row"><span>Usuario de Conexión:</span><strong>{{ systemConfig.database?.connected_user }}</strong></div>
+            <div class="config-row"><span>Estado de Conexión:</span><strong class="text-teal">Operativo y Verificado</strong></div>
+          </div>
+
+          <div class="config-card config-card-wide">
+            <h3>🛡️ Políticas de Ciberseguridad y Cumplimiento Legal</h3>
+            <div class="config-row"><span>Control de Acceso:</span><strong>RBAC Activo (admin / user / trainer / member)</strong></div>
+            <div class="config-row"><span>Tratamiento de Datos:</span><strong>{{ systemConfig.security_policies?.data_protection_law }}</strong></div>
+            <div class="config-row"><span>Modo de Cobro:</span><strong>{{ systemConfig.security_policies?.payment_mode }}</strong></div>
+            <div class="config-row"><span>Protección de Contraseñas:</span><strong>{{ systemConfig.security_policies?.password_hashing }}</strong></div>
+            <div class="config-row"><span>Duración de Sesión JWT:</span><strong>{{ systemConfig.security_policies?.jwt_expiration }}</strong></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- ================================================================== -->
+<!-- MODALES Y DIÁLOGOS ADMINISTRATIVOS                                  -->
+<!-- ================================================================== -->
+
+<!-- Modal: Aprobación de Pago por Transferencia -->
+<div *ngIf="paymentToApprove" class="modal-backdrop" (click)="closeApproveConfirm()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>✓ Confirmación de Aprobación de Pago</h2>
+      <button type="button" class="btn-close-modal" (click)="closeApproveConfirm()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <p class="approve-intro">
+        ¿Confirmas la verificación del ingreso del dinero para el pedido <strong><code>{{ paymentToApprove.order_number }}</code></strong>?
+      </p>
+
+      <div class="approve-details-box">
+        <div class="detail-row"><span>Cliente:</span><strong>{{ paymentToApprove.user_name }}</strong></div>
+        <div class="detail-row"><span>Correo:</span><span>{{ paymentToApprove.user_email }}</span></div>
+        <div class="detail-row"><span>Plan a activar:</span><strong class="badge-plan-tag">{{ paymentToApprove.plan_name || 'Plan Fitness' }}</strong></div>
+        <div class="detail-row"><span>Monto confirmado:</span><strong class="total-highlight">${{ paymentToApprove.amount | number:'1.0-0' }} COP</strong></div>
+      </div>
+
+      <div class="audit-preservation-notice">
+        <strong>🛡️ Regla de Negocio y Activación Atómica:</strong>
+        <p>
+          Al confirmar, el sistema actualizará el estado del pago y del pedido a <strong>Aprobado</strong>, registrará tu usuario administrativo y la marca de tiempo de verificación, y <strong>activará la membresía del cliente de forma inmediata</strong> con sus fechas de vigencia oficiales.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-cancel" (click)="closeApproveConfirm()" [disabled]="isPaymentSubmitting">
+        Cancelar
+      </button>
+      <button type="button" class="btn-modal-approve-confirm" (click)="confirmApprovePayment()" [disabled]="isPaymentSubmitting">
+        {{ isPaymentSubmitting ? 'Aprobando y Activando...' : 'Confirmar y Activar Membresía' }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Rechazo de Pago con Motivo Obligatorio -->
+<div *ngIf="paymentToReject" class="modal-backdrop" (click)="closeRejectModal()">
+  <div class="modal-card modal-danger" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>✕ Rechazo de Pago por Transferencia</h2>
+      <button type="button" class="btn-close-modal" (click)="closeRejectModal()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <p class="danger-warning">
+        Rechazarás el comprobante del pedido <strong><code>{{ paymentToReject.order_number }}</code></strong> de <strong>{{ paymentToReject.user_name }}</strong>.
+      </p>
+
+      <div class="form-row">
+        <label for="rejectReasonInput"><strong>Motivo Obligatorio del Rechazo:</strong></label>
+        <textarea
+          id="rejectReasonInput"
+          [(ngModel)]="rejectReason"
+          rows="3"
+          class="modal-input"
+          placeholder="Ej. El número de aprobación no coincide con los extractos bancarios oficiales o el comprobante es ilegible..."
+        ></textarea>
+        <small class="field-hint">Este motivo será visible para el cliente en su sección Mi Cuenta y quedará registrado en auditoría.</small>
+      </div>
+
+      <div class="reject-consequence-notice">
+        <p>⚠️ <strong>Atención:</strong> El pedido pasará a estado rechazado y <strong>NO</strong> se creará ni activará ninguna membresía.</p>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-cancel" (click)="closeRejectModal()" [disabled]="isPaymentSubmitting">
+        Cancelar
+      </button>
+      <button
+        type="button"
+        class="btn-modal-delete-confirm"
+        (click)="confirmRejectPayment()"
+        [disabled]="isPaymentSubmitting || rejectReason.trim().length < 5"
+      >
+        {{ isPaymentSubmitting ? 'Procesando Rechazo...' : 'Confirmar Rechazo de Pago' }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Visualizador de Comprobante Ampliado -->
+<div *ngIf="previewReceiptUrl" class="modal-backdrop" (click)="closeReceiptModal()">
+  <div class="modal-card modal-lg" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Comprobante de Pago — Pedido <code>{{ previewReceiptPayment?.order_number }}</code></h2>
+      <button type="button" class="btn-close-modal" (click)="closeReceiptModal()">×</button>
+    </div>
+
+    <div class="modal-body receipt-viewer-body">
+      <div class="receipt-viewer-meta">
+        <span>Cliente: <strong>{{ previewReceiptPayment?.user_name }}</strong></span>
+        <span>Monto: <strong>${{ previewReceiptPayment?.amount | number:'1.0-0' }} COP</strong></span>
+        <span>Archivo: <code>{{ previewReceiptPayment?.receipt_original_name || 'comprobante' }}</code></span>
+      </div>
+      <div class="receipt-viewer-img-container">
+        <img [src]="previewReceiptUrl" alt="Comprobante de pago ampliado" class="expanded-receipt-img" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-close" (click)="closeReceiptModal()">Cerrar Vista</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Acción Masiva de Usuarios (Activar, Inactivar, Baja Lógica) -->
+<div *ngIf="bulkActionType" class="modal-backdrop" (click)="closeBulkActionModal()">
+  <div class="modal-card" [class.modal-danger]="bulkActionType === 'delete'" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>
+        <span *ngIf="bulkActionType === 'activate'">✓ Confirmación: Activación Masiva</span>
+        <span *ngIf="bulkActionType === 'inactivate'">⏸ Confirmación: Inactivación Masiva</span>
+        <span *ngIf="bulkActionType === 'delete'">⚠️ Confirmación: Baja Lógica Masiva Segura</span>
+      </h2>
+      <button type="button" class="btn-close-modal" (click)="closeBulkActionModal()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <p class="bulk-modal-count-notice">
+        Se aplicará la operación sobre <strong>{{ selectedCount }}</strong> usuario(s) seleccionado(s).
+      </p>
+
+      <div *ngIf="bulkActionType === 'delete'" class="audit-preservation-notice">
+        <strong>🛡️ Eliminación Lógica Protegida:</strong>
+        <p>
+          Los usuarios seleccionados serán dados de baja e inactivados. Sus registros de pagos, pedidos y membresías históricas permanecerán intactos en la base de datos para cumplimiento legal y contable.
+        </p>
+      </div>
+
+      <div class="form-row">
+        <label for="bulkReasonInput">Justificación / Motivo Administrativo:</label>
+        <input
+          id="bulkReasonInput"
+          type="text"
+          [(ngModel)]="bulkActionReason"
+          class="modal-input"
+          placeholder="Motivo de la acción masiva..."
+        />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-cancel" (click)="closeBulkActionModal()" [disabled]="isBulkActionSubmitting">
+        Cancelar
+      </button>
+      <button
+        type="button"
+        [class.btn-modal-save]="bulkActionType === 'activate' || bulkActionType === 'inactivate'"
+        [class.btn-modal-delete-confirm]="bulkActionType === 'delete'"
+        (click)="confirmBulkAction()"
+        [disabled]="isBulkActionSubmitting"
+      >
+        {{ isBulkActionSubmitting ? 'Procesando Lote...' : 'Ejecutar Acción Masiva' }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 1: Consultar Detalle Completo de Usuario -->
+<div *ngIf="selectedUserDetail" class="modal-backdrop" (click)="closeUserDetail()">
+  <div class="modal-card modal-lg" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Perfil y Consulta de Usuario #{{ selectedUserDetail.user.id }}</h2>
+      <button type="button" class="btn-close-modal" (click)="closeUserDetail()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <!-- Datos Personales -->
+      <div class="detail-grid-box">
+        <div class="detail-item"><span>Nombre:</span><strong>{{ selectedUserDetail.user.name }}</strong></div>
+        <div class="detail-item"><span>Email:</span><strong>{{ selectedUserDetail.user.email }}</strong></div>
+        <div class="detail-item"><span>Teléfono:</span><strong>{{ selectedUserDetail.user.phone || 'No registrado' }}</strong></div>
+        <div class="detail-item"><span>Edad:</span><strong>{{ selectedUserDetail.user.age !== null ? selectedUserDetail.user.age + ' años' : 'No registrada' }}</strong></div>
+        <div class="detail-item"><span>Fecha Nacimiento:</span><strong>{{ selectedUserDetail.user.birth_date ? (selectedUserDetail.user.birth_date | date:'mediumDate') : 'No registrada' }}</strong></div>
+        <div class="detail-item"><span>Género:</span><strong>{{ selectedUserDetail.user.gender || 'No especificado' }}</strong></div>
+        <div class="detail-item"><span>Rol en Sistema:</span><strong class="role-badge-table">{{ selectedUserDetail.user.role }}</strong></div>
+        <div class="detail-item"><span>Estado:</span><strong>{{ selectedUserDetail.user.is_active ? 'Activo' : 'Inactivo' }}</strong></div>
+        <div class="detail-item"><span>Contacto Emergencia:</span><strong>{{ selectedUserDetail.user.emergency_contact || 'Ninguno' }} ({{ selectedUserDetail.user.emergency_phone || '-' }})</strong></div>
+        <div class="detail-item"><span>Notas Médicas:</span><strong>{{ selectedUserDetail.user.medical_notes || 'Sin observaciones' }}</strong></div>
+      </div>
+
+      <!-- Membresía Activa -->
+      <div class="modal-sub-section">
+        <h3>🎫 Plan Actual y Membresía Vigente</h3>
+        <div *ngIf="selectedUserDetail.active_membership" class="active-mem-box">
+          <div class="active-mem-row">
+            <div>
+              <span class="active-pill-tag">VIGENTE</span>
+              <h4>Plan {{ selectedUserDetail.active_membership.plan_name }}</h4>
+              <p>Duración: {{ selectedUserDetail.active_membership.duration_days }} días</p>
+            </div>
+            <div class="days-box">
+              <span class="days-num">{{ selectedUserDetail.active_membership.days_remaining }}</span>
+              <span class="days-lbl">Días restantes</span>
+            </div>
+          </div>
+          <div class="active-mem-footer">
+            <span>Inicio: <strong>{{ selectedUserDetail.active_membership.start_date | date:'shortDate' }}</strong></span>
+            <span>Vencimiento: <strong>{{ selectedUserDetail.active_membership.end_date | date:'shortDate' }}</strong></span>
+            <span>Precio: <strong>${{ selectedUserDetail.active_membership.price_paid | number:'1.0-0' }} COP</strong></span>
+          </div>
+        </div>
+        <p *ngIf="!selectedUserDetail.active_membership" class="text-empty-box">El usuario no tiene un plan activo en este momento.</p>
+      </div>
+
+      <!-- Historial de Membresías -->
+      <div class="modal-sub-section">
+        <h3>📜 Historial de Membresías ({{ selectedUserDetail.memberships_history.length }})</h3>
+        <div class="table-responsive">
+          <table class="table-compact">
+            <thead>
+              <tr>
+                <th>Plan</th>
+                <th>Inicio</th>
+                <th>Vencimiento</th>
+                <th>Estado</th>
+                <th>Precio Pagado</th>
+                <th>Pedido</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let hm of selectedUserDetail.memberships_history">
+                <td><strong>Plan {{ hm.plan_name }}</strong></td>
+                <td>{{ hm.start_date | date:'shortDate' }}</td>
+                <td>{{ hm.end_date | date:'shortDate' }}</td>
+                <td>{{ hm.computed_status }}</td>
+                <td>${{ hm.price_paid | number:'1.0-0' }} COP</td>
+                <td><code>{{ hm.order_number || '-' }}</code></td>
+              </tr>
+              <tr *ngIf="selectedUserDetail.memberships_history.length === 0">
+                <td colspan="6" class="text-center-empty">No hay membresías históricas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Historial de Pedidos -->
+      <div class="modal-sub-section">
+        <h3>🛍️ Historial de Compras y Pedidos ({{ selectedUserDetail.orders_history.length }})</h3>
+        <div class="table-responsive">
+          <table class="table-compact">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Total</th>
+                <th>Método</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ho of selectedUserDetail.orders_history">
+                <td><code>{{ ho.order_number }}</code></td>
+                <td>${{ ho.total_amount | number:'1.0-0' }} COP</td>
+                <td>{{ ho.payment_method }}</td>
+                <td>{{ ho.status }}</td>
+                <td>{{ ho.created_at | date:'short' }}</td>
+              </tr>
+              <tr *ngIf="selectedUserDetail.orders_history.length === 0">
+                <td colspan="5" class="text-center-empty">No hay pedidos registrados.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-close" (click)="closeUserDetail()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2: Editar Datos Personales del Usuario -->
+<div *ngIf="userEditForm" class="modal-backdrop" (click)="closeEditUser()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Actualizar Datos Personales de {{ userEditForm.name }}</h2>
+      <button type="button" class="btn-close-modal" (click)="closeEditUser()">×</button>
+    </div>
+
+    <form (ngSubmit)="saveUserEdit()" class="modal-form">
+      <div class="form-row">
+        <label for="editUserName">Nombre Completo:</label>
+        <input id="editUserName" type="text" [(ngModel)]="userEditForm.name" name="name" required class="modal-input" />
+      </div>
+
+      <div class="form-row">
+        <label for="editUserEmail">Correo Electrónico:</label>
+        <input id="editUserEmail" type="email" [(ngModel)]="userEditForm.email" name="email" required class="modal-input" />
+      </div>
+
+      <div class="form-row">
+        <label for="editUserPhone">Teléfono de Contacto:</label>
+        <input id="editUserPhone" type="text" [(ngModel)]="userEditForm.phone" name="phone" class="modal-input" />
+      </div>
+
+      <div class="form-row-grid">
+        <div class="form-row">
+          <label for="editUserBirth">Fecha de Nacimiento:</label>
+          <input id="editUserBirth" type="date" [(ngModel)]="userEditForm.birth_date" name="birth_date" class="modal-input" />
+        </div>
+        <div class="form-row">
+          <label for="editUserGender">Género:</label>
+          <select id="editUserGender" [(ngModel)]="userEditForm.gender" name="gender" class="modal-input">
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+            <option value="no_binario">No binario</option>
+            <option value="prefiero_no_decir">Prefiero no decir</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row-grid">
+        <div class="form-row">
+          <label for="editEmergencyContact">Contacto de Emergencia:</label>
+          <input id="editEmergencyContact" type="text" [(ngModel)]="userEditForm.emergency_contact" name="emergency_contact" class="modal-input" />
+        </div>
+        <div class="form-row">
+          <label for="editEmergencyPhone">Teléfono de Emergencia:</label>
+          <input id="editEmergencyPhone" type="text" [(ngModel)]="userEditForm.emergency_phone" name="emergency_phone" class="modal-input" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="editMedicalNotes">Observaciones Médicas:</label>
+        <textarea id="editMedicalNotes" [(ngModel)]="userEditForm.medical_notes" name="medical_notes" rows="2" class="modal-input"></textarea>
+      </div>
+
+      <div class="form-row">
+        <label for="editUserReason">Motivo de la Modificación (Obligatorio para Auditoría):</label>
+        <input id="editUserReason" type="text" [(ngModel)]="userEditForm.reason" name="reason" required class="modal-input" placeholder="Ej. Solicitud presencial de cambio de número telefónico" />
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-cancel" (click)="closeEditUser()">Cancelar</button>
+        <button type="submit" class="btn-modal-save">Guardar Cambios</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 3: Confirmación de Eliminación Lógica Segura -->
+<div *ngIf="userToDelete" class="modal-backdrop" (click)="closeDeleteConfirm()">
+  <div class="modal-card modal-danger" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>⚠️ Confirmación de Eliminación Lógica Segura</h2>
+      <button type="button" class="btn-close-modal" (click)="closeDeleteConfirm()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <p class="danger-warning">
+        ¿Estás seguro de que deseas eliminar al usuario <strong>{{ userToDelete.name }}</strong> (<code>{{ userToDelete.email }}</code>)?
+      </p>
+
+      <div class="audit-preservation-notice">
+        <strong>🛡️ Aviso de Integridad y Trazabilidad Legal:</strong>
+        <p>
+          El sistema aplicará una <strong>eliminación lógica protegida</strong>. Esto significa que la cuenta será dada de baja e inactivada para impedir accesos futuros, pero se <strong>preservarán intactos</strong> sus pedidos, pagos, membresías históricas y trazas de consentimiento, en estricto cumplimiento con la legislación de auditoría contable y la Ley 1581 de Protección de Datos Personales.
+        </p>
+      </div>
+
+      <div class="form-row">
+        <label for="deleteReasonInput">Motivo de la Eliminación (Registrado en Auditoría):</label>
+        <input
+          id="deleteReasonInput"
+          type="text"
+          [(ngModel)]="deleteReason"
+          name="deleteReason"
+          required
+          class="modal-input"
+          placeholder="Ej. Solicitud formal de derecho de supresión de cuenta"
+        />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-cancel" (click)="closeDeleteConfirm()">Cancelar</button>
+      <button type="button" class="btn-modal-delete-confirm" (click)="confirmSafeDeleteUser()" [disabled]="!deleteReason.trim()">
+        Confirmar Eliminación Segura
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4: Modificar Membresía -->
+<div *ngIf="membershipToEdit" class="modal-backdrop" (click)="closeEditMembership()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Modificar Membresía #{{ membershipToEdit.id }} — {{ membershipToEdit.user_name }}</h2>
+      <button type="button" class="btn-close-modal" (click)="closeEditMembership()">×</button>
+    </div>
+
+    <form (ngSubmit)="saveMembershipEdit()" class="modal-form">
+      <div class="form-row">
+        <label for="memEditPlan">Plan Asignado:</label>
+        <input id="memEditPlan" type="text" [value]="'Plan ' + membershipToEdit.plan_name" disabled class="modal-input input-disabled" />
+      </div>
+
+      <div class="form-row">
+        <label for="memEditEndDate">Nueva Fecha de Vencimiento:</label>
+        <input id="memEditEndDate" type="date" [(ngModel)]="membershipEditForm.end_date" name="end_date" required class="modal-input" />
+      </div>
+
+      <div class="form-row">
+        <label for="memEditStatus">Estado de la Membresía:</label>
+        <select id="memEditStatus" [(ngModel)]="membershipEditForm.status" name="status" class="modal-input">
+          <option value="active">Activa</option>
+          <option value="suspended">Suspendida</option>
+          <option value="cancelled">Cancelada</option>
+          <option value="expired">Vencida</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label for="memEditNotes">Notas Administrativas:</label>
+        <input id="memEditNotes" type="text" [(ngModel)]="membershipEditForm.notes" name="notes" class="modal-input" placeholder="Ej. Extensión por incapacidad médica justificada" />
+      </div>
+
+      <div class="form-row">
+        <label for="memEditReason">Motivo Obligatorio del Cambio:</label>
+        <input id="memEditReason" type="text" [(ngModel)]="membershipEditForm.reason" name="reason" required class="modal-input" placeholder="Ej. Extensión autorizada de 15 días por recepción" />
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-cancel" (click)="closeEditMembership()">Cancelar</button>
+        <button type="submit" class="btn-modal-save" [disabled]="!membershipEditForm.reason.trim()">Guardar Modificación</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 5: Modificar Precio y Duración de Plan -->
+<div *ngIf="planToEdit" class="modal-backdrop" (click)="closeEditPlan()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Modificar Plan Oficial: {{ planToEdit.name }}</h2>
+      <button type="button" class="btn-close-modal" (click)="closeEditPlan()">×</button>
+    </div>
+
+    <form (ngSubmit)="savePlanEdit()" class="modal-form">
+      <div class="form-row">
+        <label for="planEditName">Nombre del Plan:</label>
+        <input id="planEditName" type="text" [(ngModel)]="planEditForm.name" name="name" required class="modal-input" />
+      </div>
+
+      <div class="form-row-grid">
+        <div class="form-row">
+          <label for="planEditPrice">Precio Oficial (COP):</label>
+          <input id="planEditPrice" type="number" min="1000" [(ngModel)]="planEditForm.price" name="price" required class="modal-input" />
+        </div>
+        <div class="form-row">
+          <label for="planEditDuration">Duración en Días:</label>
+          <input id="planEditDuration" type="number" min="1" max="3650" [(ngModel)]="planEditForm.duration_days" name="duration_days" required class="modal-input" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="planEditDesc">Descripción para el Catálogo:</label>
+        <textarea id="planEditDesc" [(ngModel)]="planEditForm.description" name="description" rows="2" class="modal-input"></textarea>
+      </div>
+
+      <div class="form-row">
+        <label for="planEditReason">Motivo de la Modificación (Se guardará en el Historial de Precios):</label>
+        <input id="planEditReason" type="text" [(ngModel)]="planEditForm.reason" name="reason" required class="modal-input" placeholder="Ej. Ajuste de tarifa anual aprobada por gerencia" />
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-cancel" (click)="closeEditPlan()">Cancelar</button>
+        <button type="submit" class="btn-modal-save">Actualizar Plan</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 6: Historial de Cambios de Plan -->
+<div *ngIf="selectedPlanHistory" class="modal-backdrop" (click)="closePlanHistory()">
+  <div class="modal-card modal-lg" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Histórico de Precios y Duración — Plan {{ selectedPlanName }}</h2>
+      <button type="button" class="btn-close-modal" (click)="closePlanHistory()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="table-responsive">
+        <table class="table-compact">
+          <thead>
+            <tr>
+              <th>Fecha del Cambio</th>
+              <th>Precio Anterior</th>
+              <th>Nuevo Precio</th>
+              <th>Duración Anterior</th>
+              <th>Nueva Duración</th>
+              <th>Modificado Por</th>
+              <th>Motivo Registrado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let h of selectedPlanHistory">
+              <td>{{ h.created_at | date:'medium' }}</td>
+              <td>${{ h.old_price | number:'1.0-0' }} COP</td>
+              <td><strong>${{ h.new_price | number:'1.0-0' }} COP</strong></td>
+              <td>{{ h.old_duration_days }} días</td>
+              <td><strong>{{ h.new_duration_days }} días</strong></td>
+              <td>{{ h.changed_by_name || 'Sistema / Migración' }}</td>
+              <td>{{ h.reason || 'Sin motivo registrado' }}</td>
+            </tr>
+            <tr *ngIf="selectedPlanHistory.length === 0">
+              <td colspan="7" class="text-center-empty">No hay cambios registrados para este plan.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-close" (click)="closePlanHistory()">Cerrar</button>
+    </div>
+  </div>
+</div>

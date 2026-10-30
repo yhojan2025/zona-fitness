@@ -2,9 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../core/auth.service';
 import { CartService } from '../../core/cart.service';
-import { User, Order } from '../../core/models';
+import { User, Order, Membership } from '../../core/models';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-account',
@@ -14,6 +16,7 @@ import { User, Order } from '../../core/models';
   styleUrls: ['./account.css'],
 })
 export class Account implements OnInit {
+  private http = inject(HttpClient);
   readonly auth = inject(AuthService);
   readonly cartService = inject(CartService);
   private router = inject(Router);
@@ -29,11 +32,18 @@ export class Account implements OnInit {
     birth_date: '',
   };
 
-  orders: Order[] = [];
+  orders: (Order & { payment_id?: number; payment_status?: string; receipt_path?: string; rejection_reason?: string })[] = [];
   isLoadingOrders: boolean = false;
+  activeMembership: Membership | null = null;
+  membershipHistory: any[] = [];
+  isLoadingMembership: boolean = false;
   isSavingProfile: boolean = false;
   successMessage: string | null = null;
   errorMessage: string | null = null;
+
+  // Visualizador de comprobante en modal
+  previewReceiptUrl: string | null = null;
+  isLoadingReceipt: boolean = false;
 
   ngOnInit() {
     const user = this.auth.user();
@@ -62,6 +72,7 @@ export class Account implements OnInit {
     });
 
     this.loadOrders();
+    this.loadMembership();
 
     this.route.queryParams.subscribe((params) => {
       const tab = params['tab'];
@@ -102,6 +113,28 @@ export class Account implements OnInit {
     });
   }
 
+  loadMembership() {
+    this.isLoadingMembership = true;
+    this.cartService.getMyActiveMembership().subscribe({
+      next: (res) => {
+        this.activeMembership = res.membership;
+        this.isLoadingMembership = false;
+      },
+      error: () => {
+        this.activeMembership = null;
+        this.isLoadingMembership = false;
+      },
+    });
+    this.cartService.getMyMembershipHistory().subscribe({
+      next: (history) => {
+        this.membershipHistory = history;
+      },
+      error: () => {
+        this.membershipHistory = [];
+      },
+    });
+  }
+
   saveProfile() {
     this.isSavingProfile = true;
     this.successMessage = null;
@@ -127,6 +160,28 @@ export class Account implements OnInit {
         this.errorMessage = err?.error?.error || 'Error al actualizar el perfil.';
       },
     });
+  }
+
+  viewReceipt(paymentId: number) {
+    if (!paymentId) return;
+    this.isLoadingReceipt = true;
+    this.http.get(`${environment.apiUrl}/payments/${paymentId}/receipt`, { responseType: 'blob' }).subscribe({
+      next: (blob) => {
+        this.isLoadingReceipt = false;
+        this.previewReceiptUrl = URL.createObjectURL(blob);
+      },
+      error: () => {
+        this.isLoadingReceipt = false;
+        alert('No fue posible cargar el comprobante solicitado.');
+      },
+    });
+  }
+
+  closeReceiptModal() {
+    if (this.previewReceiptUrl) {
+      URL.revokeObjectURL(this.previewReceiptUrl);
+      this.previewReceiptUrl = null;
+    }
   }
 
   logout() {

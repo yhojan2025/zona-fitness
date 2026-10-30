@@ -35,7 +35,8 @@ describe('App', () => {
     expect(el.querySelector('.brand-mark')?.getAttribute('src')).toContain('zona-fitness-icon.png');
     expect(el.querySelector('.brand-wordmark')?.textContent).toContain('FITNESS');
     expect(el.querySelector('.primary-nav')?.textContent).toContain('Planes');
-    expect(el.querySelector('.header-action')?.textContent).toContain('Acceso del equipo');
+    expect(el.querySelector('.header-action')?.textContent).toContain('Iniciar sesión');
+    expect(el.querySelector('.header-action')?.textContent).not.toContain('Acceso del equipo');
   });
 
   it('links each public navigation item to its dedicated page', async () => {

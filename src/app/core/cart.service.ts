@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { tap, catchError, of, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { CartItem, CartResponse, Order } from './models';
+import { ActiveMembershipResponse, BankAccount, CartItem, CartResponse, Membership, Order } from './models';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -147,6 +147,57 @@ export class CartService {
         throw err;
       }),
     );
+  }
+
+  confirmSimulatedPurchase(notes?: string, idempotencyKey?: string): Observable<any> {
+    this.isLoading.set(true);
+    this.errorMessage.set(null);
+
+    return this.http.post<any>(`${this.apiUrl}/orders/checkout-simulated`, {
+      notes,
+      idempotency_key: idempotencyKey,
+    }).pipe(
+      tap(() => {
+        this.resetCart();
+        this.isLoading.set(false);
+      }),
+      catchError((err) => {
+        this.isLoading.set(false);
+        const msg = err?.error?.error || 'Error al procesar la compra simulada';
+        this.errorMessage.set(msg);
+        throw err;
+      }),
+    );
+  }
+
+  getBankAccounts(): Observable<BankAccount[]> {
+    return this.http.get<BankAccount[]>(`${this.apiUrl}/bank-accounts`);
+  }
+
+  submitTransferCheckout(formData: FormData): Observable<any> {
+    this.isLoading.set(true);
+    this.errorMessage.set(null);
+
+    return this.http.post<any>(`${this.apiUrl}/orders/checkout-transfer`, formData).pipe(
+      tap(() => {
+        this.resetCart();
+        this.isLoading.set(false);
+      }),
+      catchError((err) => {
+        this.isLoading.set(false);
+        const msg = err?.error?.error || 'Error al procesar el pago por transferencia bancaria';
+        this.errorMessage.set(msg);
+        throw err;
+      }),
+    );
+  }
+
+  getMyActiveMembership(): Observable<ActiveMembershipResponse> {
+    return this.http.get<ActiveMembershipResponse>(`${this.apiUrl}/memberships/my-active`);
+  }
+
+  getMyMembershipHistory(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/memberships/my-history`);
   }
 
   getOrders(): Observable<Order[]> {

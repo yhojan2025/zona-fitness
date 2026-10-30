@@ -1,3 +1,4 @@
+@if (!isAdminRoute()) {
 <a class="skip-link" href="#main-content">Saltar al contenido</a>
 <header class="site-header">
   <div class="header-main-bar">
@@ -183,7 +184,7 @@
         <!-- Estado No Autenticado -->
         <div class="guest-actions">
           <a class="button button-small button-outline header-action" routerLink="/login" (click)="closeAllMenus()">
-            Acceso del equipo
+            Iniciar sesión
           </a>
           <a class="button button-small button-primary btn-register-nav" routerLink="/register" (click)="closeAllMenus()">
             Registrarse
@@ -289,3 +290,6 @@
   }
 </header>
 <main id="main-content"><router-outlet /></main>
+} @else {
+<main id="main-content" class="admin-app-host"><router-outlet /></main>
+}

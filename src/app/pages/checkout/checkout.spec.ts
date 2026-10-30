@@ -50,6 +50,29 @@ describe('Checkout Component', () => {
       hasUnconfirmedPrices: () => false,
       canCheckout: () => true,
       loadCart: () => of({ item_count: 1 }),
+      getBankAccounts: () => of([
+        {
+          id: 1,
+          bank_name: 'Bancolombia',
+          account_type: 'Ahorros',
+          account_number: '742-983421-15',
+          account_holder: 'ZONA FITNESS S.A.S.',
+          document_type: 'NIT',
+          document_number: '901.876.543-2',
+          is_active: true,
+        },
+      ]),
+      submitTransferCheckout: () => of({
+        success: true,
+        order: {
+          id: 10,
+          order_number: 'ZF-ORD-TRANSFER-01',
+          status: 'pending_verification',
+          payment_method: 'transferencia',
+          total_amount: 80000,
+          created_at: new Date().toISOString(),
+        },
+      }),
       createPendingOrder: () => of({
         id: 1,
         order_number: 'ZF-ORD-20261028-1234',
@@ -89,5 +112,24 @@ describe('Checkout Component', () => {
     const el = fixture.nativeElement as HTMLElement;
     expect(component.informationalAlert).toContain('próximamente');
     expect(el.textContent).toContain('próximamente');
+  });
+
+  it('requires receipt file when submitting bank transfer order', () => {
+    component.selectedPaymentMethod = 'transferencia';
+    component.selectedFile = null;
+    component.submitTransferOrder();
+    expect(component.fileError).toContain('Debes adjuntar el comprobante');
+  });
+
+  it('submits transfer checkout and displays mandatory pending verification message', () => {
+    component.selectedPaymentMethod = 'transferencia';
+    const fakeFile = new File(['fake image content'], 'receipt.jpg', { type: 'image/jpeg' });
+    component.selectedFile = fakeFile;
+    component.submitTransferOrder();
+    fixture.detectChanges();
+
+    const el = fixture.nativeElement as HTMLElement;
+    expect(component.createdOrder?.status).toBe('pending_verification');
+    expect(el.textContent).toContain('Tu comprobante fue recibido correctamente. Tu pago está pendiente de verificación por parte del administrador. Tu membresía se activará una vez confirmado el pago.');
   });
 });

@@ -108,7 +108,7 @@ export interface Order {
   id: number;
   order_number: string;
   user_id: number;
-  status: 'pending' | 'processing' | 'completed' | 'cancelled';
+  status: 'pending' | 'processing' | 'completed' | 'cancelled' | 'pending_verification' | 'approved' | 'rejected' | string;
   total_amount: number | string;
   payment_method: string;
   notes?: string | null;
@@ -119,11 +119,72 @@ export interface Order {
 
 export interface Membership {
   id: number;
-  member_id: number;
-  plan_id: number;
+  member_id?: number;
+  user_id?: number;
+  plan_id?: number;
   plan_name?: string;
+  raw_plan_name?: string;
+  slug?: string;
   start_date: string;
   end_date: string;
-  status: 'active' | 'expired' | 'cancelled' | 'pending_payment';
+  duration_days?: number;
+  duration?: string;
+  price_registered?: number;
+  price_paid?: number;
+  order_number?: string;
+  payment_status?: string;
+  days_remaining?: number;
+  is_simulated?: boolean;
+  status: 'active' | 'expired' | 'cancelled' | 'pending_payment' | string;
   notes?: string | null;
 }
+
+export interface ActiveMembershipResponse {
+  active: boolean;
+  membership: Membership | null;
+  message?: string;
+}
+
+export interface BankAccount {
+  id: number;
+  bank_name: string;
+  account_type: string;
+  account_number: string;
+  account_holder: string;
+  document_type: string;
+  document_number: string;
+  is_active: boolean;
+  instructions?: string | null;
+}
+
+export interface PaymentRecord {
+  id: number;
+  order_id: number;
+  payment_method: string;
+  amount: number | string;
+  status: 'pending_verification' | 'approved' | 'rejected' | 'pending' | 'completed' | string;
+  verified_by?: number | null;
+  verified_at?: string | null;
+  rejection_reason?: string | null;
+  receipt_original_name?: string | null;
+  receipt_mime_type?: string | null;
+  receipt_size_bytes?: number | null;
+  has_receipt?: boolean;
+  user_name?: string;
+  user_email?: string;
+  user_phone?: string;
+  order_number?: string;
+  plan_name?: string;
+  verifier_name?: string;
+  created_at: string;
+  updated_at?: string;
+}
+
+export interface BulkActionResult {
+  success: boolean;
+  processed: number[];
+  omitted: { id: number; reason: string }[];
+  count: number;
+  message: string;
+}
+

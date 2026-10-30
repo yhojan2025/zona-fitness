@@ -1,6 +1,8 @@
 import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/auth.service';
+import { CartService } from '../../core/cart.service';
 import { interval } from 'rxjs';
 import { SiteFooter } from '../../shared/site-footer/site-footer';
 
@@ -11,6 +13,9 @@ import { SiteFooter } from '../../shared/site-footer/site-footer';
 })
 export class Home {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
+  protected readonly auth = inject(AuthService);
+  private readonly cartService = inject(CartService);
   protected readonly socialLinks: { name: string; url: string }[] = [];
   protected readonly heroSlides = [
     {
@@ -79,6 +84,8 @@ export class Home {
 
   protected readonly plans = [
     {
+      id: 1,
+      slug: 'cobre',
       name: 'Cobre',
       duration: '15 días',
       detail: '2 horas de ejercicio al día',
@@ -86,6 +93,8 @@ export class Home {
       featured: false,
     },
     {
+      id: 2,
+      slug: 'bronce',
       name: 'Bronce',
       duration: '3 meses',
       detail: 'Un plan para construir constancia',
@@ -93,6 +102,8 @@ export class Home {
       featured: false,
     },
     {
+      id: 3,
+      slug: 'platino',
       name: 'Platino',
       duration: '6 meses',
       detail: 'Más tiempo para mantener tu ritmo',
@@ -100,6 +111,8 @@ export class Home {
       featured: true,
     },
     {
+      id: 4,
+      slug: 'oro',
       name: 'Oro',
       duration: '1 año',
       detail: 'Un año para hacer del movimiento un hábito',
@@ -139,6 +152,31 @@ export class Home {
 
   protected moveHeroSlide(direction: number): void {
     this.showHeroSlide(this.activeHeroIndex() + direction);
+  }
+
+  protected buyPlan(plan: any): void {
+    const planIdMap: Record<string, number> = {
+      Cobre: 1,
+      Bronce: 2,
+      Platino: 3,
+      Oro: 4,
+    };
+    const id = plan.id || planIdMap[plan.name] || 1;
+    if (!this.auth.isLoggedIn()) {
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.setItem(
+          'pending_buy_plan',
+          JSON.stringify({ id, name: plan.name, slug: plan.slug || plan.name.toLowerCase() })
+        );
+      }
+      this.router.navigate(['/login'], { queryParams: { returnUrl: '/carrito' } });
+      return;
+    }
+    this.cartService.addItem('plan', id).subscribe({
+      next: () => {
+        this.router.navigate(['/carrito']);
+      },
+    });
   }
 
   protected toggleHeroRotation(): void {

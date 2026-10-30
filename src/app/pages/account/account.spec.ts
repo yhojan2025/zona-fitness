@@ -33,6 +33,25 @@ describe('Account Component', () => {
           items: [],
         },
       ]),
+      getMyActiveMembership: () => of({
+        active: true,
+        membership: {
+          id: 1,
+          plan_name: 'Plan Platino',
+          raw_plan_name: 'Platino',
+          status: 'active',
+          start_date: '2026-10-29',
+          end_date: '2027-04-27',
+          duration: '6 meses',
+          duration_days: 180,
+          price_registered: 500000,
+          order_number: 'ZF-ORD-20261029-9999',
+          payment_status: 'SIMULADO — SIN COBRO REAL',
+          days_remaining: 180,
+          is_simulated: true,
+        },
+      }),
+      getMyMembershipHistory: () => of([]),
     };
 
     await TestBed.configureTestingModule({
@@ -55,6 +74,15 @@ describe('Account Component', () => {
 
   it('calculates user initials correctly', () => {
     expect(component.userInitials).toBe('CP');
+  });
+
+  it('displays active membership when available', () => {
+    component.setTab('memberships');
+    fixture.detectChanges();
+    const el = fixture.nativeElement as HTMLElement;
+    expect(el.textContent).toContain('MI MEMBRESÍA ACTIVA');
+    expect(el.textContent).toContain('Plan Platino');
+    expect(el.textContent).toContain('SIMULADO — SIN COBRO REAL');
   });
 
   it('displays user name and email', () => {

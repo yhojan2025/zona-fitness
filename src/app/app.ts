@@ -1,5 +1,5 @@
 import { Component, HostListener, computed, inject, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './core/auth.service';
 import { CartService } from './core/cart.service';
@@ -13,6 +13,21 @@ import { CartService } from './core/cart.service';
 export class App {
   protected auth = inject(AuthService);
   protected cart = inject(CartService);
+  private router = inject(Router);
+
+  currentUrl = signal(this.router.url || '');
+
+  constructor() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl.set(event.urlAfterRedirects || event.url);
+      }
+    });
+  }
+
+  isAdminRoute = computed(() => {
+    return this.currentUrl().startsWith('/admin');
+  });
 
   mobileMenuOpen = signal(false);
   profileMenuOpen = signal(false);

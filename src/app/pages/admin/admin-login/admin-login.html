@@ -1,0 +1,66 @@
+<section class="admin-login-wrapper">
+  <div class="admin-login-card">
+    <div class="admin-header-badge">
+      <div class="shield-icon">🛡️</div>
+      <span class="badge-text">ZONA FITNESS — CONSOLA INTERNA</span>
+    </div>
+
+    <h1 class="admin-title">ACCESO ADMINISTRATIVO</h1>
+    <p class="admin-subtitle">Autenticación segura para la gestión y supervisión del sistema ZONA FITNESS.</p>
+
+    <div *ngIf="error()" class="alert-admin-error" role="alert">
+      {{ error() }}
+    </div>
+
+    <form (ngSubmit)="submit()" class="admin-form">
+      <div class="form-group">
+        <label for="adminEmail">Correo Corporativo o Administrador</label>
+        <div class="input-with-icon">
+          <input
+            id="adminEmail"
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            placeholder="admin@zonafitness.com"
+            required
+            autocomplete="username"
+            class="admin-input"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="adminPassword">Contraseña Maestra</label>
+        <div class="input-with-icon password-group">
+          <input
+            id="adminPassword"
+            [type]="showPassword() ? 'text' : 'password'"
+            name="password"
+            [(ngModel)]="password"
+            placeholder="••••••••••••••••"
+            required
+            autocomplete="current-password"
+            class="admin-input"
+          />
+          <button
+            type="button"
+            class="btn-toggle-eye"
+            (click)="togglePassword()"
+            [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Ver contraseña'"
+          >
+            {{ showPassword() ? '🙈' : '👁️' }}
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-admin-submit" [disabled]="loading()">
+        <span *ngIf="!loading()">INGRESAR AL PANEL</span>
+        <span *ngIf="loading()">VALIDANDO PRIVILEGIOS...</span>
+      </button>
+    </form>
+
+    <div class="admin-footer-links">
+      <a routerLink="/" class="link-return-public">← Volver al sitio web principal</a>
+    </div>
+  </div>
+</section>

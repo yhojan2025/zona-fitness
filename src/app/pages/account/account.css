@@ -459,3 +459,379 @@
   font-weight: 700;
   text-decoration: none;
 }
+
+
+/* Active Membership Styles */
+.active-membership-card {
+  background: #ffffff;
+  border: 1px solid #88c9c4;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(62, 155, 148, 0.1);
+  margin-bottom: 2rem;
+}
+
+.membership-hero-banner {
+  background: linear-gradient(135deg, #173330 0%, #274844 100%);
+  color: #ffffff;
+  padding: 1.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.active-pill {
+  display: inline-block;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.plan-hero-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #cff0ea;
+  margin: 0 0 0.25rem 0;
+}
+
+.plan-duration-badge {
+  font-size: 0.9rem;
+  color: #88c9c4;
+  margin: 0;
+}
+
+.days-remaining-counter {
+  background: rgba(207, 240, 234, 0.12);
+  border: 1px solid #88c9c4;
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  text-align: center;
+  min-width: 110px;
+}
+
+.counter-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #cff0ea;
+  line-height: 1;
+}
+
+.counter-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #88c9c4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.membership-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  padding: 1.5rem 2rem;
+  background: #fcfdfd;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.meta-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.meta-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #54716e;
+  font-weight: 600;
+}
+
+.meta-value {
+  font-size: 1.05rem;
+  color: #173330;
+  font-weight: 700;
+}
+
+.highlight-expiry {
+  color: #0f766e;
+}
+
+.code-value {
+  font-family: monospace;
+  background: #e2eeeb;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.badge-payment-simulated {
+  display: inline-block;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  width: fit-content;
+}
+
+/* No membership box */
+.no-membership-box {
+  background: #f8faf9;
+  border: 2px dashed #88c9c4;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 540px;
+  margin: 1.5rem auto;
+}
+
+.no-membership-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.no-membership-box h3 {
+  font-size: 1.35rem;
+  color: #173330;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.no-membership-box p {
+  color: #54716e;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.btn-explorar-planes {
+  display: inline-block;
+  background: #3e9b94;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(62, 155, 148, 0.25);
+}
+
+.btn-explorar-planes:hover {
+  background: #274844;
+  transform: translateY(-2px);
+}
+
+/* History table */
+.history-section {
+  margin-top: 2.5rem;
+  border-top: 1px solid #dcebe8;
+  padding-top: 1.5rem;
+}
+
+.history-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #173330;
+  margin-bottom: 1rem;
+}
+
+.history-table-wrapper {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.history-table th {
+  background: #f4faf8;
+  color: #173330;
+  font-weight: 700;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #88c9c4;
+}
+
+.history-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #dcebe8;
+  color: #274844;
+}
+
+.status-badge-sm {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-badge-sm.badge-active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge-sm.badge-expired {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* ESTILOS DE COMPROBANTES Y ESTADOS EN CUENTA */
+.badge-verification {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  font-weight: 700;
+}
+
+.badge-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+  font-weight: 700;
+}
+
+.order-status-badges-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.order-notice-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin: 0.75rem 0;
+  line-height: 1.4;
+}
+
+.order-notice-box p {
+  margin: 0;
+}
+
+.notice-verification {
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+  color: #115e59;
+}
+
+.notice-rejected {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.order-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.btn-view-receipt-link {
+  background: #f0fdfa;
+  color: #0d9488;
+  border: 1px solid #99f6e4;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-view-receipt-link:hover {
+  background: #0d9488;
+  color: #ffffff;
+}
+
+/* Modal comprobante */
+.receipt-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.receipt-modal-content {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.receipt-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.receipt-modal-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #173330;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.receipt-modal-body {
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  background: #f8fafc;
+}
+
+.modal-receipt-img {
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-modal-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -84,6 +84,13 @@
               <strong>{{ card.price }}</strong>
               <span class="plan-period">/ plan</span>
             </p>
+            <button
+              type="button"
+              class="button button-primary btn-comprar-plan"
+              (click)="buyPlan(card)"
+            >
+              COMPRAR
+            </button>
             <a class="button button-outline plan-action" routerLink="/" fragment="inscripcion">
               Consultar condiciones
               <span aria-hidden="true">↗</span>

@@ -8,6 +8,9 @@ const usersRoutes = require('./routes/users.routes');
 const gymRoutes = require('./routes/gym.routes');
 const cartRoutes = require('./routes/cart.routes');
 const ordersRoutes = require('./routes/orders.routes');
+const membershipsRoutes = require('./routes/memberships.routes');
+const adminRoutes = require('./routes/admin.routes');
+const paymentsRoutes = require('./routes/payments.routes');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -56,7 +59,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/tickets', ticketsRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/memberships', membershipsRoutes);
+app.use('/api/admin', adminRoutes);
 app.use('/api/orders', ordersRoutes);
+app.use('/api/payments', paymentsRoutes);
 app.use('/api', gymRoutes);
 
 // Manejador de rutas no encontradas

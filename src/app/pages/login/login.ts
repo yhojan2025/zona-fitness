@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
+import { CartService } from '../../core/cart.service';
 
 @Component({
   imports: [FormsModule, RouterLink],
@@ -11,6 +12,7 @@ import { AuthService } from '../../core/auth.service';
 })
 export class Login {
   private auth = inject(AuthService);
+  private cartService = inject(CartService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
@@ -38,8 +40,28 @@ export class Login {
     this.error.set('');
     this.infoMessage.set('');
     this.auth.login(this.email, this.password).subscribe({
-      next: () => {
+      next: (res: any) => {
+        if (this.auth.hasRole('admin') || res?.user?.role === 'admin') {
+          this.router.navigate(['/admin/dashboard']);
+          return;
+        }
+        const pendingPlanStr = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('pending_buy_plan') : null;
         const returnUrl = this.route.snapshot.queryParams['returnUrl'];
+        if (pendingPlanStr) {
+          try {
+            const pending = JSON.parse(pendingPlanStr);
+            sessionStorage.removeItem('pending_buy_plan');
+            if (pending?.id) {
+              this.cartService.addItem('plan', pending.id).subscribe({
+                next: () => this.router.navigate(['/carrito']),
+                error: () => this.router.navigate([returnUrl || '/carrito']),
+              });
+              return;
+            }
+          } catch {
+            sessionStorage.removeItem('pending_buy_plan');
+          }
+        }
         if (returnUrl) {
           this.router.navigate([returnUrl]);
         } else {

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Zona Fitness - Caso de Estudio y Documento de Proyecto</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 14mm 15mm 16mm 15mm;
+      @bottom-center {
+        content: "Universidad de Caldas · Programa Técnico en Programación Web · U en tu pueblo";
+        font-size: 8pt;
+        color: #666;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #2c3e50;
+      font-size: 9.5pt;
+      line-height: 1.45;
+      background: #ffffff;
+    }
+
+    .page {
+      page-break-after: always;
+      position: relative;
+      min-height: 255mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+    }
+
+    /* Membrete institucional idéntico al PDF de referencia */
+    .inst-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #2e7d32;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+
+    .inst-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .inst-logo-badge {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      color: #1b5e20;
+      font-size: 16pt;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .inst-logo-sub {
+      font-size: 9pt;
+      font-weight: 700;
+      color: #388e3c;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .inst-partner {
+      text-align: right;
+      font-size: 8pt;
+      color: #555;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .inst-footer {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      font-size: 7.5pt;
+      color: #777;
+      line-height: 1.3;
+    }
+
+    /* Portada */
+    .cover-page {
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .cover-content {
+      margin: auto 0;
+      padding: 10px 0;
+    }
+
+    .cover-kicker {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13pt;
+      font-weight: 700;
+      color: #245b56;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    .cover-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32pt;
+      font-weight: 800;
+      color: #173330;
+      margin: 0 0 10px 0;
+      line-height: 1.1;
+    }
+
+    .cover-title span {
+      color: #3e9b94;
+    }
+
+    .cover-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14pt;
+      font-weight: 500;
+      font-style: italic;
+      color: #387b74;
+      margin-bottom: 12px;
+    }
+
+    .cover-tagline {
+      font-size: 10pt;
+      color: #597370;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .cover-image-container {
+      margin: 15px auto;
+      max-width: 520px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(23, 51, 48, 0.15);
+      border: 3px solid #88c9c4;
+    }
+
+    .cover-image-container img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cover-meta {
+      margin-top: 18px;
+      font-size: 9pt;
+      color: #274844;
+      line-height: 1.5;
+    }
+
+    /* Bloques de contenido */
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #173330;
+      margin-top: 14px;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    h1 { font-size: 14pt; border-bottom: 1.5px solid #88c9c4; padding-bottom: 4px; }
+    h2 { font-size: 12pt; color: #274844; }
+    h3 { font-size: 10.5pt; color: #3e9b94; }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+
+    /* Recuadros y alertas */
+    .callout {
+      background: #f0faf8;
+      border-left: 4px solid #3e9b94;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0 14px 0;
+    }
+
+    .callout-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9pt;
+      font-weight: 700;
+      color: #173330;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .badge-success {
+      display: inline-block;
+      background: #2e7d32;
+      color: white;
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .badge-brand {
+      display: inline-block;
+      background: #3e9b94;
+      color: white;
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    /* Tablas elegantes */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px 0;
+      font-size: 8.5pt;
+    }
+
+    th, td {
+      border: 1px solid #d8e8e6;
+      padding: 6px 9px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #245b56;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    tr:nth-child(even) td {
+      background: #fbfdfd;
+    }
+
+    /* Wireframe y Diagramas */
+    .wireframe-box {
+      border: 2px dashed #88c9c4;
+      background: #f8fcfa;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .wf-header {
+      background: #cff0ea;
+      padding: 6px 10px;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 8pt;
+      color: #173330;
+      margin-bottom: 8px;
+    }
+
+    .wf-hero {
+      background: #ffffff;
+      border: 1px solid #d0e7e4;
+      padding: 10px;
+      border-radius: 6px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .wf-hero-left h4 { margin: 0 0 4px 0; font-size: 10pt; color: #173330; }
+    .wf-btn { background: #3e9b94; color: white; padding: 3px 8px; border-radius: 4px; font-size: 7.5pt; display: inline-block; margin-top: 6px; }
+
+    .wf-carousel {
+      background: #edf8f6;
+      border: 1px dashed #3e9b94;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 7.5pt;
+      color: #274844;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .wf-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .wf-card {
+      background: #ffffff;
+      border: 1px solid #cbe4e1;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      text-align: center;
+    }
+
+    .wf-card strong { color: #173330; display: block; font-size: 8pt; }
+
+    /* DOM Tree */
+    .tree-view {
+      background: #173330;
+      color: #cff0ea;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 8pt;
+      line-height: 1.35;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+
+    .tree-view .tag { color: #88c9c4; font-weight: bold; }
+    .tree-view .attr { color: #e0f2f1; }
+    .tree-view .comment { color: #6e9994; font-style: italic; }
+
+    /* Flowchart SVG Wrapper */
+    .flowchart-container {
+      background: #ffffff;
+      border: 1px solid #cbe4e1;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    /* Listas */
+    ul {
+      margin: 4px 0 10px 18px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    .highlight-text {
+      color: #3e9b94;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PÁGINA 1: PORTADA ==================== -->
+  <div class="page cover-page">
+    <div class="inst-header">
+      <div class="inst-logo-group">
+        <div>
+          <div class="inst-logo-badge">UCaldas</div>
+          <div class="inst-logo-sub">en tu pueblo</div>
+        </div>
+      </div>
+      <div class="inst-partner">
+        Universidad de Caldas<br>
+        Facultad de Ingenierías<br>
+        <strong>Programa Técnico en Programación Web</strong>
+      </div>
+    </div>
+
+    <div class="cover-content">
+      <div class="cover-kicker">PROYECTO INTEGRAL DE CURSO</div>
+      <h1 class="cover-title">Zona <span>Fitness</span></h1>
+      <div class="cover-subtitle">Del análisis de requisitos a una web funcional y validada</div>
+      <div class="cover-tagline">Caso de estudio para Análisis y Diseño de Soluciones Web · Conclusión Exitosa</div>
+
+      <div class="cover-image-container">
+        <img src="../public/auth-fitness-bg.jpg" alt="Zona Fitness - Instalaciones y entrenamiento">
+      </div>
+
+      <div class="cover-meta">
+        <strong>Docente Titular:</strong> Ingeniera Angela Andrea Suárez Arango<br>
+        <strong>Equipo de Proyecto:</strong> Brahiam Antonio Bedoya (Gestor) · Oscar Jhonny Hurtado (Desarrollador) · Yhojan David Pérez (Analista)<br>
+        <strong>Materia:</strong> Análisis y Diseño de Soluciones Web<br>
+        <strong>Institución:</strong> Universidad de Caldas · U en tu pueblo (Aguadas / Caldas)<br>
+        <strong>URL Pública:</strong> <a href="https://yhojan2025.github.io/zona-fitness/" style="color:#3e9b94;">yhojan2025.github.io/zona-fitness/</a> · <strong>Estado:</strong> 100% Metas Alcanzadas
+      </div>
+    </div>
+
+    <div class="inst-footer">
+      Universidad de Caldas · Programa Técnico en Programación Web · U en tu pueblo<br>
+      Ingeniera Angela Andrea Suarez Arango · tecnicosfacingenierias@ucaldas.edu.co · 8781500 Ext. 13220
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 2: PROPÓSITO Y INTRODUCCIÓN ==================== -->
+  <div class="page">
+    <div class="inst-header">
+      <div class="inst-logo-group">
+        <div class="inst-logo-badge">UCaldas</div>
+        <div class="inst-logo-sub">en tu pueblo</div>
+      </div>
+      <div class="inst-partner">Proyecto Integral · Zona Fitness</div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Propósito de la Solución</div>
+      <p style="margin:0;">
+        Comprender y evidenciar cómo un equipo profesional de ingeniería transforma las necesidades comerciales y operativas de un centro de acondicionamiento físico en una plataforma web integral de alto rendimiento: analizando requerimientos, diseñando la experiencia visual (UX/UI), desarrollando componentes frontend y backend escalables, verificando la calidad mediante pruebas rigurosas y completando la entrega con el <strong>100% de los criterios y metas aprobados</strong>.
+      </p>
+    </div>
+
+    <h1>Ficha técnica del proyecto</h1>
+    <table>
+      <tr>
+        <th style="width: 25%;">Cliente / Entidad</th>
+        <td><strong>Zona Fitness</strong> (Centro de acondicionamiento físico y bienestar deportivo)</td>
+      </tr>
+      <tr>
+        <th>Tipo de solución</th>
+        <td>Plataforma web promocional e interactiva con catálogo de servicios, membresías y panel interno de soporte</td>
+      </tr>
+      <tr>
+        <th>Usuarios principales</th>
+        <td>Visitantes interesados en entrenar, deportistas activos y colaboradores de soporte técnico</td>
+      </tr>
+      <tr>
+        <th>Tecnologías base</th>
+        <td>
+          <strong>Frontend:</strong> Angular 22, TypeScript, HTML5 Semántico, CSS3 con Custom Properties (Variables)<br>
+          <strong>Backend & BD:</strong> Node.js, Express REST API, PostgreSQL 18 y administración gráfica pgAdmin 4
+        </td>
+      </tr>
+      <tr>
+        <th>Alcance alcanzado</th>
+        <td>Landing page responsiva con carrusel cronometrado, módulos de servicios (cardio, pesas, sauna, jacuzzi), 4 planes de membresía, horarios y mapa interactivo, catálogo informativo de productos, validación de reglas de edad e integración API</td>
+      </tr>
+      <tr>
+        <th>Estado de entrega</th>
+        <td><span class="badge-success">100% Cumplido y Validado</span> — Todas las pruebas y entregables aprobados</td>
+      </tr>
+    </table>
+
+    <h1>1. Introducción</h1>
+    <p>
+      El gimnasio <strong>Zona Fitness</strong> requería impulsar su presencia en el ecosistema digital, visibilizar sus diferenciales deportivos, transparentar los horarios de atención y disponer de un canal informativo ordenado que responda de forma inmediata a los usuarios en cualquier dispositivo.
+    </p>
+    <p>
+      El equipo de desarrollo estructuró el proyecto aplicando metodologías ágiles y principios de diseño web moderno. Mediante un flujo ordenado se procedió desde la entrevista inicial y formalización de requisitos hasta el prototipado en Figma, la codificación en Angular 22 y Express, y la validación en batería de pruebas unitarias.
+    </p>
+    <p>
+      Este documento sintetiza la culminación integral del proyecto, certificando que cada módulo, historia de usuario y criterio de aceptación fue probado y aprobado satisfactoriamente por el equipo.
+    </p>
+
+    <div class="inst-footer">
+      Universidad de Caldas · Programa Técnico en Programación Web · U en tu pueblo<br>
+      Ingeniera Angela Andrea Suarez Arango · tecnicosfacingenierias@ucaldas.edu.co · 8781500 Ext. 13220
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 3: EQUIPO Y ROLES ==================== -->
+  <div class="page">
+    <div class="inst-header">
+      <div class="inst-logo-group">
+        <div class="inst-logo-badge">UCaldas</div>
+        <div class="inst-logo-sub">en tu pueblo</div>
+      </div>
+      <div class="inst-partner">Proyecto Integral · Zona Fitness</div>
+    </div>
+
+    <h1>2. Equipo de desarrollo: roles y responsabilidades</h1>
+    <p>
+      Para garantizar el éxito de la plataforma, cada participante asumió un rol profesional con metas delimitadas y entregables comprobables dentro del repositorio:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 22%;">Rol profesional</th>
+          <th style="width: 48%;">Responsabilidades en Zona Fitness</th>
+          <th style="width: 30%;">Entregable o evidencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Product Owner / Negocio</strong></td>
+          <td>Prioriza necesidades del negocio, define los 4 servicios esenciales (cardio, pesas, sauna, jacuzzi) y valida formalmente el cumplimiento de criterios.</td>
+          <td>Acta de requisitos y aprobación formal de entrega.</td>
+        </tr>
+        <tr>
+          <td><strong>Project Manager</strong><br><span style="color:#245b56;font-weight:600;">Brahiam Antonio Bedoya</span></td>
+          <td>Planifica el alcance y cronograma, coordina tareas, prioriza actividades, da seguimiento a riesgos y verifica la entrega integral.</td>
+          <td>Cronograma de hitos, matriz de seguimiento y balance de entrega.</td>
+        </tr>
+        <tr>
+          <td><strong>Desarrollador</strong><br><span style="color:#245b56;font-weight:600;">Oscar Jhonny Hurtado</span></td>
+          <td>Implementa la SPA en Angular 22, componentes, estilos CSS responsive, API REST en Node.js/Express, persistencia y rutas seguras.</td>
+          <td>Código en <code>src/app/</code>, <code>server/</code> y prototipo interactivo <code>mockup/</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Analista & QA</strong><br><span style="color:#245b56;font-weight:600;">Yhojan David Pérez</span></td>
+          <td>Identifica necesidades, documenta historias de usuario, estructura la información, diseña y ejecuta el plan de pruebas QA.</td>
+          <td>SRS, 78 pruebas aprobadas (100% de éxito) y documentación técnica.</td>
+        </tr>
+        <tr>
+          <td><strong>UX/UI Designers</strong></td>
+          <td>Establece el Manual de Marca: paleta deportiva (<code>#cff0ea</code>, <code>#88c9c4</code>, <code>#3e9b94</code>), tipografías Montserrat/Open Sans e iconos.</td>
+          <td>Prototipo en Figma, sitemap y guía de estilos gráficos.</td>
+        </tr>
+        <tr>
+          <td><strong>DevOps / Despliegue</strong></td>
+          <td>Gestiona el repositorio en GitHub, automatiza builds de producción (<code>npm run build</code>) y publicación continua en GitHub Pages.</td>
+          <td>Repositorio <code>yhojan2025/zona-fitness</code> y despliegue público en GitHub Pages.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Actores del sistema vs. Roles del equipo de desarrollo</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 50%;">Actores del sistema (Usuarios finales)</th>
+          <th style="width: 50%;">Roles del equipo de desarrollo (Constructores)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            • <strong>Visitante Web:</strong> Explora planes, servicios, horarios, fotos y métodos de pago.<br>
+            • <strong>Cliente (Dueño del Gym):</strong> Aprueba precios, campañas y recibe prospectos.<br>
+            • <strong>Equipo de Soporte:</strong> Accede a <code>/login</code> para gestionar tickets.
+          </td>
+          <td>
+            • <strong>Product Owner / CEO & Project Manager</strong><br>
+            • <strong>Business Analyst & UX/UI Designer</strong><br>
+            • <strong>Frontend & Backend Developers</strong><br>
+            • <strong>QA Tester & DevOps Engineer</strong>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="inst-footer">
+      Universidad de Caldas · Programa Técnico en Programación Web · U en tu pueblo<br>
+      Ingeniera Angela Andrea Suarez Arango · tecnicosfacingenierias@ucaldas.edu.co · 8781500 Ext. 13220
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 4: FASE 1 ANÁLISIS Y SITEMAP ==================== -->
+  <div class="page">
+    <div class="inst-header">
+      <div class="inst-logo-group">
+        <div class="inst-logo-badge">UCaldas</div>
+        <div class="inst-logo-sub">en tu pueblo</div>
+      </div>
+      <div class="inst-partner">Proyecto Integral · Zona Fitness</div>
+    </div>
+
+    <h1>3. Fase 1: Análisis de Requisitos</h1>
+    
+    <h2>3.1. Historias de usuario validadas</h2>
+    <ul>
+      <li><strong>HU-01:</strong> Como visitante, quiero ver un carrusel dinámico con fotos y lemas del gimnasio para motivarme a iniciar mi rutina.</li>
+      <li><strong>HU-02:</strong> Como visitante, quiero comparar claramente los 4 planes (Cobre, Bronce, Platino, Oro) para seleccionar el más conveniente.</li>
+      <li><strong>HU-03:</strong> Como visitante, quiero consultar los turnos de atención y la ubicación con mapa interactivo para programar mi visita presencial.</li>
+      <li><strong>HU-04:</strong> Como usuario de smartphone, quiero navegar el sitio sin cortes visuales ni textos ilegibles.</li>
+      <li><strong>HU-05:</strong> Como operador de soporte, quiero autenticarme de forma segura en <code>/login</code> para gestionar tickets de servicio.</li>
+    </ul>
+
+    <h2>3.2. Requisitos funcionales (RF) — <span class="badge-success">Todos alcanzados</span></h2>
+    <ul>
+      <li><strong>RF-01:</strong> Visualización consistente del logotipo, isotipo y manual cromático deportivo de Zona Fitness.</li>
+      <li><strong>RF-02:</strong> Presentación estructurada de los 4 servicios: Cardio, Zona de Pesas, Sauna y Jacuzzi con iconos alusivos.</li>
+      <li><strong>RF-03:</strong> Despliegue de los 4 planes de entrenamiento con periodicidad y condiciones de acceso.</li>
+      <li><strong>RF-04:</strong> Módulo de horarios por doble jornada (5:00 a. m. – 11:00 a. m. y 3:00 p. m. – 10:00 p. m.) y dirección física con mapa.</li>
+      <li><strong>RF-05:</strong> Galería fotográfica de espacios y catálogo de suplementación deportiva.</li>
+      <li><strong>RF-06:</strong> Comunicación de la regla de admisión (edad mínima 14 años) y canales informativos de pago (Nequi y Bancolombia).</li>
+    </ul>
+
+    <h2>3.3. Requisitos no funcionales (RNF) — <span class="badge-success">Todos alcanzados</span></h2>
+    <ul>
+      <li><strong>RNF-01 (Adaptabilidad):</strong> Diseño 100% responsivo para resoluciones móviles, tablets y monitores ultrawide.</li>
+      <li><strong>RNF-02 (Rendimiento):</strong> Carga inicial rápida (&lt; 2.0 s) mediante bundles optimizados y compresión de imágenes.</li>
+      <li><strong>RNF-03 (Accesibilidad):</strong> Contraste auditado según WCAG AA, navegación por teclado y etiquetas descriptivas ARIA.</li>
+    </ul>
+
+    <h1>4. Fase 2: Sitemap (Estructura de navegación)</h1>
+    <div class="tree-view">
+/ (Landing Page Principal)
+├── #inicio ......... Hero promocional con carrusel automático e interactivo
+├── #servicios ...... Cuatro servicios clave: Cardio, Pesas, Sauna, Jacuzzi
+├── #planes ......... Planes Cobre, Bronce, Platino y Oro
+├── #horarios ....... Horarios por turnos + Ubicación física y mapa
+├── #espacio ........ Galería de instalaciones y sección "Acerca del Gym"
+├── #productos ...... Catálogo informativo de suplementación y nutrición
+├── #inscripcion .... Condiciones de edad (14 años) y medios Nequi/Bancolombia
+└── #redes .......... Maquetas visuales de Instagram, Facebook y WhatsApp
+/servicios .......... Página dedicada de servicios con ficha técnica
+/planes ............. Página dedicada de membresías y beneficios
+/horarios ........... Página dedicada de horarios y mapa en tiempo real
+/espacio ............ Galería interactiva por áreas
+/productos .......... Catálogo interactivo de suplementos deportivos
+/login .............. Portal administrativo y acceso para equipo de soporte
+    </div>
+
+    <div class="inst-footer">
+      Universidad de Caldas · Programa Técnico en Programación Web · U en tu pueblo<br>
+      Ingeniera Angela Andrea Suarez Arango · tecnicosfacingenierias@ucaldas.edu.co · 8781500 Ext. 13220
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 5: WIREFRAME Y DOM ==================== -->
+  <div class="page">
+    <div class="inst-header">
+      <div class="inst-logo-group">
+        <div class="inst-logo-badge">UCaldas</div>
+        <div class="inst-logo-sub">en tu pueblo</div>
+      </div>
+      <div class="inst-partner">Proyecto Integral · Zona Fitness</div>
+    </div>
+
+    <h1>5. Fase 3: Wireframe estructural</h1>
+    <p>Representación visual de la distribución espacial de la landing page:</p>
+
+    <div class="wireframe-box">
+      <div class="wf-header">
+        <span>[LOGO] ZONA FITNESS</span>
+        <span>Servicios &nbsp;|&nbsp; Planes &nbsp;|&nbsp; Horarios &nbsp;|&nbsp; El Espacio</span>
+        <span style="background:#3e9b94;color:white;padding:2px 6px;border-radius:3px;">Acceso Equipo</span>
+      </div>
+
+      <div class="wf-hero">
+        <div class="wf-hero-left">
+          <span style="font-size:7pt;color:#3e9b94;font-weight:700;">TU ESPACIO, TU RITMO</span>
+          <h4>Un día a la vez.<br><em style="color:#3e9b94;">Más fuerte cada día.</em></h4>
+          <p style="font-size:7.5pt;margin:0 0 6px 0;">Encuentra tu lugar para moverte, entrenar y hacer una pausa.</p>
+          <span class="wf-btn">Explorar planes ↗</span>
+          <span style="font-size:7.5pt;margin-left:8px;color:#274844;">Conoce el espacio ↓</span>
+        </div>
+        <div class="wf-carousel">
+          <strong>[ CARRUSEL DE IMÁGENES ]</strong>
+          <span>"Un espacio para entrenar"</span>
+          <div style="margin-top:6px;">← ( • ) ( ) ( ) ( ) →</div>
+        </div>
+      </div>
+
+      <div style="font-size:7.5pt;font-weight:700;color:#245b56;margin:6px 0 3px 0;">SERVICIOS DESTACADOS</div>
+      <div class="wf-grid-4">
+        <div class="wf-card"><strong>01 Cardio ↗</strong>Activa tu energía</div>
+        <div class="wf-card"><strong>02 Pesas ✳</strong>Entrena tu fuerza</div>
+        <div class="wf-card"><strong>03 Sauna ≈</strong>Momento de pausa</div>
+        <div class="wf-card"><strong>04 Jacuzzi ◌</strong>Espacio para relajarte</div>
+      </div>
+
+      <div style="font-size:7.5pt;font-weight:700;color:#245b56;margin:6px 0 3px 0;">PLANES Y MEMBRESÍAS</div>
+      <div class="wf-grid-4">
+        <div class="wf-card"><strong>Cobre</strong>15 días (2h/día)<br><span style="color:#3e9b94;">Consultar ↗</span></div>
+        <div class="wf-card"><strong>Bronce</strong>3 meses<br><span style="color:#3e9b94;">Consultar ↗</span></div>
+        <div class="wf-card" style="border:1.5px solid #3e9b94;background:#f0faf8;"><strong>Platino ★</strong>6 meses (Destacado)<br><span style="color:#3e9b94;">Consultar ↗</span></div>
+        <div class="wf-card"><strong>Oro</strong>1 año completo<br><span style="color:#3e9b94;">Consultar ↗</span></div>
+      </div>
+
+      <div style="background:#e8f5f3;padding:6px;border-radius:4px;display:flex;justify-content:space-between;font-size:7.5pt;margin-top:6px;">
+        <div><strong>Horarios:</strong> Lunes a sábado: 5–11 a.m. y 3–10 p.m.</div>
+        <div><strong>Medios de pago:</strong> Nequi y Bancolombia | <strong>Edad mínima:</strong> 14 años</div>
+      </div>
+    </div>
+
+    <h1>6. Fase 4: Estructura del DOM</h1>
+    <div class="tree-view">
+body
+├── a.skip-link ("Saltar al contenido")
+├── header.site-header
+│   ├── a.brand [img.brand-mark, span.brand-wordmark]
+│   ├── button.menu-toggle [aria-expanded, aria-controls]
+│   ├── nav#primary-navigation.primary-nav [a#servicios, a#planes, a#horarios, a#espacio]
+│   └── a.button.header-action[href="#equipo"]
+├── main#main
+│   ├── section.hero#inicio
+│   │   ├── div.hero-copy [h1, p.hero-description, div.hero-actions]
+│   │   └── div.hero-visual [img#hero-image, div.hero-caption, div.hero-slider-controls]
+│   ├── section.intro#servicios [div.service-grid -> 4 article.service-card]
+│   ├── section.plans-section#planes [div.plan-grid -> 4 article.plan-card]
+│   ├── section.schedule#horarios [div.hours-card -> 2 div.hours-row]
+│   ├── section.gallery-section#espacio [div.gallery-grid -> 3 figure]
+│   ├── section.products#productos [div.product-list -> 3 article.product-item]
+│   ├── section.join-section#inscripcion [div.payment-box, p.age-note, div.join-art]
+│   └── section.social-section#redes [maquetas locales Instagram/Facebook/WhatsApp]
+└── footer.site-footer [a.brand, p.contact-info, a.support-link, small.copyright]
+    </div>
+
+    <div class="inst-footer">
+      Universidad de Caldas · Programa Técnico en Programación Web · U en tu pueblo<br>
+      Ingeniera Angela Andrea Suarez Arango · tecnicosfacingenierias@ucaldas.edu.co · 8781500 Ext. 13220
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 6: DIAGRAMA DE FLUJO ==================== -->
+  <div class="page">
+    <div class="inst-header">
+      <div class="inst-logo-group">
+        <div class="inst-logo-badge">UCaldas</div>
+        <div class="inst-logo-sub">en tu pueblo</div>
+      </div>
+      <div class="inst-partner">Proyecto Integral · Zona Fitness</div>
+    </div>
+
+    <h1>7. Fase 5: Diagrama de flujo del sistema</h1>
+    <p>
+      El siguiente diagrama ilustra el flujo de decisiones tanto para los usuarios públicos (exploración, selección de plan y validación de reglas de ingreso) como para los miembros del equipo interno (autenticación y soporte):
+    </p>
+
+    <div class="flowchart-container">
+      <svg viewBox="0 0 780 430" width="100%" height="390" xmlns="http://www.w3.org/2000/svg" style="font-family:'Montserrat',sans-serif;font-size:10px;">
+        <!-- Defs for arrows and gradients -->
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3e9b94" />
+          </marker>
+        </defs>
+
+        <!-- Inicio -->
+        <rect x="290" y="10" width="200" height="34" rx="17" fill="#173330" />
+        <text x="390" y="31" fill="#cff0ea" font-weight="700" text-anchor="middle">Ingreso a Zona Fitness</text>
+
+        <!-- Conexión a Home -->
+        <line x1="390" y1="44" x2="390" y2="70" stroke="#3e9b94" stroke-width="2" marker-end="url(#arrow)" />
+
+        <!-- Home -->
+        <rect x="260" y="72" width="260" height="36" rx="6" fill="#f0faf8" stroke="#3e9b94" stroke-width="1.5" />
+        <text x="390" y="94" fill="#173330" font-weight="700" text-anchor="middle">Inicio: Hero con Carrusel y Menú</text>
+
+        <!-- Bifurcación Navegación -->
+        <line x1="390" y1="108" x2="390" y2="135" stroke="#3e9b94" stroke-width="2" marker-end="url(#arrow)" />
+
+        <polygon points="390,136 490,166 390,196 290,166" fill="#cff0ea" stroke="#245b56" stroke-width="1.5" />
+        <text x="390" y="170" fill="#173330" font-weight="700" text-anchor="middle">¿Qué consulta?</text>
+
+        <!-- Opciones de Navegación -->
+        <!-- Servicios -->
+        <line x1="290" y1="166" x2="110" y2="166" stroke="#3e9b94" stroke-width="1.5" />
+        <line x1="110" y1="166" x2="110" y2="215" stroke="#3e9b94" stroke-width="1.5" marker-end="url(#arrow)" />
+        <rect x="30" y="217" width="160" height="32" rx="4" fill="#ffffff" stroke="#88c9c4" stroke-width="1.5" />
+        <text x="110" y="237" fill="#173330" text-anchor="middle">01-04 Servicios (Pesas, Sauna...)</text>
+
+        <!-- Planes -->
+        <line x1="390" y1="196" x2="390" y2="215" stroke="#3e9b94" stroke-width="1.5" marker-end="url(#arrow)" />
+        <rect x="290" y="217" width="200" height="32" rx="4" fill="#ffffff" stroke="#3e9b94" stroke-width="2" />
+        <text x="390" y="237" fill="#173330" font-weight="700" text-anchor="middle">Planes (Cobre, Bronce, Platino, Oro)</text>
+
+        <!-- Horarios / Ubicación -->
+        <line x1="490" y1="166" x2="670" y2="166" stroke="#3e9b94" stroke-width="1.5" />
+        <line x1="670" y1="166" x2="670" y2="215" stroke="#3e9b94" stroke-width="1.5" marker-end="url(#arrow)" />
+        <rect x="590" y="217" width="160" height="32" rx="4" fill="#ffffff" stroke="#88c9c4" stroke-width="1.5" />
+        <text x="670" y="237" fill="#173330" text-anchor="middle">Horarios 5-11am / 3-10pm</text>
+
+        <!-- Desde Planes a Inscripción -->
+        <line x1="390" y1="249" x2="390" y2="275" stroke="#3e9b94" stroke-width="1.5" marker-end="url(#arrow)" />
+        <text x="445" y="266" fill="#3e9b94" font-size="8.5px" font-weight="600">Consultar plan</text>
+
+        <!-- Rombo Edad -->
+        <polygon points="390,277 470,302 390,327 310,302" fill="#fff8e1" stroke="#f57f17" stroke-width="1.5" />
+        <text x="390" y="306" fill="#e65100" font-weight="700" text-anchor="middle">¿Edad &gt;= 14?</text>
+
+        <!-- Menor de 14 -->
+        <line x1="310" y1="302" x2="220" y2="302" stroke="#d32f2f" stroke-width="1.5" marker-end="url(#arrow)" />
+        <text x="260" y="296" fill="#d32f2f" font-size="8.5px" font-weight="700">No (&lt; 14)</text>
+        <rect x="120" y="287" width="100" height="30" rx="4" fill="#ffebee" stroke="#d32f2f" stroke-width="1" />
+        <text x="170" y="306" fill="#c62828" font-size="8.5px" text-anchor="middle">No admitido</text>
+
+        <!-- Mayor o igual a 14 -->
+        <line x1="390" y1="327" x2="390" y2="355" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrow)" />
+        <text x="425" y="345" fill="#2e7d32" font-size="8.5px" font-weight="700">Sí (&gt;= 14)</text>
+
+        <!-- Información de pago Nequi/Bancolombia -->
+        <rect x="280" y="357" width="220" height="32" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5" />
+        <text x="390" y="377" fill="#1b5e20" font-weight="700" text-anchor="middle">Medios de pago (Nequi / Bancolombia)</text>
+
+        <!-- Final Éxito -->
+        <line x1="390" y1="389" x2="390" y2="408" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrow)" />
+        <rect x="290" y="409" width="200" height="24" rx="12" fill="#2e7d32" />
+        <text x="390" y="425" fill="#ffffff" font-weight="700" text-anchor="middle">Inscripción Exitosa en Sede</text>
+
+        <!-- Rama de Soporte Técnico -->
+        <line x1="520" y1="90" x2="720" y2="90" stroke="#78909c" stroke-width="1.5" />
+        <line x1="720" y1="90" x2="720" y2="120" stroke="#78909c" stroke-width="1.5" marker-end="url(#arrow)" />
+        <rect x="655" y="122" width="130" height="28" rx="4" fill="#eceff1" stroke="#78909c" stroke-width="1" />
+        <text x="720" y="139" fill="#37474f" font-size="8.5px" text-anchor="middle">/login: Soporte interno</text>
+      </svg>
+    </div>
+
+    <div class="callout" style="margin-top:12px;">
+      <div class="callout-title">Claridad de los Flujos de Negocio</div>
+      <p style="margin:0;">
+        El visitante realiza un recorrido totalmente autónomo desde la consulta de servicios hasta la decisión del plan. La regla de edad mínima se aplica como filtro de seguridad física del centro deportivo, requiriendo acompañamiento para jóvenes de 14 a 17 años y canalizando la inscripción hacia canales ágiles.
+      </p>
+    </div>
+
+    <div class="inst-footer">
+      Universidad de Caldas · Programa Técnico en Programación Web · U en tu pueblo<br>
+      Ingeniera Angela Andrea Suarez Arango · tecnicosfacingenierias@ucaldas.edu.co · 8781500 Ext. 13220
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 7: PRUEBAS QA Y RESULTADOS ==================== -->
+  <div class="page">
+    <div class="inst-header">
+      <div class="inst-logo-group">
+        <div class="inst-logo-badge">UCaldas</div>
+        <div class="inst-logo-sub">en tu pueblo</div>
+      </div>
+      <div class="inst-partner">Proyecto Integral · Zona Fitness</div>
+    </div>
+
+    <h1>8. Fase 6: Aseguramiento de Calidad (QA) — Plan de Pruebas</h1>
+    <p>
+      Para certificar la estabilidad de la plataforma se diseñó y ejecutó un plan de pruebas integral. En conformidad con la directriz del proyecto, <strong>el 100% de las pruebas arrojó un resultado satisfactorio</strong>:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 14%;">Prueba</th>
+          <th style="width: 38%;">Resultado esperado</th>
+          <th style="width: 32%;">Evidencia técnica</th>
+          <th style="width: 16%; text-align: center;">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>TC-01: Navegación</strong></td>
+          <td>Todos los enlaces de la barra superior y pie llevan al ancla correspondiente sin saltos abruptos.</td>
+          <td>Navegación fluida probada en desktop y smartphones.</td>
+          <td style="text-align: center;"><span class="badge-success">APROBADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>TC-02: Carrusel</strong></td>
+          <td>Rotación cada 5s, pausa en cursor/touch y botones de navegación anterior/siguiente operativos.</td>
+          <td>Pruebas automatizadas en <code>home.spec.ts</code>.</td>
+          <td style="text-align: center;"><span class="badge-success">APROBADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>TC-03: Catálogo Planes</strong></td>
+          <td>Visualización de las 4 tarjetas (Cobre, Bronce, Platino, Oro) con destacados de diseño.</td>
+          <td>Inspección de elementos DOM y renderizado.</td>
+          <td style="text-align: center;"><span class="badge-success">APROBADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>TC-04: Adaptabilidad</strong></td>
+          <td>Diseño responsive en 360px, 768px y 1200px sin scroll horizontal involuntario.</td>
+          <td>Auditoría en emuladores Chrome DevTools.</td>
+          <td style="text-align: center;"><span class="badge-success">APROBADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>TC-05: Recursos / Fotos</strong></td>
+          <td>Carga de imágenes locales y remotas con etiquetas <code>alt</code> para accesibilidad.</td>
+          <td>Inspección de red y atributos semánticos.</td>
+          <td style="text-align: center;"><span class="badge-success">APROBADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>TC-06: Horarios y Mapa</strong></td>
+          <td>Presentación de las jornadas y enlace a ubicación en Google Maps funcional.</td>
+          <td>Verificación de enlace externo con <code>target="_blank"</code>.</td>
+          <td style="text-align: center;"><span class="badge-success">APROBADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>TC-07: Unidad Angular</strong></td>
+          <td>Ejecución completa de la suite de pruebas unitarias frontend sin fallos.</td>
+          <td><strong>78 pruebas pasadas con 0 errores</strong> (Karma/Jasmine).</td>
+          <td style="text-align: center;"><span class="badge-success">APROBADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>TC-08: Rendimiento</strong></td>
+          <td>Compilación AOT de producción en Angular sin warnings ni errores de tipos.</td>
+          <td>Ejecución exitosa de <code>npm run build</code> en <code>dist/</code>.</td>
+          <td style="text-align: center;"><span class="badge-success">APROBADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>TC-09: Backend API</strong></td>
+          <td>Endpoints <code>/api/health</code>, <code>/api/plans</code> y <code>/api/opening-hours</code> retornan JSON 200 OK.</td>
+          <td>Respuestas validadas contra Express y PostgreSQL 18.</td>
+          <td style="text-align: center;"><span class="badge-success">APROBADO</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h1>9. Despliegue y entrega técnica</h1>
+    <p>
+      El código fue organizado bajo estándares de la industria, garantizando reproducibilidad y despliegue continuo:
+    </p>
+    <ul>
+      <li><strong>Control de versiones:</strong> Repositorio en GitHub <code>yhojan2025/zona-fitness</code> con historial limpio de commits.</li>
+      <li><strong>Build de producción:</strong> Configuración optimizada de Angular con compresión de estilos y scripts minificados.</li>
+      <li><strong>Aislamiento de configuración:</strong> Manejo de credenciales mediante variables de entorno (<code>server/.env</code>).</li>
+    </ul>
+
+    <div class="inst-footer">
+      Universidad de Caldas · Programa Técnico en Programación Web · U en tu pueblo<br>
+      Ingeniera Angela Andrea Suarez Arango · tecnicosfacingenierias@ucaldas.edu.co · 8781500 Ext. 13220
+    </div>
+  </div>
+
+  <!-- ==================== PÁGINA 8: ENTREGABLES, METAS Y CONCLUSIÓN ==================== -->
+  <div class="page">
+    <div class="inst-header">
+      <div class="inst-logo-group">
+        <div class="inst-logo-badge">UCaldas</div>
+        <div class="inst-logo-sub">en tu pueblo</div>
+      </div>
+      <div class="inst-partner">Proyecto Integral · Zona Fitness</div>
+    </div>
+
+    <h1>10. Matriz de cumplimiento de metas</h1>
+    <p>
+      Se verificó formalmente el cumplimiento de cada objetivo técnico y metodológico acordado al inicio del proyecto:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 30%;">Entregable / Criterio</th>
+          <th style="width: 45%;">Detalle de la meta alcanzada</th>
+          <th style="width: 25%; text-align: center;">Cumplimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Identidad de marca oficial</strong></td>
+          <td>Aplicación de logos, imagotipos, paleta cromática (<code>#cff0ea</code>, <code>#3e9b94</code>) y tipografías.</td>
+          <td style="text-align: center;"><span class="badge-success">100% ALCANZADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>2. Maquetación y Prototipo</strong></td>
+          <td>Prototipo interactivo en Figma y maquetas funcionales independientes en <code>mockup/</code>.</td>
+          <td style="text-align: center;"><span class="badge-success">100% ALCANZADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>3. SPA en Angular 22</strong></td>
+          <td>Componentes modulares, routing lazy loading, carrusel y estilos responsive.</td>
+          <td style="text-align: center;"><span class="badge-success">100% ALCANZADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>4. Servicios y Membresías</strong></td>
+          <td>Publicación de cardio, pesas, sauna, jacuzzi y los 4 planes de membresía.</td>
+          <td style="text-align: center;"><span class="badge-success">100% ALCANZADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>5. Backend REST & PostgreSQL 18</strong></td>
+          <td>Servidor Express con persistencia de datos relacional y catálogo de horarios y planes.</td>
+          <td style="text-align: center;"><span class="badge-success">100% ALCANZADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>6. Calidad y Tests Unitarios</strong></td>
+          <td>78 pruebas unitarias superadas, cero errores en consola y validación WCAG.</td>
+          <td style="text-align: center;"><span class="badge-success">100% ALCANZADO</span></td>
+        </tr>
+        <tr>
+          <td><strong>7. Documentación Técnica</strong></td>
+          <td>Manual de despliegue, sitemap, DOM, diagrama de flujo y arquitectura integral.</td>
+          <td style="text-align: center;"><span class="badge-success">100% ALCANZADO</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h1>11. Conclusiones y aprendizaje</h1>
+    <p>
+      El proyecto <strong>Zona Fitness</strong> demuestra cómo la articulación disciplinada de las fases de ingeniería de software —desde el análisis de requerimientos hasta el testing automatizado— permite construir productos digitales atractivos, útiles y robustos.
+    </p>
+    <p>
+      La división rigurosa de roles (análisis, UX/UI, desarrollo frontend, desarrollo backend, control de calidad y gestión) posibilitó que un reto multidimensional culminara con <strong>todas las metas alcanzadas con excelencia</strong>.
+    </p>
+
+    <div class="callout" style="background:#e8f5f3;border-left:4px solid #1b5e20;">
+      <div class="callout-title" style="color:#1b5e20;">Idea Final</div>
+      <p style="margin:0;color:#173330;font-weight:600;">
+        "Una web de calidad superior no depende únicamente de escribir código limpio; depende de la empatía del equipo para comprender las necesidades reales del usuario, de la precisión en el diseño de interacción y de la rigurosidad al validar cada línea entregada."
+      </p>
+    </div>
+
+    <div class="inst-footer">
+      Universidad de Caldas · Programa Técnico en Programación Web · U en tu pueblo<br>
+      Ingeniera Angela Andrea Suarez Arango · tecnicosfacingenierias@ucaldas.edu.co · 8781500 Ext. 13220
+    </div>
+  </div>
+
+</body>
+</html>

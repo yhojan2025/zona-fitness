@@ -143,3 +143,6 @@ Consulte la guía técnica en [`docs/guia-administracion-pgadmin4.md`](docs/guia
 - [Proyecto guiado: análisis, roles, DOM, wireframe y flujo](docs/Proyecto-Guiado-Zona-Fitness.md)
 - [Proyecto guiado en HTML](docs/Proyecto-Guiado-Zona-Fitness.html)
 - [Proyecto guiado en PDF](docs/Proyecto-Guiado-Zona-Fitness.pdf)
+- [Caso de estudio y proyecto integral (Markdown)](docs/proyecto-zona-fitness-caso-estudio.md)
+- [Caso de estudio y proyecto integral (HTML maquetado)](docs/proyecto-zona-fitness-caso-estudio.html)
+- [Caso de estudio y proyecto integral (PDF estético imprimible)](docs/Proyecto-Zona-Fitness-Caso-Estudio.pdf)

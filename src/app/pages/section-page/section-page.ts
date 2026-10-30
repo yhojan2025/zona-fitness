@@ -72,11 +72,11 @@ const CONTENT: Record<SectionKey, SectionContent> = {
       'Elige la duración que mejor se adapta a ti. Todos los valores están expresados en pesos colombianos.',
     cards: [
       {
-        title: 'Cobre',
-        duration: '15 días',
-        detail: '2 horas de ejercicio al día',
-        price: '$45.000',
-        description: 'Una opción para comenzar y conocer tu rutina.',
+        title: 'Hierro',
+        duration: '1 mes',
+        detail: 'De ti depende que estes en forma, pero nosotros te ayudamos a lograrlo',
+        price: '$100.000',
+        description: 'Una opción para empezar con energía.',
       },
       {
         title: 'Bronce',

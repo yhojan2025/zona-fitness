@@ -454,9 +454,16 @@ h2 em {
   border: 1px solid #d7e9e5;
   border-radius: 15px;
   background: #fff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.plan-card:hover,
+.plan-card:focus-within {
+  border-color: #3e9b94;
 }
 .plan-featured {
-  border-color: #3e9b94;
+  border-color: #d7e9e5;
   box-shadow: 0 13px 30px #3e9b941c;
 }
 .plan-tag {
@@ -504,6 +511,10 @@ h2 em {
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.7;
+}
+.plan-metal-hierro {
+  background: #dce5e7;
+  color: #536b70;
 }
 .plan-metal-cobre {
   background: #f0d1ba;

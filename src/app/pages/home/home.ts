@@ -79,10 +79,10 @@ export class Home {
 
   protected readonly plans = [
     {
-      name: 'Cobre',
-      duration: '15 días',
-      detail: '2 horas de ejercicio al día',
-      price: '$45.000',
+      name: 'cobre',
+      duration: '1 mes',
+      detail: 'De ti depende que estes en forma, pero nosotros te ayudamos a lograrlo',
+      price: '$100.000',
       featured: false,
     },
     {

@@ -34,7 +34,7 @@ describe('dedicated navigation pages', () => {
     expect(harness.routeNativeElement?.textContent).toContain('Zona de pesas');
 
     await harness.navigateByUrl('/planes');
-    expect(harness.routeNativeElement?.textContent).toContain('Cobre');
+    expect(harness.routeNativeElement?.textContent).toContain('Hierro');
     expect(harness.routeNativeElement?.textContent).toContain('$45.000');
     expect(harness.routeNativeElement?.textContent).toContain('COP');
   });
@@ -45,6 +45,7 @@ describe('dedicated navigation pages', () => {
     const page = harness.routeNativeElement;
 
     expect(page?.querySelectorAll('.plan-detail-card .plan-metal-icon')).toHaveLength(4);
+    expect(page?.querySelector('.plan-metal-hierro svg')).not.toBeNull();
     expect(page?.querySelector('.plan-metal-cobre svg')).not.toBeNull();
     expect(page?.querySelector('.plan-metal-bronce svg')).not.toBeNull();
     expect(page?.querySelector('.plan-metal-platino svg')).not.toBeNull();

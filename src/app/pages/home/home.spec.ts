@@ -19,7 +19,6 @@ describe('Home', () => {
     expect(page.textContent).toContain('Zona de pesas');
     expect(page.textContent).toContain('Sauna');
     expect(page.textContent).toContain('Jacuzzi');
-    expect(page.textContent).toContain('15 días');
     expect(page.textContent).toContain('3 meses');
     expect(page.textContent).toContain('6 meses');
     expect(page.textContent).toContain('1 año');
@@ -35,6 +34,7 @@ describe('Home', () => {
     const page = fixture.nativeElement as HTMLElement;
 
     expect(page.querySelectorAll('.plan-card .plan-metal-icon')).toHaveLength(4);
+    expect(page.querySelector('.plan-metal-hierro svg')).not.toBeNull();
     expect(page.querySelector('.plan-metal-cobre svg')).not.toBeNull();
     expect(page.querySelector('.plan-metal-bronce svg')).not.toBeNull();
     expect(page.querySelector('.plan-metal-platino svg')).not.toBeNull();

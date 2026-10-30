@@ -79,7 +79,7 @@ Es fundamental distinguir a las personas que operan o consumen la plataforma de 
 ### 4.3. Requisitos funcionales (RF) — *Todos alcanzados al 100%*
 - **RF-01:** Presentar la identidad visual oficial de Zona Fitness (logotipo, imagotipo, colores corporativos y tipografía Montserrat/Open Sans).
 - **RF-02:** Desplegar los 4 servicios clave del gimnasio: Cardio, Zona de pesas, Sauna y Jacuzzi.
-- **RF-03:** Mostrar el tarifario con los 4 planes estructurados: Cobre (15 días / 2 horas diarias), Bronce (3 meses), Platino (6 meses) y Oro (1 año).
+- **RF-03:** Mostrar el tarifario con los 4 planes estructurados: Cobre (1 mes / 2 horas diarias), Bronce (3 meses), Platino (6 meses) y Oro (1 año).
 - **RF-04:** Informar los horarios oficiales en dos jornadas: 5:00 a. m. – 11:00 a. m. y 3:00 p. m. – 10:00 p. m. de lunes a sábado, con enlace a mapa en tiempo real.
 - **RF-05:** Mostrar la galería temática de las zonas del gimnasio (`/espacio`) y catálogo informativo de productos (suplementos, batidos y artículos).
 - **RF-06:** Comunicar la regla de edad mínima (14 años con acudiente) y los métodos de pago (Nequi / Bancolombia).

@@ -446,18 +446,28 @@
         <th>Tecnologías base</th>
         <td>
           <strong>Frontend:</strong> Angular 22, TypeScript, HTML5 Semántico, CSS3 con Custom Properties (Variables)<br>
-          <strong>Backend & BD:</strong> Node.js, Express REST API, PostgreSQL 18 y administración gráfica pgAdmin 4
+          <strong>Backend & BD:</strong> Node.js, Express REST API, PostgreSQL 18 y administración gráfica pgAdmin 4. (Ver <a href="guia-administracion-pgadmin4.md">Guía de Administración pgAdmin 4</a> y <a href="arquitectura-base-de-datos.md">Arquitectura BD</a>)
         </td>
       </tr>
       <tr>
         <th>Alcance alcanzado</th>
-        <td>Landing page responsiva con carrusel cronometrado, módulos de servicios (cardio, pesas, sauna, jacuzzi), 4 planes de membresía, horarios y mapa interactivo, catálogo informativo de productos, validación de reglas de edad e integración API</td>
+        <td>Landing page responsiva con carrusel cronometrado, módulos de servicios (cardio, pesas, sauna, jacuzzi), 4 planes de membresía, horarios y mapa interactivo, catálogo informativo de productos, validación de reglas de edad e integración API. (Ver <a href="entregables-zona-fitness.md">Matriz de Entregables</a> y <a href="guia-tecnica-zona-fitness.md">Guía Técnica</a>)</td>
       </tr>
       <tr>
         <th>Estado de entrega</th>
-        <td><span class="badge-success">100% Cumplido y Validado</span> — Todas las pruebas y entregables aprobados</td>
+        <td><span class="badge-success">100% Cumplido y Validado</span> — Todas las pruebas y entregables aprobados. (Ver <a href="Manual-Cliente-Zona-Fitness.html">Manual del Cliente</a>)</td>
       </tr>
     </table>
+
+    <div class="callout" style="background:#eaf6f4; border-left: 4px solid #3e9b94; margin-top:10px; margin-bottom:12px; font-size:7.8pt;">
+      <div class="callout-title" style="font-size:8pt; margin-bottom:3px;">Acceso al Ecosistema Documental del Proyecto</div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 4px 10px;">
+        <div>• <strong>Propuesta y Alcance:</strong> <a href="Propuesta-tecnica-Zona-Fitness-V2.pdf">Propuesta Técnica V2</a> · <a href="cotizacion-revisada-zona-fitness-2026-10-28.md">Cotización</a></div>
+        <div>• <strong>Diseño y Marca:</strong> <a href="Manual_Marca_Zona_Fitness.pptx">Manual de Marca</a> · <a href="https://www.figma.com/design/0cFykiLWJPm8vRnY7l71M1/Zona-fitness---Wireframe-V2?node-id=0-1&t=KgR0ShNQ3ewfCDe7-1">Wireframe Figma</a></div>
+        <div>• <strong>Modelado y Flujo:</strong> <a href="diagrama-flujo.md">Diagrama de Flujo</a> · <a href="entregables-zona-fitness.md">Sitemap y Wireframe Base</a></div>
+        <div>• <strong>Manuales de Entrega:</strong> <a href="Manual-Cliente-Zona-Fitness.html">Manual del Cliente</a> · <a href="Proyecto-Guiado-Zona-Fitness.html">Proyecto Guiado</a></div>
+      </div>
+    </div>
 
     <h1>1. Introducción</h1>
     <p>
@@ -503,32 +513,32 @@
         <tr>
           <td><strong>Product Owner / Negocio</strong></td>
           <td>Prioriza necesidades del negocio, define los 4 servicios esenciales (cardio, pesas, sauna, jacuzzi) y valida formalmente el cumplimiento de criterios.</td>
-          <td>Acta de requisitos y aprobación formal de entrega.</td>
+          <td><a href="Propuesta-tecnica-Zona-Fitness-V2.pdf">Propuesta Técnica V2</a> y aprobación formal.</td>
         </tr>
         <tr>
           <td><strong>Project Manager</strong><br><span style="color:#245b56;font-weight:600;">Brahiam Antonio Bedoya</span></td>
           <td>Planifica el alcance y cronograma, coordina tareas, prioriza actividades, da seguimiento a riesgos y verifica la entrega integral.</td>
-          <td>Cronograma de hitos, matriz de seguimiento y balance de entrega.</td>
+          <td>Cronograma y presupuesto en <a href="cotizacion-revisada-zona-fitness-2026-10-28.md">Cotización</a>.</td>
         </tr>
         <tr>
           <td><strong>Desarrollador</strong><br><span style="color:#245b56;font-weight:600;">Oscar Jhonny Hurtado</span></td>
           <td>Implementa la SPA en Angular 22, componentes, estilos CSS responsive, API REST en Node.js/Express, persistencia y rutas seguras.</td>
-          <td>Código en <code>src/app/</code>, <code>server/</code> y prototipo interactivo <code>mockup/</code>.</td>
+          <td>Código en <code>src/app/</code> y <a href="guia-tecnica-zona-fitness.md">Guía Técnica</a>.</td>
         </tr>
         <tr>
           <td><strong>Analista & QA</strong><br><span style="color:#245b56;font-weight:600;">Yhojan David Pérez</span></td>
           <td>Identifica necesidades, documenta historias de usuario, estructura la información, diseña y ejecuta el plan de pruebas QA.</td>
-          <td>SRS, 78 pruebas aprobadas (100% de éxito) y documentación técnica.</td>
+          <td>SRS, matriz en <a href="entregables-zona-fitness.md">Entregables</a> y 78 pruebas.</td>
         </tr>
         <tr>
           <td><strong>UX/UI Designers</strong></td>
           <td>Establece el Manual de Marca: paleta deportiva (<code>#cff0ea</code>, <code>#88c9c4</code>, <code>#3e9b94</code>), tipografías Montserrat/Open Sans e iconos.</td>
-          <td>Prototipo en Figma, sitemap y guía de estilos gráficos.</td>
+          <td><a href="Manual_Marca_Zona_Fitness.pptx">Manual de Marca</a> y <a href="https://www.figma.com/design/0cFykiLWJPm8vRnY7l71M1/Zona-fitness---Wireframe-V2?node-id=0-1&t=KgR0ShNQ3ewfCDe7-1">Wireframe Figma</a>.</td>
         </tr>
         <tr>
           <td><strong>DevOps / Despliegue</strong></td>
           <td>Gestiona el repositorio en GitHub, automatiza builds de producción (<code>npm run build</code>) y publicación continua en GitHub Pages.</td>
-          <td>Repositorio <code>yhojan2025/zona-fitness</code> y despliegue público en GitHub Pages.</td>
+          <td>Repositorio <a href="https://github.com/yhojan2025/zona-fitness">GitHub</a> y web publicada.</td>
         </tr>
       </tbody>
     </table>
@@ -638,7 +648,7 @@
     </div>
 
     <h1>5. Fase 3: Wireframe estructural</h1>
-    <p>Representación visual de la distribución espacial de la landing page:</p>
+    <p>Representación visual de la distribución espacial de la landing page (consulte el diseño vectorizado en el <a href="https://www.figma.com/design/0cFykiLWJPm8vRnY7l71M1/Zona-fitness---Wireframe-V2?node-id=0-1&t=KgR0ShNQ3ewfCDe7-1" target="_blank">Wireframe V2 en Figma</a>, el <a href="https://www.figma.com/design/tJSu1aJTykZSVqmVA2XUOj/Zona-fitness---Mockup-y-prototipo-web?node-id=6-2" target="_blank">Prototipo Interactivo</a> y las especificaciones en <a href="entregables-zona-fitness.md">Entregables y Wireframe</a>):</p>
 
     <div class="wireframe-box">
       <div class="wf-header">
@@ -685,6 +695,7 @@
     </div>
 
     <h1>6. Fase 4: Estructura del DOM</h1>
+    <p style="font-size:8pt;margin-bottom:4px;color:#48635f;">Árbol de elementos semánticos implementados en componentes de la aplicación. Para reglas de estilo y selectores, consulte la <a href="guia-tecnica-zona-fitness.md">Guía Técnica</a> y la <a href="actualizar-contenido.md">Guía de Actualización de Contenido</a>:</p>
     <div class="tree-view">
 body
 ├── a.skip-link ("Saltar al contenido")
@@ -725,7 +736,7 @@ body
 
     <h1>7. Fase 5: Diagrama de flujo del sistema</h1>
     <p>
-      El siguiente diagrama ilustra el flujo de decisiones tanto para los usuarios públicos (exploración, selección de plan y validación de reglas de ingreso) como para los miembros del equipo interno (autenticación y soporte):
+      El siguiente diagrama ilustra el flujo de decisiones tanto para los usuarios públicos (exploración, selección de plan y validación de reglas de ingreso) como para los miembros del equipo interno (autenticación y soporte). Consulte el análisis detallado en el documento <a href="diagrama-flujo.md">Diagrama de Flujo del Sistema</a> y el flujo de checkout en el <a href="Manual-Cliente-Zona-Fitness.html">Manual del Cliente</a>:
     </p>
 
     <div class="flowchart-container">
@@ -832,7 +843,7 @@ body
 
     <h1>8. Fase 6: Aseguramiento de Calidad (QA) — Plan de Pruebas</h1>
     <p>
-      Para certificar la estabilidad de la plataforma se diseñó y ejecutó un plan de pruebas integral. En conformidad con la directriz del proyecto, <strong>el 100% de las pruebas arrojó un resultado satisfactorio</strong>:
+      Para certificar la estabilidad de la plataforma se diseñó y ejecutó un plan de pruebas integral basado en la <a href="Propuesta-tecnica-Zona-Fitness-V2.pdf">Propuesta Técnica</a> y documentado en la <a href="guia-tecnica-zona-fitness.md">Guía Técnica</a>. En conformidad con la directriz del proyecto, <strong>el 100% de las pruebas arrojó un resultado satisfactorio</strong>:
     </p>
 
     <table>

@@ -17,9 +17,22 @@ Comprender y documentar cómo un equipo profesional transforma las necesidades d
 | **Cliente** | Zona Fitness (Sede: Calle 84 # 47-22, El Golf / Cra. 7 # 7-7, Aguadas, Caldas) |
 | **Tipo de solución** | Plataforma web promocional e informativa de servicios deportivos con módulo de gestión |
 | **Usuarios principales** | Visitantes interesados en entrenar, deportistas habituales y equipo interno de soporte |
-| **Tecnologías base** | **Frontend:** Angular 22, TypeScript, HTML5 semántico, CSS3 moderno con variables CSS.<br>**Backend / Datos:** Node.js, Express REST API, PostgreSQL 18 y pgAdmin 4. |
-| **Alcance ejecutado** | Landing promocional responsive con carrusel interactivo, catálogo de planes y servicios, módulo de horarios y ubicación, catálogo informativo de productos, integración API REST y soporte técnico. |
-| **Estado final** | **100% de las metas alcanzadas y validadas.** |
+| **Tecnologías base** | **Frontend:** Angular 22, TypeScript, HTML5 semántico, CSS3 moderno con variables CSS.<br>**Backend / Datos:** Node.js, Express REST API, PostgreSQL 18 y pgAdmin 4. (Ver [Guía de Administración pgAdmin 4](guia-administracion-pgadmin4.md) y [Arquitectura de Base de Datos](arquitectura-base-de-datos.md)). |
+| **Alcance ejecutado** | Landing promocional responsive con carrusel interactivo, catálogo de planes y servicios, módulo de horarios y ubicación, catálogo informativo de productos, integración API REST y soporte técnico. (Ver [Matriz de Entregables](entregables-zona-fitness.md) y [Guía Técnica](guia-tecnica-zona-fitness.md)). |
+| **Estado final** | **100% de las metas alcanzadas y validadas.** (Ver [Manual de Usuario y Cliente](Manual-Cliente-Zona-Fitness.md)). |
+
+---
+
+## Índice y Acceso al Ecosistema Documental
+
+Para facilitar la trazabilidad completa del proyecto, cada sección técnica enlaza directamente con los documentos especializados disponibles en el repositorio:
+
+- 📑 **Propuesta y Alcance:** [Propuesta Técnica Zona Fitness V2](Propuesta-tecnica-Zona-Fitness-V2.pdf) · [Cotización Revisada](cotizacion-revisada-zona-fitness-2026-10-28.md)
+- 🎨 **Diseño y Marca:** [Manual de Marca Zona Fitness](Manual_Marca_Zona_Fitness.pptx) · [Mockup y Prototipo Figma](https://www.figma.com/design/tJSu1aJTykZSVqmVA2XUOj/Zona-fitness---Mockup-y-prototipo-web?node-id=6-2) · [Wireframe V2 en Figma](https://www.figma.com/design/0cFykiLWJPm8vRnY7l71M1/Zona-fitness---Wireframe-V2?node-id=0-1&t=KgR0ShNQ3ewfCDe7-1)
+- 📐 **Arquitectura y Modelado:** [Sitemap y Wireframe Preliminar](entregables-zona-fitness.md) · [Diagrama de Flujo del Sistema](diagrama-flujo.md) · [Estructura del DOM y Guía Técnica](guia-tecnica-zona-fitness.md)
+- 🗄️ **Backend y Datos:** [Arquitectura de Base de Datos](arquitectura-base-de-datos.md) · [Guía de Administración pgAdmin 4](guia-administracion-pgadmin4.md)
+- 📈 **Control de Avance:** [Progreso al 26 de Octubre](progreso-zona-fitness-2026-10-26.md) · [Progreso al 28 de Octubre](progreso-zona-fitness-2026-10-28.md) · [Guía de Actualización de Contenidos](actualizar-contenido.md)
+- 📘 **Manuales y Referencias Académicas:** [Manual del Cliente](Manual-Cliente-Zona-Fitness.md) ([PDF](Manual-Cliente-Zona-Fitness.pdf)) · [Proyecto Guiado Alternativo](Proyecto-Guiado-Zona-Fitness.md) ([PDF](Proyecto-Guiado-Zona-Fitness.pdf)) · [Referencia Académica Café Moderno](4_Proyecto_Final_Cafe_Moderno_Roles_Profesionales_UCaldas.pdf)
 
 ---
 
@@ -38,12 +51,12 @@ En el marco del proyecto se distribuyeron las responsabilidades profesionales cu
 
 | Rol profesional | Integrante / Responsable | Responsabilidades en Zona Fitness | Entregables y evidencia producida |
 | :--- | :--- | :--- | :--- |
-| **Product Owner / Representante del cliente** | Dirección General / Representante del negocio | Prioriza los objetivos del negocio, define los servicios esenciales (cardio, pesas, sauna, jacuzzi), aprueba la identidad corporativa y valida los criterios de aceptación finales. | Acta de aprobación de alcance, priorización de backlog y visto bueno final de entrega. |
-| **Project Manager / Scrum Master** | **Brahiam Antonio Bedoya** | Planifica el cronograma de ejecución, coordina las reuniones de sincronización, gestiona riesgos, verifica la entrega y consolida la trazabilidad del proyecto. | Cronograma de hitos, tablero de control de actividades y reporte de cierre exitoso. |
-| **Frontend & Backend Developer** | **Oscar Jhonny Hurtado** | Implementa la interfaz de usuario en Angular 22, componentes, estilos, responsive, la API REST en Express y base de datos relacional PostgreSQL 18. | Código frontend (`src/app/`), backend (`server/`), templates HTML5 y estilos validados. |
-| **Business Analyst & QA Lead** | **Yhojan David Pérez** | Releva requerimientos con el cliente, estructura la arquitectura de información, define historias de usuario, formula criterios de aceptación y ejecuta el plan de pruebas. | Especificación de requisitos (SRS), 78 pruebas aprobadas (100% de éxito) y documentación técnica. |
-| **UX & UI Designers** | Equipo de Diseño y Frontend | Diseñan la arquitectura de información, sitemap jerárquico, wireframes, y definen el sistema visual bajo el Manual de Marca: paleta deportiva (`#cff0ea`, `#88c9c4`, `#3e9b94`, `#173330`). | Sitemap estructurado, prototipo interactivo en Figma y assets optimizados (`public/`). |
-| **DevOps / Responsable de despliegue** | Equipo de Desarrollo | Configura entornos de compilación de producción (`npm run build`), flujo de GitHub Actions para GitHub Pages y sincronización del repositorio. | Repositorio GitHub `yhojan2025/zona-fitness` sincronizado y sitio publicado en GitHub Pages. |
+| **Product Owner / Representante del cliente** | Dirección General / Representante del negocio | Prioriza los objetivos del negocio, define los servicios esenciales (cardio, pesas, sauna, jacuzzi), aprueba la identidad corporativa y valida los criterios de aceptación finales. | [Acta y Propuesta Técnica](Propuesta-tecnica-Zona-Fitness-V2.pdf), priorización de backlog y visto bueno final de entrega. |
+| **Project Manager / Scrum Master** | **Brahiam Antonio Bedoya** | Planifica el cronograma de ejecución, coordina las reuniones de sincronización, gestiona riesgos, verifica la entrega y consolida la trazabilidad del proyecto. | Cronograma de hitos, presupuesto en [Cotización Revisada](cotizacion-revisada-zona-fitness-2026-10-28.md) y [Reportes de Progreso](progreso-zona-fitness-2026-10-28.md). |
+| **Frontend & Backend Developer** | **Oscar Jhonny Hurtado** | Implementa la interfaz de usuario en Angular 22, componentes, estilos, responsive, la API REST en Express y base de datos relacional PostgreSQL 18. | Código frontend (`src/app/`), backend (`server/`), [Guía Técnica de Código](guia-tecnica-zona-fitness.md) y [Arquitectura BD](arquitectura-base-de-datos.md). |
+| **Business Analyst & QA Lead** | **Yhojan David Pérez** | Releva requerimientos con el cliente, estructura la arquitectura de información, define historias de usuario, formula criterios de aceptación y ejecuta el plan de pruebas. | Especificación de requisitos (SRS), matriz en [Entregables](entregables-zona-fitness.md), 78 pruebas aprobadas y [Manual del Cliente](Manual-Cliente-Zona-Fitness.md). |
+| **UX & UI Designers** | Equipo de Diseño y Frontend | Diseñan la arquitectura de información, sitemap jerárquico, wireframes, y definen el sistema visual bajo el Manual de Marca: paleta deportiva (`#cff0ea`, `#88c9c4`, `#3e9b94`, `#173330`). | [Manual de Marca PPTX](Manual_Marca_Zona_Fitness.pptx), [Mockup en Figma](https://www.figma.com/design/tJSu1aJTykZSVqmVA2XUOj/Zona-fitness---Mockup-y-prototipo-web?node-id=6-2) y [Wireframe V2 en Figma](https://www.figma.com/design/0cFykiLWJPm8vRnY7l71M1/Zona-fitness---Wireframe-V2?node-id=0-1&t=KgR0ShNQ3ewfCDe7-1). |
+| **DevOps / Responsable de despliegue** | Equipo de Desarrollo | Configura entornos de compilación de producción (`npm run build`), flujo de GitHub Actions para GitHub Pages y sincronización del repositorio. | Repositorio [GitHub yhojan2025/zona-fitness](https://github.com/yhojan2025/zona-fitness) sincronizado y sitio publicado en GitHub Pages. |
 
 ---
 
@@ -96,7 +109,7 @@ Es fundamental distinguir a las personas que operan o consumen la plataforma de 
 
 ## 5. Fase 2: Sitemap (Arquitectura de información)
 
-La navegación organiza el contenido permitiendo acceso directo a secciones ancla y rutas dedicadas:
+La navegación organiza el contenido permitiendo acceso directo a secciones ancla y rutas dedicadas (ver detalle en [Entregables y Sitemap Preliminar](entregables-zona-fitness.md) y [Guía Técnica de Rutas](guia-tecnica-zona-fitness.md#3-rutas-y-navegación)):
 
 ```text
 Zona Fitness (Plataforma Web)
@@ -125,7 +138,7 @@ Zona Fitness (Plataforma Web)
 
 ## 6. Fase 3: Wireframe
 
-El wireframe ilustra la organización espacial y jerarquía visual de los componentes en la pantalla principal:
+El wireframe ilustra la organización espacial y jerarquía visual de los componentes en la pantalla principal. Se desarrolló en base a la especificación de diseño previa y se encuentra formalizado en el [Wireframe V2 en Figma](https://www.figma.com/design/0cFykiLWJPm8vRnY7l71M1/Zona-fitness---Wireframe-V2?node-id=0-1&t=KgR0ShNQ3ewfCDe7-1), el [Prototipo Interactivo Figma](https://www.figma.com/design/tJSu1aJTykZSVqmVA2XUOj/Zona-fitness---Mockup-y-prototipo-web?node-id=6-2) y el documento base de [Entregables y Wireframe](entregables-zona-fitness.md#wireframe-textual-preliminar):
 
 ```text
 +-----------------------------------------------------------------------------------+
@@ -172,7 +185,7 @@ El wireframe ilustra la organización espacial y jerarquía visual de los compon
 
 ## 7. Fase 4: Estructura del DOM
 
-El árbol del Document Object Model (DOM) refleja la jerarquía semántica implementada en los componentes de la aplicación:
+El árbol del Document Object Model (DOM) refleja la jerarquía semántica implementada en los componentes de la aplicación (para referencia detallada de selectores y estilos asociados, consulte la [Guía Técnica de la Landing](guia-tecnica-zona-fitness.md#4-landing-page) y la [Guía para Actualizar Contenido](actualizar-contenido.md)):
 
 ```text
 body
@@ -245,7 +258,7 @@ body
 
 ## 8. Fase 5: Diagrama de flujo del sistema
 
-El siguiente diagrama detalla el recorrido del usuario por la aplicación y el flujo de soporte interno:
+El siguiente diagrama detalla el recorrido del usuario por la aplicación y el flujo de soporte interno (consulte el análisis extendido en [Diagrama del Flujo Actual](diagrama-flujo.md) y la interacción de compra y registro en el [Manual del Cliente](Manual-Cliente-Zona-Fitness.md#3-flujo-de-compra-y-pedidos)):
 
 ```mermaid
 flowchart TD
@@ -283,6 +296,8 @@ flowchart TD
 ---
 
 ## 9. Fase 6: Implementación técnica y estilos
+
+Para un desglose completo de variables, tipografías y reglas de layout, consulte el [Manual de Marca](Manual_Marca_Zona_Fitness.pptx) y la [Guía Técnica de Branding y Responsive](guia-tecnica-zona-fitness.md#6-branding-layout-y-responsive).
 
 ### 9.1. Variables CSS y paleta oficial de marca
 ```css
@@ -335,7 +350,7 @@ flowchart TD
 
 ## 10. Fase 7: Plan de pruebas de calidad (QA) — *Metas alcanzadas*
 
-Todas las pruebas planificadas fueron ejecutadas y completadas con resultado **Aprobado (100% de éxito)**:
+Todas las pruebas planificadas fueron ejecutadas y completadas con resultado **Aprobado (100% de éxito)**. Los criterios de aceptación se derivaron de los requerimientos iniciales plasmados en la [Propuesta Técnica V2](Propuesta-tecnica-Zona-Fitness-V2.pdf) y la [Guía Técnica de Pruebas](guia-tecnica-zona-fitness.md#10-pruebas-build-y-validación):
 
 | ID | Prueba / Caso de prueba | Resultado esperado | Evidencia de ejecución | Estado final |
 | :---: | :--- | :--- | :--- | :---: |
@@ -353,7 +368,7 @@ Todas las pruebas planificadas fueron ejecutadas y completadas con resultado **A
 
 ## 11. Fase 8: Despliegue, entrega y matriz de cumplimiento
 
-Se consolidó el repositorio, las variables de entorno y los scripts de ejecución garantizando la entrega formal:
+Se consolidó el repositorio, las variables de entorno y los scripts de ejecución garantizando la entrega formal (consulte la evolución histórica en [Progreso al 26 de Octubre](progreso-zona-fitness-2026-10-26.md) y [Progreso al 28 de Octubre](progreso-zona-fitness-2026-10-28.md)):
 
 ```bash
 # Comandos de validación y compilación ejecutados exitosamente

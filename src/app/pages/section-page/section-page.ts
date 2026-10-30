@@ -78,7 +78,7 @@ const CONTENT: Record<SectionKey, SectionContent> = {
       {
         id: 1, slug: 'cobre', title: 'Cobre',
         duration: '1 mes ',
-        detail: 'de ti depende que estes en forma,pero nosotros te ayudamnos a lograrlo',
+        detail: 'El exito esta delante de ti',
         price: '100.000',
         description: 'Una opción para comenzar y conocer tu rutina.',
       },

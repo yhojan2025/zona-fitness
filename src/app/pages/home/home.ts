@@ -88,7 +88,7 @@ export class Home {
       slug: 'cobre',
       name: 'Cobre',
       duration: '1 mes ',
-      detail: 'de ti depende que estes en forma,pero nosotros te ayudamnos a lograrlo',
+      detail: 'El exito esta delante de ti',
       price: '100.000',
       featured: false,
     },

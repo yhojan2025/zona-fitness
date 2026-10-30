@@ -1,10 +1,7 @@
 # Diagrama del flujo actual de Zona Fitness
 
 El sitio público es promocional e informativo: presenta los servicios, planes, horarios, espacios,
-productos y contenidos para redes sociales. No registra socios, no valida la edad, no selecciona
-planes ni procesa pagos. Los precios y las condiciones publicadas corresponden a la información
-aprobada por Zona Fitness.
-
+productos y contenidos para redes sociales.
 ```mermaid
 flowchart TD
     A([Visita el sitio]) --> H["Inicio: hero con carrusel y navegación"]
@@ -52,7 +49,3 @@ flowchart TD
 
     H -. Ruta desconocida .-> H
 ```
-
-**Importante:** el acceso y registro del equipo pertenecen al sistema de soporte, no son cuentas ni
-inscripciones de socios. La web informa sobre edad y medios de pago: no valida la edad, no inicia
-una compra ni confirma una inscripción.

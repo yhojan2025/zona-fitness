@@ -98,7 +98,7 @@ export class Home {
       name: 'Bronce',
       duration: '3 meses',
       detail: 'Un plan para construir constancia',
-      price: '$260000',
+      price: '$260.000',
       featured: false,
     },
     {
@@ -107,7 +107,7 @@ export class Home {
       name: 'Platino',
       duration: '6 meses',
       detail: 'Más tiempo para mantener tu ritmo',
-      price: '$500000',
+      price: '$500.000',
       featured: true,
     },
     {
@@ -116,7 +116,7 @@ export class Home {
       name: 'Oro',
       duration: '1 año',
       detail: 'Un año para hacer del movimiento un hábito',
-      price: '$900000',
+      price: '$900.000',
       featured: false,
     },
   ];

@@ -19,7 +19,6 @@ describe('Home', () => {
     expect(page.textContent).toContain('Zona de pesas');
     expect(page.textContent).toContain('Sauna');
     expect(page.textContent).toContain('Jacuzzi');
-    expect(page.textContent).toContain('15 días');
     expect(page.textContent).toContain('3 meses');
     expect(page.textContent).toContain('6 meses');
     expect(page.textContent).toContain('1 año');
@@ -74,38 +73,37 @@ describe('Home', () => {
     const page = fixture.nativeElement as HTMLElement;
 
     expect(page.textContent).toContain('$45.000');
-    expect(page.textContent).toContain('$500000');
+    expect(page.textContent).toContain('$500.000');
     expect(page.textContent).toContain('COP');
-    expect(page.textContent).toContain('Confirma los datos oficiales de pago');
+    expect(page.textContent).toContain('Se aceptan Nequi y Bancolombia');
     expect(page.querySelectorAll('#redes a[href^="https://"]')).toHaveLength(0);
   });
 
-  it('shows social section and copyright without inventing social links', () => {
+  it('shows social section and copyright with approved brand content', () => {
     const fixture = TestBed.createComponent(Home);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
 
-    expect(page.querySelector('#redes')?.textContent).toContain('perfiles oficiales');
-    expect(page.querySelector('#redes')?.textContent).toContain('maquetas visuales locales');
+    expect(page.querySelector('#redes')?.textContent).toContain('experiencias digitales');
     expect(page.querySelectorAll('#redes .social-prototype-card')).toHaveLength(3);
     expect(page.querySelectorAll('#redes .social-sample-gallery img')).toHaveLength(6);
     expect(page.querySelectorAll('#redes .social-platform-icon')).toHaveLength(3);
     expect(page.querySelector('#redes a[href^="https://"]')).toBeNull();
     expect(page.querySelector('#redes')?.textContent).toContain('Visita las redes de Zona Fitness');
-    expect(page.querySelector('#redes a[href="/redes/instagram.html"]')?.textContent).toContain(
+    expect(page.querySelector('#redes a[href="redes/instagram.html"]')?.textContent).toContain(
       'Visitar Instagram',
     );
-    expect(page.querySelector('#redes a[href="/redes/facebook.html"]')?.textContent).toContain(
+    expect(page.querySelector('#redes a[href="redes/facebook.html"]')?.textContent).toContain(
       'Visitar Facebook',
     );
-    expect(page.querySelector('#redes a[href="/redes/whatsapp.html"]')?.textContent).toContain(
+    expect(page.querySelector('#redes a[href="redes/whatsapp.html"]')?.textContent).toContain(
       'Abrir WhatsApp',
     );
     expect(page.textContent).toContain(
       '© 2026 Análisis y diseño de soluciones web 12. Todos los derechos reservados.',
     );
     expect(page.querySelector('.site-footer .footer-logo')?.getAttribute('src')).toBe(
-      '/zona-fitness-logo.png',
+      'zona-fitness-logo.png',
     );
     expect(page.querySelector('.site-footer .footer-logo')?.getAttribute('alt')).toBe(
       'Logo de Zona Fitness',

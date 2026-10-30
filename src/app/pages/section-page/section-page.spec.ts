@@ -83,7 +83,7 @@ describe('dedicated navigation pages', () => {
       const footer = harness.routeNativeElement?.querySelector('app-site-footer');
 
       expect(footer?.querySelector('.footer-logo')?.getAttribute('src')).toBe(
-        '/zona-fitness-logo.png',
+        'zona-fitness-logo.png',
       );
       expect(footer?.textContent).toContain(
         '© 2026 Análisis y diseño de soluciones web 12. Todos los derechos reservados.',
@@ -102,7 +102,7 @@ describe('dedicated navigation pages', () => {
       'Zona Fitness',
     );
     expect(page?.querySelector('.hours-location-photo img')?.getAttribute('src')).toBe(
-      '/zona-fitness-fachada.jpg',
+      'zona-fitness-fachada.jpg',
     );
     expect(page?.querySelector('.hours-location-heading a')?.getAttribute('href')).toContain(
       'google.com/maps',
@@ -126,10 +126,10 @@ describe('dedicated navigation pages', () => {
       'Un lugar para hacer de tu rutina un hábito',
     );
     expect(page?.querySelector('.space-about-brand img')?.getAttribute('src')).toBe(
-      '/zona-fitness-logo.png',
+      'zona-fitness-logo.png',
     );
     expect(page?.querySelector('.space-about-media > img')?.getAttribute('src')).toBe(
-      '/zona-fitness-atleta-hidratandose.jpg',
+      'zona-fitness-atleta-hidratandose.jpg',
     );
     expect(page?.querySelector('.detail-description')?.textContent).toContain(
       'Explora algunos espacios',

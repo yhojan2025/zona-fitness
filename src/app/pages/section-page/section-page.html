@@ -49,6 +49,9 @@
                 aria-hidden="true"
               >
                 @switch (card.title) {
+                  @case ('Hierro') {
+                    <svg viewBox="0 0 24 24"><path d="M7 5h10M7 5v14m10-14v14M5 19h14" /></svg>
+                  }
                   @case ('Cobre') {
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" /></svg>
                   }
@@ -135,7 +138,7 @@
                 loading="lazy"
                 decoding="async"
               />
-              <span>Foto referencial del local</span>
+              <span>Fachada de Zona Fitness</span>
             </div>
             <div class="hours-location-map">
               <iframe
@@ -184,7 +187,7 @@
             decoding="async"
           />
           <div class="space-about-brand">
-            <img src="/zona-fitness-logo.png" alt="Logo de Zona Fitness" />
+            <img src="zona-fitness-logo.png" alt="Logo de Zona Fitness" />
           </div>
         </div>
         <div class="space-about-content">
@@ -193,9 +196,6 @@
           <p>
             Conoce el ambiente de Zona Fitness y encuentra espacios para activar tu energía,
             trabajar tu fuerza y cerrar tu entrenamiento con un momento de recuperación.
-          </p>
-          <p class="space-about-note">
-            La fotografía es referencial y puede reemplazarse por una imagen oficial del local.
           </p>
         </div>
       </section>

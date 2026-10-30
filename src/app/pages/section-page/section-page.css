@@ -149,6 +149,10 @@
   stroke-linejoin: round;
   stroke-width: 1.7;
 }
+.plan-detail-card .plan-metal-hierro {
+  background: #dce5e7;
+  color: #536b70;
+}
 .plan-detail-card .plan-metal-cobre {
   background: #f0d1ba;
   color: #9a5d35;

@@ -28,20 +28,18 @@ sus componentes, estilos, datos, rutas, pruebas y documentación relacionada.
 9. [Soporte interno y autenticación](#9-soporte-interno-y-autenticación)
 10. [Pruebas, build y validación](#10-pruebas-build-y-validación)
 11. [Documentación y recursos](#11-documentación-y-recursos)
-12. [Datos pendientes y límites funcionales](#12-datos-pendientes-y-límites-funcionales)
+12. [Límites funcionales](#12-límites-funcionales)
 13. [Guía rápida de mantenimiento](#13-guía-rápida-de-mantenimiento)
-14. [Placeholders de información no definida](#14-placeholders-de-información-no-definida)
 
 ## 1. Resumen de la solución
 
 Zona Fitness es una web promocional responsive para presentar un gimnasio y sus
 servicios: cardio, pesas, sauna y jacuzzi. Incluye planes informativos Cobre, Bronce,
 Platino y Oro; horarios; galería; catálogo informativo de productos; inscripción
-informativa; maquetas locales de Instagram, Facebook y WhatsApp Business; y un footer
+informativa; experiencias de Instagram, Facebook y WhatsApp Business; y un footer
 reutilizable.
 
-La aplicación no simula pagos, no registra socios comerciales y no enlaza perfiles
-sociales oficiales mientras el gimnasio no confirme las URL. Las credenciales, tickets
+La aplicación no simula pagos ni registra socios comerciales. Las credenciales, tickets
 y administración de usuarios pertenecen al módulo interno de soporte, separado de la
 experiencia promocional.
 
@@ -149,7 +147,7 @@ Los datos que alimentan carrusel, servicios, planes y galería están en
   `home.html:164-197`, `home.css:484-522`.
 - Etiqueta sutil “PARA SEGUIR AVANZANDO”, posicionada sin alterar la alineación:
   `home.html:160-163`, `home.css:462-475`.
-- Precio mostrado como “Precio por confirmar”:
+- Precios publicados para Cobre, Bronce, Platino y Oro:
   `home.html:200`.
 - Vista dedicada `/planes`, incluyendo iconos y condiciones:
   `section-page.html:42-89`, `section-page.css:119-189`,
@@ -165,7 +163,7 @@ Los datos que alimentan carrusel, servicios, planes y galería están en
 - Contenido de la página dedicada `/horarios`:
   `section-page.ts:84-107`, `section-page.html:91-101`.
 - Bloque “¿Dónde encontrarnos?” con la dirección `Cra. 7 # 7-7, Aguadas, Caldas`,
-  enlace directo a Google Maps, mapa embebido y fotografía referencial del local:
+  enlace directo a Google Maps, mapa embebido y fotografía del local:
   `section-page.ts:107-123`, `section-page.html:101-135`,
   `section-page.css:220-314`.
 
@@ -181,10 +179,9 @@ Los datos que alimentan carrusel, servicios, planes y galería están en
 - Página `/espacio`, con las zonas de cardio, pesas, sauna y jacuzzi, subtítulos en
   negrilla y figuras uniformes:
   `section-page.html:117-128`, `section-page.css:266-313`.
-- Bloque “Acerca del gym”, con imagen referencial del local, logotipo superpuesto,
-  copy promocional neutral y aviso de reemplazo por fotografía oficial:
+- Bloque “Acerca del gym”, con imagen aprobada del local y logotipo superpuesto:
   `section-page.html:129-153`, `section-page.css:313-407`.
-- Datos referenciales y aviso de aprobación de fotografías:
+- Datos y textos aprobados:
   `section-page.ts:108-141`.
 
 ### 4.6 Productos
@@ -200,8 +197,7 @@ Los datos que alimentan carrusel, servicios, planes y galería están en
 
 - Bloque de llamada a la acción, medios de pago informativos y edad mínima:
   `home.html:305-334`.
-- Nequi y Bancolombia se presentan como instrucciones informativas; los datos exactos
-  se deben confirmar directamente con el gimnasio.
+- Nequi y Bancolombia se presentan como instrucciones informativas.
 - La edad mínima indicada es 14 años. Para menores se señala que podría requerirse
   autorización o acompañamiento de acudiente según las condiciones que confirme el
   gimnasio; no se presenta una conclusión legal.
@@ -211,7 +207,7 @@ Los datos que alimentan carrusel, servicios, planes y galería están en
 La sección de redes está en `home.html:336-481` y sus estilos en
 `home.css:819-964`.
 
-| Maqueta           | Entrada                       | Recursos                                                              |
+| Canal             | Entrada                       | Recursos                                                              |
 | ----------------- | ----------------------------- | --------------------------------------------------------------------- |
 | Instagram         | `public/redes/instagram.html` | `public/redes/assets/ig_*.jpg`                                        |
 | Facebook          | `public/redes/facebook.html`  | `public/redes/assets/fb_*.jpg`                                        |
@@ -221,12 +217,9 @@ Las tres se enlazan desde la landing mediante rutas locales:
 `home.html:397-438` y `home.html:477-481`. El enlace de WhatsApp se encuentra en
 `home.html:442-467`.
 
-La maqueta de WhatsApp contiene una conversación simulada, respuestas rápidas y
-compositor de mensajes local; no conecta con WhatsApp real. La copia comercial fue
-ajustada para no inventar precios: `public/redes/whatsapp.html:1-120`.
-
-Los perfiles oficiales permanecen vacíos en `home.ts:14`; la landing muestra una nota
-de confirmación pendiente en `home.html:348-354`.
+La experiencia de WhatsApp contiene una conversación simulada, respuestas rápidas y
+compositor de mensajes local; no conecta con WhatsApp real. La copia comercial usa los
+precios y contenidos aprobados: `public/redes/whatsapp.html:1-120`.
 
 ## 5. Páginas públicas de sección
 
@@ -234,11 +227,11 @@ de confirmación pendiente en `home.html:348-354`.
 secciones públicas en `CONTENT`. `section-page.html:1-147` decide qué presentación usar:
 
 - Servicios: tarjetas con iconos y numeración.
-- Planes: icono de categoría, duración, descripción, precio pendiente y CTA.
+- Planes: icono de categoría, duración, descripción, precio publicado y CTA.
 - Horarios: tarjetas de mañana y tarde.
 - Productos: imagen, descripción y enlace de consulta.
 - Espacio: galería de cuatro imágenes temáticas, subtítulos, texto alternativo y bloque
-  “Acerca del gym” con imagen referencial y logo superpuesto.
+  “Acerca del gym” con imagen aprobada y logo superpuesto.
 
 El footer público se incluye al final de la vista en `section-page.html:146-147`.
 Los breadcrumbs y el CTA de regreso están en `section-page.html:3-14` y `135-145`.
@@ -288,8 +281,7 @@ El copyright vigente se conserva exactamente:
   `app.css:76-105`, `site-footer.css:33-40`.
 - `target="_blank"` de enlaces oficiales potenciales usa
   `rel="noopener noreferrer"`: `home.html:343-346`.
-- El cliente no expone pagos reales ni datos bancarios, y no inventa perfiles o
-  contactos oficiales.
+- El cliente no expone pagos reales ni datos bancarios.
 
 La autenticación y autorización del módulo interno se protegen mediante guards en
 `app.routes.ts:41-49`; los servicios asociados están en `src/app/core/`.
@@ -344,54 +336,20 @@ exitosas y el build terminó correctamente en `dist/frontend/browser/`.
 | `docs/Propuesta-tecnica-Zona-Fitness-V2.pdf`          | Fuente de requisitos de producto                   |
 | `docs/Manual_Marca_Zona_Fitness.pptx`                 | Manual visual                                      |
 | `docs/progreso-zona-fitness-2026-10-26.md`            | Estado y pendientes al corte documentado           |
-| `docs/progreso-zona-fitness-2026-10-28.md`            | Alcance aprobado, cambios recientes y placeholders |
+| `docs/progreso-zona-fitness-2026-10-28.md`            | Registro histórico del alcance y cambios           |
 | `docs/cotizacion-revisada-zona-fitness-2026-10-28.md` | Estimación de equipo, CEO, publicación y operación |
 | `docs/entregables-zona-fitness.md`                    | Entregables, sitemap y wireframe                   |
 | Figma Mockup y Wireframe V2                           | Referencia visual y de estructura                  |
 | `docs/actualizar-contenido.md`                        | Guía operativa de edición                          |
 | `docs/diagrama-flujo.md`                              | Flujo de navegación                                |
-| `public/redes/README.txt`                             | Guía de las maquetas sociales                      |
-| `public/redes/`                                       | Prototipos HTML y recursos de redes                |
+| `public/redes/README.txt`                             | Guía de los contenidos sociales                    |
+| `public/redes/`                                       | Contenidos HTML y recursos de redes                |
 
-## 12. Datos pendientes y límites funcionales
+## 12. Límites funcionales
 
-No deben agregarse sin confirmación del gimnasio:
-
-- Precios definitivos de planes.
-- Teléfono, dirección y horarios especiales.
-- Handles o URL oficiales de Instagram, Facebook o WhatsApp.
-- Datos exactos de pago de Nequi o Bancolombia.
-- Fotografías oficiales en reemplazo de las imágenes referenciales.
-- Dominio, hosting, certificado HTTPS y publicación productiva.
-- Backend comercial de socios, pagos, reservas o inscripción.
-
-Los marcadores neutrales y avisos de confirmación están implementados en:
-
-- `home.html:200`, `home.html:299-324`.
-- `section-page.ts:82-83`, `section-page.ts:174-176`.
-- `site-footer.html:18-21`.
-- `home.html:348-354`, `home.html:468-481`.
-
-## 14. Placeholders de información no definida
-
-Cuando un dato todavía no está disponible, usar un placeholder explícito y no un valor
-inventado:
-
-| Dato            | Placeholder                                 |
-| --------------- | ------------------------------------------- |
-| Precio          | `[PENDIENTE_CONFIRMAR_PRECIO]`              |
-| Contacto        | `[PENDIENTE_CONFIRMAR_TELEFONO]`            |
-| Dirección       | `[PENDIENTE_CONFIRMAR_DIRECCION]`           |
-| Redes oficiales | `[PENDIENTE_CONFIRMAR_URL_SOCIAL]`          |
-| Pago            | `[PENDIENTE_CONFIRMAR_DATOS_PAGO]`          |
-| Imagen oficial  | `[PENDIENTE_REEMPLAZAR_IMAGEN_REFERENCIAL]` |
-| Dominio         | `[PENDIENTE_DEFINIR_DOMINIO]`               |
-| Hosting         | `[PENDIENTE_DEFINIR_HOSTING]`               |
-| API productiva  | `[PENDIENTE_DEFINIR_API_PRODUCCION]`        |
-| HTTPS           | `[PENDIENTE_CONFIGURAR_HTTPS]`              |
-
-Los placeholders son documentación de decisiones pendientes. No deben convertirse en
-datos visibles para clientes sin confirmación.
+La web promocional no registra socios, no valida edades, no procesa pagos en línea ni
+gestiona reservas. El módulo interno de soporte mantiene sus propias cuentas, tickets,
+roles y estados de pedido.
 
 ## 13. Guía rápida de mantenimiento
 
@@ -402,8 +360,8 @@ datos visibles para clientes sin confirmación.
    `section-page.ts:108-141`, verificando `alt`.
 4. **Cambiar el carrusel:** revisar `home.ts:15-60`, `home.ts:133-145`,
    `home.html:21-99` y `home.css:103-140`, `home.css:247-296`.
-5. **Actualizar maquetas sociales:** editar los HTML y CSS en `public/redes/` y sus
-   recursos; conservar la advertencia de que son prototipos locales.
+5. **Actualizar contenidos sociales:** editar los HTML y CSS en `public/redes/` y sus
+   recursos; conservar la identidad visual y los textos aprobados.
 6. **Cambiar footer:** editar `shared/site-footer/site-footer.html` y
    `site-footer.css`; no añadirlo a pantallas internas sin una decisión explícita.
 7. **Actualizar documentación:** enlazar cualquier documento nuevo desde el bloque

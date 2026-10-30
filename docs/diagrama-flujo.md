@@ -1,9 +1,9 @@
 # Diagrama del flujo actual de Zona Fitness
 
 El sitio público es promocional e informativo: presenta los servicios, planes, horarios, espacios,
-productos y ejemplos visuales para redes sociales. No registra socios, no valida la edad, no
-selecciona planes ni procesa pagos. Los precios y las condiciones se deben confirmar directamente
-con el gimnasio.
+productos y contenidos para redes sociales. No registra socios, no valida la edad, no selecciona
+planes ni procesa pagos. Los precios y las condiciones publicadas corresponden a la información
+aprobada por Zona Fitness.
 
 ```mermaid
 flowchart TD
@@ -13,7 +13,7 @@ flowchart TD
     H --> P["/planes: Cobre, Bronce, Platino y Oro"]
     H --> O["/horarios: lunes a sábado, mañana y tarde"]
     H --> G["/espacio: galería del gimnasio"]
-    H --> R["/#redes: publicaciones de ejemplo"]
+    H --> R["/#redes: contenidos de Zona Fitness"]
     H --> C["/productos: batidos, suplementos y artículos de entrenamiento"]
     H --> J["/#inscripcion: información para consultar cómo empezar"]
 
@@ -31,9 +31,9 @@ flowchart TD
 
     R --> L{¿Hay enlaces oficiales configurados?}
     L -->|Sí| OI["Mostrar enlaces oficiales confirmados"]
-    L -->|No| N["Indicar que los perfiles oficiales están pendientes"]
-    R -->|Abrir ejemplos locales| IG["/redes/instagram.html: maqueta, no perfil oficial"]
-    R -->|Abrir ejemplos locales| FB["/redes/facebook.html: maqueta, no página oficial"]
+    L -->|No| N["Mostrar los contenidos publicados de Zona Fitness"]
+    R -->|Abrir contenidos| IG["/redes/instagram.html: Instagram de Zona Fitness"]
+    R -->|Abrir contenidos| FB["/redes/facebook.html: Facebook de Zona Fitness"]
     OI --> H
     N --> H
     IG --> H
@@ -54,7 +54,5 @@ flowchart TD
 ```
 
 **Importante:** el acceso y registro del equipo pertenecen al sistema de soporte, no son cuentas ni
-inscripciones de socios. Los ejemplos de Instagram y Facebook son maquetas locales; no enlazan
-perfiles oficiales hasta que el gimnasio confirme sus URL. La web solo informa sobre edad y medios
-de pago: no valida la edad, no inicia una compra ni confirma una inscripción. El contacto y los
-datos de pago oficiales siguen pendientes de confirmación.
+inscripciones de socios. La web informa sobre edad y medios de pago: no valida la edad, no inicia
+una compra ni confirma una inscripción.

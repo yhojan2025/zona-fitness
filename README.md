@@ -140,3 +140,6 @@ Consulte la guía técnica en [`docs/guia-administracion-pgadmin4.md`](docs/guia
 - [Guía breve para actualizar el contenido](docs/actualizar-contenido.md)
 - [Guía técnica de características y código](docs/guia-tecnica-zona-fitness.md)
 - [Diagrama del flujo actual](docs/diagrama-flujo.md)
+- [Proyecto guiado: análisis, roles, DOM, wireframe y flujo](docs/Proyecto-Guiado-Zona-Fitness.md)
+- [Proyecto guiado en HTML](docs/Proyecto-Guiado-Zona-Fitness.html)
+- [Proyecto guiado en PDF](docs/Proyecto-Guiado-Zona-Fitness.pdf)

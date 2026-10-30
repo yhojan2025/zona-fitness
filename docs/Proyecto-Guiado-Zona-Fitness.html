@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proyecto Guiado 1 · Zona Fitness</title>
+  <style>
+    :root{--ink:#173330;--muted:#48635f;--teal:#3e9b94;--mint:#cff0ea;--paper:#fff;--line:#cfe3df;--bg:#f4faf8}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.58 "Segoe UI",Arial,sans-serif}
+    .page{max-width:980px;margin:0 auto;background:var(--paper);padding:56px 68px}
+    h1,h2,h3{line-height:1.2;color:var(--ink)}h1{font-size:38px;margin:.2rem 0}h2{font-size:25px;border-bottom:3px solid var(--mint);padding-bottom:8px;margin-top:42px}h3{font-size:18px;margin-top:28px}
+    .kicker{color:var(--teal);font-weight:800;letter-spacing:.12em;text-transform:uppercase}.subtitle{font-size:19px;color:var(--muted)}
+    .cover{border-left:10px solid var(--teal);padding:16px 22px;background:linear-gradient(135deg,#fff,#e9f8f5);margin-bottom:28px}
+    .meta,.toc{background:#f1faf8;border:1px solid var(--line);border-radius:12px;padding:18px 22px}.toc ol{columns:2;margin:0;padding-left:22px}
+    table{width:100%;border-collapse:collapse;margin:15px 0 24px;font-size:13px}th,td{border:1px solid var(--line);padding:9px;vertical-align:top}th{background:var(--mint);text-align:left}
+    pre{background:#102c29;color:#e8fffa;border-radius:10px;padding:18px;overflow:auto;font:12px/1.45 Consolas,monospace}
+    code{background:#edf6f4;border-radius:4px;padding:2px 4px}a{color:#19766e}li{margin:4px 0}.ok{color:#087d58;font-weight:800}
+    .figure{background:#f7fbfa;border:1px solid var(--line);padding:12px;border-radius:10px}.small{color:var(--muted);font-size:13px}
+    footer{margin-top:48px;padding-top:15px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+    @media print{body{background:#fff}.page{max-width:none;padding:28px 36px}.toc{break-inside:avoid}h2{break-after:avoid}table,pre{break-inside:avoid}}
+    @media(max-width:680px){.page{padding:30px 20px}h1{font-size:30px}.toc ol{columns:1}table{font-size:12px;display:block;overflow:auto}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <section class="cover">
+    <div class="kicker">Proyecto guiado 1</div>
+    <h1>Zona Fitness</h1>
+    <p class="subtitle">Del análisis de requisitos a una plataforma web funcional</p>
+    <p><strong>Caso de estudio para Análisis y Diseño de Soluciones Web</strong><br>
+    Universidad de Caldas · Programa Técnico en Programación Web<br>
+    Versión final: 29 de octubre de 2026 · <span class="ok">Todas las metas alcanzadas</span></p>
+  </section>
+
+  <section class="meta">
+    <h2 style="margin-top:0">Ficha del proyecto</h2>
+    <table><tr><th>Campo</th><th>Resultado</th></tr>
+    <tr><td>Cliente</td><td>Zona Fitness</td></tr><tr><td>Solución</td><td>Plataforma web responsive para promoción, consulta y soporte</td></tr>
+    <tr><td>Usuarios</td><td>Visitantes, usuarios autenticados, soporte y administradores</td></tr><tr><td>Tecnologías</td><td>Angular 22, Node.js, Express y PostgreSQL 18</td></tr>
+    <tr><td>Publicación</td><td>GitHub Pages mediante GitHub Actions</td></tr><tr><td>URL</td><td><a href="https://yhojan2025.github.io/zona-fitness/">yhojan2025.github.io/zona-fitness/</a></td></tr></table>
+  </section>
+
+  <h2>Propósito</h2>
+  <p>Este documento presenta el proceso completo de Zona Fitness: análisis, responsabilidades, arquitectura de información, wireframe, DOM, implementación, pruebas, despliegue y entrega. La solución ofrece una experiencia web responsive y un módulo interno de soporte para cuentas, pedidos, tickets y administración.</p>
+
+  <nav class="toc"><h2 style="margin-top:0">Índice</h2><ol>
+    <li><a href="#intro">Introducción</a></li><li><a href="#roles">Equipo y responsabilidades</a></li><li><a href="#actores">Actores y objetivos</a></li><li><a href="#req">Requisitos</a></li><li><a href="#sitemap">Mapa del sitio</a></li><li><a href="#wireframe">Wireframe</a></li><li><a href="#dom">Estructura del DOM</a></li><li><a href="#flow">Flujo de navegación</a></li><li><a href="#tech">Implementación</a></li><li><a href="#qa">QA y aceptación</a></li><li><a href="#deploy">Despliegue y entrega</a></li><li><a href="#deliverables">Entregables</a></li><li><a href="#conclusion">Conclusión</a></li>
+  </ol></nav>
+
+  <h2 id="intro">1. Introducción</h2>
+  <p>Zona Fitness necesitaba una presencia digital para comunicar servicios, planes, horarios, espacios, productos y medios de inscripción. El proyecto incluyó análisis, organización del contenido, diseño responsive, validación automatizada, documentación y publicación en HTTPS.</p>
+  <p>La versión final alcanza los objetivos definidos: el sitio está disponible, los recursos funcionan bajo <code>/zona-fitness/</code>, las vistas se adaptan a móvil sin solapamientos, las rutas funcionan y la documentación permite mantener la solución.</p>
+
+  <h2 id="roles">2. Equipo y responsabilidades</h2>
+  <table><tr><th>Integrante</th><th>Rol</th><th>Responsabilidades</th></tr>
+  <tr><td><strong>Brahiam Antonio Bedoya</strong></td><td>Gestor de proyectos</td><td>Planificar alcance, coordinar tareas, priorizar, dar seguimiento a riesgos y verificar la entrega.</td></tr>
+  <tr><td><strong>Oscar Jhonny Hurtado</strong></td><td>Desarrollador</td><td>Implementar Angular, componentes, estilos, responsive, API, rutas y correcciones técnicas.</td></tr>
+  <tr><td><strong>Yhojan David Pérez</strong></td><td>Analista</td><td>Identificar necesidades, documentar requisitos, estructurar la información, definir aceptación y consolidar documentación.</td></tr></table>
+  <p>El equipo participó conjuntamente en revisión de contenido, control de calidad, experiencia móvil, publicación y entrega.</p>
+
+  <h2 id="actores">3. Actores y objetivos</h2>
+  <ul><li><strong>Visitante:</strong> consulta servicios, planes, horarios, espacios, productos y redes.</li><li><strong>Usuario autenticado:</strong> gestiona datos, carrito, pedidos, membresías y soporte.</li><li><strong>Equipo de soporte:</strong> atiende tickets.</li><li><strong>Administrador:</strong> gestiona usuarios y permisos.</li><li><strong>Cliente:</strong> recibe una plataforma publicada y mantenible.</li></ul>
+  <table><tr><th>Objetivo</th><th>Resultado</th></tr><tr><td>Presentar la propuesta del gimnasio</td><td class="ok">Alcanzado</td></tr><tr><td>Organizar servicios, planes, horarios, espacio y productos</td><td class="ok">Alcanzado</td></tr><tr><td>Evitar overlap en responsive</td><td class="ok">Alcanzado</td></tr><tr><td>Proteger el acceso interno</td><td class="ok">Alcanzado</td></tr><tr><td>Publicar con HTTPS y documentar</td><td class="ok">Alcanzado</td></tr></table>
+
+  <h2 id="req">4. Análisis de requisitos</h2>
+  <h3>Requisitos funcionales</h3>
+  <table><tr><th>Código</th><th>Requisito</th><th>Estado</th></tr>
+  <tr><td>RF-01</td><td>Identidad y propuesta de Zona Fitness</td><td class="ok">Alcanzado</td></tr><tr><td>RF-02</td><td>Servicios de cardio, pesas, sauna y jacuzzi</td><td class="ok">Alcanzado</td></tr><tr><td>RF-03</td><td>Planes con precios publicados</td><td class="ok">Alcanzado</td></tr><tr><td>RF-04</td><td>Horarios, mapa, ubicación y fachada</td><td class="ok">Alcanzado</td></tr><tr><td>RF-05</td><td>Galería, productos y contenidos sociales</td><td class="ok">Alcanzado</td></tr><tr><td>RF-06</td><td>Autenticación, cuenta, pedidos y soporte</td><td class="ok">Alcanzado</td></tr><tr><td>RF-07</td><td>Publicación en GitHub Pages</td><td class="ok">Alcanzado</td></tr></table>
+  <h3>Requisitos no funcionales</h3>
+  <ul><li>Responsive en móvil, tableta y escritorio.</li><li>Sin overlap ni scroll horizontal provocado por componentes.</li><li>Rutas y recursos compatibles con el subdirectorio de GitHub Pages.</li><li>HTML semántico, ARIA, textos alternativos y foco visible.</li><li>Código modular y pruebas automatizadas.</li></ul>
+
+  <h2 id="sitemap">5. Mapa del sitio</h2>
+  <pre>Zona Fitness
+├── /                  Inicio / landing
+│   ├── #servicios     Servicios
+│   ├── #planes        Planes y precios
+│   ├── #horarios      Horarios y ubicación
+│   ├── #espacio       Galería
+│   ├── #productos     Catálogo
+│   ├── #inscripcion   Condiciones
+│   └── #redes         Redes sociales
+├── /servicios         Página dedicada
+├── /planes            Página dedicada
+├── /horarios          Horarios, mapa y fachada
+├── /espacio           Galería
+├── /productos         Catálogo
+├── /politica-datos    Tratamiento de datos
+├── /carrito           Carrito
+├── /checkout          Pedido protegido
+├── /login             Acceso
+├── /register          Registro
+├── /mi-cuenta         Cuenta
+├── /tickets           Soporte
+└── /users             Administración</pre>
+
+  <h2 id="wireframe">6. Wireframe y arquitectura de información</h2>
+  <pre>┌────────────────────────────────────────────────────────────┐
+│ LOGO  Servicios Planes Horarios Espacio Productos Carrito  │
+├────────────────────────────────────────────────────────────┤
+│ HERO: título · descripción · CTA · carrusel                │
+├────────────────────────────────────────────────────────────┤
+│ SERVICIOS: [Cardio] [Pesas] [Sauna] [Jacuzzi]              │
+├────────────────────────────────────────────────────────────┤
+│ PLANES: [Cobre] [Bronce] [Platino] [Oro]                   │
+├────────────────────────────────────────────────────────────┤
+│ HORARIOS · UBICACIÓN · MAPA · FACHADA                     │
+├────────────────────────────────────────────────────────────┤
+│ ESPACIO · PRODUCTOS · INSCRIPCIÓN · REDES                 │
+├────────────────────────────────────────────────────────────┤
+│ FOOTER: marca · navegación · soporte · copyright           │
+└────────────────────────────────────────────────────────────┘</pre>
+  <p>En móvil, la navegación se convierte en menú hamburguesa, las acciones se apilan y el acceso del equipo no compite con el menú superior.</p>
+
+  <h2 id="dom">7. Estructura del DOM</h2>
+  <pre>html
+└── body
+    ├── a.skip-link
+    ├── header.site-header
+    │   ├── a.brand → img + span.brand-wordmark
+    │   ├── nav.primary-nav → rutas públicas
+    │   └── div.header-controls → carrito, sesión y menú
+    ├── main#main-content
+    │   └── app-home
+    │       ├── section.hero-section
+    │       ├── section.services-section → article × 4
+    │       ├── section.plans-section → article × 4
+    │       ├── section.hours-section
+    │       ├── section.gallery-section
+    │       ├── section.products-section
+    │       ├── section.join-section
+    │       └── section.social-section
+    └── footer.site-footer</pre>
+  <p>La estructura se implementa en <code>src/app/app.html</code>, <code>src/app/pages/home/</code>, <code>src/app/pages/section-page/</code> y <code>src/app/shared/site-footer/</code>.</p>
+
+  <h2 id="flow">8. Flujo de navegación</h2>
+  <pre>Visita → Inicio → Servicios / Planes / Horarios / Espacio / Productos / Redes
+                       ↓
+                Crear cuenta / Iniciar sesión
+                       ↓
+          Carrito → Checkout → Pedido registrado
+                       ↓
+                 Cuenta / Tickets
+                       ↓
+              Admin → Gestión de usuarios</pre>
+  <p>Los guards protegen checkout, cuenta y tickets; el guard de rol limita la gestión de usuarios. Las rutas desconocidas vuelven a la landing.</p>
+
+  <h2 id="tech">9. Implementación tecnológica</h2>
+  <table><tr><th>Capa</th><th>Tecnología</th><th>Ubicación</th></tr>
+  <tr><td>Frontend</td><td>Angular 22, TypeScript, HTML y CSS</td><td><code>src/</code></td></tr><tr><td>Backend</td><td>Node.js, Express y API REST</td><td><code>server/src/</code></td></tr><tr><td>Datos</td><td>PostgreSQL 18 y migraciones SQL</td><td><code>server/src/db/</code></td></tr><tr><td>Despliegue</td><td>GitHub Actions y GitHub Pages</td><td><code>.github/workflows/</code></td></tr></table>
+  <p>La autenticación usa guards e interceptor; la interfaz separa el sitio promocional del soporte interno; la compilación utiliza <code>--base-href /zona-fitness/</code> y crea un fallback SPA.</p>
+
+  <h2>10. Responsive, accesibilidad y seguridad</h2>
+  <ul><li>Revisión en 320, 360, 390 y 430 px, tableta y escritorio.</li><li>Tarjetas, formularios, tablas, botones e imágenes se adaptan al contenedor.</li><li>Enlace para saltar al contenido, ARIA, alt, foco visible y teclado.</li><li>Guards de sesión y rol; no se almacenan tarjetas ni se simulan cobros.</li><li>HTTPS activo mediante GitHub Pages.</li></ul>
+
+  <h2 id="qa">11. QA y criterios de aceptación</h2>
+  <table><tr><th>Área</th><th>Resultado</th></tr><tr><td>Navegación y contenido</td><td class="ok">Aprobado</td></tr><tr><td>Recursos en GitHub Pages</td><td class="ok">Aprobado</td></tr><tr><td>Responsive sin overlap</td><td class="ok">Aprobado</td></tr><tr><td>Formularios y rutas protegidas</td><td class="ok">Aprobado</td></tr><tr><td>Pruebas frontend</td><td class="ok">92/92 exitosas</td></tr><tr><td>Build de producción</td><td class="ok">Aprobado</td></tr><tr><td>Despliegue</td><td class="ok">Aprobado</td></tr></table>
+  <pre>npm test -- --watch=false
+npm run build -- --base-href /zona-fitness/
+git diff --check</pre>
+
+  <h2 id="deploy">12. Despliegue y entrega</h2>
+  <ol><li>Integración del código a <code>main</code>.</li><li>Instalación y build automático.</li><li>Publicación de <code>dist/frontend/browser</code>.</li><li>Generación de <code>404.html</code> para rutas SPA.</li><li>Verificación de la URL pública y recursos sociales.</li></ol>
+  <p>URL: <a href="https://yhojan2025.github.io/zona-fitness/">https://yhojan2025.github.io/zona-fitness/</a><br>
+  Repositorio: <a href="https://github.com/yhojan2025/zona-fitness">github.com/yhojan2025/zona-fitness</a><br>
+  PR de entrega: <a href="https://github.com/yhojan2025/zona-fitness/pull/3">#3</a></p>
+
+  <h2 id="deliverables">13. Entregables</h2>
+  <ul><li>Código Angular, Node.js y PostgreSQL.</li><li>Landing, páginas públicas y módulo interno.</li><li>Sitemap, wireframe, DOM y flujo.</li><li>Manual de cliente, guía técnica y guía de contenido.</li><li>PDF de entrega y documentación relacionada.</li><li>Pruebas, build, repositorio y URL pública.</li></ul>
+
+  <h2 id="conclusion">14. Conclusión</h2>
+  <p>Zona Fitness demuestra la conexión entre análisis, diseño, desarrollo, QA y despliegue. Todas las metas de esta versión fueron alcanzadas: la navegación funciona, el contenido está organizado, las vistas móviles no presentan overlap, las rutas internas están protegidas, la documentación está disponible y la aplicación está publicada con HTTPS.</p>
+  <p>Una solución web terminada se define por su código, pero también por la claridad de sus responsabilidades, la trazabilidad de sus decisiones, la evidencia de sus pruebas y la capacidad del cliente para recibirla y mantenerla.</p>
+  <footer>Proyecto Guiado 1 · Zona Fitness · Versión final · 29 de octubre de 2026</footer>
+</main>
+</body>
+</html>

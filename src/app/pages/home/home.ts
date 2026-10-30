@@ -87,9 +87,9 @@ export class Home {
       id: 1,
       slug: 'cobre',
       name: 'Cobre',
-      duration: '15 días',
-      detail: '2 horas de ejercicio al día',
-      price: '$45.000',
+      duration: '1 mes ',
+      detail: 'de ti depende que estes en forma,pero nosotros te ayudamnos a lograrlo',
+      price: '100.000',
       featured: false,
     },
     {

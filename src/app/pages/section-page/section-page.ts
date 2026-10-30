@@ -77,9 +77,9 @@ const CONTENT: Record<SectionKey, SectionContent> = {
     cards: [
       {
         id: 1, slug: 'cobre', title: 'Cobre',
-        duration: '15 días',
-        detail: '2 horas de ejercicio al día',
-        price: '$45.000',
+        duration: '1 mes ',
+        detail: 'de ti depende que estes en forma,pero nosotros te ayudamnos a lograrlo',
+        price: '100.000',
         description: 'Una opción para comenzar y conocer tu rutina.',
       },
       {

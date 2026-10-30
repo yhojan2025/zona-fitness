@@ -459,3 +459,40 @@
   font-weight: 700;
   text-decoration: none;
 }
+
+@media (max-width: 640px) {
+  .account-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .account-header-card,
+  .admin-notice-banner {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 1.25rem;
+  }
+
+  .header-logout-btn,
+  .btn-goto-admin,
+  .form-actions,
+  .btn-save-profile {
+    width: 100%;
+  }
+
+  .tab-pane-card {
+    padding: 1.25rem;
+  }
+
+  .order-top-bar,
+  .order-footer-bar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .order-item-line {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}

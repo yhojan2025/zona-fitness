@@ -74,19 +74,18 @@ describe('Home', () => {
     const page = fixture.nativeElement as HTMLElement;
 
     expect(page.textContent).toContain('$45.000');
-    expect(page.textContent).toContain('$500000');
+    expect(page.textContent).toContain('$500.000');
     expect(page.textContent).toContain('COP');
-    expect(page.textContent).toContain('Confirma los datos oficiales de pago');
+    expect(page.textContent).toContain('Se aceptan Nequi y Bancolombia');
     expect(page.querySelectorAll('#redes a[href^="https://"]')).toHaveLength(0);
   });
 
-  it('shows social section and copyright without inventing social links', () => {
+  it('shows social section and copyright with approved brand content', () => {
     const fixture = TestBed.createComponent(Home);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
 
-    expect(page.querySelector('#redes')?.textContent).toContain('perfiles oficiales');
-    expect(page.querySelector('#redes')?.textContent).toContain('maquetas visuales locales');
+    expect(page.querySelector('#redes')?.textContent).toContain('experiencias digitales');
     expect(page.querySelectorAll('#redes .social-prototype-card')).toHaveLength(3);
     expect(page.querySelectorAll('#redes .social-sample-gallery img')).toHaveLength(6);
     expect(page.querySelectorAll('#redes .social-platform-icon')).toHaveLength(3);

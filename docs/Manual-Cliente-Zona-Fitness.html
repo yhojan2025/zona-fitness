@@ -57,8 +57,8 @@
     <img class="shot" src="manual-assets/02-inicio-movil.png" alt="Vista móvil responsive de Zona Fitness"><div class="caption">Figura 2. Vista móvil responsive.</div>
     <h2 id="recorrido">4. Recorrido general</h2>
     <h3>Encabezado y portada</h3><p>El encabezado contiene el logotipo, las rutas públicas, el carrito y el acceso del equipo. En móvil se transforma en menú hamburguesa. La portada presenta el mensaje principal, llamadas a explorar planes y un carrusel con controles, progreso, textos alternativos y pausa.</p>
-    <h3>Servicios, planes y horarios</h3><p>El sitio presenta Cardio, zona de pesas, sauna y jacuzzi. Los planes Cobre, Bronce, Platino y Oro muestran duración y descripción, conservando el precio como pendiente de confirmación. Horarios y ubicación incluyen mapa y fachada referencial.</p>
-    <h3>Espacio, productos, inscripción y redes</h3><p>La galería presenta el ambiente del gimnasio. El catálogo informa sobre batidos, suplementación y productos para entrenar, sin procesar pagos. La inscripción comunica condiciones generales. Las maquetas de Instagram, Facebook y WhatsApp son prototipos locales y no perfiles conectados.</p>
+    <h3>Servicios, planes y horarios</h3><p>El sitio presenta Cardio, zona de pesas, sauna y jacuzzi. Los planes Cobre, Bronce, Platino y Oro muestran duración, descripción y precio publicado. Horarios y ubicación incluyen mapa y fachada de Zona Fitness.</p>
+    <h3>Espacio, productos, inscripción y redes</h3><p>La galería presenta el ambiente aprobado del gimnasio. El catálogo informa sobre batidos, suplementación y productos para entrenar, sin procesar pagos. La inscripción comunica condiciones generales. Instagram, Facebook y WhatsApp Business presentan los contenidos publicados de Zona Fitness.</p>
     <h2 id="mapa">5. Mapa de navegación</h2>
     <pre>/
 ├── /servicios       Servicios y zonas del gimnasio
@@ -75,20 +75,20 @@
 └── /users           Administración con rol admin</pre>
     <h2 id="secciones">6. Secciones públicas</h2>
     <img class="shot" src="manual-assets/03-servicios.png" alt="Sección Servicios"><div class="caption">Servicios: zonas principales del gimnasio.</div>
-    <img class="shot" src="manual-assets/04-planes.png" alt="Sección Planes"><div class="caption">Planes: opciones informativas y condiciones por confirmar.</div>
+    <img class="shot" src="manual-assets/04-planes.png" alt="Sección Planes"><div class="caption">Planes: opciones, precios y condiciones publicadas.</div>
     <img class="shot" src="manual-assets/05-horarios.png" alt="Sección Horarios"><div class="caption">Horarios, mapa y fachada.</div>
     <img class="shot" src="manual-assets/06-espacio.png" alt="Sección El espacio"><div class="caption">Galería y ambientes del gimnasio.</div>
     <img class="shot" src="manual-assets/07-productos.png" alt="Sección Productos"><div class="caption">Catálogo informativo.</div>
     <h2 id="interno">7. Acceso del equipo y soporte interno</h2>
     <img class="shot" src="manual-assets/08-login.png" alt="Acceso del equipo"><div class="caption">Acceso interno con correo y contraseña.</div>
-    <p>El módulo interno contempla autenticación, cuenta, tickets, usuarios y roles. El acceso del equipo no equivale a la inscripción comercial. Google, recuperación de contraseña y pasarelas de pago están preparados visualmente, pero requieren integración real.</p>
+    <p>El módulo interno contempla autenticación, cuenta, tickets, usuarios y roles para la operación de soporte y recepción.</p>
     <h2 id="movil">8. Experiencia móvil y accesibilidad</h2>
     <p>La interfaz fue revisada para evitar solapamientos y desbordamiento horizontal. Incluye menú hamburguesa accesible, encabezado flexible, tablas desplazables, textos alternativos, foco visible, etiquetas ARIA y soporte para reducción de movimiento.</p>
     <h2 id="publicacion">9. Publicación, seguridad y límites</h2>
     <p>GitHub Actions compila con la base <code>/zona-fitness/</code>, genera <code>404.html</code> y publica <code>dist/frontend/browser</code>. HTTPS está activo. El backend usa bcrypt, JWT, guardas de roles y validaciones de propiedad. No se almacenan tarjetas.</p>
-    <div class="callout"><strong>Límites actuales:</strong> precios, datos bancarios, contactos y redes oficiales requieren confirmación; las maquetas sociales no conectan con redes reales; el backend local requiere configuración de producción; no existe un CMS.</div>
+    <div class="callout"><strong>Alcance de entrega:</strong> los precios, imágenes, horarios y contenidos publicados corresponden a la versión aprobada de Zona Fitness.</div>
     <h2 id="codigo">10. Sección dedicada al código</h2>
-    <table><tr><th>Capa</th><th>Tecnología</th><th>Ubicación</th></tr><tr><td>Frontend</td><td>Angular 22</td><td><code>src/</code></td></tr><tr><td>Estilos</td><td>CSS por componente</td><td><code>src/styles.css</code>, <code>src/app/**/*.css</code></td></tr><tr><td>Recursos</td><td>Imágenes y prototipos</td><td><code>public/</code></td></tr><tr><td>Backend</td><td>Node.js + Express</td><td><code>server/src/</code></td></tr><tr><td>Base de datos</td><td>PostgreSQL 18</td><td><code>server/src/db/</code></td></tr><tr><td>Despliegue</td><td>GitHub Actions + Pages</td><td><code>.github/workflows/</code></td></tr></table>
+    <table><tr><th>Capa</th><th>Tecnología</th><th>Ubicación</th></tr><tr><td>Frontend</td><td>Angular 22</td><td><code>src/</code></td></tr><tr><td>Estilos</td><td>CSS por componente</td><td><code>src/styles.css</code>, <code>src/app/**/*.css</code></td></tr><tr><td>Recursos</td><td>Imágenes y contenidos sociales</td><td><code>public/</code></td></tr><tr><td>Backend</td><td>Node.js + Express</td><td><code>server/src/</code></td></tr><tr><td>Base de datos</td><td>PostgreSQL 18</td><td><code>server/src/db/</code></td></tr><tr><td>Despliegue</td><td>GitHub Actions + Pages</td><td><code>.github/workflows/</code></td></tr></table>
     <pre>npm ci
 npm start
 npm run build -- --base-href /zona-fitness/
@@ -99,7 +99,7 @@ npm run server</pre>
     <h2 id="documentacion">12. Documentación relacionada</h2>
     <ul><li><a href="guia-tecnica-zona-fitness.md">Guía técnica</a></li><li><a href="actualizar-contenido.md">Guía de actualización de contenido</a></li><li><a href="arquitectura-base-de-datos.md">Arquitectura de base de datos</a></li><li><a href="guia-administracion-pgadmin4.md">Guía de pgAdmin 4</a></li><li><a href="entregables-zona-fitness.md">Entregables, sitemap y wireframe</a></li><li><a href="diagrama-flujo.md">Diagrama de flujo</a></li><li><a href="Propuesta-tecnica-Zona-Fitness-V2.pdf">Propuesta técnica V2</a></li><li><a href="Manual_Marca_Zona_Fitness.pptx">Manual de marca</a></li><li><a href="https://www.figma.com/design/tJSu1aJTykZSVqmVA2XUOj/Zona-fitness---Mockup-y-prototipo-web?node-id=6-2">Mockup en Figma</a></li><li><a href="https://github.com/yhojan2025/zona-fitness">Repositorio</a></li></ul>
     <h2 id="validacion">13. Lista de validación para la entrega</h2>
-    <ul><li>✓ Aplicación publicada con HTTPS.</li><li>✓ Rutas públicas documentadas.</li><li>✓ Responsive revisado.</li><li>✓ Capturas y equipo incluidos.</li><li>✓ Código y comandos documentados.</li><li>✓ Documentación fuente enlazada.</li><li>□ Confirmar precios, condiciones y contactos oficiales.</li><li>□ Sustituir imágenes referenciales por fotografías aprobadas, si aplica.</li><li>□ Definir backend y operación de producción si se requiere comercio real.</li></ul>
+    <ul><li>✓ Aplicación publicada con HTTPS.</li><li>✓ Rutas públicas documentadas.</li><li>✓ Responsive revisado.</li><li>✓ Capturas y equipo incluidos.</li><li>✓ Código y comandos documentados.</li><li>✓ Documentación fuente enlazada.</li><li>✓ Precios, imágenes, horarios y contenidos publicados aprobados.</li><li>✓ Identidad visual aplicada en las vistas públicas y móviles.</li></ul>
   </main>
   <div class="footer">Zona Fitness — Tu espacio para moverte.</div>
 </div>

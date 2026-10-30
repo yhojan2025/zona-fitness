@@ -479,4 +479,10 @@ input:focus {
   .auth-card-title {
     font-size: 1.45rem;
   }
+
+  .auth-card form,
+  .auth-card .button,
+  .auth-card button {
+    width: 100%;
+  }
 }

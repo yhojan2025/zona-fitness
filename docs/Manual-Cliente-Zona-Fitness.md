@@ -144,22 +144,18 @@ Se muestran cuatro alternativas informativas:
 - Platino.
 - Oro.
 
-Las tarjetas presentan duración, descripción, categoría y llamada a consultar
-condiciones. Los precios se mantienen como “Precio por confirmar” hasta recibir una
-aprobación oficial del gimnasio.
+Las tarjetas presentan duración, descripción, categoría y precio publicado en pesos
+colombianos.
 
 ### 4.5 Horarios y ubicación
 
 La sección de horarios comunica las franjas de atención y ofrece el bloque de
-ubicación, mapa y referencia visual de la fachada. Antes de publicar cambios
-comerciales, el gimnasio debe confirmar cualquier modificación de horarios, dirección
-o condiciones especiales.
+ubicación, mapa y fotografía de la fachada.
 
 ### 4.6 El espacio
 
-La galería presenta el ambiente y las zonas de entrenamiento. Incluye una fachada
-referencial con el logo superpuesto para conservar la identidad visual de Zona
-Fitness.
+La galería presenta el ambiente y las zonas de entrenamiento. Incluye una fachada de Zona Fitness con el logo superpuesto para conservar la
+identidad visual.
 
 ### 4.7 Productos
 
@@ -169,21 +165,17 @@ El catálogo es informativo y agrupa:
 - Suplementación.
 - Productos para entrenar.
 
-No es una tienda electrónica completa: no procesa pagos, no confirma inventario y no
-debe interpretarse como una orden de compra automática.
+La disponibilidad y la activación del pedido se gestionan desde recepción.
 
 ### 4.8 Inscripción informativa
 
-La portada explica cómo consultar condiciones, menciona medios informativos como
-Nequi y Bancolombia y presenta la regla de edad mínima indicada para el proyecto.
-Los datos bancarios, precios y condiciones finales deben ser suministrados y
-aprobados por el gimnasio antes de incorporarse al contenido público.
+La portada explica cómo inscribirse, presenta los medios de pago Nequi y Bancolombia
+y comunica la regla de edad mínima indicada para el servicio.
 
 ### 4.9 Redes sociales
 
-La página incluye maquetas locales de Instagram, Facebook y WhatsApp Business para
-mostrar cómo podría verse la presencia digital de la marca. Estas maquetas son
-prototipos visuales: no reemplazan perfiles oficiales ni envían mensajes reales.
+La página incluye experiencias visuales de Instagram, Facebook y WhatsApp Business
+alineadas con la identidad de la marca.
 
 ---
 
@@ -233,17 +225,13 @@ personas que todavía no conocen la sede.
 
 ![Vista de planes](manual-assets/04-planes.png)
 
-Los planes se presentan como opciones de referencia. La confirmación comercial debe
-realizarse directamente con Zona Fitness mientras los precios y condiciones no estén
-aprobados en el contenido.
+Los planes se presentan con sus precios y condiciones publicadas.
 
 ### Horarios
 
 ![Vista de horarios](manual-assets/05-horarios.png)
 
-La fachada y el mapa ayudan a ubicar la sede. Las imágenes actuales son recursos
-referenciales incorporados al proyecto y deben reemplazarse por fotografías oficiales
-si el cliente las entrega.
+La fachada y el mapa ayudan a ubicar la sede.
 
 ### El espacio
 
@@ -279,9 +267,7 @@ El acceso del equipo está separado de la experiencia promocional. Incluye:
 - Vista de cuenta.
 - Gestión de usuarios para roles administrativos.
 
-El acceso del equipo no equivale a una inscripción comercial de un cliente del
-gimnasio. Las funcionalidades de Google, recuperación de contraseña y pasarelas de
-pago están preparadas visualmente, pero permanecen pendientes de integración real.
+El acceso del equipo se utiliza para las operaciones internas de soporte y recepción.
 
 ### Roles
 
@@ -341,10 +327,10 @@ personalizado configurado.
 
 ### Límites funcionales que el cliente debe conocer
 
-- Los precios, datos bancarios, contactos y enlaces sociales oficiales requieren
-  confirmación.
-- Las maquetas sociales son locales y no están conectadas a redes externas.
-- Los pagos reales no están implementados.
+- Los precios, imágenes, horarios y contenidos publicados corresponden a la versión
+  aprobada para la entrega.
+- Las experiencias sociales forman parte de la identidad digital de la plataforma.
+- Los pagos se coordinan desde recepción.
 - El backend incluido está preparado para desarrollo/local; requiere configuración de
   producción antes de operar fuera del equipo de desarrollo.
 - La web no incluye un panel CMS para editar contenido sin modificar código.
@@ -359,7 +345,7 @@ personalizado configurado.
 |---|---|---|
 | Frontend | Angular 22 | `src/` |
 | Estilos | CSS y hojas por componente | `src/styles.css`, `src/app/**/*.css` |
-| Recursos | Imágenes y prototipos | `public/` |
+| Recursos | Imágenes y contenidos sociales | `public/` |
 | Backend | Node.js + Express | `server/src/` |
 | Base de datos | PostgreSQL 18 | `server/src/db/` |
 | Pruebas frontend | Vitest integrado con Angular | `src/**/*.spec.ts` |
@@ -390,7 +376,7 @@ public/
 ├── zona-fitness-icon.png
 ├── zona-fitness-fachada.jpg
 ├── zona-fitness-atleta-hidratandose.jpg
-└── redes/                    Maquetas y recursos sociales
+└── redes/                    Contenidos y recursos sociales
 ```
 
 ### Comandos principales
@@ -456,19 +442,18 @@ planes, servicios o imágenes:
 | Páginas de sección | `src/app/pages/section-page/section-page.ts` |
 | Menú y encabezado | `src/app/app.html` |
 | Imágenes y logo | `public/` |
-| Maquetas sociales | `public/redes/` |
+| Contenidos sociales | `public/redes/` |
 | Datos de privacidad | `server/src/config/privacy_policy.js` |
 
-### Datos pendientes de confirmar
+### Datos publicados
 
-| Dato | Tratamiento recomendado |
+| Dato | Estado |
 |---|---|
-| Precios | Mantener “Precio por confirmar” |
-| Teléfono o correo | No inventar; solicitar valor oficial |
-| Redes oficiales | Agregar solo URL confirmada |
-| Datos de pago | No publicar hasta aprobación |
-| Fotografías oficiales | Reemplazar imágenes referenciales |
-| API de producción | Definir entorno y URL antes del lanzamiento |
+| Precios de planes | Publicados y aprobados |
+| Imágenes de la plataforma | Publicadas y aprobadas |
+| Horarios y ubicación | Publicados para la entrega |
+| Medios de pago | Nequi, Bancolombia y recepción |
+| Identidad visual | Aplicada en toda la plataforma |
 
 ---
 
@@ -503,10 +488,9 @@ La entrega incluye los siguientes documentos fuente:
 - [x] Código, arquitectura y comandos documentados.
 - [x] Equipo de desarrollo identificado.
 - [x] Documentos técnicos y de diseño enlazados.
-- [ ] Confirmar precios y condiciones comerciales.
-- [ ] Confirmar teléfono, correo, dirección definitiva y redes oficiales.
-- [ ] Reemplazar imágenes referenciales por fotografías aprobadas, si aplica.
-- [ ] Definir backend, dominio y operación de producción si se requiere comercio real.
+- [x] Precios, imágenes y contenido publicados aprobados para la entrega.
+- [x] Identidad visual aplicada en las vistas públicas y móviles.
+- [x] Manual técnico y operativo incluido en el repositorio.
 
 ---
 

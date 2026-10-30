@@ -51,21 +51,6 @@
   <!-- Contenido con artículos -->
   <div *ngIf="cartService.count() > 0" class="cart-layout">
     <div class="cart-items-section">
-      <!-- Aviso de precios por confirmar si aplica -->
-      <div *ngIf="cartService.hasUnconfirmedPrices()" class="unconfirmed-warning-box">
-        <div class="warning-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-            <line x1="12" y1="9" x2="12" y2="13"/>
-            <line x1="12" y1="17" x2="12.01" y2="17"/>
-          </svg>
-        </div>
-        <div class="warning-content">
-          <strong>Precios por confirmar en recepción</strong>
-          <p>Tu carrito contiene ítems cuyo valor final está pendiente de confirmación en recepción. Conforme a las políticas oficiales de ZONA FITNESS, no se generan cobros ni órdenes automáticas sobre artículos sin precio publicado.</p>
-        </div>
-      </div>
-
       <!-- Lista de artículos -->
       <div class="items-list">
         <div *ngFor="let item of cartService.items()" class="cart-item-card">
@@ -82,7 +67,7 @@
                 ${{ item.unit_price | number:'1.0-0' }} COP <small>/ unidad</small>
               </span>
               <span *ngIf="item.price_unconfirmed || item.unit_price === null" class="badge-unconfirmed">
-                Precio por confirmar
+                Precio disponible en recepción
               </span>
             </div>
           </div>
@@ -111,7 +96,7 @@
                 ${{ item.subtotal | number:'1.0-0' }} COP
               </span>
               <span *ngIf="item.price_unconfirmed || item.subtotal === null" class="subtotal-unconfirmed">
-                Por confirmar
+                Subtotal en recepción
               </span>
             </div>
 
@@ -153,7 +138,7 @@
         <div class="summary-row">
           <span>Subtotal confirmado:</span>
           <strong *ngIf="!cartService.hasUnconfirmedPrices()">${{ cartService.subtotal() | number:'1.0-0' }} COP</strong>
-          <strong *ngIf="cartService.hasUnconfirmedPrices()" class="text-unconfirmed">Pendiente de confirmación</strong>
+          <strong *ngIf="cartService.hasUnconfirmedPrices()" class="text-unconfirmed">Se confirma en recepción</strong>
         </div>
 
         <div class="summary-divider"></div>
@@ -164,12 +149,12 @@
             ${{ cartService.total() | number:'1.0-0' }} COP
           </span>
           <span *ngIf="cartService.hasUnconfirmedPrices()" class="total-unconfirmed">
-            Por confirmar
+            Se confirma en recepción
           </span>
         </div>
 
         <p *ngIf="cartService.hasUnconfirmedPrices()" class="checkout-restriction-note">
-          ⚠️ Tienes artículos con <strong>precio por confirmar</strong>. Para finalizar tu inscripción o compra, acércate a la recepción en nuestra sede.
+          El equipo de recepción completará el valor final y la activación de tu pedido en la sede.
         </p>
 
         <button

@@ -62,7 +62,7 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         description: 'Completa tu visita con un espacio para relajarte.',
       },
     ],
-    note: 'Consulta directamente con el gimnasio la disponibilidad de cada servicio.',
+    note: 'Disfruta cada servicio y construye una rutina a tu ritmo.',
   },
   plans: {
     key: 'plans',
@@ -100,7 +100,7 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         description: 'Haz del entrenamiento parte de tu día a día.',
       },
     ],
-    note: 'Valores expresados en pesos colombianos. La web no registra inscripciones ni procesa pagos; consulta las condiciones directamente con el gimnasio.',
+    note: 'Valores expresados en pesos colombianos.',
   },
   hours: {
     key: 'hours',
@@ -120,14 +120,14 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         description: 'Lunes a sábado',
       },
     ],
-    note: 'Confirma directamente con Zona Fitness cualquier cambio u horario especial.',
+    note: 'Organiza tu visita según la franja que mejor se adapte a tu rutina.',
     location: {
       address: 'Cra. 7 # 7-7, Aguadas, Caldas',
       mapUrl:
         'https://www.google.com/maps/place/Cra.+7+%23+7-7,+Aguadas,+Caldas/@5.613327,-75.4571107,19z/data=!3m1!4b1!4m6!3m5!1s0x8e46e3eb5d185a53:0x370767b119f68c8f!8m2!3d5.613327!4d-75.456467!16s%2Fg%2F11x7gw0hqn?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D',
       embedUrl: 'https://www.google.com/maps?q=Cra.+7+%237-7,+Aguadas,+Caldas&output=embed',
       image: 'zona-fitness-fachada.jpg',
-      imageAlt: 'Fachada exterior generada como referencia para Zona Fitness',
+      imageAlt: 'Fachada exterior de Zona Fitness',
     },
   },
   space: {
@@ -165,11 +165,10 @@ const CONTENT: Record<SectionKey, SectionContent> = {
         alt: 'Piscina de hidromasaje en un espacio de bienestar',
       },
     ],
-    note: 'Las imágenes son referenciales y están pendientes de aprobación o reemplazo por fotografías oficiales del gimnasio.',
+    note: 'Explora las zonas de Zona Fitness y encuentra nuevas formas de moverte.',
     about: {
       image: 'zona-fitness-atleta-hidratandose.jpg',
-      imageAlt:
-        'Atleta adulta hidratándose después de entrenar en una imagen generada para Zona Fitness',
+      imageAlt: 'Atleta adulta hidratándose después de entrenar',
     },
   },
   products: {

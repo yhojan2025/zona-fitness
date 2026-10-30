@@ -530,4 +530,10 @@ select:focus {
   .auth-card-title {
     font-size: 1.4rem;
   }
+
+  .register-card form,
+  .register-card .button,
+  .register-card button {
+    width: 100%;
+  }
 }
